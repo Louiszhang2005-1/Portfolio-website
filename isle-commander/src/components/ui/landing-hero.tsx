@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { Anchor, ArrowRight, Briefcase, Compass, Gamepad2, GitBranch, Mail, Sparkles } from "lucide-react";
+import { Anchor, ArrowRight, Briefcase, Compass, Gamepad2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -55,7 +55,7 @@ const credibilitySignals = [
   },
   {
     label: "Lockheed Martin",
-    detail: "Ship Integrations",
+    detail: "Ship Integration",
     logo: "/logo/lockheed-martin.jpg",
     tone: "text-[#a8c7ff]",
     accent: "#60a5fa",
@@ -323,18 +323,18 @@ export const LandingHero = () => {
     <section className="relative min-h-[100svh] w-full overflow-hidden bg-[#05070d] text-white" id="landing-hero">
       <div
         ref={containerRef}
-        className="relative flex min-h-[100svh] w-full flex-col items-center overflow-hidden px-4 pb-8 pt-16 sm:px-6 sm:pb-10 sm:pt-20"
+        className="relative flex min-h-[100svh] w-full flex-col items-center overflow-hidden px-3 pb-6 pt-14 sm:px-6 sm:pb-8 sm:pt-16"
         onMouseMove={handleGlobalMouse}
       >
         <VoyageBackdrop activePanel={hoveredPanel} mousePos={mousePos} />
 
-        <nav className="absolute left-1/2 top-3 z-30 w-[min(calc(100%-1rem),560px)] -translate-x-1/2">
-          <div className="flex items-center justify-between gap-1 overflow-x-auto rounded-[8px] border border-white/10 bg-black/55 px-2 py-2 shadow-2xl backdrop-blur-xl [scrollbar-width:none] sm:px-3">
+        <nav className="absolute left-1/2 top-2.5 z-30 w-auto -translate-x-1/2 sm:top-3">
+          <div className="flex items-center gap-0.5 overflow-x-auto rounded-[8px] border border-white/10 bg-black/55 px-1.5 py-1.5 shadow-2xl backdrop-blur-xl [scrollbar-width:none] sm:gap-1 sm:px-2 sm:py-2">
             {navItems.map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
-                className="whitespace-nowrap rounded-md px-3 py-2 text-[11px] font-medium text-white/62 transition-colors hover:bg-white/[0.08] hover:text-white sm:text-sm"
+                className="whitespace-nowrap rounded-md px-2.5 py-1.5 text-[10px] font-medium text-white/62 transition-colors hover:bg-white/[0.08] hover:text-white sm:px-3 sm:py-2 sm:text-sm"
               >
                 {item.label}
               </Link>
@@ -342,144 +342,187 @@ export const LandingHero = () => {
           </div>
         </nav>
 
-        <div className="absolute right-4 top-3 z-30 hidden items-center gap-2 xl:flex">
-          <a
-            href="mailto:zlouis2005@gmail.com"
-            className="inline-flex h-11 items-center gap-2 rounded-[8px] border border-[#89f5ff]/20 bg-black/45 px-4 text-xs font-semibold text-[#dffbff]/82 shadow-xl backdrop-blur-xl transition-colors hover:border-[#89f5ff]/44 hover:bg-[#89f5ff]/10 hover:text-white"
-            aria-label="Email Louis Zhang"
-          >
-            <Mail className="h-4 w-4" />
-            Email
-          </a>
-          <a
-            href="https://github.com/Louiszhang2005-1"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex h-11 items-center gap-2 rounded-[8px] border border-[#f7e7bd]/18 bg-black/45 px-4 text-xs font-semibold text-[#f7e7bd]/78 shadow-xl backdrop-blur-xl transition-colors hover:border-[#f7e7bd]/40 hover:bg-[#f7e7bd]/10 hover:text-white"
-            aria-label="Open Louis Zhang GitHub"
-          >
-            <GitBranch className="h-4 w-4" />
-            GitHub
-          </a>
-        </div>
 
-        <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-1 flex-col items-center justify-center gap-2.5 py-7 sm:gap-3.5 lg:py-8">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            className="flex items-center gap-3 text-[10px] font-label uppercase tracking-[0.28em] text-[#89f5ff]/80 sm:text-xs"
-          >
-            <span className="h-px w-8 bg-[#89f5ff]/30" />
-            Mechanical &amp; Software Engineer
-            <span className="h-px w-8 bg-[#89f5ff]/30" />
-          </motion.div>
 
-          <h1 className="text-center font-headline text-4xl font-extrabold leading-none tracking-normal text-white sm:text-6xl lg:text-7xl">
-            <WordsPullUp text="Louis Zhang" />
-          </h1>
+        <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-1 flex-col items-center justify-center py-3 sm:py-5 lg:py-6">
+          {/* ── Split Hero: Text Left + Visual Right ── */}
+          <div className="flex w-full flex-col items-center gap-6 lg:flex-row lg:items-center lg:gap-10">
 
-          <div className="flex max-w-3xl flex-col items-center gap-2 text-center">
-            <motion.p
-              initial={{ y: 12, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="text-sm font-semibold leading-5 text-[#f7f1df]/84 sm:text-lg sm:leading-6"
+            {/* LEFT: Name + Bio + Credentials */}
+            <div className="flex flex-1 flex-col items-center text-center lg:items-start lg:text-left">
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
+                className="mb-2 flex items-center gap-3 text-[10px] font-label uppercase tracking-[0.28em] text-[#89f5ff]/80 sm:text-xs"
+              >
+                <span className="h-px w-8 bg-[#89f5ff]/30" />
+                Mechanical &amp; Software Engineer
+                <span className="h-px w-8 bg-[#89f5ff]/30" />
+              </motion.div>
+
+              <h1 className="font-headline text-4xl font-extrabold leading-none tracking-tight text-white sm:text-6xl lg:text-7xl">
+                <WordsPullUp text="Louis Zhang" />
+              </h1>
+
+              <motion.p
+                initial={{ y: 12, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                className="mt-3 max-w-md text-sm leading-5 text-[#f7f1df]/80 sm:text-base sm:leading-6"
+              >
+                Building across hardware, manufacturing, aerospace, robotics, and software — from lunar transport systems to hackathon robots.
+              </motion.p>
+
+              {/* Experience cards — prominent */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.46 }}
+                className="mt-6 flex flex-col gap-2.5 sm:mt-8 sm:gap-3"
+              >
+                {credibilitySignals.map((signal) => (
+                  <div
+                    key={signal.label}
+                    className="group relative flex items-center gap-3 overflow-hidden rounded-xl border border-white/12 bg-white/[0.04] px-3 py-2.5 backdrop-blur-xl transition-all hover:border-white/24 hover:bg-white/[0.08] sm:gap-4 sm:rounded-2xl sm:px-5 sm:py-4"
+                  >
+                    <div
+                      className="absolute inset-x-0 top-0 h-px opacity-60"
+                      style={{ background: `linear-gradient(90deg, transparent, ${signal.accent}, transparent)` }}
+                    />
+                    <div className="relative grid h-12 w-12 shrink-0 place-items-center overflow-hidden rounded-xl border border-white/16 bg-white shadow-lg sm:h-16 sm:w-16">
+                      <Image
+                        src={signal.logo}
+                        alt={`${signal.label} logo`}
+                        fill
+                        sizes="(min-width: 640px) 64px, 48px"
+                        className="scale-110 object-contain p-1"
+                      />
+                    </div>
+                    <div className="min-w-0">
+                      <div className={`font-label text-[10px] font-black uppercase tracking-[0.14em] sm:text-xs sm:tracking-[0.18em] ${signal.tone}`}>
+                        {signal.label}
+                      </div>
+                      <div className="mt-0.5 text-xs font-semibold leading-tight text-white/72 sm:mt-1 sm:text-sm">
+                        {signal.detail}
+                      </div>
+                    </div>
+                    <div className="ml-auto hidden font-label text-[9px] uppercase tracking-[0.2em] text-white/25 sm:block">
+                      Internship
+                    </div>
+                  </div>
+                ))}
+              </motion.div>
+            </div>
+
+            {/* RIGHT: Animated orbital reel */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.92 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              className="group/orbit relative flex aspect-square w-full max-w-[320px] items-center justify-center sm:max-w-[400px] lg:max-w-[480px]"
             >
-              Mechanical engineering student at Polytechnique Montréal building across hardware, manufacturing,
-              aerospace, robotics, and software.
-            </motion.p>
-            <motion.p
-              initial={{ y: 12, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.7, delay: 0.38, ease: [0.16, 1, 0.3, 1] }}
-              className="max-w-2xl text-xs leading-5 text-[#f7f1df]/58 sm:text-sm sm:leading-6"
-            >
-              From municipal water testing to ship integration, battery manufacturing, lunar transport systems, and
-              rapid robotics/software builds.
-            </motion.p>
+              {/* Orbital rings — pulse glow on hover */}
+              <div className="absolute inset-0 animate-[spin_70s_linear_infinite] rounded-full border border-dashed border-[#89f5ff]/12 transition-all duration-700 group-hover/orbit:border-[#89f5ff]/28 group-hover/orbit:shadow-[0_0_40px_rgba(137,245,255,0.06)]" />
+              <div className="absolute inset-[15%] animate-[spin_50s_linear_infinite_reverse] rounded-full border border-dashed border-[#f7e7bd]/10 transition-all duration-700 group-hover/orbit:border-[#f7e7bd]/22" />
+              <div className="absolute inset-[30%] rounded-full border border-[#89f5ff]/8 transition-all duration-700 group-hover/orbit:border-[#89f5ff]/16" />
+
+              {/* Outer ring: 5 projects */}
+              {[
+                { label: "CSA Lunar LEAP", emoji: "🌕", color: "#f2d98a" },
+                { label: "Robot", emoji: "🌱", color: "#7ec850" },
+                { label: "ResQ-Link", emoji: "🏥", color: "#ff6b8a" },
+                { label: "Nursie", emoji: "🏆", color: "#a855f7" },
+                { label: "LazyCare", emoji: "💊", color: "#38bdf8" },
+              ].map((card, i, arr) => {
+                const speed = 55;
+                const offset = (speed / arr.length) * i;
+                return (
+                  <div
+                    key={card.label}
+                    className="absolute inset-0 transition-transform duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover/orbit:scale-[1.12]"
+                    style={{
+                      animation: `spin ${speed}s linear infinite`,
+                      animationDelay: `-${offset}s`,
+                    }}
+                  >
+                    <div
+                      className="absolute left-1/2 top-0 flex -translate-x-1/2 -translate-y-1/2 items-center gap-1.5 whitespace-nowrap rounded-lg border border-white/16 bg-black/60 px-2 py-1 shadow-xl backdrop-blur-md transition-all duration-700 group-hover/orbit:border-white/28 group-hover/orbit:bg-black/80 sm:px-2.5 sm:py-1.5"
+                      style={{
+                        animation: `spin ${speed}s linear infinite reverse`,
+                        animationDelay: `-${offset}s`,
+                        boxShadow: `0 0 20px ${card.color}18, 0 8px 32px rgba(0,0,0,0.3)`,
+                      }}
+                    >
+                      <span className="text-xs sm:text-sm">{card.emoji}</span>
+                      <span className="text-[9px] font-semibold text-white/80 sm:text-[11px]">{card.label}</span>
+                      <span className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: card.color }} />
+                    </div>
+                  </div>
+                );
+              })}
+
+              {/* Inner ring: 4 projects */}
+              {[
+                { label: "CRM Tool", emoji: "🤖", color: "#59eafb" },
+                { label: "MechPrep", emoji: "🔧", color: "#ff9734" },
+                { label: "Piston Pump", emoji: "⚙️", color: "#94a3b8" },
+                { label: "Interview AI", emoji: "🎤", color: "#f472b6" },
+              ].map((card, i, arr) => {
+                const speed = 42;
+                const offset = (speed / arr.length) * i;
+                return (
+                  <div
+                    key={card.label}
+                    className="absolute inset-[15%] transition-transform duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover/orbit:scale-[1.15]"
+                    style={{
+                      animation: `spin ${speed}s linear infinite reverse`,
+                      animationDelay: `-${offset}s`,
+                    }}
+                  >
+                    <div
+                      className="absolute left-1/2 top-0 flex -translate-x-1/2 -translate-y-1/2 items-center gap-1 whitespace-nowrap rounded-md border border-white/12 bg-black/50 px-1.5 py-1 shadow-lg backdrop-blur-md transition-all duration-700 group-hover/orbit:border-white/24 group-hover/orbit:bg-black/70 sm:gap-1.5 sm:rounded-lg sm:px-2 sm:py-1.5"
+                      style={{
+                        animation: `spin ${speed}s linear infinite`,
+                        animationDelay: `-${offset}s`,
+                        boxShadow: `0 0 14px ${card.color}14, 0 6px 24px rgba(0,0,0,0.25)`,
+                      }}
+                    >
+                      <span className="text-[10px] sm:text-xs">{card.emoji}</span>
+                      <span className="text-[8px] font-semibold text-white/70 sm:text-[10px]">{card.label}</span>
+                      <span className="h-1 w-1 shrink-0 rounded-full sm:h-1.5 sm:w-1.5" style={{ backgroundColor: card.color }} />
+                    </div>
+                  </div>
+                );
+              })}
+
+              {/* Center stat orb */}
+              <div className="relative z-10 flex flex-col items-center justify-center">
+                <div className="grid h-24 w-24 place-items-center rounded-full border border-[#89f5ff]/20 bg-gradient-to-br from-[#0a1f2e] to-[#0d2a3f] shadow-[0_0_60px_rgba(137,245,255,0.1)] transition-all duration-700 group-hover/orbit:scale-110 group-hover/orbit:shadow-[0_0_80px_rgba(137,245,255,0.18)] sm:h-32 sm:w-32">
+                  <div className="text-center">
+                    <div className="font-headline text-3xl font-black text-white sm:text-4xl">9</div>
+                    <div className="mt-0.5 font-label text-[7px] uppercase tracking-[0.2em] text-[#89f5ff]/70 sm:text-[9px]">Projects</div>
+                  </div>
+                </div>
+                <div className="mt-2 flex items-center gap-1 text-[9px] text-white/40 transition-opacity duration-500 group-hover/orbit:text-white/60">
+                  <span className="inline-block h-1 w-1 animate-pulse rounded-full bg-[#5ee08d]" />
+                  Live orbit
+                </div>
+              </div>
+            </motion.div>
           </div>
 
+          {/* Sprocket bot CTA */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.46 }}
-            className="w-full max-w-4xl"
+            transition={{ duration: 0.6, delay: 0.62 }}
+            className="mt-10 grid w-full max-w-3xl grid-cols-[auto_1fr] items-center gap-2 rounded-[8px] border border-[#89f5ff]/18 bg-black/32 px-2.5 py-1.5 shadow-xl backdrop-blur-xl sm:mt-12 sm:gap-3 sm:px-4 sm:py-2.5"
           >
-            <div className="mb-2 flex items-center justify-center gap-2 text-[9px] font-label font-black uppercase tracking-[0.24em] text-white/42">
-              <span className="h-px w-8 bg-white/14" />
-              Experience Route
-              <span className="h-px w-8 bg-white/14" />
+            <div className="grid h-8 w-8 place-items-center overflow-visible sm:h-12 sm:w-12">
+              <SprocketAvatar size={36} idle />
             </div>
-            <div className="grid grid-cols-3 gap-1.5 sm:gap-2">
-              {credibilitySignals.map((signal) => (
-                <div
-                  key={signal.label}
-                  className="group relative grid items-center justify-items-center gap-1.5 overflow-hidden rounded-[8px] border border-white/12 bg-black/42 px-1.5 py-2 text-center shadow-[0_18px_46px_rgba(0,0,0,0.24)] backdrop-blur-xl transition-colors hover:border-white/24 sm:grid-cols-[70px_1fr] sm:justify-items-start sm:gap-3 sm:px-4 sm:py-4 sm:text-left"
-                >
-                  <div
-                    className="absolute inset-x-0 top-0 h-px opacity-70"
-                    style={{ background: `linear-gradient(90deg, transparent, ${signal.accent}, transparent)` }}
-                  />
-                  <div className="relative grid h-10 w-10 place-items-center overflow-hidden rounded-[8px] border border-white/12 bg-white shadow-[inset_0_1px_0_rgba(255,255,255,0.5)] sm:h-16 sm:w-16">
-                    <Image
-                      src={signal.logo}
-                      alt={`${signal.label} logo`}
-                      fill
-                      sizes="(min-width: 640px) 64px, 40px"
-                      className="scale-110 object-contain p-1"
-                    />
-                  </div>
-                  <div className="relative min-w-0">
-                    <div
-                      className={`font-label text-[7px] font-black uppercase tracking-[0.08em] sm:text-[10px] sm:tracking-[0.18em] ${signal.tone}`}
-                    >
-                      {signal.label}
-                    </div>
-                    <div className="mt-0.5 text-[9px] font-semibold leading-tight text-white/72 sm:mt-1 sm:text-sm">
-                      {signal.detail}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.52 }}
-            className="w-full max-w-5xl"
-          >
-            <div className="mb-2 flex items-center justify-center gap-2 text-[9px] font-label font-black uppercase tracking-[0.24em] text-white/42">
-              <Sparkles className="h-3 w-3 text-[#f7e7bd]/62" />
-              Featured Signals
-            </div>
-            <div className="grid grid-cols-2 gap-1.5 sm:gap-2 lg:grid-cols-4">
-              {featuredSignals.map((signal) => (
-                <div
-                  key={signal.title}
-                  className="rounded-[8px] border border-white/12 bg-white/[0.07] px-2.5 py-2 shadow-lg backdrop-blur-md sm:px-3 sm:py-2.5"
-                  style={{ boxShadow: `inset 0 1px 0 rgba(255,255,255,0.08), 0 14px 38px ${signal.accent}18` }}
-                >
-                  <div className="mb-1 h-1 w-8 rounded-full" style={{ backgroundColor: signal.accent }} />
-                  <div className="text-xs font-bold leading-tight text-white sm:text-sm">{signal.title}</div>
-                  <div className="mt-0.5 text-[10px] leading-tight text-white/52 sm:mt-1 sm:text-[11px] sm:leading-snug">{signal.detail}</div>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.58 }}
-            className="grid w-full max-w-3xl grid-cols-[auto_1fr] items-center gap-2 rounded-[8px] border border-[#89f5ff]/18 bg-black/32 px-3 py-2 shadow-xl backdrop-blur-xl sm:gap-3 sm:px-4 sm:py-2.5"
-          >
-            <div className="grid h-9 w-9 place-items-center overflow-visible sm:h-12 sm:w-12">
-              <SprocketAvatar size={42} idle />
-            </div>
-            <div className="min-w-0 text-xs leading-4 text-[#dffbff]/72 sm:text-sm sm:leading-5">
+            <div className="min-w-0 text-[10px] leading-3.5 text-[#dffbff]/72 sm:text-sm sm:leading-5">
               <span className="font-semibold text-white">Want the fast version?</span> Open the portfolio.
               <span className="hidden sm:inline"> </span>
               <span className="block sm:inline">
@@ -487,25 +530,6 @@ export const LandingHero = () => {
               </span>
             </div>
           </motion.div>
-
-          <div className="flex flex-wrap items-center justify-center gap-2 xl:hidden">
-            <a
-              href="mailto:zlouis2005@gmail.com"
-              className="inline-flex h-10 items-center gap-2 rounded-[8px] border border-[#89f5ff]/20 bg-black/38 px-3 text-xs font-semibold text-[#dffbff]/82 backdrop-blur-xl"
-            >
-              <Mail className="h-4 w-4" />
-              Email
-            </a>
-            <a
-              href="https://github.com/Louiszhang2005-1"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex h-10 items-center gap-2 rounded-[8px] border border-[#f7e7bd]/18 bg-black/38 px-3 text-xs font-semibold text-[#f7e7bd]/78 backdrop-blur-xl"
-            >
-              <GitBranch className="h-4 w-4" />
-              GitHub
-            </a>
-          </div>
 
           <motion.div
             initial={{ opacity: 0, y: 8 }}

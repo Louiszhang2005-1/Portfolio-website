@@ -80,7 +80,7 @@ export const missions: Mission[] = [
     sector: "Internship Shores",
     sectorColor: "#e65100",
     title: "Lockheed Martin",
-    subtitle: "Mechanical Engineering Intern · Ship Integrations · Winter 2026",
+    subtitle: "Mechanical Engineering Intern · Ship Integration · Winter 2026",
     status: "active",
     landmark: "A naval shipyard with a docked frigate, gantry cranes, and integration scaffolding",
     position: { x: -1050, y: -760 },
@@ -88,7 +88,7 @@ export const missions: Mission[] = [
     chronoOrder: 202601,
     skills: ["Ship Systems Integration", "3D CAD Modeling", "Mechanical Design", "GD&T", "FEA", "CATIA"],
     details:
-      "Mechanical Engineering Intern at Lockheed Martin on the Ship Integrations team (Winter 2026). Supported the mechanical integration of subsystems aboard naval platforms — 3D CAD modeling, structural layouts, fit-checks, and tolerance/GD&T documentation for shipboard hardware. Worked on FEA validation for mounting structures and contributed to the assembly drawings and interface documentation that govern how subsystems are physically integrated into the ship.",
+      "Mechanical Engineering Intern at Lockheed Martin on the Ship Integration team (Winter 2026). Supported the mechanical integration of subsystems aboard naval platforms — 3D CAD modeling, structural layouts, fit-checks, and tolerance/GD&T documentation for shipboard hardware. Worked on FEA validation for mounting structures and contributed to the assembly drawings and interface documentation that govern how subsystems are physically integrated into the ship.",
     emoji: "⚓",
     color: "#1a3a6b",
     logo: "/logo/lockheed-martin.jpg",
