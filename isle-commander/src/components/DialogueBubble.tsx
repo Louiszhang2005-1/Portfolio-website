@@ -16,7 +16,7 @@ export default function DialogueBubble({ nearbyIsland, onInspect }: DialogueBubb
       {nearbyIsland && (
         <motion.div
           key={nearbyIsland.id}
-          className="fixed bottom-6 left-1/2 z-50 w-full max-w-3xl -translate-x-1/2 px-4"
+          className="fixed bottom-[calc(env(safe-area-inset-bottom)+10.25rem)] left-1/2 z-50 w-full max-w-3xl -translate-x-1/2 px-4 md:bottom-6"
           initial={{ opacity: 0, y: 44, scale: 0.96 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 28, scale: 0.98 }}
@@ -71,7 +71,7 @@ export default function DialogueBubble({ nearbyIsland, onInspect }: DialogueBubb
 
                 {!isLocked && (
                   <p className="mt-2 font-label text-[10px] font-bold uppercase tracking-[0.18em] text-cyan-100/42">
-                    Press ENTER to inspect
+                    Tap Inspect or press ENTER
                   </p>
                 )}
               </div>

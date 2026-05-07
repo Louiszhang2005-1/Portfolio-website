@@ -6,7 +6,7 @@ import {
   missions, Mission, SPAWN_POSITION, WORLD_BOUNDS, COLLISION_RADIUS,
   collectibles, fogZones, FOG_REVEAL_RADIUS, hazardZones, barrels,
 } from "@/data/missions";
-import { calculateGravityForce, predictTrajectory, Vec2, MAX_DISTANCE } from "@/systems/GravitySystem";
+import { calculateGravityForce, predictTrajectory, Vec2 } from "@/systems/GravitySystem";
 import {
   StressState, createStressState, applyImpact, tickStress, isHullCritical,
 } from "@/systems/StressSystem";
@@ -22,6 +22,7 @@ const THRUST_FORCE = 0.0052;
 const REVERSE_FORCE = 0.003;
 const MAX_SHIP_SPEED = 5.1;
 const TURN_TORQUE = 0.06;
+const RUDDER_DRAG = 0.0026;
 const CAMERA_LERP = 0.09;
 const STORAGE_KEY = "isle-commander-visited";
 const STORAGE_KEY_COLLECTED = "isle-commander-collected";
@@ -81,8 +82,15 @@ export interface MatterEngine {
   closePortShop: () => void;
   repairHull: () => void;
   upgradeThrust: () => void;
+  setVirtualJoystickInput: (input: VirtualJoystickInput) => void;
   thrustLevel: number;
   isDocked: boolean;
+}
+
+export interface VirtualJoystickInput {
+  x: number;
+  y: number;
+  active: boolean;
 }
 
 /* ─── Helpers ─── */
@@ -160,6 +168,7 @@ export function useMatterEngine(): MatterEngine {
   const shipBodyRef = useRef<Matter.Body | null>(null);
   const cameraRef = useRef<Vec2>({ ...SPAWN_POSITION });
   const keysRef = useRef<Set<string>>(new Set());
+  const virtualJoystickRef = useRef<VirtualJoystickInput>({ x: 0, y: 0, active: false });
   const autoNavTarget = useRef<Vec2 | null>(null);
   const nearbyRef = useRef<Mission | null>(null);
   const gameStateRef = useRef<GameState>("sailing");
@@ -172,6 +181,7 @@ export function useMatterEngine(): MatterEngine {
   const hazardRef = useRef<HazardState>(createHazardState());
   const fogZoneRevealedRef = useRef<Set<number>>(new Set());
   const thrustLevelRef = useRef(0);
+  const isDockedRef = useRef(false);
   const boundaryHitCooldownRef = useRef(0);
   const trajectoryRef = useRef<Vec2[]>([]);
   const nodeDataRef = useRef(missions.map(m => ({
@@ -358,28 +368,55 @@ export function useMatterEngine(): MatterEngine {
         }
       } else {
         // ── Manual input ──
-        if (keys.has("a") || keys.has("arrowleft")) {
-          Matter.Body.setAngle(ship, ship.angle - TURN_TORQUE);
+        const joystick = virtualJoystickRef.current;
+        const keyboardTurn =
+          (keys.has("d") || keys.has("arrowright") ? 1 : 0) -
+          (keys.has("a") || keys.has("arrowleft") ? 1 : 0);
+        const keyboardThrottle =
+          (keys.has("w") || keys.has("arrowup") ? 1 : 0) -
+          (keys.has("s") || keys.has("arrowdown") ? 1 : 0);
+        const turnInput = joystick.active ? joystick.x : keyboardTurn;
+        const throttleInput = joystick.active ? -joystick.y : keyboardThrottle;
+        const speedRatio = Math.min(1, Math.sqrt(ship.velocity.x ** 2 + ship.velocity.y ** 2) / MAX_SHIP_SPEED);
+        const rudderAuthority = 0.42 + speedRatio * 0.78;
+
+        if (Math.abs(turnInput) > 0.04) {
+          Matter.Body.setAngle(ship, ship.angle + turnInput * TURN_TORQUE * rudderAuthority);
         }
-        if (keys.has("d") || keys.has("arrowright")) {
-          Matter.Body.setAngle(ship, ship.angle + TURN_TORQUE);
-        }
-        if (keys.has("w") || keys.has("arrowup")) {
+        if (throttleInput > 0.05) {
           const thrustMult = 1 + thrustLevelRef.current * 0.15;
           const force = THRUST_FORCE * thrustMult;
           const boilerMult = getBoilerSpeedMultiplier(hazardRef.current);
           Matter.Body.applyForce(ship, ship.position, {
-            x: Math.sin(ship.angle) * force * boilerMult,
-            y: -Math.cos(ship.angle) * force * boilerMult,
+            x: Math.sin(ship.angle) * force * boilerMult * throttleInput,
+            y: -Math.cos(ship.angle) * force * boilerMult * throttleInput,
           });
         }
-        if (keys.has("s") || keys.has("arrowdown")) {
+        if (throttleInput < -0.05) {
           const force = REVERSE_FORCE;
           Matter.Body.applyForce(ship, ship.position, {
-            x: -Math.sin(ship.angle) * force,
-            y: Math.cos(ship.angle) * force,
+            x: -Math.sin(ship.angle) * force * Math.abs(throttleInput),
+            y: Math.cos(ship.angle) * force * Math.abs(throttleInput),
           });
         }
+      }
+
+      // A little lateral water resistance makes the hull carve instead of skate.
+      const forwardX = Math.sin(ship.angle);
+      const forwardY = -Math.cos(ship.angle);
+      const sideX = Math.cos(ship.angle);
+      const sideY = Math.sin(ship.angle);
+      const sideSpeed = ship.velocity.x * sideX + ship.velocity.y * sideY;
+      const reverseSpeed = -(ship.velocity.x * forwardX + ship.velocity.y * forwardY);
+      Matter.Body.applyForce(ship, ship.position, {
+        x: -sideX * sideSpeed * RUDDER_DRAG,
+        y: -sideY * sideSpeed * RUDDER_DRAG,
+      });
+      if (reverseSpeed > 0.2) {
+        Matter.Body.applyForce(ship, ship.position, {
+          x: forwardX * reverseSpeed * RUDDER_DRAG * 0.25,
+          y: forwardY * reverseSpeed * RUDDER_DRAG * 0.25,
+        });
       }
 
       // ── Apply gravity ──
@@ -543,7 +580,8 @@ export function useMatterEngine(): MatterEngine {
                     const wobble = Math.sin(a * 5 + time * 2 + ring) * (6 + proxFactor * 10);
                     const rx = screenX + Math.cos(a) * (ringR + wobble);
                     const ry = screenY + Math.sin(a) * (ringR + wobble);
-                    s === 0 ? ctx.moveTo(rx, ry) : ctx.lineTo(rx, ry);
+                    if (s === 0) ctx.moveTo(rx, ry);
+                    else ctx.lineTo(rx, ry);
                   }
                   ctx.closePath();
                   ctx.strokeStyle = `rgba(${col.r}, ${col.g}, ${col.b}, ${ringAlpha})`;
@@ -695,7 +733,10 @@ export function useMatterEngine(): MatterEngine {
 
       // Check docked at port
       const nowDocked = dockedAtPort;
-      setIsDocked(nowDocked);
+      if (isDockedRef.current !== nowDocked) {
+        isDockedRef.current = nowDocked;
+        setIsDocked(nowDocked);
+      }
 
       if (gameStateRef.current !== "inspecting") {
         const newState: GameState = nowDocked ? "docked" : closest ? "near_island" : "sailing";
@@ -784,7 +825,7 @@ export function useMatterEngine(): MatterEngine {
       cancelAnimationFrame(animId);
       Matter.Engine.clear(engine);
     };
-  }, []);
+  }, [HALF]);
 
   // ── Actions ──
   const openBlueprint = useCallback(() => {
@@ -851,6 +892,19 @@ export function useMatterEngine(): MatterEngine {
     setThrustLevel(thrustLevelRef.current);
   }, []);
 
+  const setVirtualJoystickInput = useCallback((input: VirtualJoystickInput) => {
+    const x = Math.max(-1, Math.min(1, input.x));
+    const y = Math.max(-1, Math.min(1, input.y));
+    virtualJoystickRef.current = {
+      x: Math.abs(x) < 0.04 ? 0 : x,
+      y: Math.abs(y) < 0.04 ? 0 : y,
+      active: input.active,
+    };
+    if (input.active) {
+      autoNavTarget.current = null;
+    }
+  }, []);
+
   // ── ENTER / ESC / M ──
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -915,6 +969,7 @@ export function useMatterEngine(): MatterEngine {
     closePortShop,
     repairHull,
     upgradeThrust,
+    setVirtualJoystickInput,
     thrustLevel,
     isDocked,
   };

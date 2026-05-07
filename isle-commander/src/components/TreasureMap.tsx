@@ -64,10 +64,10 @@ const TreasureMap = React.memo(function TreasureMap({ isOpen, onClose, visitedId
 
       {/* Map card */}
       <div
-        className="relative w-full max-w-3xl max-h-[85vh] overflow-y-auto rounded-3xl shadow-2xl"
+        className="relative w-full max-w-5xl max-h-[88svh] overflow-y-auto rounded-[8px] shadow-[0_32px_100px_rgba(0,0,0,0.5)]"
         style={{
-          background: "linear-gradient(145deg, #f5e6c0, #e8d4a0)",
-          border: "4px solid #a08050",
+          background: "linear-gradient(145deg, #fff1c8, #e0bf79)",
+          border: "1px solid rgba(255, 235, 190, 0.72)",
         }}
         onClick={(e) => e.stopPropagation()}
       >
@@ -78,7 +78,7 @@ const TreasureMap = React.memo(function TreasureMap({ isOpen, onClose, visitedId
         }} />
 
         {/* Header */}
-        <div className="relative px-6 pt-6 pb-4 border-b-2 border-[#a08050]/30">
+        <div className="sticky top-0 z-40 border-b border-[#8b6730]/25 bg-[#f8e5b7]/92 px-6 pb-4 pt-6 backdrop-blur-md">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <span className="text-4xl">🗺️</span>
@@ -93,7 +93,7 @@ const TreasureMap = React.memo(function TreasureMap({ isOpen, onClose, visitedId
             </div>
             <button
               onClick={onClose}
-              className="w-10 h-10 rounded-full bg-[#a08050]/20 hover:bg-[#a08050]/40 flex items-center justify-center text-[#4a3520] font-bold text-lg transition-colors cursor-pointer"
+              className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-[8px] border border-[#6f4c21]/10 bg-[#a08050]/16 text-lg font-bold text-[#4a3520] transition-colors hover:bg-[#a08050]/28"
             >
               ✕
             </button>
@@ -115,8 +115,8 @@ const TreasureMap = React.memo(function TreasureMap({ isOpen, onClose, visitedId
         </div>
 
         {/* ═══ MAP VIEWPORT ═══ */}
-        <div className="relative mx-6 my-4 rounded-2xl overflow-hidden border-2 border-[#a08050]/40 shadow-inner" style={{ background: "linear-gradient(160deg, #4fb8d0, #2890a8 35%, #1e7a92 65%, #164e5e)" }}>
-          <div className="relative" style={{ paddingBottom: "70%" }}>
+        <div className="relative mx-6 my-4 overflow-hidden rounded-[8px] border border-[#6f4c21]/24 shadow-[inset_0_0_38px_rgba(9,44,56,0.34),0_18px_40px_rgba(64,42,10,0.16)]" style={{ background: "linear-gradient(160deg, #56c6dc, #2890a8 35%, #1e7a92 65%, #164e5e)" }}>
+          <div className="relative" style={{ paddingBottom: "62%" }}>
 
             {/* Ocean wave texture */}
             <div className="absolute inset-0 opacity-[0.06]" style={{
@@ -265,7 +265,7 @@ const TreasureMap = React.memo(function TreasureMap({ isOpen, onClose, visitedId
                         ? `1.5px solid ${m.color}40`
                         : `1.5px dashed ${m.color}35`,
                       background: m.fieldType === "typhoon"
-                        ? `conic-gradient(from ${Date.now() % 360}deg, ${m.color}15, transparent 30%, ${m.color}10, transparent 60%, ${m.color}15)` 
+                        ? `conic-gradient(${m.color}15, transparent 30%, ${m.color}10, transparent 60%, ${m.color}15)`
                         : `radial-gradient(circle, ${m.color}20 0%, transparent 70%)`,
                       opacity: isHovered ? 1 : 0.6,
                       animation: m.fieldType === "typhoon" ? "spin 8s linear infinite" : "pulse 3s ease-in-out infinite",
@@ -363,7 +363,7 @@ const TreasureMap = React.memo(function TreasureMap({ isOpen, onClose, visitedId
             return (
               <div
                 key={sector.name}
-                className="rounded-xl p-4 transition-colors border-2 cursor-default"
+                className="cursor-default rounded-[8px] border p-4 transition-colors"
                 style={{
                   background: `${sector.color}0a`,
                   borderColor: `${sector.color}25`,
@@ -384,7 +384,7 @@ const TreasureMap = React.memo(function TreasureMap({ isOpen, onClose, visitedId
                         )}
                         {!isInternship && (
                           <span className="text-[8px] font-label uppercase tracking-wider bg-indigo-50 text-indigo-600 px-2 py-0.5 rounded-full border border-indigo-100">
-                            Project
+                            Build
                           </span>
                         )}
                       </h3>

@@ -48,6 +48,7 @@ const PART3_LINES: Line[] = [
   { text: "Collect Perseverance Points to upgrade at Polytechnique Port." },
   { text: "Controls:" },
   { text: "WASD / Arrows - Thrust & Steer", color: "rgba(100,220,220,0.86)", indent: true },
+  { text: "iPhone / touch - Use the on-screen helm", color: "rgba(100,220,220,0.86)", indent: true },
   { text: "ENTER - Inspect / Dock", color: "rgba(100,220,220,0.86)", indent: true },
   { text: "M - Treasure map", color: "rgba(100,220,220,0.86)", indent: true },
   { text: "ESC - Close panels", color: "rgba(100,220,220,0.86)", indent: true },
@@ -57,7 +58,7 @@ const PART3_LINES: Line[] = [
 const SHORT_LINES: Line[] = [
   { text: "Louis Zhang: mechanical engineering, systems, CAD, FEA, manufacturing, robotics, and software." },
   { text: "Explore the islands to see internships, aerospace builds, hardware projects, and AI tools.", color: "rgba(199,232,255,0.76)" },
-  { text: "WASD to sail. ENTER to inspect. M for map. ESC to close panels.", color: "rgba(125,252,255,0.82)" },
+  { text: "WASD or touch helm to sail. Inspect / ENTER to inspect. Map / M opens the chart.", color: "rgba(125,252,255,0.82)" },
 ];
 
 const PHASE_LINES: Record<string, Line[]> = {
@@ -81,6 +82,7 @@ const PLAY_SIGNALS = [
 const COMMAND_CARDS = [
   { icon: "directions_boat", label: "Sail", hint: "WASD" },
   { icon: "radar", label: "Inspect", hint: "ENTER" },
+  { icon: "gamepad", label: "Touch Helm", hint: "MOBILE" },
   { icon: "map", label: "Chart", hint: "M" },
 ];
 
@@ -524,7 +526,7 @@ export function SprocketCornerButton() {
           setTypedIdx(0);
           setCharIdx(0);
         }}
-        className="fixed bottom-4 left-4 z-50 grid h-12 w-12 place-items-center rounded-md border border-cyan-100/35 bg-slate-950/80 shadow-[0_0_24px_rgba(34,211,238,0.28)] backdrop-blur-md"
+        className="fixed bottom-[calc(env(safe-area-inset-bottom)+11.5rem)] left-4 z-50 grid h-12 w-12 place-items-center rounded-md border border-cyan-100/35 bg-slate-950/80 shadow-[0_0_24px_rgba(34,211,238,0.28)] backdrop-blur-md md:bottom-4"
         whileHover={{ scale: 1.08, boxShadow: "0 0 34px rgba(34,211,238,0.48)" }}
         whileTap={{ scale: 0.94 }}
         title="Open quick portfolio brief"
@@ -536,7 +538,7 @@ export function SprocketCornerButton() {
         {open && (
           <motion.div
             key="sprocket-short"
-            className="fixed bottom-20 left-4 z-50 w-[300px] overflow-hidden rounded-lg border border-cyan-100/25 bg-slate-950/90 p-4 shadow-[0_0_44px_rgba(34,211,238,0.2)] backdrop-blur-md"
+            className="fixed bottom-[calc(env(safe-area-inset-bottom)+15.5rem)] left-4 z-50 w-[300px] overflow-hidden rounded-[8px] border border-cyan-100/25 bg-slate-950/90 p-4 shadow-[0_0_44px_rgba(34,211,238,0.2)] backdrop-blur-md md:bottom-20"
             initial={{ opacity: 0, y: 16, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 12, scale: 0.95 }}

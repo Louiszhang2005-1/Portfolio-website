@@ -79,9 +79,9 @@ export default function PortfolioOverview() {
       </div>
 
       <div className="mt-3 flex flex-wrap gap-1.5 border-t border-white/10 pt-3 text-[10px] font-bold uppercase tracking-[0.12em] text-white/55">
-        <span>WASD sail</span>
+        <span>WASD / touch sail</span>
         <span className="text-white/25">/</span>
-        <span>Enter inspect</span>
+        <span>Inspect / Enter</span>
         <span className="text-white/25">/</span>
         <span>M map</span>
       </div>

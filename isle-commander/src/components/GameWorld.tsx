@@ -472,7 +472,7 @@ const GameWorld = React.memo(function GameWorld({
             </div>
           </div>
           <span className="mt-1 rounded-lg border border-white/40 bg-slate-950/55 px-3 py-1 text-[11px] font-black uppercase tracking-widest text-white drop-shadow-lg">Home Port</span>
-          <span className="mt-1 rounded-full bg-cyan-400/20 px-2 py-0.5 text-[8px] font-black uppercase tracking-wider text-cyan-100">Press ENTER to dock</span>
+          <span className="mt-1 rounded-full bg-cyan-400/20 px-2 py-0.5 text-[8px] font-black uppercase tracking-wider text-cyan-100">Tap Dock / Enter</span>
         </div>
 
         {missions.map((mission, index) => (

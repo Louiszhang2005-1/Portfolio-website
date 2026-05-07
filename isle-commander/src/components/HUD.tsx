@@ -2,8 +2,8 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { missions, Mission, WORLD_BOUNDS, collectibles, MAX_COLLECTIBLE_SCORE } from "@/data/missions";
-import { StressState, FEA_ZONE_COUNT, stressToColor, isHullCritical } from "@/systems/StressSystem";
+import { missions, Mission, WORLD_BOUNDS, MAX_COLLECTIBLE_SCORE } from "@/data/missions";
+import { StressState, FEA_ZONE_COUNT, stressToColor } from "@/systems/StressSystem";
 
 interface HUDProps {
   visitedCount: number;
@@ -39,12 +39,21 @@ const QUADRANT_BG: Record<string, string> = {
   SE: "linear-gradient(315deg, rgba(106,27,154,0.15) 0%, transparent 80%)",
 };
 
-const MAX_SPEED = 5.1;
-
 const INTERNSHIP_ROUTE = [
   { title: "Montreal", logo: "/logo/city-of-montreal.gif" },
   { title: "Lockheed", logo: "/logo/lockheed-martin.jpg" },
   { title: "Tesla", logo: "/logo/tesla.jpg" },
+];
+
+const IDLE_TIPS = [
+  "🌀 Use gravitational slingshots to navigate efficiently",
+  "🔧 Dock at Home Port to repair hull stress",
+  "🧩 Some islands have Assembly Mode — build the project!",
+  "🗺️ Open the full Treasure Map with Map or M",
+  "⚓ Use Inspect or ENTER near an island",
+  "⚙️ This is Louis Zhang's interactive résumé — explore!",
+  "🔥 Avoid thermal vents — they spike boiler pressure!",
+  "💰 Collect coins to earn Perseverance Points",
 ];
 
 /* Spring-physics offset hook for HUD elements */
@@ -82,8 +91,8 @@ function useSpringOffset(cameraX: number, cameraY: number, factor: number = 0.03
 }
 
 /* Circular Gauge */
-function CircularGauge({ value, label, color, icon, warning }: {
-  value: number; label: string; color: string; icon: string; warning?: boolean;
+function CircularGauge({ value, label, icon, warning }: {
+  value: number; label: string; icon: string; warning?: boolean;
 }) {
   const pct = Math.max(0, Math.min(1, value / 100));
   const circumference = 2 * Math.PI * 28;
@@ -126,7 +135,7 @@ function CircularGauge({ value, label, color, icon, warning }: {
 }
 
 export default function HUD({
-  visitedCount, speed, boilerPressure, stressState, nearbyIsland, gameState, boatPosition, boatHeading,
+  visitedCount, speed, boilerPressure, stressState, nearbyIsland, boatPosition, boatHeading,
   nearestGravityAngle, onIslandClick, onToggleMap, onReturnHome, score, collectedItems, isHullCritical: hullCrit, isBoilerCritical: boilerCrit, isDocked,
 }: HUDProps) {
   const totalActive = missions.filter((m) => m.status === "active").length;
@@ -134,16 +143,6 @@ export default function HUD({
   const isMoving = speed > 0.3;
   const springOffset = useSpringOffset(boatPosition.x, boatPosition.y);
 
-  const IDLE_TIPS = [
-    "🌀 Use gravitational slingshots to navigate efficiently",
-    "🔧 Dock at Home Port to repair hull stress",
-    "🧩 Some islands have Assembly Mode — build the project!",
-    "🗺️ Press M to open the full Treasure Map",
-    "⚓ Press ENTER near an island to inspect it",
-    "⚙️ This is Louis Zhang's interactive résumé — explore!",
-    "🔥 Avoid thermal vents — they spike boiler pressure!",
-    "💰 Collect coins to earn Perseverance Points",
-  ];
   const [tipIndex, setTipIndex] = useState(0);
   useEffect(() => {
     const id = setInterval(() => setTipIndex((i) => (i + 1) % IDLE_TIPS.length), 5000);
@@ -158,9 +157,9 @@ export default function HUD({
     : boilerCrit
     ? "🔥 OVERPRESSURE! Leave hazard zone!"
     : isDocked
-    ? "🏠 Welcome to Home Port — press ENTER"
+    ? "🏠 Welcome to Home Port — Dock or ENTER"
     : nearbyIsland
-    ? `📍 ${nearbyIsland.title} in range — press ENTER`
+    ? `📍 ${nearbyIsland.title} in range — Inspect or ENTER`
     : speed > 1.5
     ? "🌀 Feel the gravitational pull of nearby nodes..."
     : IDLE_TIPS[tipIndex];
@@ -245,12 +244,12 @@ export default function HUD({
             <span className="text-sm" style={{ animation: isMoving ? "gearSpin 2s linear infinite" : "none" }}>⚙️</span>
             <span className="font-label font-bold text-white text-xs">{(speed * 20).toFixed(0)} kn</span>
           </div>
-          <button onClick={onToggleMap} className="bg-cyan-500/50 hover:bg-cyan-500/70 backdrop-blur-md px-4 py-2 rounded-full shadow-lg flex items-center gap-2 border border-cyan-300/30 transition-colors cursor-pointer">
+          <button onClick={onToggleMap} className="hidden bg-cyan-500/50 hover:bg-cyan-500/70 backdrop-blur-md px-4 py-2 rounded-full shadow-lg md:flex items-center gap-2 border border-cyan-300/30 transition-colors cursor-pointer">
             <span className="text-base">🗺️</span>
             <span className="font-label font-bold text-white text-xs uppercase tracking-wider hidden sm:inline">Map</span>
             <kbd className="hidden md:inline text-[8px] font-label text-cyan-200/60 bg-black/20 px-1 rounded">M</kbd>
           </button>
-          <button onClick={onReturnHome} className="bg-emerald-500/35 hover:bg-emerald-500/55 backdrop-blur-md px-4 py-2 rounded-full shadow-lg flex items-center gap-2 border border-emerald-200/30 transition-colors cursor-pointer">
+          <button onClick={onReturnHome} className="hidden bg-emerald-500/35 hover:bg-emerald-500/55 backdrop-blur-md px-4 py-2 rounded-full shadow-lg md:flex items-center gap-2 border border-emerald-200/30 transition-colors cursor-pointer">
             <span className="material-symbols-outlined icon-lock text-[17px] text-emerald-100">home</span>
             <span className="font-label font-bold text-white text-xs uppercase tracking-wider hidden sm:inline">Home</span>
           </button>
@@ -268,8 +267,8 @@ export default function HUD({
             </span>
           </div>
           <div className="flex gap-3 items-start">
-            <CircularGauge value={boilerPressure} label="Boiler PSI" color="#ff6b35" icon="🔥" warning={boilerCrit} />
-            <CircularGauge value={stressState.totalStress} label="Hull Stress" color="#ef4444" icon="🛡️" warning={hullCrit} />
+            <CircularGauge value={boilerPressure} label="Boiler PSI" icon="🔥" warning={boilerCrit} />
+            <CircularGauge value={stressState.totalStress} label="Hull Stress" icon="🛡️" warning={hullCrit} />
           </div>
           {/* Mini FEA hull map */}
           <div className="mt-2 flex justify-center">

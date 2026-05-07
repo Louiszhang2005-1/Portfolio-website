@@ -50,6 +50,16 @@ export default function Home() {
     // Assembly passed — could add bonus score here
   }, []);
 
+  const handleMobileInteract = useCallback(() => {
+    if (game.isDocked) {
+      game.openPortShop();
+      return;
+    }
+    if (game.nearbyIsland) {
+      game.openBlueprint();
+    }
+  }, [game]);
+
   // Sync canvas buffer size to viewport (avoids SSR/client hydration mismatch)
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -217,7 +227,15 @@ export default function Home() {
       />
 
       {/* ── MOBILE CONTROLS ── */}
-      <MobileControls />
+      <MobileControls
+        onJoystickChange={game.setVirtualJoystickInput}
+        onMap={game.toggleMap}
+        onReturnHome={game.returnHome}
+        onInteract={handleMobileInteract}
+        canInteract={Boolean(game.nearbyIsland)}
+        isDocked={game.isDocked}
+        nearbyLabel={game.nearbyIsland?.title}
+      />
 
       {/* ── MISSION BRIEFING (onboarding) ── */}
       <MissionBriefing />
