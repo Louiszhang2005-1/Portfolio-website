@@ -1,0 +1,13 @@
+{
+  "name": "portfolio-ship",
+  "private": true,
+  "workspaces": [
+    "isle-commander"
+  ],
+  "scripts": {
+    "build": "npm --workspace isle-commander run build",
+    "dev": "npm --workspace isle-commander run dev",
+    "start": "npm --workspace isle-commander run start",
+    "lint": "npm --workspace isle-commander run lint"
+  }
+}
