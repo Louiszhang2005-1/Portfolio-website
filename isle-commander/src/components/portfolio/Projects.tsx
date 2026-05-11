@@ -2,7 +2,7 @@ import { ProjectCard } from "@/components/ui/project-card";
 import { ProjectShowcase } from "@/components/ui/project-showcase";
 import { projects, featuredProjects } from "@/lib/portfolio";
 
-const categories = ["Aero Atoll", "Robotics & IoT", "Code Cove"];
+const categories = ["Mechanical", "Robotics & Electronics", "Software"];
 
 export default function Projects() {
   return (
@@ -26,7 +26,7 @@ export default function Projects() {
 
         <div className="mb-14 grid gap-3 sm:grid-cols-3">
           {categories.map((category) => {
-            const count = projects.filter((project) => project.sector === category).length;
+            const count = projects.filter((project) => project.displaySector === category).length;
             return (
               <div
                 key={category}

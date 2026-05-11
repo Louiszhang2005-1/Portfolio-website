@@ -15,7 +15,7 @@ export default function ProjectOrbitGallery({ projects }: { projects: PortfolioI
   const galleryItems: GalleryItem[] = projects.map((project) => ({
     id: project.slug,
     common: project.title,
-    binomial: project.sector,
+    binomial: project.displaySector,
     href: `/portfolio/${project.slug}`,
     accent: project.accent,
     photo: {

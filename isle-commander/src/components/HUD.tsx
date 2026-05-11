@@ -1,9 +1,11 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { missions, Mission, WORLD_BOUNDS, MAX_COLLECTIBLE_SCORE } from "@/data/missions";
 import { StressState, FEA_ZONE_COUNT, stressToColor } from "@/systems/StressSystem";
+import { getSectorRoutes } from "@/lib/routeGeometry";
 
 interface HUDProps {
   visitedCount: number;
@@ -33,11 +35,13 @@ const SECTORS = [
 ] as const;
 
 const QUADRANT_BG: Record<string, string> = {
-  NW: "linear-gradient(135deg, rgba(230,81,0,0.15) 0%, transparent 80%)",
-  NE: "linear-gradient(225deg, rgba(184,134,11,0.15) 0%, transparent 80%)",
-  SW: "linear-gradient(45deg,  rgba(198,40,40,0.15) 0%, transparent 80%)",
-  SE: "linear-gradient(315deg, rgba(106,27,154,0.15) 0%, transparent 80%)",
+  NW: "linear-gradient(135deg, rgba(230,81,0,0.22) 0%, transparent 80%)",
+  NE: "linear-gradient(225deg, rgba(184,134,11,0.22) 0%, transparent 80%)",
+  SW: "linear-gradient(45deg,  rgba(198,40,40,0.22) 0%, transparent 80%)",
+  SE: "linear-gradient(315deg, rgba(106,27,154,0.22) 0%, transparent 80%)",
 };
+
+const MINIMAP_ROUTES = getSectorRoutes();
 
 const INTERNSHIP_ROUTE = [
   { title: "Montreal", logo: "/logo/city-of-montreal.gif" },
@@ -211,7 +215,7 @@ export default function HUD({
 
       {/* ── Top Bar ── */}
       <header className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 md:px-6 py-3">
-        <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ type: "spring", stiffness: 200, damping: 20 }}>
+        <motion.div className="shrink min-w-0" initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ type: "spring", stiffness: 200, damping: 20 }}>
           <h1 className="text-xl md:text-2xl font-black text-white font-headline tracking-normal drop-shadow-lg">
             Isle Commander
           </h1>
@@ -231,28 +235,32 @@ export default function HUD({
           </div>
         </motion.div>
 
-        <motion.div className="flex items-center gap-3" initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ type: "spring", stiffness: 200, damping: 20, delay: 0.1 }}>
-          <div className="bg-white/10 backdrop-blur-md px-4 py-2 rounded-full shadow-lg flex items-center gap-2 border border-white/10">
-            <span className="text-lg">⭐</span>
-            <span className="font-headline font-bold text-white text-sm tracking-tight">{visitedCount}/{totalActive} Discovered</span>
+        <motion.div className="flex flex-wrap items-center justify-end gap-2 max-w-[64vw]" initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ type: "spring", stiffness: 200, damping: 20, delay: 0.1 }}>
+          <div className="shrink-0 bg-white/10 backdrop-blur-md px-3 py-2 rounded-full shadow-lg flex items-center gap-2 border border-white/10">
+            <span className="text-base">⭐</span>
+            <span className="font-headline font-bold text-white text-xs tracking-tight">{visitedCount}/{totalActive} Discovered</span>
           </div>
-          <div className="hidden sm:flex bg-yellow-500/15 backdrop-blur-md px-4 py-2 rounded-full shadow-lg items-center gap-2 border border-yellow-300/20">
+          <div className="hidden lg:flex shrink-0 bg-yellow-500/15 backdrop-blur-md px-3 py-2 rounded-full shadow-lg items-center gap-2 border border-yellow-300/20">
             <span className="text-base">💰</span>
-            <span className="font-headline font-bold text-yellow-100 text-sm tracking-tight">{score} pts</span>
+            <span className="font-headline font-bold text-yellow-100 text-xs tracking-tight">{score} pts</span>
           </div>
-          <div className="hidden md:flex bg-white/10 backdrop-blur-md px-3 py-2 rounded-full shadow-lg items-center gap-2 border border-white/10">
+          <div className="hidden xl:flex shrink-0 bg-white/10 backdrop-blur-md px-3 py-2 rounded-full shadow-lg items-center gap-2 border border-white/10">
             <span className="text-sm" style={{ animation: isMoving ? "gearSpin 2s linear infinite" : "none" }}>⚙️</span>
             <span className="font-label font-bold text-white text-xs">{(speed * 20).toFixed(0)} kn</span>
           </div>
-          <button onClick={onToggleMap} className="hidden bg-cyan-500/50 hover:bg-cyan-500/70 backdrop-blur-md px-4 py-2 rounded-full shadow-lg md:flex items-center gap-2 border border-cyan-300/30 transition-colors cursor-pointer">
+          <button onClick={onToggleMap} className="hidden shrink-0 bg-cyan-500/50 hover:bg-cyan-500/70 backdrop-blur-md px-3 py-2 rounded-full shadow-lg md:flex items-center gap-2 border border-cyan-300/30 transition-colors cursor-pointer">
             <span className="text-base">🗺️</span>
-            <span className="font-label font-bold text-white text-xs uppercase tracking-wider hidden sm:inline">Map</span>
-            <kbd className="hidden md:inline text-[8px] font-label text-cyan-200/60 bg-black/20 px-1 rounded">M</kbd>
+            <span className="font-label font-bold text-white text-xs uppercase tracking-wider hidden lg:inline">Map</span>
+            <kbd className="hidden xl:inline text-[8px] font-label text-cyan-200/60 bg-black/20 px-1 rounded">M</kbd>
           </button>
-          <button onClick={onReturnHome} className="hidden bg-emerald-500/35 hover:bg-emerald-500/55 backdrop-blur-md px-4 py-2 rounded-full shadow-lg md:flex items-center gap-2 border border-emerald-200/30 transition-colors cursor-pointer">
+          <button onClick={onReturnHome} className="hidden shrink-0 bg-emerald-500/35 hover:bg-emerald-500/55 backdrop-blur-md px-3 py-2 rounded-full shadow-lg md:flex items-center gap-2 border border-emerald-200/30 transition-colors cursor-pointer">
             <span className="material-symbols-outlined icon-lock text-[17px] text-emerald-100">home</span>
-            <span className="font-label font-bold text-white text-xs uppercase tracking-wider hidden sm:inline">Home</span>
+            <span className="font-label font-bold text-white text-xs uppercase tracking-wider hidden lg:inline">Home</span>
           </button>
+          <Link href="/" className="hidden shrink-0 bg-rose-500/30 hover:bg-rose-500/50 backdrop-blur-md px-3 py-2 rounded-full shadow-lg md:flex items-center gap-2 border border-rose-200/30 transition-colors cursor-pointer">
+            <span className="material-symbols-outlined text-[17px] text-rose-100">logout</span>
+            <span className="font-label font-bold text-white text-xs uppercase tracking-wider hidden lg:inline">Exit</span>
+          </Link>
         </motion.div>
       </header>
 
@@ -340,8 +348,14 @@ export default function HUD({
       </div>
 
       {/* ── MiniMap (Top Right) ── */}
-      <div className="fixed top-16 right-4 z-40 hidden lg:block">
-        <div className="bg-black/50 backdrop-blur-md rounded-2xl border border-white/10 overflow-hidden shadow-2xl" style={{ width: 240, height: 240 }}>
+      <div className="fixed top-16 right-4 z-40 hidden lg:block group">
+        <div
+          className="relative bg-black/50 backdrop-blur-md rounded-2xl border border-white/10 overflow-hidden shadow-2xl cursor-pointer hover:border-white/25 transition-colors"
+          style={{ width: 240, height: 240 }}
+          onClick={onToggleMap}
+          role="button"
+          title="Open full map"
+        >
           <div className="absolute inset-0 pointer-events-none">
             <div className="absolute" style={{ left: 0, top: 0, width: "50%", height: "50%", background: QUADRANT_BG.NW }} />
             <div className="absolute" style={{ left: "50%", top: 0, width: "50%", height: "50%", background: QUADRANT_BG.NE }} />
@@ -349,8 +363,8 @@ export default function HUD({
             <div className="absolute" style={{ left: "50%", top: "50%", width: "50%", height: "50%", background: QUADRANT_BG.SE }} />
           </div>
           <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-0 bottom-0" style={{ left: "50%", width: 1, background: "rgba(255,255,255,0.06)" }} />
-            <div className="absolute left-0 right-0" style={{ top: "50%", height: 1, background: "rgba(255,255,255,0.06)" }} />
+            <div className="absolute top-0 bottom-0" style={{ left: "50%", width: 1, background: "rgba(255,255,255,0.1)" }} />
+            <div className="absolute left-0 right-0" style={{ top: "50%", height: 1, background: "rgba(255,255,255,0.1)" }} />
           </div>
           {SECTORS.map(s => (
             <div key={s.name} className="absolute pointer-events-none" style={{ left: s.labelX, top: s.labelY }}>
@@ -358,22 +372,55 @@ export default function HUD({
             </div>
           ))}
           <div className="absolute top-1 left-1/2 -translate-x-1/2 font-label text-[8px] uppercase tracking-widest text-white/40 font-bold z-10">Radar</div>
+
+          {/* Route lines */}
+          <svg className="absolute inset-0 w-full h-full pointer-events-none z-[5]" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <defs>
+              <filter id="mmGlow" x="-80%" y="-80%" width="260%" height="260%">
+                <feGaussianBlur stdDeviation="1.2" />
+              </filter>
+            </defs>
+            {MINIMAP_ROUTES.map((route) => {
+              const pts = route.points.map((p) => `${p.x * 100},${p.y * 100}`).join(" ");
+              return (
+                <g key={route.name}>
+                  <polyline points={pts} fill="none" stroke={route.color} strokeWidth="3.5" strokeOpacity="0.22" strokeLinecap="round" filter="url(#mmGlow)" />
+                  <polyline points={pts} fill="none" stroke="rgba(0,0,0,0.35)" strokeWidth="1.6" strokeLinecap="round" />
+                  <polyline points={pts} fill="none" stroke={route.color} strokeWidth="1" strokeOpacity="0.95" strokeDasharray="3 2" strokeLinecap="round" className="mm-route-dash" />
+                  {route.points.map((p, i) => i > 0 && (
+                    <circle key={i} cx={p.x * 100} cy={p.y * 100} r="0.9" fill={route.color} opacity="0.8" />
+                  ))}
+                </g>
+              );
+            })}
+          </svg>
+
           {missions.map(m => (
             <button key={m.id} className="absolute w-2.5 h-2.5 rounded-full transition-all cursor-pointer hover:scale-150 z-10"
               style={{ left: `${((m.position.x + WORLD_BOUNDS) / (WORLD_BOUNDS * 2)) * 100}%`, top: `${((m.position.y + WORLD_BOUNDS) / (WORLD_BOUNDS * 2)) * 100}%`, backgroundColor: nearbyIsland?.id === m.id ? "#fff" : m.sectorColor, opacity: m.status === "locked" ? 0.3 : 0.85, boxShadow: nearbyIsland?.id === m.id ? "0 0 8px white" : "none" }}
-              onClick={() => onIslandClick(m)} title={m.title} />
+              onClick={(e) => { e.stopPropagation(); onIslandClick(m); }} title={m.title} />
           ))}
           <div className="absolute w-2 h-2 rounded-full bg-cyan-400/50 z-10" style={{ left: "50%", top: "50%", transform: "translate(-50%, -50%)" }} />
           <div className="absolute w-3 h-3 z-20" style={{ left: `${boatMinimapX}%`, top: `${boatMinimapY}%`, transform: `translate(-50%, -50%) rotate(${boatHeading}deg)` }}>
             <div className="w-0 h-0" style={{ borderLeft: "4px solid transparent", borderRight: "4px solid transparent", borderBottom: "8px solid #00ff88", filter: "drop-shadow(0 0 3px #00ff88)" }} />
           </div>
-          <div className="absolute inset-0" style={{ background: "conic-gradient(from 0deg, transparent 0%, rgba(0,255,200,0.06) 10%, transparent 30%)", animation: "gearSpin 4s linear infinite" }} />
+          <div className="absolute inset-0 pointer-events-none" style={{ background: "conic-gradient(from 0deg, transparent 0%, rgba(0,255,200,0.06) 10%, transparent 30%)", animation: "gearSpin 4s linear infinite" }} />
           <div className="absolute bottom-0 left-0 right-0 px-2 py-1 flex justify-between items-center bg-black/30 z-10">
             <span className="font-label text-[7px] text-yellow-300/70 font-bold">💰 {score}pts</span>
             <span className="font-label text-[7px] text-white/40">{visitedCount}/{totalActive}</span>
           </div>
+          {/* Hover hint */}
+          <div className="absolute inset-x-0 bottom-7 flex justify-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-20">
+            <span className="font-label text-[7px] text-white/70 bg-black/50 px-2 py-0.5 rounded-full">Click to expand</span>
+          </div>
         </div>
       </div>
+
+      <style>{`
+        @keyframes mmDash { to { stroke-dashoffset: -20; } }
+        .mm-route-dash { animation: mmDash 6s linear infinite; }
+        @media (prefers-reduced-motion: reduce) { .mm-route-dash { animation: none; } }
+      `}</style>
 
       {/* ── Gravity Compass (Bottom Right) ── */}
       <div className="fixed bottom-4 right-4 z-40 hidden md:block">

@@ -1,7 +1,8 @@
 "use client";
 
 import { useCallback, useRef, useState } from "react";
-import { Anchor, Home, Map, Navigation, Search } from "lucide-react";
+import Link from "next/link";
+import { Anchor, Home, LogOut, Map, Navigation, Search } from "lucide-react";
 import type { VirtualJoystickInput } from "@/hooks/useMatterEngine";
 
 interface MobileControlsProps {
@@ -155,6 +156,13 @@ export default function MobileControls({
           <Home className="h-4 w-4" />
           Home
         </button>
+        <Link
+          href="/"
+          className="flex h-12 items-center justify-center gap-2 rounded-[8px] border border-rose-100/20 bg-rose-300/12 px-3 font-label text-[10px] font-black uppercase tracking-[0.14em] text-rose-50/76 shadow-lg backdrop-blur-xl"
+        >
+          <LogOut className="h-4 w-4" />
+          Exit
+        </Link>
         {nearbyLabel && (
           <div className="rounded-[8px] border border-white/10 bg-black/38 px-2 py-1.5 text-center font-label text-[8px] font-bold uppercase tracking-[0.12em] text-white/48 backdrop-blur-xl">
             {nearbyLabel}

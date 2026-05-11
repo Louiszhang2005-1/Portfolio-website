@@ -1,15 +1,41 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
+// TODO: set metadataBase to the production Vercel URL once deployed, e.g.:
+// metadataBase: new URL("https://your-project.vercel.app")
 export const metadata: Metadata = {
-  title: "Isle Commander | Mechanical Engineering Portfolio",
+  title: {
+    default: "Louis Zhang — Engineering Portfolio",
+    template: "%s | Louis Zhang",
+  },
   description:
-    "Navigate the seas and discover engineering projects in this interactive, game-like portfolio. Drive a steamboat between islands to explore internships, aerospace, robotics, and AI projects.",
+    "Mechanical & software engineering portfolio — projects spanning aerospace, robotics & electronics, and full-stack software. Internships at City of Montreal, Lockheed Martin, and Tesla. Includes a playable nautical game version.",
   openGraph: {
-    title: "Isle Commander — The Kinetic Odyssey",
+    siteName: "Louis Zhang",
+    title: "Louis Zhang — Engineering Portfolio",
     description:
-      "A playable nautical portfolio. Sail between islands to discover engineering projects.",
+      "Aerospace, robotics, and software projects from an engineering student. Internships at Tesla, Lockheed Martin, and City of Montreal. Also a playable game.",
     type: "website",
+    url: "/",
+    locale: "en_US",
+    images: [
+      {
+        url: "/preview-portfolio.png",
+        alt: "Louis Zhang — engineering portfolio preview",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Louis Zhang — Engineering Portfolio",
+    description:
+      "Aerospace, robotics, and software projects. Internships at Tesla, Lockheed Martin, and City of Montreal.",
+    images: ["/preview-portfolio.png"],
   },
 };
 

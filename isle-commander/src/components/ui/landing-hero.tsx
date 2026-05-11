@@ -39,7 +39,7 @@ const WordsPullUp = ({ text, className = "", style }: WordsPullUpProps) => {
 };
 
 const navItems = [
-  { label: "Portfolio", href: "/portfolio" },
+  { label: "Personal Website", href: "/portfolio" },
   { label: "Projects", href: "/portfolio#projects" },
   { label: "Experience", href: "/portfolio#experience" },
   { label: "Contact", href: "/portfolio#contact" },
@@ -289,9 +289,19 @@ function MiniGameCanvas() {
     render();
     window.addEventListener("resize", resizeCanvas);
 
+    const handleVisibility = () => {
+      if (document.hidden) {
+        cancelAnimationFrame(animId);
+      } else {
+        animId = requestAnimationFrame(render);
+      }
+    };
+    document.addEventListener("visibilitychange", handleVisibility);
+
     return () => {
       cancelAnimationFrame(animId);
       window.removeEventListener("resize", resizeCanvas);
+      document.removeEventListener("visibilitychange", handleVisibility);
     };
   }, []);
 
@@ -523,7 +533,7 @@ export const LandingHero = () => {
               <SprocketAvatar size={36} idle />
             </div>
             <div className="min-w-0 text-[10px] leading-3.5 text-[#dffbff]/72 sm:text-sm sm:leading-5">
-              <span className="font-semibold text-white">Want the fast version?</span> Open the portfolio.
+              <span className="font-semibold text-white">Want the fast version?</span> Open the personal website.
               <span className="hidden sm:inline"> </span>
               <span className="block sm:inline">
                 <span className="font-semibold text-white">Want the memorable version?</span> Play the map.
@@ -560,14 +570,14 @@ export const LandingHero = () => {
                   <span className="h-2 w-2 rounded-full bg-[#ffd166]/75" />
                   <span className="h-2 w-2 rounded-full bg-[#5ee08d]/75" />
                   <div className="ml-2 flex h-4 flex-1 items-center rounded-sm bg-white/[0.08] px-2">
-                    <span className="font-mono text-[8px] text-white/38">louiszhang.dev/portfolio</span>
+                    <span className="font-mono text-[8px] text-white/38">louiszhang.dev</span>
                   </div>
                 </div>
 
                 <div className="relative flex-1 overflow-hidden">
                   <Image
                     src="/preview-portfolio.png"
-                    alt="Portfolio preview"
+                    alt="Personal website preview"
                     fill
                     priority
                     sizes="(min-width: 1024px) 520px, 100vw"
@@ -585,7 +595,7 @@ export const LandingHero = () => {
                     </div>
                     <div>
                       <span className="block font-label text-[10px] uppercase tracking-[0.24em] text-[#f7e7bd]/66">
-                        Website
+                        Personal Site
                       </span>
                       <span className="text-[10px] font-semibold text-[#f7e7bd]/45">Best for recruiters</span>
                     </div>
@@ -593,7 +603,7 @@ export const LandingHero = () => {
                   <span className="font-label text-[10px] uppercase tracking-[0.24em] text-[#f7e7bd]/36">01</span>
                 </div>
 
-                <h2 className="font-headline text-xl font-bold leading-tight text-white sm:text-2xl">View Portfolio</h2>
+                <h2 className="font-headline text-xl font-bold leading-tight text-white sm:text-2xl">Personal Website</h2>
                 <p className="mt-2 max-w-sm text-sm leading-5 text-white/48">
                   Fast recruiter scan: internships, case studies, metrics, contact.
                 </p>

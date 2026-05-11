@@ -19,7 +19,9 @@
       "Bash(npm install *)",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/)",
       "Skill(playwright-cli)",
-      "Bash(node -e \"const d=require\\('./src/data/portfolio.json'\\); const all=[...d.internships,...d.aerospace,...d.robotics,...d.software]; console.log\\(JSON.stringify\\(all.map\\(p=>\\({id:p.id,title:p.title,image:p.image,emoji:p.emoji,status:p.status}\\)\\),null,2\\)\\)\")"
+      "Bash(node -e \"const d=require\\('./src/data/portfolio.json'\\); const all=[...d.internships,...d.aerospace,...d.robotics,...d.software]; console.log\\(JSON.stringify\\(all.map\\(p=>\\({id:p.id,title:p.title,image:p.image,emoji:p.emoji,status:p.status}\\)\\),null,2\\)\\)\")",
+      "Read(//c/Users/zloui/.claude/plugins/cache/ui-ux-pro-max-skill/**)",
+      "Read(//c/Users/zloui/.claude/plugins/cache/ui-ux-pro-max-skill/ui-ux-pro-max/2.5.0/.claude/skills/ui-ux-pro-max/**)"
     ]
   },
   "enableAllProjectMcpServers": true,

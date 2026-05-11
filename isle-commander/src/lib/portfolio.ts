@@ -1,11 +1,19 @@
 import data from "@/data/portfolio.json";
 
+const SECTOR_DISPLAY: Record<string, string> = {
+  "Internship Shores": "Internships",
+  "Aero Atoll": "Mechanical",
+  "Robotics & IoT": "Robotics & Electronics",
+  "Code Cove": "Software",
+};
+
 export type PortfolioItem = {
   id: string;
   slug: string;
   title: string;
   subtitle: string;
   sector: string;
+  displaySector: string;
   status: "active" | "locked";
   emoji: string;
   skills: string[];
@@ -15,6 +23,7 @@ export type PortfolioItem = {
   image: string | null;
   gallery: string[];
   documents: { label: string; href: string }[];
+  links: { label: string; href: string; kind?: "demo" | "github" | "document" | "media" }[];
   metrics: string[];
   accent: string;
   date: string;
@@ -22,6 +31,16 @@ export type PortfolioItem = {
 };
 
 type RawPortfolioItem = Omit<PortfolioItem, "slug" | "gallery" | "documents" | "metrics" | "accent" | "date" | "sortOrder">;
+
+export const fullPortfolioPages = Array.from(
+  { length: 7 },
+  (_, index) => `/media/portfolio-pages/full/page-${String(index + 1).padStart(2, "0")}.jpg`
+);
+
+export const fullPortfolioDocument = {
+  label: "Full 7-page portfolio PDF",
+  href: "/media/portfolio-pages/portfolio-may-04-2026.pdf",
+};
 
 const slugById: Record<string, string> = {
   "I-4": "city-of-montreal",
@@ -40,18 +59,31 @@ const slugById: Record<string, string> = {
 
 const mediaById: Record<
   string,
-  Partial<Pick<PortfolioItem, "image" | "gallery" | "documents" | "metrics" | "accent" | "emoji" | "date" | "sortOrder">>
+  Partial<
+    Pick<
+      PortfolioItem,
+      "image" | "gallery" | "documents" | "links" | "metrics" | "accent" | "emoji" | "date" | "sortOrder"
+    >
+  >
 > = {
   "I-4": { accent: "#178f9a", emoji: "Water", date: "May-Aug 2025", sortOrder: 3 },
   "I-2": { accent: "#1f4f99", emoji: "Aero", date: "Jan – Apr 2026", sortOrder: 2 },
   "I-1": { accent: "#d3222a", emoji: "Cell", date: "Jun 2026 – Jan 2027", sortOrder: 1 },
   "P-1": {
-    image: "/media/csa/prototype-overview.jpg",
-    gallery: [
-      "/media/csa/prototype-overview.jpg",
-      "/media/csa/isometric-view.webp",
-      "/media/csa/section-view.webp",
-      "/media/csa/tube-interior.jpg",
+    image: fullPortfolioPages[1],
+    gallery: fullPortfolioPages.slice(1, 4),
+    documents: [fullPortfolioDocument],
+    links: [
+      {
+        label: "Whole System Demo",
+        href: "https://drive.google.com/file/d/1LqyUNpBNplhUWHvme9c3FFQbZeqPtogA/view",
+        kind: "demo",
+      },
+      {
+        label: "Rail Conductivity Test",
+        href: "https://drive.google.com/file/d/1MfcSRCp3KfwCHt7k4i1-HAdao1aqbfDb/view",
+        kind: "demo",
+      },
     ],
     metrics: ["3.1m deployable tube", "50+ interfaces", "12% mass reduction", "2.5x safety factor"],
     accent: "#1b6fff",
@@ -60,13 +92,14 @@ const mediaById: Record<
   "P-2": {
     image: "/media/axial-piston-pump/exploded-drawing.jpg",
     gallery: ["/media/axial-piston-pump/exploded-drawing.jpg"],
-    metrics: ["9 piston assemblies", "Bilingual BOM", "Full exploded drawing"],
+    metrics: ["9 piston assemblies", "Full exploded drawing"],
     accent: "#a15c18",
     emoji: "CAD",
   },
   "P-3": {
-    image: "/media/robohacks/robot-held.jpg",
-    gallery: ["/media/robohacks/robot-held.jpg", "/media/robohacks/robot-top.jpg"],
+    image: fullPortfolioPages[6],
+    gallery: [fullPortfolioPages[6]],
+    documents: [fullPortfolioDocument],
     metrics: ["24 hour build", "5th overall", "Autonomous line following"],
     accent: "#4f9d32",
     emoji: "Robot",
@@ -84,13 +117,9 @@ const mediaById: Record<
     emoji: "Rescue",
   },
   "P-5": {
-    image: "/media/nursie/dashboard.png",
-    gallery: [
-      "/media/nursie/dashboard.png",
-      "/media/nursie/fall-sensor.jpg",
-      "/media/nursie/lidar-movement.jpg",
-      "/media/nursie/door-sensor.jpg",
-    ],
+    image: fullPortfolioPages[4],
+    gallery: fullPortfolioPages.slice(4, 6),
+    documents: [fullPortfolioDocument],
     metrics: ["3x sensor redundancy", "No cameras", "Local OpenWRT LAN", "Best Use of ElevenLabs"],
     accent: "#7b4fd6",
     emoji: "Care",
@@ -154,18 +183,25 @@ const clean = (value: string) =>
 const hydrate = (item: RawPortfolioItem): PortfolioItem => {
   const media = mediaById[item.id] ?? {};
 
+  const cleanSector = clean(item.sector);
   return {
     ...item,
     slug: slugById[item.id] ?? item.id.toLowerCase(),
     title: clean(item.title),
     subtitle: clean(item.subtitle),
-    sector: clean(item.sector),
+    sector: cleanSector,
+    displaySector: SECTOR_DISPLAY[cleanSector] ?? cleanSector,
     emoji: media.emoji ?? clean(item.emoji),
     skills: item.skills.map(clean),
     details: clean(item.details),
     image: media.image ?? item.image,
     gallery: media.gallery ?? (media.image ? [media.image] : item.image ? [item.image] : []),
     documents: media.documents ?? [],
+    links: [
+      ...(media.links ?? []),
+      ...(item.demo ? [{ label: "Live demo", href: item.demo, kind: "demo" as const }] : []),
+      ...(item.github ? [{ label: "GitHub", href: item.github, kind: "github" as const }] : []),
+    ],
     metrics: media.metrics ?? [],
     accent: media.accent ?? "#00656f",
     date: media.date ?? "",

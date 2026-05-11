@@ -44,6 +44,7 @@ const WordsPullUp = ({ text, className = "", showAsterisk = false, style }: Word
 
 const navItems = [
   { label: "Story", href: "#about" },
+  { label: "Full PDF", href: "#portfolio-deck" },
   { label: "Projects", href: "#project-orbit" },
   { label: "Game", href: "#game-portal" },
   { label: "Experience", href: "#experience" },

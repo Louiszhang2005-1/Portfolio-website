@@ -100,7 +100,7 @@ export default function Home() {
   ), [nightOpacity]);
 
   return (
-    <div className="fixed inset-0 w-screen h-screen overflow-hidden select-none">
+    <div className="fixed inset-0 w-screen h-screen overflow-hidden select-none touch-none">
 
       {/* ── GAME WORLD (with parallax layers) ── */}
       <GameWorld

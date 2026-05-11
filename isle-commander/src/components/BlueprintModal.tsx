@@ -348,7 +348,7 @@ function ActionLink({ href, icon, label, emptyLabel }: { href?: string; icon: st
     <motion.a
       href={href}
       target="_blank"
-      rel="noreferrer"
+      rel="noopener noreferrer"
       className="flex min-h-12 items-center justify-center gap-2 rounded-md border border-cyan-100/24 bg-cyan-300/10 px-4 py-3 font-headline text-sm font-black text-cyan-100"
       whileHover={{ scale: 1.02, backgroundColor: "rgba(103,232,249,0.16)" }}
       whileTap={{ scale: 0.98 }}
