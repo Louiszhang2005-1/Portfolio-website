@@ -9,5 +9,11 @@
     "dev": "npm --workspace isle-commander run dev",
     "start": "npm --workspace isle-commander run start",
     "lint": "npm --workspace isle-commander run lint"
+  },
+  "optionalDependencies": {
+    "@tailwindcss/oxide-linux-x64-gnu": "^4.2.2",
+    "@tailwindcss/oxide-linux-x64-musl": "^4.2.2",
+    "lightningcss-linux-x64-gnu": "^1.32.0",
+    "lightningcss-linux-x64-musl": "^1.32.0"
   }
 }
