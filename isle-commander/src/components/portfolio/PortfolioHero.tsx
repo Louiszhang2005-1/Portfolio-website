@@ -3,7 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { ArrowRight, Gamepad2 } from "lucide-react";
 import Link from "next/link";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 interface WordsPullUpProps {
   text: string;
@@ -52,18 +52,29 @@ const navItems = [
 ];
 
 export default function PortfolioHero() {
+  const [isVideoReady, setIsVideoReady] = useState(false);
+
   return (
     <section id="about" className="h-screen w-full bg-[#050505] p-2 text-[#e1e0cc] sm:p-4">
       <div className="relative h-full w-full overflow-hidden rounded-2xl md:rounded-[2rem]">
+        <div
+          aria-hidden
+          className={`absolute inset-0 bg-[radial-gradient(circle_at_70%_28%,rgba(89,234,251,0.2),transparent_24%),radial-gradient(circle_at_24%_78%,rgba(247,231,189,0.14),transparent_28%),linear-gradient(135deg,#050505_0%,#071015_48%,#10100c_100%)] transition-opacity duration-500 ${
+            isVideoReady ? "opacity-0" : "opacity-100"
+          }`}
+        />
         <video
           autoPlay
           loop
           muted
           playsInline
           preload="metadata"
-          poster="/media/robohacks/robot-held.jpg"
           src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_170732_8a9ccda6-5cff-4628-b164-059c500a2b41.mp4"
-          className="absolute inset-0 h-full w-full object-cover"
+          onCanPlay={() => setIsVideoReady(true)}
+          onLoadedData={() => setIsVideoReady(true)}
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${
+            isVideoReady ? "opacity-100" : "opacity-0"
+          }`}
         />
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_28%,rgba(89,234,251,0.18),transparent_24%),linear-gradient(180deg,rgba(0,0,0,0.18),rgba(0,0,0,0.05)_38%,rgba(0,0,0,0.55))]" />
         <div
