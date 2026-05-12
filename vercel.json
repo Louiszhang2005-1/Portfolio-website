@@ -1,8 +1,0 @@
-{
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "npm --workspace isle-commander run build",
-  "installCommand": "npm install",
-  "devCommand": "npm --workspace isle-commander run dev",
-  "framework": "nextjs",
-  "outputDirectory": "isle-commander/.next"
-}

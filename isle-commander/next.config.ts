@@ -16,10 +16,6 @@ const devWatchIgnored = [
 ];
 
 const nextConfig: NextConfig = {
-  outputFileTracingRoot: process.cwd(),
-  turbopack: {
-    root: process.cwd(),
-  },
   async redirects() {
     return [
       {
