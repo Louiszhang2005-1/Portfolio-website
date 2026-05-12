@@ -23,16 +23,16 @@ export async function generateMetadata({ params }: PageProps) {
   const ogImage = item.image ?? "/preview-portfolio.png";
   return {
     title: `${item.title} - Louis Zhang`,
-    description: item.details.slice(0, 155),
+    description: item.details.replace(/\s+/g, " ").trim().slice(0, 155),
     openGraph: {
       title: item.title,
-      description: item.details.slice(0, 155),
+      description: item.details.replace(/\s+/g, " ").trim().slice(0, 155),
       images: [{ url: ogImage, alt: item.title }],
     },
     twitter: {
       card: "summary_large_image",
       title: item.title,
-      description: item.details.slice(0, 155),
+      description: item.details.replace(/\s+/g, " ").trim().slice(0, 155),
       images: [ogImage],
     },
   };

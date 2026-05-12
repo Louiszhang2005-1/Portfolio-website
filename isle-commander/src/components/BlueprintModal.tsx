@@ -254,7 +254,7 @@ export default function BlueprintModal({ mission, isOpen, onClose }: BlueprintMo
                     </h3>
                     <div className="relative overflow-hidden rounded-lg border border-white/10 bg-black/24 p-4">
                       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-100/70 to-transparent blueprint-scan" />
-                      <p className="text-sm font-semibold leading-7 text-cyan-50/84 sm:text-base">{mission.details}</p>
+                      <p className="text-sm font-semibold leading-7 text-cyan-50/84 sm:text-base whitespace-pre-line">{mission.details}</p>
                     </div>
                   </div>
 

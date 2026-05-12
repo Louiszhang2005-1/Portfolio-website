@@ -72,10 +72,21 @@ export default function PortfolioHero() {
           src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_170732_8a9ccda6-5cff-4628-b164-059c500a2b41.mp4"
           onCanPlay={() => setIsVideoReady(true)}
           onLoadedData={() => setIsVideoReady(true)}
+          onWaiting={() => setIsVideoReady(false)}
+          onPlaying={() => setIsVideoReady(true)}
           className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${
             isVideoReady ? "opacity-100" : "opacity-0"
           }`}
         />
+        {!isVideoReady && (
+          <div aria-hidden className="pointer-events-none absolute inset-0 z-[5] grid place-items-center">
+            <div className="flex items-center gap-2">
+              <span className="h-2 w-2 rounded-full bg-[#e1e0cc]/70 animate-pulse motion-reduce:animate-none" />
+              <span className="h-2 w-2 rounded-full bg-[#e1e0cc]/70 animate-pulse motion-reduce:animate-none [animation-delay:200ms]" />
+              <span className="h-2 w-2 rounded-full bg-[#e1e0cc]/70 animate-pulse motion-reduce:animate-none [animation-delay:400ms]" />
+            </div>
+          </div>
+        )}
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_28%,rgba(89,234,251,0.18),transparent_24%),linear-gradient(180deg,rgba(0,0,0,0.18),rgba(0,0,0,0.05)_38%,rgba(0,0,0,0.55))]" />
         <div
           className="noise-overlay pointer-events-none absolute inset-0 opacity-[0.32] mix-blend-overlay"

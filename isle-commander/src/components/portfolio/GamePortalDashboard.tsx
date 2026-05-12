@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, Gauge, Map, Radio, Waves } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Gauge, Map, Monitor, Radio, Waves } from "lucide-react";
 
 const telemetry = [
   { label: "Mode", value: "Portfolio Quest" },
@@ -57,13 +57,17 @@ export default function GamePortalDashboard() {
               <ArrowUpRight className="h-4 w-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
             <a
-              href="#project-orbit"
+              href="#projects"
               className="inline-flex items-center gap-2 rounded-full border border-white/16 bg-white/8 px-5 py-3 text-sm font-bold text-white/80 transition hover:bg-white/12"
             >
               <Map className="h-4 w-4" />
               Browse projects first
             </a>
           </div>
+          <p className="mt-3 flex items-center gap-1.5 text-xs text-white/45 md:hidden">
+            <Monitor className="h-3.5 w-3.5 shrink-0" />
+            Best on desktop — on mobile this is a preview; play the full game on a computer.
+          </p>
         </div>
 
         <Link href="/game" className="group relative block min-h-[560px]" aria-label="Open the game version">

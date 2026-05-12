@@ -51,7 +51,7 @@ export default function Internships() {
                   </span>
                 </div>
 
-                <p className="text-sm text-[var(--color-on-surface-variant)] leading-relaxed mb-4">
+                <p className="text-sm text-[var(--color-on-surface-variant)] leading-relaxed mb-4 whitespace-pre-line">
                   {exp.details}
                 </p>
 

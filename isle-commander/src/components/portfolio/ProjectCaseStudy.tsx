@@ -318,7 +318,7 @@ export default function ProjectCaseStudy({
           style={{ background: item.accent }}
         />
         <Kicker>Overview</Kicker>
-        <p className="mt-5 text-lg leading-[1.85] text-white/78 sm:text-xl">
+        <p className="mt-5 text-lg leading-[1.85] text-white/78 sm:text-xl whitespace-pre-line">
           {item.details}
         </p>
       </Reveal>

@@ -66,7 +66,7 @@ export const missions: Mission[] = [
     chronoOrder: 202505,
     skills: [],
     details:
-      "Scientific Intern at the City of Montreal's Water Department (May–Aug 2025). Performed hands-on water testing across municipal sources — collected and analyzed samples for chemical, physical, and microbiological parameters to validate compliance with Quebec drinking-water standards. Operated lab instrumentation, logged results into the city's monitoring pipelines, and supported the data analysis workflow that informs distribution-network decisions.",
+      "Scientific Intern at the City of Montreal's Water Department.\n\nContributed to water quality monitoring initiatives and geospatial data pipelines for municipal infrastructure management.",
     emoji: "💧",
     color: "#0277bd",
     logo: "/logo/city-of-montreal.gif",
@@ -88,7 +88,7 @@ export const missions: Mission[] = [
     chronoOrder: 202601,
     skills: ["SOLIDWORKS", "Engineering Drawings", "VBA Programming", "Windchill", "Confluence"],
     details:
-      "Mechanical Engineering Intern at Lockheed Martin on the Ship Integration team (Jan – Apr 2026). Supported the mechanical integration of subsystems aboard naval platforms — 3D CAD modeling, structural layouts, fit-checks, and tolerance/GD&T documentation for shipboard hardware. Worked on FEA validation for mounting structures and contributed to the assembly drawings and interface documentation that govern how subsystems are physically integrated into the ship.",
+      "Engineering Intern at Lockheed Martin.\n\nSpecialized in 3D CAD modeling and structural design of ship components in SolidWorks — transforming engineering drawings into complete assemblies.\n\nBuilt VBA scripts to automate the peer-review process across several partner companies, improving overall turnaround time.",
     emoji: "⚓",
     color: "#1a3a6b",
     logo: "/logo/Lockheed.webp",
@@ -111,7 +111,7 @@ export const missions: Mission[] = [
     chronoOrder: 202607,
     skills: [],
     details:
-      "Incoming Manufacturing Engineering Intern at Tesla on the Cell Engineering team (Jun 2026 – Jan 2027, Nevada Gigafactory). Will work on the manufacturing processes behind Tesla's battery cells — production-line optimization, process improvement, and automation systems supporting next-generation cell architectures and high-volume cell output.",
+      "Incoming Manufacturing Engineering Intern at Tesla's Gigafactory, Cell Engineering department (Summer 2026 & Fall 2026).\n\nFocused on the 4680 battery cell manufacturing processes, production line optimization, and automation systems for next-gen energy storage.",
     emoji: "⚡",
     color: "#e65100",
     logo: "/logo/tesla.jpg",
