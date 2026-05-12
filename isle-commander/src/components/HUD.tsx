@@ -45,7 +45,7 @@ const MINIMAP_ROUTES = getSectorRoutes();
 
 const INTERNSHIP_ROUTE = [
   { title: "Montreal", logo: "/logo/city-of-montreal.gif" },
-  { title: "Lockheed", logo: "/logo/lockheed-martin.jpg" },
+  { title: "Lockheed", logo: "/logo/Lockheed.webp" },
   { title: "Tesla", logo: "/logo/tesla.jpg" },
 ];
 

@@ -45,7 +45,7 @@ const WordsPullUp = ({ text, className = "", showAsterisk = false, style }: Word
 const navItems = [
   { label: "Story", href: "#about" },
   { label: "Full PDF", href: "#portfolio-deck" },
-  { label: "Projects", href: "#project-orbit" },
+  { label: "Projects", href: "#projects" },
   { label: "Game", href: "#game-portal" },
   { label: "Experience", href: "#experience" },
   { label: "Inquiries", href: "#contact" },
@@ -131,7 +131,7 @@ export default function PortfolioHero() {
 
             <div className="flex flex-wrap gap-3">
               <motion.a
-                href="#project-orbit"
+                href="#projects"
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}

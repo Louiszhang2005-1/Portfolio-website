@@ -1,16 +1,16 @@
-{
+﻿{
     "internships":  [
                         {
                             "id":  "I-4",
                             "title":  "City of Montreal",
-                            "subtitle":  "Scientific Intern · Water Department",
+                            "subtitle":  "Scientific Intern Â· Water Department",
                             "sector":  "Internship Shores",
                             "status":  "active",
-                            "emoji":  "💧",
+                            "emoji":  "ðŸ’§",
                             "skills":  [
 
                                        ],
-                            "details":  "Scientific Intern at the City of Montreal\u0030s Water Department (May–Aug 2025). Contributed to water quality monitoring initiatives and geospatial data pipelines for municipal infrastructure management.",
+                            "details":  "Scientific Intern at the City of Montreal\u0030s Water Department (Mayâ€“Aug 2025). Contributed to water quality monitoring initiatives and geospatial data pipelines for municipal infrastructure management.",
                             "github":  null,
                             "demo":  null,
                             "image":  "/logo/city-of-montreal.gif"
@@ -18,10 +18,10 @@
                         {
                             "id":  "I-2",
                             "title":  "Lockheed Martin",
-                            "subtitle":  "Mechanical Engineering Intern · Ship Integration",
+                            "subtitle":  "Mechanical Engineering Intern Â· Ship Integration",
                             "sector":  "Internship Shores",
                             "status":  "active",
-                            "emoji":  "✈️",
+                            "emoji":  "âœˆï¸",
                             "skills":  [
                                            "3D CAD Modeling",
                                            "Structural Design",
@@ -32,15 +32,15 @@
                             "details":  "Engineering Intern at Lockheed Martin. Worked on 3D CAD modeling and structural design of airframe components. Performed FEA on composite panels for airframe programs. Delivered full CAD assemblies with tolerance stack-up analysis and GD\u0026T documentation.",
                             "github":  null,
                             "demo":  null,
-                            "image":  "/logo/lockheed-martin.jpg"
+                            "image":  "/logo/Lockheed.webp"
                         },
                         {
                             "id":  "I-1",
                             "title":  "Tesla",
-                            "subtitle":  "Manufacturing Engineering Intern · Cell Engineering",
+                            "subtitle":  "Manufacturing Engineering Intern Â· Cell Engineering",
                             "sector":  "Internship Shores",
                             "status":  "active",
-                            "emoji":  "⚡",
+                            "emoji":  "âš¡",
                             "skills":  [
 
                                        ],
@@ -55,11 +55,11 @@
                             "subtitle":  "Secret Mission",
                             "sector":  "Internship Shores",
                             "status":  "locked",
-                            "emoji":  "❓",
+                            "emoji":  "â“",
                             "skills":  [
 
                                        ],
-                            "details":  "Classified — mission briefing not yet available. Stay curious.",
+                            "details":  "Classified â€” mission briefing not yet available. Stay curious.",
                             "github":  null,
                             "demo":  null,
                             "image":  null
@@ -69,10 +69,10 @@
                       {
                           "id":  "P-1",
                           "title":  "CSA Lunar LEAP",
-                          "subtitle":  "PM \u0026 Systems Integrator · CSA LEAP · Jan–May 2025 · Polytechnique Montréal",
+                          "subtitle":  "PM \u0026 Systems Integrator Â· CSA LEAP Â· Janâ€“May 2025 Â· Polytechnique MontrÃ©al",
                           "sector":  "Aero Atoll",
                           "status":  "active",
-                          "emoji":  "🌕",
+                          "emoji":  "ðŸŒ•",
                           "skills":  [
                                          "CATIA V6",
                                          "Fusion 360",
@@ -84,7 +84,7 @@
                                          "Arduino",
                                          "Raspberry Pi Pico"
                                      ],
-                          "details":  "PM \u0026 Systems Integrator for the Canadian Space Agency Lunar Exploration Accelerator Program (LEAP) — OASIS Mission (Jan–May 2025, Polytechnique Montréal). Directed end-to-end design of a 3.1m telescopic lunar produce-transport tube (Ø540mm, 3080mm deployed length) fully compliant with CSA performance and safety standards. Managed 50+ part interfaces, achieved a 12% system mass reduction while sustaining a 2.5× structural safety factor. Ran thermal FEA over the 14-day lunar night cycle and validated zero mechanical interference across the full telescopic deployment sweep. Developed the rail-guided transport wagon\u0027s control logic on an Arduino microcontroller — ensuring precision positioning along the telescopic support tube. Designed and programmed a Raspberry Pi Pico–driven belt conveyor for seamless vegetable transfer from lunar greenhouse to habitat module. Led physical integration: AL-6061 machining, MLI fabrication, PCB prototyping, wiring harnesses, and cold-welding of tab-to-tube joints.",
+                          "details":  "PM \u0026 Systems Integrator for the Canadian Space Agency Lunar Exploration Accelerator Program (LEAP) â€” OASIS Mission (Janâ€“May 2025, Polytechnique MontrÃ©al). Directed end-to-end design of a 3.1m telescopic lunar produce-transport tube (Ã˜540mm, 3080mm deployed length) fully compliant with CSA performance and safety standards. Managed 50+ part interfaces, achieved a 12% system mass reduction while sustaining a 2.5Ã— structural safety factor. Ran thermal FEA over the 14-day lunar night cycle and validated zero mechanical interference across the full telescopic deployment sweep. Developed the rail-guided transport wagon\u0027s control logic on an Arduino microcontroller â€” ensuring precision positioning along the telescopic support tube. Designed and programmed a Raspberry Pi Picoâ€“driven belt conveyor for seamless vegetable transfer from lunar greenhouse to habitat module. Led physical integration: AL-6061 machining, MLI fabrication, PCB prototyping, wiring harnesses, and cold-welding of tab-to-tube joints.",
                           "github":  "https://github.com/Louiszhang2005-1",
                           "demo":  null,
                           "image":  "https://lh3.googleusercontent.com/aida-public/AB6AXuBfmEpezBSpneFvCrYKhOLUOseL8Ykp1jo-HSG-ffLWpXFUDPcJaLNQ_yYG5K3rrQojomG93egnxnwooCUeOcPCLWPOTN3DCgnuB1cKbCeyo00IDUBjs5tK3QD_526_Tv0wWlf_J9c26MbyCm2M9Bh0lHMTaYyyp_lR2bOctqYMSHKc0imzdeQ5FArd6MJgX1SS1NDA5WuXGr8-BMg81vmKL76Uzzftusbi3MNmNr5KKskCa3NgMBifjJq1unU1ixty6_658_OlN05p"
@@ -92,10 +92,10 @@
                       {
                           "id":  "P-2",
                           "title":  "Axial Piston Pump",
-                          "subtitle":  "Hydraulic System Design · Nov–Dec 2024 · Polytechnique Montréal",
+                          "subtitle":  "Hydraulic System Design Â· Novâ€“Dec 2024 Â· Polytechnique MontrÃ©al",
                           "sector":  "Aero Atoll",
                           "status":  "active",
-                          "emoji":  "⚙️",
+                          "emoji":  "âš™ï¸",
                           "skills":  [
                                          "3D CAD",
                                          "SolidWorks",
@@ -103,7 +103,7 @@
                                          "GD\u0026T",
                                          "Assembly Modeling"
                                      ],
-                          "details":  "3D CAD modeling project at Polytechnique Montréal (Nov–Dec 2024). Fully modeled a high-performance axial piston hydraulic pump from the ground up. The assembly consists of a Cylinder Block (Bloc-cylindre) housing 9 individual Piston Assemblies — each comprising a Piston and a Slipper Pad (Patin) — retained by a Retaining Plate (Plaque de retenue) and centered via a Spherical Nut (Noix sphérique). Optimized component geometry and assembly parameters to enhance mechanical durability and functionality. Produced a full exploded-view drawing with bilingual French/English BOM following standard drafting conventions.",
+                          "details":  "3D CAD modeling project at Polytechnique MontrÃ©al (Novâ€“Dec 2024). Fully modeled a high-performance axial piston hydraulic pump from the ground up. The assembly consists of a Cylinder Block (Bloc-cylindre) housing 9 individual Piston Assemblies â€” each comprising a Piston and a Slipper Pad (Patin) â€” retained by a Retaining Plate (Plaque de retenue) and centered via a Spherical Nut (Noix sphÃ©rique). Optimized component geometry and assembly parameters to enhance mechanical durability and functionality. Produced a full exploded-view drawing with bilingual French/English BOM following standard drafting conventions.",
                           "github":  null,
                           "demo":  null,
                           "image":  "https://lh3.googleusercontent.com/aida-public/AB6AXuBfmEpezBSpneFvCrYKhOLUOseL8Ykp1jo-HSG-ffLWpXFUDPcJaLNQ_yYG5K3rrQojomG93egnxnwooCUeOcPCLWPOTN3DCgnuB1cKbCeyo00IDUBjs5tK3QD_526_Tv0wWlf_J9c26MbyCm2M9Bh0lHMTaYyyp_lR2bOctqYMSHKc0imzdeQ5FArd6MJgX1SS1NDA5WuXGr8-BMg81vmKL76Uzzftusbi3MNmNr5KKskCa3NgMBifjJq1unU1ixty6_658_OlN05p"
@@ -111,10 +111,10 @@
                       {
                           "id":  "P-3",
                           "title":  "Reforestation Robot",
-                          "subtitle":  "RoboHacks Feb 2025 · Unexpected Expedition Award · 5th Overall",
+                          "subtitle":  "RoboHacks Feb 2025 Â· Unexpected Expedition Award Â· 5th Overall",
                           "sector":  "Robotics & IoT",
                           "status":  "active",
-                          "emoji":  "🌱",
+                          "emoji":  "ðŸŒ±",
                           "skills":  [
                                          "Arduino C++",
                                          "IR Sensors",
@@ -122,7 +122,7 @@
                                          "DC Motors",
                                          "Recycled Materials"
                                      ],
-                          "details":  "🏆 Winner — Unexpected Expedition Award · 5th Place Overall at RoboHacks (Feb 2025). Built a fully autonomous seed-planting robot in 24 hours using recycled materials — cardboard chassis, plastic bottles, and a paper-engineered seed dispenser. Coded the full navigation and dispensing sequence in C++ on Arduino: two IR sensors fused with a color sensor for line-following, servo-actuated paper dispenser for timed seed placement. Wired all electronics on a breadboard from scratch under competition conditions.",
+                          "details":  "ðŸ† Winner â€” Unexpected Expedition Award Â· 5th Place Overall at RoboHacks (Feb 2025). Built a fully autonomous seed-planting robot in 24 hours using recycled materials â€” cardboard chassis, plastic bottles, and a paper-engineered seed dispenser. Coded the full navigation and dispensing sequence in C++ on Arduino: two IR sensors fused with a color sensor for line-following, servo-actuated paper dispenser for timed seed placement. Wired all electronics on a breadboard from scratch under competition conditions.",
                           "github":  "https://github.com/Louiszhang2005-1/RoboHacks-2025",
                           "demo":  null,
                           "image":  "https://lh3.googleusercontent.com/aida-public/AB6AXuDAS80X_XNEuUFS6k-WwWNK4ujFPPuUxPpWvmTVpU1JR5SivSd5oUG2JcVNgHI4epz7XEJI6N7eCpY_5koJUANuAI1BYhptkTPhdi5UGO2lM2yHA1--6_Zdhkuwaf4AXh47aYn5TOW2B8af31QajqbXwz4Ldn2XPUjvQPK0SasCQYVwEJls5ZWv-YsDYabLJ6PaUZtolG1ufVsJARGvsPWji9-J_dMGuf0kpNNEYucYBsS8AG3SpRwrHKSZrvL4alOKLEcgHbwa7a7w"
@@ -130,10 +130,10 @@
                       {
                           "id":  "P-11",
                           "title":  "MechPrep",
-                          "subtitle":  "McHacks 13 · Jan 2026",
+                          "subtitle":  "McHacks 13 Â· Jan 2026",
                           "sector":  "Aero Atoll",
                           "status":  "active",
-                          "emoji":  "🔧",
+                          "emoji":  "ðŸ”§",
                           "skills":  [
                                          "SolidWorks",
                                          "Blender",
@@ -143,7 +143,7 @@
                                          "3D Modeling",
                                          "CAD Integration"
                                      ],
-                          "details":  "Built at McHacks 13 (Jan 2026). As mechanical engineering students who have spent countless hours scrolling Glassdoor and LinkedIn preparing for technical interviews, we built MechPrep — an interactive interview prep platform tailored for mechanical and aerospace engineering students. Designed and modeled 3D components in SolidWorks and Blender, then integrated the CAD models into a React + Python web app to make them interactive and educational. Integrated an AI API to generate and evaluate interview questions. Key challenges: wiring the AI API into the project architecture and embedding interactive CAD models into the browser. Next steps: expand the question bank across more companies and offer a white-label tool to help companies generate their own technical interview questions.",
+                          "details":  "Built at McHacks 13 (Jan 2026). As mechanical engineering students who have spent countless hours scrolling Glassdoor and LinkedIn preparing for technical interviews, we built MechPrep â€” an interactive interview prep platform tailored for mechanical and aerospace engineering students. Designed and modeled 3D components in SolidWorks and Blender, then integrated the CAD models into a React + Python web app to make them interactive and educational. Integrated an AI API to generate and evaluate interview questions. Key challenges: wiring the AI API into the project architecture and embedding interactive CAD models into the browser. Next steps: expand the question bank across more companies and offer a white-label tool to help companies generate their own technical interview questions.",
                           "github":  null,
                           "demo":  "https://devpost.com/software/mechie",
                           "image":  null
@@ -153,10 +153,10 @@
                      {
                          "id":  "P-4",
                          "title":  "ResQ-Link",
-                         "subtitle":  "UpStart 2026 · Digital System for Disaster Management",
+                         "subtitle":  "UpStart 2026 Â· Digital System for Disaster Management",
                          "sector":  "Robotics \u0026 IoT",
                          "status":  "active",
-                         "emoji":  "🏥",
+                         "emoji":  "ðŸ¥",
                          "skills":  [
                                         "SolidWorks",
                                         "Passive NFC",
@@ -166,7 +166,7 @@
                                         "Medical Design",
                                         "Systems Architecture"
                                     ],
-                         "details":  "Built at UpStart 2026 (Feb 2026) as part of a multidisciplinary team from Polytechnique Montréal. In Montreal, analog paper triage tags contribute to a 30% triage error rate, $1.7B in annual malpractice losses, and 10.5-hour average ER wait times. ResQ-Link replaces paper tags with a zero-power passive NFC bracelet: inductive copper coil (no battery required), passive NFC chip, IP68 medical-grade silicone band with translucent overmolded seal. Bundled with the SmartTriage companion dashboard — a full Command Center featuring real-time bracelet location maps, tag management (Morgue/Immediate/Delayed/Minor), registered staff tracking, and an offline-mesh data sync protocol so data reaches the hospital even when cellular fails. Business model: hardware \u0027Blade\u0027 at $1.50/unit (80% gross margin at scale) + software \u0027Razor\u0027 SaaS at $10k–$50k/facility/year. Targeting $750k seed round for MUHC 5,000-unit pilot, Health Canada Class I/II certification, and Quebec \u0027Buy Local\u0027 procurement priority.",
+                         "details":  "Built at UpStart 2026 (Feb 2026) as part of a multidisciplinary team from Polytechnique MontrÃ©al. In Montreal, analog paper triage tags contribute to a 30% triage error rate, $1.7B in annual malpractice losses, and 10.5-hour average ER wait times. ResQ-Link replaces paper tags with a zero-power passive NFC bracelet: inductive copper coil (no battery required), passive NFC chip, IP68 medical-grade silicone band with translucent overmolded seal. Bundled with the SmartTriage companion dashboard â€” a full Command Center featuring real-time bracelet location maps, tag management (Morgue/Immediate/Delayed/Minor), registered staff tracking, and an offline-mesh data sync protocol so data reaches the hospital even when cellular fails. Business model: hardware \u0027Blade\u0027 at $1.50/unit (80% gross margin at scale) + software \u0027Razor\u0027 SaaS at $10kâ€“$50k/facility/year. Targeting $750k seed round for MUHC 5,000-unit pilot, Health Canada Class I/II certification, and Quebec \u0027Buy Local\u0027 procurement priority.",
                          "github":  "https://github.com/Louiszhang2005-1/Band",
                          "demo":  null,
                          "image":  "https://lh3.googleusercontent.com/aida-public/AB6AXuDAS80X_XNEuUFS6k-WwWNK4ujFPPuUxPpWvmTVpU1JR5SivSd5oUG2JcVNgHI4epz7XEJI6N7eCpY_5koJUANuAI1BYhptkTPhdi5UGO2lM2yHA1--6_Zdhkuwaf4AXh47aYn5TOW2B8af31QajqbXwz4Ldn2XPUjvQPK0SasCQYVwEJls5ZWv-YsDYabLJ6PaUZtolG1ufVsJARGvsPWji9-J_dMGuf0kpNNEYucYBsS8AG3SpRwrHKSZrvL4alOKLEcgHbwa7a7w"
@@ -174,10 +174,10 @@
                      {
                          "id":  "P-5",
                          "title":  "Nursie",
-                         "subtitle":  "Winner — ConUHacks X · Best Use of ElevenLabs",
+                         "subtitle":  "Winner â€” ConUHacks X Â· Best Use of ElevenLabs",
                          "sector":  "Robotics \u0026 IoT",
                          "status":  "active",
-                         "emoji":  "🏆",
+                         "emoji":  "ðŸ†",
                          "skills":  [
                                         "Python",
                                         "C++",
@@ -189,7 +189,7 @@
                                         "ElevenLabs",
                                         "OpenWRT"
                                     ],
-                         "details":  "🏆 Winner at ConUHacks X — Best Use of ElevenLabs (Jan 2026). Co-founded an on-premises AI nurse assistant for Quebec long-term care facilities (CHSLDs). Falls among seniors (65+) have risen 47% between 2008–2019 — Nursie closes the gap between unwitnessed falls and delayed staff response. What it does: (1) detects falls using mmWave radar (IWR6843) fused with a floor vibration mat; (2) tracks room context via magnetic door sensor + PIR presence/occupancy node on ESP32/FreeRTOS; (3) monitors vital signs via smartwatch integration; (4) sends immediate alerts — phone call + dashboard push — to staff on detection; (5) builds a resident profile in MongoDB over time to flag unusual behavior (e.g. leaving the apartment at night); (6) provides a voice interface for residents via ElevenLabs for questions, appointment reminders, and medication prompts. Design principles: fast reliable detection over fancy features; 3× sensor redundancy to reduce false positives (radar + vibration mat + wearable fused for confidence scoring); privacy by architecture — all data stays on the facility\u0027s local OpenWRT LAN, no cameras, no cloud.",
+                         "details":  "ðŸ† Winner at ConUHacks X â€” Best Use of ElevenLabs (Jan 2026). Co-founded an on-premises AI nurse assistant for Quebec long-term care facilities (CHSLDs). Falls among seniors (65+) have risen 47% between 2008â€“2019 â€” Nursie closes the gap between unwitnessed falls and delayed staff response. What it does: (1) detects falls using mmWave radar (IWR6843) fused with a floor vibration mat; (2) tracks room context via magnetic door sensor + PIR presence/occupancy node on ESP32/FreeRTOS; (3) monitors vital signs via smartwatch integration; (4) sends immediate alerts â€” phone call + dashboard push â€” to staff on detection; (5) builds a resident profile in MongoDB over time to flag unusual behavior (e.g. leaving the apartment at night); (6) provides a voice interface for residents via ElevenLabs for questions, appointment reminders, and medication prompts. Design principles: fast reliable detection over fancy features; 3Ã— sensor redundancy to reduce false positives (radar + vibration mat + wearable fused for confidence scoring); privacy by architecture â€” all data stays on the facility\u0027s local OpenWRT LAN, no cameras, no cloud.",
                          "github":  "https://github.com/Louiszhang2005-1",
                          "demo":  "https://devpost.com/software/nursie",
                          "image":  "https://lh3.googleusercontent.com/aida-public/AB6AXuDAS80X_XNEuUFS6k-WwWNK4ujFPPuUxPpWvmTVpU1JR5SivSd5oUG2JcVNgHI4epz7XEJI6N7eCpY_5koJUANuAI1BYhptkTPhdi5UGO2lM2yHA1--6_Zdhkuwaf4AXh47aYn5TOW2B8af31QajqbXwz4Ldn2XPUjvQPK0SasCQYVwEJls5ZWv-YsDYabLJ6PaUZtolG1ufVsJARGvsPWji9-J_dMGuf0kpNNEYucYBsS8AG3SpRwrHKSZrvL4alOKLEcgHbwa7a7w"
@@ -200,11 +200,11 @@
                          "subtitle":  "Engineering Checkpoint",
                          "sector":  "Robotics \u0026 IoT",
                          "status":  "locked",
-                         "emoji":  "🏆",
+                         "emoji":  "ðŸ†",
                          "skills":  [
 
                                     ],
-                         "details":  "Reserved milestone checkpoint — briefing not yet available.",
+                         "details":  "Reserved milestone checkpoint â€” briefing not yet available.",
                          "github":  null,
                          "demo":  null,
                          "image":  null
@@ -214,10 +214,10 @@
                      {
                          "id":  "P-9",
                          "title":  "CRM Outreach Tool",
-                         "subtitle":  "Accenture · AOTC 2026 · Mar–Apr 2026",
+                         "subtitle":  "Accenture Â· AOTC 2026 Â· Marâ€“Apr 2026",
                          "sector":  "Code Cove",
                          "status":  "active",
-                         "emoji":  "🤖",
+                         "emoji":  "ðŸ¤–",
                          "skills":  [
                                         "Next.js",
                                         "React",
@@ -228,7 +228,7 @@
                                         "Apollo.io",
                                         "Google Sheets API"
                                     ],
-                         "details":  "Fully integrated CRM outreach tool built for a Montreal urban agriculture cooperative (La Centrale Agricole), developed as part of Accenture\u0027s AOTC 2026 program. Manages contact lists across 3 audience segments (corporate, schools, institutions \u0026 media). Uses Google Gemini AI to generate personalized cold emails tailored to each contact\u0027s name, title, and organization — then sends them directly through the app. Tracks every contact through the full sales pipeline, syncs all data to Google Sheets in real time, and centralizes booking requests with auto-calculated revenue estimates. Team can accept, refuse, or cancel reservations — triggering a professional email to the client instantly. Total running cost: ~$0/month on free tiers.",
+                         "details":  "Fully integrated CRM outreach tool built for a Montreal urban agriculture cooperative (La Centrale Agricole), developed as part of Accenture\u0027s AOTC 2026 program. Manages contact lists across 3 audience segments (corporate, schools, institutions \u0026 media). Uses Google Gemini AI to generate personalized cold emails tailored to each contact\u0027s name, title, and organization â€” then sends them directly through the app. Tracks every contact through the full sales pipeline, syncs all data to Google Sheets in real time, and centralizes booking requests with auto-calculated revenue estimates. Team can accept, refuse, or cancel reservations â€” triggering a professional email to the client instantly. Total running cost: ~$0/month on free tiers.",
                          "github":  "https://github.com/Louiszhang2005-1/Fully-Integrated-CRM-Tool",
                          "demo":  "https://www.youtube.com/watch?v=TVuFauDyA00",
                          "image":  "https://lh3.googleusercontent.com/aida-public/AB6AXuAq3y0pe5-zj445NQYKmzbJNwSt6pwKm-RRaSroWdOsq0I9WvDU4tlIf_le6clLEAU1EU_s99pamo_RefOqMxhNv1gYMTs8tPSds7Jkb4ZRhxpEU9UQElEzVJSAoqViv4qiKxxL8YG9QR_aSkWObExq5swckGUTYd52SXI-msGM0W3mwkQaAm_mq0ahm8uaF08K-nIl5jUrIwBV32yVovAyJQHnlDfbkAO7aB-NtTFoGg_DNNFBe_PUARobX_wFyaL9hpiLkuNQrBNF"
@@ -236,10 +236,10 @@
                      {
                          "id":  "P-12",
                          "title":  "LazyCare",
-                         "subtitle":  "UdemHacks · Mar 2025 · AI Health Assistant",
+                         "subtitle":  "UdemHacks Â· Mar 2025 Â· AI Health Assistant",
                          "sector":  "Code Cove",
                          "status":  "active",
-                         "emoji":  "💊",
+                         "emoji":  "ðŸ’Š",
                          "skills":  [
                                         "Next.js",
                                         "Node.js",
@@ -258,10 +258,10 @@
                      {
                          "id":  "P-13",
                          "title":  "Interview Assistant",
-                         "subtitle":  "Brebeuf Hacks · Jan 2024 · Voice AI",
+                         "subtitle":  "Brebeuf Hacks Â· Jan 2024 Â· Voice AI",
                          "sector":  "Code Cove",
                          "status":  "active",
-                         "emoji":  "🎤",
+                         "emoji":  "ðŸŽ¤",
                          "skills":  [
                                         "Python",
                                         "NLP",
@@ -276,3 +276,4 @@
                      }
                  ]
 }
+

@@ -69,7 +69,7 @@ const PHASE_LINES: Record<string, Line[]> = {
 
 const INTERNSHIP_TIMELINE = [
   { title: "City of Montreal", role: "Scientific Intern - Water Testing", when: "May 2025-Aug 2025", logo: "/logo/city-of-montreal.gif" },
-  { title: "Lockheed Martin", role: "Mechanical Engineering Intern - Ship Integration", when: "Jan 2026– Apr 2026", logo: "/logo/lockheed-martin.jpg" },
+  { title: "Lockheed Martin", role: "Mechanical Engineering Intern - Ship Integration", when: "Jan 2026– Apr 2026", logo: "/logo/Lockheed.webp" },
   { title: "Tesla", role: "Manufacturing Engineering Intern - Cell Engineering", when: "Jun 2026 – Jan 2027", logo: "/logo/tesla.jpg" },
 ];
 

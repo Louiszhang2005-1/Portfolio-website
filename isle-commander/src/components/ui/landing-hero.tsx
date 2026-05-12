@@ -56,7 +56,7 @@ const credibilitySignals = [
   {
     label: "Lockheed Martin",
     detail: "Ship Integration",
-    logo: "/logo/lockheed-martin.jpg",
+    logo: "/logo/Lockheed.webp",
     tone: "text-[#a8c7ff]",
     accent: "#60a5fa",
   },

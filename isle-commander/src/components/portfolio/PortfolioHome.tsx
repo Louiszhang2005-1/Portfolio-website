@@ -7,10 +7,12 @@ import Internships from "@/components/portfolio/Internships";
 import Contact from "@/components/portfolio/Contact";
 import { CinematicFooter } from "@/components/ui/motion-footer";
 import { activeProjects } from "@/lib/portfolio";
+import SideScrollNav from "@/components/portfolio/SideScrollNav";
 
 export default function PortfolioHome() {
   return (
     <div className="min-h-screen bg-[var(--color-background)] text-[var(--color-on-background)]">
+      <SideScrollNav />
       <PortfolioHero />
       <FullPortfolioDeck />
       <Internships />
