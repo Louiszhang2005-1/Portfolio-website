@@ -46,16 +46,16 @@ export default function PhysicsConstellation({ projects }: { projects: Portfolio
   const [error, setError] = useState(false);
 
   const pointer = useRef({ x: 50, y: 45, active: false });
-  const nodeRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+  const nodeRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const items = useMemo(() => projects.slice(0, 9), [projects]);
 
   const bodies = useRef<Body[]>(
     items.map((item, i) => ({
-      x: 12 + ((i * 19) % 76),
-      y: 15 + ((i * 27) % 68),
-      vx: (i % 2 === 0 ? 0.07 : -0.06) * (1 + i * 0.04),
-      vy: (i % 3 === 0 ? 0.05 : -0.05) * (1 + i * 0.03),
+      x: 50 + Math.cos((i / Math.max(items.length, 1)) * Math.PI * 2) * (22 + (i % 3) * 6),
+      y: 50 + Math.sin((i / Math.max(items.length, 1)) * Math.PI * 2) * (18 + (i % 2) * 6),
+      vx: (i % 2 === 0 ? 0.05 : -0.05) * (1 + i * 0.03),
+      vy: (i % 3 === 0 ? 0.04 : -0.04) * (1 + i * 0.03),
       size: 62 + (i % 3) * 10,
       item,
     }))
@@ -76,13 +76,45 @@ export default function PhysicsConstellation({ projects }: { projects: Portfolio
         const bs = bodies.current;
         for (let i = 0; i < bs.length; i++) {
           const b = bs[i];
-          const dx = b.x - pointer.current.x;
-          const dy = b.y - pointer.current.y;
-          const dist = Math.max(Math.sqrt(dx * dx + dy * dy), 6);
-          const force = pointer.current.active ? 2.2 / dist : 0;
+          const centerPull = pointer.current.active ? 0.0032 : 0.0075;
+          let vx = b.vx + (50 - b.x) * centerPull;
+          let vy = b.vy + (50 - b.y) * centerPull;
 
-          let vx = (b.vx + dx * force * 0.01) * 0.991;
-          let vy = (b.vy + dy * force * 0.01) * 0.991;
+          if (pointer.current.active) {
+            const dx = b.x - pointer.current.x;
+            const dy = b.y - pointer.current.y;
+            const dist = Math.max(Math.sqrt(dx * dx + dy * dy), 5);
+            const influence = Math.max(0, 1 - dist / 46);
+            const repel = influence * influence * 0.88;
+            vx += (dx / dist) * repel;
+            vy += (dy / dist) * repel;
+          }
+
+          for (let j = 0; j < bs.length; j++) {
+            if (i === j) continue;
+            const other = bs[j];
+            const dx = b.x - other.x;
+            const dy = b.y - other.y;
+            const dist = Math.max(Math.sqrt(dx * dx + dy * dy), 2);
+            const minDist = 7.5 + (b.size + other.size) * 0.018;
+            const overlap = minDist - dist;
+            if (overlap > 0) {
+              vx += (dx / dist) * overlap * 0.014;
+              vy += (dy / dist) * overlap * 0.014;
+            }
+          }
+
+          const damping = pointer.current.active ? 0.965 : 0.91;
+          vx *= damping;
+          vy *= damping;
+
+          const speed = Math.max(Math.sqrt(vx * vx + vy * vy), 0.001);
+          const maxSpeed = pointer.current.active ? 2.15 : 0.82;
+          if (speed > maxSpeed) {
+            vx = (vx / speed) * maxSpeed;
+            vy = (vy / speed) * maxSpeed;
+          }
+
           let x = b.x + vx;
           let y = b.y + vy;
 
@@ -115,15 +147,6 @@ export default function PhysicsConstellation({ projects }: { projects: Portfolio
   return (
     <div
       className="relative min-h-[420px] overflow-hidden border-y border-white/10 bg-[#07131a] text-white"
-      onMouseMove={(e) => {
-        const rect = e.currentTarget.getBoundingClientRect();
-        pointer.current = {
-          x: ((e.clientX - rect.left) / rect.width) * 100,
-          y: ((e.clientY - rect.top) / rect.height) * 100,
-          active: true,
-        };
-      }}
-      onMouseLeave={() => { pointer.current.active = false; }}
     >
       <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(5,150,105,0.18),transparent_32%,rgba(14,165,233,0.16)_68%,rgba(248,113,113,0.16))]" />
       <div className="absolute inset-0 opacity-30 [background-image:linear-gradient(rgba(255,255,255,.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.08)_1px,transparent_1px)] [background-size:44px_44px]" />
@@ -134,10 +157,10 @@ export default function PhysicsConstellation({ projects }: { projects: Portfolio
             Project Physics
           </div>
           <h2 className="font-headline text-3xl font-extrabold leading-tight sm:text-5xl">
-            A live map of the work, pulled by your cursor.
+            A live map of the work, pulled to the core.
           </h2>
           <p className="mt-5 max-w-md text-sm leading-7 text-white/62">
-            Each node is a project from the same portfolio data used by the game. Move your cursor over the canvas to pull the nodes toward it.
+            Each project bubble drifts toward the center magnet. Hover through the field to scatter the cluster, then watch it pull itself back together.
           </p>
         </div>
 
@@ -150,7 +173,18 @@ export default function PhysicsConstellation({ projects }: { projects: Portfolio
         ) : !mounted ? (
           <LoadingSkeleton />
         ) : (
-          <div className="relative h-[360px] rounded-[2rem] border border-white/10 bg-black/20 overflow-hidden">
+          <div
+            className="relative h-[360px] rounded-[2rem] border border-white/10 bg-black/20 overflow-hidden"
+            onPointerMove={(e) => {
+              const rect = e.currentTarget.getBoundingClientRect();
+              pointer.current = {
+                x: ((e.clientX - rect.left) / rect.width) * 100,
+                y: ((e.clientY - rect.top) / rect.height) * 100,
+                active: true,
+              };
+            }}
+            onPointerLeave={() => { pointer.current.active = false; }}
+          >
             <div className="absolute left-1/2 top-1/2 h-20 w-20 -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan-200/15 bg-cyan-200/4 pointer-events-none" />
             {items.map((item, i) => {
               const b = bodies.current[i];
@@ -158,11 +192,11 @@ export default function PhysicsConstellation({ projects }: { projects: Portfolio
                 /* Outer div handles position; inner <a> handles hover scale — avoids transform conflict */
                 <div
                   key={item.id}
+                  ref={(el) => { nodeRefs.current[i] = el; }}
                   className="absolute -translate-x-1/2 -translate-y-1/2"
                   style={{ left: `${b.x}%`, top: `${b.y}%`, width: b.size, height: b.size }}
                 >
                   <a
-                    ref={(el) => { nodeRefs.current[i] = el as HTMLAnchorElement | null; }}
                     href={`/portfolio/${item.slug}`}
                     className="group relative flex h-full w-full items-center justify-center rounded-full border border-white/20 bg-white/10 text-center backdrop-blur-md transition-all duration-200 hover:scale-110 hover:border-white/40 hover:bg-white/18"
                     style={{ boxShadow: `0 0 28px ${item.accent}44` }}

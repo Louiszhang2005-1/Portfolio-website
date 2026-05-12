@@ -57,6 +57,8 @@ const slugById: Record<string, string> = {
   "P-13": "interview-assistant",
 };
 
+const hiddenSkillItemIds = new Set(["I-1", "I-4"]);
+
 const mediaById: Record<
   string,
   Partial<
@@ -192,7 +194,7 @@ const hydrate = (item: RawPortfolioItem): PortfolioItem => {
     sector: cleanSector,
     displaySector: SECTOR_DISPLAY[cleanSector] ?? cleanSector,
     emoji: media.emoji ?? clean(item.emoji),
-    skills: item.skills.map(clean),
+    skills: hiddenSkillItemIds.has(item.id) ? [] : item.skills.map(clean),
     details: clean(item.details),
     image: media.image ?? item.image,
     gallery: media.gallery ?? (media.image ? [media.image] : item.image ? [item.image] : []),

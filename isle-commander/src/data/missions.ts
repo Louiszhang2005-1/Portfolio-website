@@ -64,7 +64,7 @@ export const missions: Mission[] = [
     position: { x: -560, y: -420 },
     date: "May–Aug 2025",
     chronoOrder: 202505,
-    skills: ["Water Quality Testing", "Lab Analysis", "Environmental Monitoring", "Data Analysis", "Python"],
+    skills: [],
     details:
       "Scientific Intern at the City of Montreal's Water Department (May–Aug 2025). Performed hands-on water testing across municipal sources — collected and analyzed samples for chemical, physical, and microbiological parameters to validate compliance with Quebec drinking-water standards. Operated lab instrumentation, logged results into the city's monitoring pipelines, and supported the data analysis workflow that informs distribution-network decisions.",
     emoji: "💧",
@@ -109,7 +109,7 @@ export const missions: Mission[] = [
     position: { x: -1500, y: -1180 },
     date: "Jun 2026 – Jan 2027 · Incoming",
     chronoOrder: 202607,
-    skills: ["Manufacturing Engineering", "Battery Cell Engineering", "Process Optimization", "Automation", "Python", "Lean Six Sigma"],
+    skills: [],
     details:
       "Incoming Manufacturing Engineering Intern at Tesla on the Cell Engineering team (Jun 2026 – Jan 2027, Nevada Gigafactory). Will work on the manufacturing processes behind Tesla's battery cells — production-line optimization, process improvement, and automation systems supporting next-generation cell architectures and high-volume cell output.",
     emoji: "⚡",

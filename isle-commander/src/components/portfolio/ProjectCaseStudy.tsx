@@ -172,7 +172,7 @@ export default function ProjectCaseStudy({
       >
         <div className="flex items-center gap-4 rounded-b-2xl border border-white/10 bg-black/80 px-5 py-3 shadow-2xl backdrop-blur-md">
           <Link
-            href="/portfolio#projects"
+            href="/#projects"
             className="inline-flex items-center gap-2 text-sm font-semibold text-white/65 transition hover:text-white"
           >
             <ArrowLeft className="h-4 w-4" />

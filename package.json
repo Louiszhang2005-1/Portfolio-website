@@ -7,8 +7,14 @@
   "scripts": {
     "build": "npm --workspace isle-commander run build",
     "dev": "npm --workspace isle-commander run dev",
+    "dev:smoke": "npm --workspace isle-commander run dev:smoke",
+    "dev:turbo": "npm --workspace isle-commander run dev:turbo",
     "start": "npm --workspace isle-commander run start",
     "lint": "npm --workspace isle-commander run lint"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "tailwindcss": "^4"
   },
   "optionalDependencies": {
     "@tailwindcss/oxide-linux-x64-gnu": "^4.2.2",

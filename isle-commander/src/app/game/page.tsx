@@ -101,6 +101,16 @@ export default function Home() {
 
   return (
     <div className="fixed inset-0 w-screen h-screen overflow-hidden select-none touch-none">
+      <div className="pointer-events-none fixed left-3 right-3 top-[72px] z-[75] md:hidden">
+        <div className="mx-auto max-w-[340px] rounded-[8px] border border-amber-200/35 bg-slate-950/72 px-3 py-2 text-center shadow-lg backdrop-blur-xl">
+          <p className="font-label text-[9px] font-black uppercase tracking-[0.18em] text-amber-100/90">
+            Desktop-only recommended
+          </p>
+          <p className="mt-0.5 text-[11px] font-semibold leading-snug text-white/78">
+            The full physics game is made for a computer. On mobile, use this as a preview and play properly on desktop.
+          </p>
+        </div>
+      </div>
 
       {/* ── GAME WORLD (with parallax layers) ── */}
       <GameWorld

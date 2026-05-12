@@ -27,7 +27,7 @@ export default function NotFound() {
           Home
         </Link>
         <Link
-          href="/portfolio"
+          href="/#projects"
           className="rounded-full border px-6 py-3 text-sm font-bold transition"
           style={{
             borderColor: "var(--color-outline-variant)",
@@ -35,7 +35,7 @@ export default function NotFound() {
             color: "var(--color-on-surface)",
           }}
         >
-          Portfolio
+          Projects
         </Link>
       </div>
     </div>

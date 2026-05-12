@@ -6,15 +6,21 @@ First, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://127.0.0.1:3000](http://127.0.0.1:3000) with your browser to see the result.
+
+`npm run dev` uses `scripts/safe-dev.ps1`, which runs Next with Webpack, caps Node's heap, stops stale Node servers on the same port, and shuts the dev server down if memory gets too high.
+
+Useful overrides:
+
+```bash
+$env:DEV_NODE_MEMORY_MB=2048; npm run dev
+$env:DEV_TREE_MEMORY_LIMIT_MB=3000; npm run dev
+$env:PORT=3001; npm run dev
+```
+
+Use `npm run dev:smoke` for a short start/stop test. Use `npm run dev:turbo` only if you intentionally want the faster raw Turbopack dev server again.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 

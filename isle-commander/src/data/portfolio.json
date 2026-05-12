@@ -8,10 +8,7 @@
                             "status":  "active",
                             "emoji":  "💧",
                             "skills":  [
-                                           "Data Analysis",
-                                           "Environmental Engineering",
-                                           "Python",
-                                           "GIS"
+
                                        ],
                             "details":  "Scientific Intern at the City of Montreal\u0030s Water Department (May–Aug 2025). Contributed to water quality monitoring initiatives and geospatial data pipelines for municipal infrastructure management.",
                             "github":  null,
@@ -45,11 +42,7 @@
                             "status":  "active",
                             "emoji":  "⚡",
                             "skills":  [
-                                           "Manufacturing",
-                                           "Automation",
-                                           "Battery Cell Engineering",
-                                           "Python",
-                                           "Lean Six Sigma"
+
                                        ],
                             "details":  "Incoming Manufacturing Engineering Intern at Tesla\u0027s Gigafactory, Cell Engineering department (Summer 2026). Focused on battery cell manufacturing processes, production line optimization, and automation systems for next-gen energy storage.",
                             "github":  null,
