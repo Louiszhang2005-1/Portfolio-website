@@ -86,7 +86,7 @@ export const missions: Mission[] = [
     position: { x: -1050, y: -760 },
     date: "Jan – Apr 2026",
     chronoOrder: 202601,
-    skills: ["Ship Systems Integration", "3D CAD Modeling", "Mechanical Design", "GD&T", "FEA", "CATIA"],
+    skills: ["SOLIDWORKS", "Engineering Drawings", "VBA Programming", "Windchill", "Confluence"],
     details:
       "Mechanical Engineering Intern at Lockheed Martin on the Ship Integration team (Jan – Apr 2026). Supported the mechanical integration of subsystems aboard naval platforms — 3D CAD modeling, structural layouts, fit-checks, and tolerance/GD&T documentation for shipboard hardware. Worked on FEA validation for mounting structures and contributed to the assembly drawings and interface documentation that govern how subsystems are physically integrated into the ship.",
     emoji: "⚓",

@@ -23,11 +23,11 @@
                             "status":  "active",
                             "emoji":  "âœˆï¸",
                             "skills":  [
-                                           "3D CAD Modeling",
-                                           "Structural Design",
-                                           "CATIA",
-                                           "GD\u0026T",
-                                           "FEA"
+                                           "SOLIDWORKS",
+                                           "Engineering Drawings",
+                                           "VBA Programming",
+                                           "Windchill",
+                                           "Confluence"
                                        ],
                             "details":  "Engineering Intern at Lockheed Martin. Worked on 3D CAD modeling and structural design of airframe components. Performed FEA on composite panels for airframe programs. Delivered full CAD assemblies with tolerance stack-up analysis and GD\u0026T documentation.",
                             "github":  null,
@@ -276,4 +276,5 @@
                      }
                  ]
 }
+
 

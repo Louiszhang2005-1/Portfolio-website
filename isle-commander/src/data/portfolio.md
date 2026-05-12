@@ -14,7 +14,7 @@ Incoming Manufacturing Engineering Intern at Tesla's Gigafactory, Cell Engineeri
 ---
 
 ### ✈️ Lockheed Martin — Engineering Intern
-**Skills:** 3D CAD Modeling · Structural Design · CATIA · GD&T · FEA  
+**Skills:** SOLIDWORKS · Engineering Drawings · VBA Programming · Windchill · Confluence  
 Engineering Intern at Lockheed Martin. Worked on 3D CAD modeling and structural design of airframe components. Performed FEA on composite panels for airframe programs. Delivered full CAD assemblies with tolerance stack-up analysis and GD&T documentation.
 
 ---

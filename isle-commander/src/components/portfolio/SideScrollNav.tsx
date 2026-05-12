@@ -11,6 +11,15 @@ const sections = [
   { id: "contact", label: "Contact" },
 ];
 
+const sectionTones: Record<string, "light" | "dark"> = {
+  about: "dark",
+  "portfolio-deck": "light",
+  experience: "light",
+  projects: "dark",
+  "game-portal": "dark",
+  contact: "light",
+};
+
 export default function SideScrollNav() {
   const [activeId, setActiveId] = useState("");
 
@@ -29,10 +38,14 @@ export default function SideScrollNav() {
     return () => observers.forEach((o) => o.disconnect());
   }, []);
 
+  const isDark = (sectionTones[activeId] ?? "dark") === "dark";
+
   return (
     <nav
       aria-label="Section navigation"
-      className="fixed right-4 lg:right-6 top-1/2 z-40 -translate-y-1/2 hidden lg:flex flex-col items-end gap-4"
+      className={`fixed right-4 lg:right-6 top-1/2 z-40 -translate-y-1/2 hidden lg:flex flex-col items-end gap-3.5 rounded-2xl px-4 py-4 backdrop-blur-md transition-colors duration-300 ${
+        isDark ? "bg-black/25" : "bg-white/60 shadow-sm"
+      }`}
     >
       {sections.map(({ id, label }) => {
         const active = activeId === id;
@@ -41,23 +54,25 @@ export default function SideScrollNav() {
             key={id}
             href={`#${id}`}
             aria-current={active ? "page" : undefined}
-            className="group flex items-center gap-2"
+            className="group flex items-center gap-2 py-1"
           >
             <span
-              className={`text-xs font-medium transition-all duration-200 ${
+              className={`text-sm font-medium transition-all duration-200 ${
                 active
-                  ? "text-[var(--color-primary)] opacity-100"
-                  : "text-white/40 opacity-100 group-hover:text-white/70"
+                  ? `font-semibold ${isDark ? "text-[var(--color-primary-fixed)]" : "text-[var(--color-primary)]"}`
+                  : isDark
+                  ? "text-white/55 group-hover:text-white/85"
+                  : "text-[var(--color-on-surface-variant)] group-hover:text-[var(--color-on-surface)]"
               }`}
             >
               {label}
             </span>
             <span
               aria-hidden
-              className={`block rounded-full border transition-all duration-200 ${
+              className={`block flex-shrink-0 rounded-full transition-all duration-200 ${
                 active
-                  ? "h-2.5 w-2.5 border-[var(--color-primary)] bg-[var(--color-primary)]"
-                  : "h-1.5 w-1.5 border-white/40 bg-transparent group-hover:border-white/70"
+                  ? `h-3 w-3 ${isDark ? "bg-[var(--color-primary-fixed)] border-[var(--color-primary-fixed)]" : "bg-[var(--color-primary)] border-[var(--color-primary)]"} border-2`
+                  : `h-2 w-2 border-2 bg-transparent ${isDark ? "border-white/45 group-hover:border-white/75" : "border-[var(--color-on-surface-variant)] group-hover:border-[var(--color-on-surface)]"}`
               }`}
             />
           </a>
