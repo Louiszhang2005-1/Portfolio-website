@@ -33,7 +33,7 @@ export default function About() {
                 I&apos;m Louis, a Mechanical Engineering student at Polytechnique Montréal. I bridge the gap between hardware and software — from designing lunar transport systems with CATIA to building full-stack apps with Next.js.
               </p>
               <p>
-                I&apos;ve interned at Tesla (Gigafactory), Lockheed Martin, and the City of Montreal. On the competition circuit, I&apos;ve won hackathon awards at ConUHacks and RoboHacks.
+                I&apos;ve interned at Lockheed Martin and the City of Montreal, with an upcoming role at Tesla&apos;s Gigafactory. On the competition circuit, I&apos;ve won hackathon awards at ConUHacks and RoboHacks.
               </p>
               <p>
                 My portfolio is also a game — sail through the islands to discover projects the other way.
