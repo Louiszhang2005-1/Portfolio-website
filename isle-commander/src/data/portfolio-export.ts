@@ -93,7 +93,7 @@ export const portfolioData = {
             "Python",
             "Lean Six Sigma"
           ],
-          "summary": "Currently interning at Tesla's LFP factory, working on LFP cell manufacturing for Megapacks. Focused on cell manufacturing processes, production line optimization, and automation systems for utility-scale energy storage.",
+          "summary": "Currently interning at Tesla's LFP factory, working on LFP Cell Manufacturing for Megapacks. Focused on Cell Manufacturing processes, production line optimization, and automation systems for utility-scale energy storage.",
           "links": {
             "github": null,
             "demo": null
@@ -429,7 +429,7 @@ export const portfolioData = {
         "Python",
         "Lean Six Sigma"
       ],
-      "summary": "Currently interning at Tesla's LFP factory, working on LFP cell manufacturing for Megapacks. Focused on cell manufacturing processes, production line optimization, and automation systems for utility-scale energy storage.",
+      "summary": "Currently interning at Tesla's LFP factory, working on LFP Cell Manufacturing for Megapacks. Focused on Cell Manufacturing processes, production line optimization, and automation systems for utility-scale energy storage.",
       "links": {
         "github": null,
         "demo": null
@@ -750,7 +750,7 @@ export const portfolioData = {
         "Python",
         "Lean Six Sigma"
       ],
-      "summary": "Currently interning at Tesla's LFP factory, working on LFP cell manufacturing for Megapacks. Focused on cell manufacturing processes, production line optimization, and automation systems for utility-scale energy storage.",
+      "summary": "Currently interning at Tesla's LFP factory, working on LFP Cell Manufacturing for Megapacks. Focused on Cell Manufacturing processes, production line optimization, and automation systems for utility-scale energy storage.",
       "links": {
         "github": null,
         "demo": null
