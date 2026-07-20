@@ -22,7 +22,7 @@ const PART1_LINES: Line[] = [
   { text: "Identity confirmed: Louis Zhang." },
   { text: "Mechanical engineering student building across hardware, manufacturing, aerospace, robotics, and software." },
   { text: "This portfolio is not a slide deck. It is a playable career map." },
-  { text: "The internship route begins with City of Montreal, continues to Lockheed Martin, then reaches my upcoming Tesla Cell Engineering internship." },
+  { text: "The internship route begins with City of Montreal, continues to Lockheed Martin, then reaches my current Tesla LFP factory internship." },
   { text: "Pilot the ship, inspect islands, read blueprints, collect points, and dock for upgrades." },
 ];
 

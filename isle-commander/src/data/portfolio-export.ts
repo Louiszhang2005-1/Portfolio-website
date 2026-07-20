@@ -83,7 +83,7 @@ export const portfolioData = {
           "type": "internship",
           "category": "Internships",
           "title": "Tesla",
-          "subtitle": "Manufacturing Engineering Intern Â· Cell Engineering",
+          "subtitle": "Manufacturing Engineering Intern Â· LFP Cell Manufacturing",
           "status": "active",
           "order": 3,
           "skills": [
@@ -93,7 +93,7 @@ export const portfolioData = {
             "Python",
             "Lean Six Sigma"
           ],
-          "summary": "Incoming Manufacturing Engineering Intern at Tesla's Gigafactory, Cell Engineering department (Summer 2026). Focused on battery cell manufacturing processes, production line optimization, and automation systems for next-gen energy storage.",
+          "summary": "Currently interning at Tesla's LFP factory, working on LFP cell manufacturing for Megapacks. Focused on cell manufacturing processes, production line optimization, and automation systems for utility-scale energy storage.",
           "links": {
             "github": null,
             "demo": null
@@ -419,7 +419,7 @@ export const portfolioData = {
       "type": "internship",
       "category": "Internships",
       "title": "Tesla",
-      "subtitle": "Manufacturing Engineering Intern Â· Cell Engineering",
+      "subtitle": "Manufacturing Engineering Intern Â· LFP Cell Manufacturing",
       "status": "active",
       "order": 3,
       "skills": [
@@ -429,7 +429,7 @@ export const portfolioData = {
         "Python",
         "Lean Six Sigma"
       ],
-      "summary": "Incoming Manufacturing Engineering Intern at Tesla's Gigafactory, Cell Engineering department (Summer 2026). Focused on battery cell manufacturing processes, production line optimization, and automation systems for next-gen energy storage.",
+      "summary": "Currently interning at Tesla's LFP factory, working on LFP cell manufacturing for Megapacks. Focused on cell manufacturing processes, production line optimization, and automation systems for utility-scale energy storage.",
       "links": {
         "github": null,
         "demo": null
@@ -740,7 +740,7 @@ export const portfolioData = {
       "type": "internship",
       "category": "Internships",
       "title": "Tesla",
-      "subtitle": "Manufacturing Engineering Intern Â· Cell Engineering",
+      "subtitle": "Manufacturing Engineering Intern Â· LFP Cell Manufacturing",
       "status": "active",
       "order": 3,
       "skills": [
@@ -750,7 +750,7 @@ export const portfolioData = {
         "Python",
         "Lean Six Sigma"
       ],
-      "summary": "Incoming Manufacturing Engineering Intern at Tesla's Gigafactory, Cell Engineering department (Summer 2026). Focused on battery cell manufacturing processes, production line optimization, and automation systems for next-gen energy storage.",
+      "summary": "Currently interning at Tesla's LFP factory, working on LFP cell manufacturing for Megapacks. Focused on cell manufacturing processes, production line optimization, and automation systems for utility-scale energy storage.",
       "links": {
         "github": null,
         "demo": null

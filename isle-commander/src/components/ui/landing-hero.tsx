@@ -48,7 +48,7 @@ const navItems = [
 const credibilitySignals = [
   {
     label: "Tesla",
-    detail: "Incoming Cell Engineering",
+    detail: "Currently interning at Tesla's LFP factory",
     logo: "/logo/tesla.jpg",
     tone: "text-[#ffb7a6]",
     accent: "#ef4444",

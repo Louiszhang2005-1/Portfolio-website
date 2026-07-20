@@ -9,7 +9,7 @@
 ### ⚡ Tesla — Manufacturing Engineering Intern · Cell Engineering
 **Period:** Summer 2026 & Fall 2026  
 **Skills:** Manufacturing · Automation · Battery Cell Engineering · Python · Lean Six Sigma  
-Incoming Manufacturing Engineering Intern at Tesla's Gigafactory, Cell Engineering department. Focused on the 4680 battery cell manufacturing processes, production line optimization, and automation systems for next-gen energy storage.
+Currently interning at Tesla's LFP factory, working on LFP cell manufacturing for Megapacks. Focused on cell manufacturing processes, production line optimization, and automation systems for utility-scale energy storage.
 
 ---
 

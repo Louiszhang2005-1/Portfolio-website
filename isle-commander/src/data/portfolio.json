@@ -35,12 +35,12 @@
     {
       "id": "I-1",
       "title": "Tesla",
-      "subtitle": "Manufacturing Engineering Intern · Cell Engineering",
+      "subtitle": "Manufacturing Engineering Intern · LFP Cell Manufacturing",
       "sector": "Internship Shores",
       "status": "active",
       "emoji": "⚡",
       "skills": [],
-      "details": "Incoming Manufacturing Engineering Intern at Tesla's Gigafactory, Cell Engineering department.\n\nFocused on the 4680 battery cell manufacturing processes, production line optimization, and automation systems for next-gen energy storage.",
+      "details": "Currently interning at Tesla's LFP factory, working on LFP cell manufacturing for Megapacks.\n\nFocused on cell manufacturing processes, production line optimization, and automation systems for utility-scale energy storage.",
       "github": null,
       "demo": null,
       "image": "/logo/tesla.jpg"
