@@ -57,7 +57,7 @@ const slugById: Record<string, string> = {
   "P-13": "interview-assistant",
 };
 
-const hiddenSkillItemIds = new Set(["I-1", "I-4"]);
+const hiddenSkillItemIds = new Set();
 
 const mediaById: Record<
   string,

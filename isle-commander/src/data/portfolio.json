@@ -7,7 +7,13 @@
       "sector": "Internship Shores",
       "status": "active",
       "emoji": "💧",
-      "skills": [],
+      "skills": [
+        "Water Quality Testing",
+        "Data Analysis",
+        "Environmental Engineering",
+        "Python",
+        "GIS"
+      ],
       "details": "Scientific Intern at the City of Montreal's Water Department.\n\nContributed to water quality monitoring initiatives and geospatial data pipelines for municipal infrastructure management.",
       "github": null,
       "demo": null,
@@ -39,8 +45,14 @@
       "sector": "Internship Shores",
       "status": "active",
       "emoji": "⚡",
-      "skills": [],
-      "details": "Currently interning at Tesla's LFP factory, working on LFP Cell Manufacturing for Megapacks.\n\nFocused on Cell Manufacturing processes, production line optimization, and automation systems for utility-scale energy storage.",
+      "skills": [
+        "Manufacturing Engineering",
+        "Battery Cell Manufacturing",
+        "Automation",
+        "Python",
+        "Lean Six Sigma"
+      ],
+      "details": "Interned at Tesla's LFP factory, working on LFP Cell Manufacturing for Megapacks.\n\nFocused on Cell Manufacturing processes, production line optimization, and automation systems for utility-scale energy storage.",
       "github": null,
       "demo": null,
       "image": "/logo/tesla.jpg"
