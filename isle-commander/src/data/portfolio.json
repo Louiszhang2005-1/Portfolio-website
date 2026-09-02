@@ -33,7 +33,7 @@
         "Windchill",
         "Confluence"
       ],
-      "details": "Mechanical Engineering Intern on the Ship Integration team — part of the Combat Surface Combatant program, Compartments team.\n\nSpecialized in 3D CAD modeling and structural design of ship compartment components in SolidWorks, transforming engineering drawings into complete assemblies.\n\nBuilt VBA scripts to automate the peer-review process across several partner companies, improving overall turnaround time.",
+      "details": "Mechanical Engineering Intern on the Ship Integration team for the Canadian Surface Combatant program, Compartments team.\n\nSpecialized in 3D CAD modeling and structural design of ship compartment components in SolidWorks, transforming engineering drawings into complete assemblies.\n\nBuilt VBA scripts to automate the peer-review process across several partner companies, improving overall turnaround time.",
       "github": null,
       "demo": null,
       "image": "/logo/Lockheed.webp"
@@ -41,18 +41,19 @@
     {
       "id": "I-1",
       "title": "Tesla",
-      "subtitle": "Manufacturing Engineering Intern · LFP Cell Manufacturing",
+      "subtitle": "Manufacturing Engineering Intern · LFP Cell Engineering",
       "sector": "Internship Shores",
       "status": "active",
       "emoji": "⚡",
       "skills": [
-        "Manufacturing Engineering",
         "Battery Cell Manufacturing",
-        "Automation",
-        "Python",
-        "Lean Six Sigma"
+        "PLC",
+        "HMI Design",
+        "Equipment Design",
+        "Root Cause Analysis",
+        "Python"
       ],
-      "details": "Interned at Tesla's LFP factory, working on LFP Cell Manufacturing for Megapacks.\n\nFocused on Cell Manufacturing processes, production line optimization, and automation systems for utility-scale energy storage.",
+      "details": "Interned at Tesla's LFP factory on the LFP Cell Engineering team for Megapack battery cells.\n\nWorked on cell production processes, PLC/HMI controls, equipment design, and root-cause analysis for utility-scale energy storage lines.",
       "github": null,
       "demo": null,
       "image": "/logo/tesla.jpg"

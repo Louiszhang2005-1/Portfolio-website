@@ -66,7 +66,7 @@ export default function PortfolioOverview() {
       <div className="space-y-2 text-[11px] leading-snug text-white/72">
         <p className="m-0">
           <span className="font-black text-orange-200">Experience:</span> City of Montreal water testing, Lockheed
-          Martin ship integration, and Tesla cell engineering.
+          Martin ship integration, and Tesla LFP cell engineering.
         </p>
         <p className="m-0">
           <span className="font-black text-yellow-200">Highlights:</span> CSA Transport System, Autonomous

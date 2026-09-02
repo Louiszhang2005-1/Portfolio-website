@@ -22,7 +22,7 @@ const PART1_LINES: Line[] = [
   { text: "Identity confirmed: Louis Zhang." },
   { text: "Mechanical engineering student building across hardware, manufacturing, aerospace, robotics, and software." },
   { text: "This portfolio is not a slide deck. It is a playable career map." },
-  { text: "The internship route begins with City of Montreal, continues to Lockheed Martin, then reaches my current Tesla LFP factory internship." },
+  { text: "The internship route begins with City of Montreal, continues to Lockheed Martin, then reaches the Tesla LFP factory internship." },
   { text: "Pilot the ship, inspect islands, read blueprints, collect points, and dock for upgrades." },
 ];
 
@@ -32,7 +32,7 @@ const PART2_LINES: Line[] = [
   { text: "Municipal water testing, lab workflows, environmental monitoring, and data analysis.", color: "rgba(199,232,255,0.76)", indent: true },
   { text: "> Lockheed Martin", tag: "Ship Integration", tagColor: "#1d4ed8" },
   { text: "CAD, structural layouts, FEA validation, and shipboard subsystem integration.", color: "rgba(199,232,255,0.76)", indent: true },
-  { text: "> Tesla", tag: "Cell Engineering", tagColor: "#dc2626" },
+  { text: "> Tesla", tag: "LFP Cell Engineering", tagColor: "#dc2626" },
   { text: "Battery manufacturing, automation, process optimization, and production thinking.", color: "rgba(199,232,255,0.76)", indent: true },
   { text: "> CSA Transport System", tag: "Systems", tagColor: "#b45309" },
   { text: "Lunar transport prototype, project management, controls, thermal and structural validation.", color: "rgba(199,232,255,0.76)", indent: true },
@@ -70,7 +70,7 @@ const PHASE_LINES: Record<string, Line[]> = {
 const INTERNSHIP_TIMELINE = [
   { title: "City of Montreal", role: "Scientific Intern - Water Testing", when: "May 2025-Aug 2025", logo: "/logo/city-of-montreal.gif" },
   { title: "Lockheed Martin", role: "Mechanical Engineering Intern - Ship Integration", when: "Jan 2026– Apr 2026", logo: "/logo/Lockheed.webp" },
-  { title: "Tesla", role: "Manufacturing Engineering Intern - Cell Engineering", when: "Jun 2026 – Jan 2027", logo: "/logo/tesla.jpg" },
+  { title: "Tesla", role: "Manufacturing Engineering Intern - LFP Cell Engineering", when: "Jun 2026 – Aug 2026", logo: "/logo/tesla.jpg" },
 ];
 
 const PLAY_SIGNALS = [

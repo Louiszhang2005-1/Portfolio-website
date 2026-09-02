@@ -3,9 +3,9 @@
 import { motion } from "framer-motion";
 
 const skills = [
-  "Next.js", "React", "TypeScript", "Python",
-  "SolidWorks", "CATIA V6", "Arduino", "Raspberry Pi",
-  "FEA", "GD&T", "Lean Six Sigma", "ROS 2",
+  "Next.js", "React", "TypeScript", "Python", "Node.js", "SQL",
+  "SolidWorks", "CATIA V6", "AutoCAD", "Arduino", "Raspberry Pi", "ROS 2",
+  "FEA", "GD&T", "PLC", "Lean Six Sigma",
 ];
 
 export default function About() {
@@ -33,7 +33,7 @@ export default function About() {
                 I&apos;m Louis, a Mechanical Engineering student at Polytechnique Montréal. I bridge the gap between hardware and software — from designing lunar transport systems with CATIA to building full-stack apps with Next.js.
               </p>
               <p>
-                I&apos;ve interned at Lockheed Martin and the City of Montreal, and I&apos;m currently interning at Tesla&apos;s LFP factory. On the competition circuit, I&apos;ve won hackathon awards at ConUHacks and RoboHacks.
+                I&apos;ve interned at Tesla&apos;s LFP cell factory, Lockheed Martin, and the City of Montreal. On the competition circuit, I&apos;ve won hackathon awards at ConUHacks and RoboHacks.
               </p>
               <p>
                 My portfolio is also a game — sail through the islands to discover projects the other way.

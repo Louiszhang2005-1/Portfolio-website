@@ -6,16 +6,17 @@
 
 ## Internships
 
-### ⚡ Tesla — Manufacturing Engineering Intern · Cell Engineering
-**Period:** Summer 2026 & Fall 2026  
-**Skills:** Manufacturing · Automation · Battery Cell Engineering · Python · Lean Six Sigma  
-Currently interning at Tesla's LFP factory, working on LFP Cell Manufacturing for Megapacks. Focused on Cell Manufacturing processes, production line optimization, and automation systems for utility-scale energy storage.
+### ⚡ Tesla — Manufacturing Engineering Intern · LFP Cell Engineering
+**Period:** Jun 2026 – Aug 2026  
+**Skills:** Battery Cell Manufacturing · PLC · HMI Design · Equipment Design · Root Cause Analysis · Python  
+Interned at Tesla's LFP factory on the LFP Cell Engineering team for Megapack battery cells. Worked on cell production processes, PLC/HMI controls, equipment design, and root-cause analysis for utility-scale energy storage lines.
 
 ---
 
 ### ✈️ Lockheed Martin — Mechanical Engineering Intern · Ship Integration
+**Period:** Jan 2026 – Apr 2026  
 **Skills:** SOLIDWORKS · Engineering Drawings · VBA Programming · Windchill · Confluence  
-Mechanical Engineering Intern on the Ship Integration team — part of the Combat Surface Combatant program, Compartments team. Specialized in 3D CAD modeling and structural design of ship compartment components in SolidWorks, transforming engineering drawings into complete assemblies. Built VBA scripts to automate the peer-review process across several partner companies, improving overall turnaround time.
+Mechanical Engineering Intern on the Ship Integration team for the Canadian Surface Combatant program, Compartments team. Specialized in 3D CAD modeling and structural design of ship compartment components in SolidWorks, transforming engineering drawings into complete assemblies. Built VBA scripts to automate the peer-review process across several partner companies, improving overall turnaround time.
 
 ---
 
