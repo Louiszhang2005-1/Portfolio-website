@@ -1,4 +1,4 @@
-# Portfolio Website - Isle Commander
+# Portfolio Website
 
 A modern, high-performance portfolio website built with Next.js, React, and TypeScript. Features smooth animations, physics-based interactions, and responsive design.
 
@@ -19,7 +19,7 @@ A modern, high-performance portfolio website built with Next.js, React, and Type
 
 ```
 portfolio-ship/
-├── isle-commander/           # Main application workspace
+├── portfolio/           # Main application workspace
 │   ├── src/                  # Source code
 │   ├── public/               # Static assets
 │   ├── scripts/              # Development scripts
@@ -45,7 +45,7 @@ cd Portfolio-website
 npm install
 
 # Install workspace dependencies
-cd isle-commander
+cd portfolio
 npm install
 cd ..
 ```

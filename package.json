@@ -2,15 +2,15 @@
   "name": "portfolio-ship",
   "private": true,
   "workspaces": [
-    "isle-commander"
+    "portfolio"
   ],
   "scripts": {
-    "build": "npm --workspace isle-commander run build",
-    "dev": "npm --workspace isle-commander run dev",
-    "dev:smoke": "npm --workspace isle-commander run dev:smoke",
-    "dev:turbo": "npm --workspace isle-commander run dev:turbo",
-    "start": "npm --workspace isle-commander run start",
-    "lint": "npm --workspace isle-commander run lint"
+    "build": "npm --workspace portfolio run build",
+    "dev": "npm --workspace portfolio run dev",
+    "dev:smoke": "npm --workspace portfolio run dev:smoke",
+    "dev:turbo": "npm --workspace portfolio run dev:turbo",
+    "start": "npm --workspace portfolio run start",
+    "lint": "npm --workspace portfolio run lint"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
