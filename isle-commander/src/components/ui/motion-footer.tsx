@@ -264,7 +264,7 @@ export function CinematicFooter() {
               <div className="flex w-full flex-wrap justify-center gap-4">
                 <MagneticButton
                   as="a"
-                  href="mailto:zlouis2005@gmail.com"
+                  href="mailto:louzhang15@gmail.com"
                   className="footer-glass-pill group flex items-center gap-3 rounded-full px-10 py-5 text-sm font-bold text-[#e1e0cc]/86 md:text-base"
                 >
                   <Mail className="h-5 w-5 text-[#e1e0cc]/54 transition-colors group-hover:text-[#e1e0cc]" />

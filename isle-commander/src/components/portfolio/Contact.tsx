@@ -26,11 +26,11 @@ export default function Contact() {
 
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href="mailto:zlouis2005@gmail.com"
+              href="mailto:louzhang15@gmail.com"
               className="inline-flex items-center gap-2 rounded-full bg-[var(--color-primary)] px-6 py-3 text-sm font-semibold text-white transition-all hover:opacity-90 hover:shadow-lg"
             >
               <Mail className="h-4 w-4" />
-              zlouis2005@gmail.com
+              louzhang15@gmail.com
             </a>
 
             <a
