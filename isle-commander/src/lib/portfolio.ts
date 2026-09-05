@@ -39,7 +39,7 @@ export const fullPortfolioPages = Array.from(
 
 export const fullPortfolioDocument = {
   label: "Full 7-page portfolio PDF",
-  href: "/media/portfolio-pages/portfolio-may-04-2026.pdf",
+  href: "/media/portfolio-pages/portfolio.pdf",
 };
 
 const slugById: Record<string, string> = {
