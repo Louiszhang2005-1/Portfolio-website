@@ -15,3 +15,6 @@ pnpm-debug.log*
 *.tsbuildinfo
 .env*
 *.log
+
+# ruflo / claude-flow tool state
+.claude-flow/
