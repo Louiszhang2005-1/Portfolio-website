@@ -1,4 +1,5 @@
 import type { PortfolioItem } from "@/lib/portfolio";
+import { logicalSize } from "./canvas";
 import { clamp01, readTokens, wrapText } from "./core";
 
 /**
@@ -33,8 +34,7 @@ export const weekday = () => new Date().toLocaleDateString([], { weekday: "long"
 
 export function drawWatch(ctx: CanvasRenderingContext2D, notif: number) {
   const t = readTokens();
-  const W = ctx.canvas.width;
-  const H = ctx.canvas.height;
+  const { W, H } = logicalSize(ctx);
   ctx.globalAlpha = 1;
   ctx.fillStyle = t["--mat-black"];
   ctx.fillRect(0, 0, W, H);
@@ -138,8 +138,7 @@ export function drawPhone(
   s: { lock: number; home: number; code: number }
 ) {
   const t = readTokens();
-  const W = ctx.canvas.width;
-  const H = ctx.canvas.height;
+  const { W, H } = logicalSize(ctx);
   ctx.globalAlpha = 1;
   ctx.fillStyle = t["--mat-black"];
   ctx.fillRect(0, 0, W, H);
@@ -289,8 +288,7 @@ export function drawLaptop(
   logos: Record<string, HTMLImageElement>
 ) {
   const t = readTokens();
-  const W = ctx.canvas.width;
-  const H = ctx.canvas.height;
+  const { W, H } = logicalSize(ctx);
   ctx.globalAlpha = 1;
   ctx.fillStyle = t["--mat-black"];
   ctx.fillRect(0, 0, W, H);
@@ -418,8 +416,7 @@ export function drawLaptop(
 
 export function drawKeyboard(ctx: CanvasRenderingContext2D) {
   const t = readTokens();
-  const W = ctx.canvas.width;
-  const H = ctx.canvas.height;
+  const { W, H } = logicalSize(ctx);
   ctx.fillStyle = t["--mat-graphite"];
   ctx.fillRect(0, 0, W, H);
   const rows = 6;
@@ -437,8 +434,7 @@ export function drawKeyboard(ctx: CanvasRenderingContext2D) {
 
 export function drawCellLabel(ctx: CanvasRenderingContext2D, lines: string[]) {
   const t = readTokens();
-  const W = ctx.canvas.width;
-  const H = ctx.canvas.height;
+  const { W, H } = logicalSize(ctx);
   ctx.fillStyle = t["--mat-graphite"];
   ctx.fillRect(0, 0, W, H);
   ctx.fillStyle = t["--text-secondary"];

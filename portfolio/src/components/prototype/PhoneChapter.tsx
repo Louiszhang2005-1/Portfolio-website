@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useMotionValue, useMotionValueEvent, useTransform, type MotionValue } from "framer-motion";
+import DeviceSkeleton from "./DeviceSkeleton";
 import dynamic from "next/dynamic";
 import { useRef, useState } from "react";
 import { useMap, type Motion } from "./devices";
@@ -122,7 +123,10 @@ export default function PhoneChapter({ id }: { id: string }) {
           <BeatCopy key={b.title} progress={p} beat={b} />
         ))}
         device={
-          <Phone3D m={m} lockOn={lockOn} homeOn={homeOn} codeOn={codeOn} progress={p} diveScale={diveScale} />
+          <>
+            <DeviceSkeleton kind="phone" />
+            <Phone3D m={m} lockOn={lockOn} homeOn={homeOn} codeOn={codeOn} progress={p} diveScale={diveScale} />
+          </>
         }
         overlay={<DepthHud dive={dive} progress={p} />}
       />

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useMotionValueEvent, useReducedMotion, useTransform } from "framer-motion";
+import DeviceSkeleton from "./DeviceSkeleton";
 import dynamic from "next/dynamic";
 import { useRef, useState } from "react";
 import { internships, type PortfolioItem } from "@/lib/portfolio";
@@ -124,7 +125,8 @@ function PinnedRoles({ id }: { id: string }) {
               })}
             </motion.div>
           </div>
-          <div className="order-1 h-[220px] min-w-0 sm:h-[300px] md:order-2 md:h-[min(620px,calc(100vh-150px))]">
+          <div className="relative order-1 h-[220px] min-w-0 sm:h-[300px] md:order-2 md:h-[min(620px,calc(100vh-150px))]">
+            <DeviceSkeleton kind="laptop" />
             <Laptop3D jobs={jobs} lid={lid} screenOn={screenOn} track={track} />
           </div>
         </div>

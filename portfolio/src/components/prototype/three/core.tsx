@@ -77,39 +77,7 @@ export function roundedPlane(w: number, h: number, r: number) {
 
 /* ---------------------------------------------------------------- canvas textures */
 
-export function canvasTexture(w: number, h: number, draw: (ctx: CanvasRenderingContext2D) => void) {
-  const canvas = document.createElement("canvas");
-  canvas.width = w;
-  canvas.height = h;
-  const ctx = canvas.getContext("2d")!;
-  draw(ctx);
-  const tex = new THREE.CanvasTexture(canvas);
-  tex.colorSpace = THREE.SRGBColorSpace;
-  tex.anisotropy = 4;
-  return { tex, ctx, canvas };
-}
-
-/** A redrawable screen: `draw` runs only when `key` changes, then the texture is re-uploaded. */
-export function useScreen(w: number, h: number, draw: (ctx: CanvasRenderingContext2D) => void, key: () => string) {
-  const screen = useMemo(() => canvasTexture(w, h, () => {}), [w, h]);
-  const last = useRef("");
-  const drawRef = useRef(draw);
-  useLayoutEffect(() => {
-    drawRef.current = draw;
-  });
-  useLayoutEffect(() => {
-    // webfonts load after first paint; redraw once they are ready so canvas text uses Archivo / JetBrains Mono
-    document.fonts?.ready.then(() => (last.current = ""));
-  }, []);
-  useFrame(() => {
-    const k = key();
-    if (k === last.current) return;
-    last.current = k;
-    drawRef.current(screen.ctx);
-    screen.tex.needsUpdate = true;
-  });
-  return screen.tex;
-}
+export { canvasTexture, useScreen } from "./canvas";
 
 export function wrapText(ctx: CanvasRenderingContext2D, text: string, maxWidth: number) {
   const words = text.split(" ");

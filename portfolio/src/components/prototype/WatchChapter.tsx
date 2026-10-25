@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useMotionValue, useTransform } from "framer-motion";
+import DeviceSkeleton from "./DeviceSkeleton";
 import dynamic from "next/dynamic";
 import { useRef } from "react";
 import { useMap, type Motion } from "./devices";
@@ -72,7 +73,10 @@ export default function WatchChapter({ id }: { id: string }) {
           <BeatCopy key={b.title} progress={p} beat={b} hero={i === 0} />
         ))}
         device={
-          <Watch3D m={m} notif={notif} hero={hero} />
+          <>
+            <DeviceSkeleton kind="watch" />
+            <Watch3D m={m} notif={notif} hero={hero} />
+          </>
         }
       />
     </section>

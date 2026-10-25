@@ -125,7 +125,8 @@ function WatchModel({ rig, m, notif, hero, labels }: WatchProps & { labels: Call
     360,
     440,
     (ctx) => drawWatch(ctx, quantize(notif.get(), 1 / 40)),
-    () => quantize(notif.get(), 1 / 40).toFixed(3) + new Date().getMinutes()
+    () => quantize(notif.get(), 1 / 40).toFixed(3) + new Date().getMinutes(),
+    3 // shown ~450px wide in the hero: supersample for 2-3x screens
   );
 
   useFrame((state) => {

@@ -52,12 +52,15 @@ export function useHiddenBelow(value: MotionValue<number>, threshold = 0.05) {
   return hidden;
 }
 
-/** Availability line for recruiters: a live-status dot, not a button. */
+/** Availability line for recruiters: plain text with a live-status dot (no pill, no border). */
 export const AVAILABILITY = "Open to 2027 internship opportunities";
 export function OpenTo({ text = AVAILABILITY, className = "" }: { text?: string; className?: string }) {
   return (
-    <p className={`inline-flex w-fit items-center gap-2 rounded-full border border-[var(--border)] px-3 py-1 text-[13px] font-medium text-[var(--text)] ${className}`}>
-      <span aria-hidden className="h-[7px] w-[7px] rounded-full bg-[var(--success)] shadow-[0_0_0_3px_rgba(48,209,88,0.18)]" />
+    <p className={`inline-flex w-fit items-center gap-2.5 text-[14px] font-medium text-[var(--text-secondary)] ${className}`}>
+      <span aria-hidden className="relative flex h-2 w-2">
+        <span className="absolute inset-0 animate-ping rounded-full bg-[var(--success)] opacity-40 [animation-duration:2.4s]" />
+        <span className="relative h-2 w-2 rounded-full bg-[var(--success)]" />
+      </span>
       {text}
     </p>
   );

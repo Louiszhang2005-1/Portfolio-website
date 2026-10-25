@@ -90,7 +90,8 @@ function PhoneModel({ rig, m, lockOn, homeOn, codeOn, diveScale, labels }: Phone
     () => {
       const s = state();
       return [s.lock, s.home, s.code].map((v) => v.toFixed(3)).join() + new Date().getMinutes();
-    }
+    },
+    1.5 // the camera dives into this screen
   );
 
   useFrame((state) => {

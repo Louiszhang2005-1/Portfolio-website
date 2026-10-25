@@ -13,7 +13,7 @@ import { StaticIntro, StaticSkills } from "./StaticDevices";
 import WatchChapter from "./WatchChapter";
 import WinsChapter from "./WinsChapter";
 import { ACCENT } from "./parts";
-import { CONTACT, OpenTo, btnGhostDark, btnPrimaryDark, useWebGL } from "./stage";
+import { CONTACT, OpenTo, useWebGL } from "./stage";
 
 /** single shared WebGL canvas for every 3D device; client-only */
 const ThreeRoot = dynamic(() => import("./three/ThreeRoot"), { ssr: false });
@@ -169,21 +169,36 @@ function ContactFooter() {
           <p className="mt-5 max-w-xl text-lg text-[var(--text-secondary)]">
             Mechanical design, manufacturing engineering, mechatronics and robotics, from consumer hardware to batteries and aerospace.
           </p>
-          <OpenTo className="mt-5" />
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a className={btnPrimaryDark} href={`mailto:${CONTACT.email}`}>
+          <OpenTo className="mt-6" />
+          {/* typographic contact: the address itself is the call to action, no button chrome */}
+          <a href={`mailto:${CONTACT.email}`} className="group mt-10 inline-flex max-w-full items-baseline gap-3 text-[var(--text)]">
+            <span className="wide truncate bg-[linear-gradient(currentColor,currentColor)] bg-[length:0%_2px] bg-left-bottom bg-no-repeat pb-1 text-[clamp(1.5rem,3.4vw,2.6rem)] leading-tight transition-[background-size] duration-300 group-hover:bg-[length:100%_2px]">
               {CONTACT.email}
-            </a>
-            <a className={btnGhostDark} href={CONTACT.linkedin} target="_blank" rel="noopener noreferrer">
-              LinkedIn
-            </a>
-            <a className={btnGhostDark} href={CONTACT.github} target="_blank" rel="noopener noreferrer">
-              GitHub
-            </a>
-            <Link className={btnGhostDark} href="/game">
-              Play the game version
-            </Link>
-          </div>
+            </span>
+            <span aria-hidden className="text-[clamp(1.25rem,2.6vw,2rem)] text-[var(--accent-on-light)] transition-transform duration-300 group-hover:translate-x-1">
+              →
+            </span>
+          </a>
+          <ul className="mt-8 flex flex-wrap gap-x-9 gap-y-3 text-[15px] font-medium">
+            {[
+              { label: "LinkedIn", href: CONTACT.linkedin, external: true },
+              { label: "GitHub", href: CONTACT.github, external: true },
+              { label: "Game version", href: "/game", external: false },
+            ].map((l) => (
+              <li key={l.label}>
+                <a
+                  href={l.href}
+                  {...(l.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  className="group inline-flex items-center gap-1.5 text-[var(--text-secondary)] transition-colors hover:text-[var(--text)]"
+                >
+                  {l.label}
+                  <span aria-hidden className="text-[var(--accent-on-light)] transition-transform duration-200 group-hover:-translate-y-px group-hover:translate-x-px">
+                    {l.external ? "↗" : "→"}
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
         <FooterRecap />
         <p className="mt-10 border-t border-[var(--border)] pt-6 text-sm text-[var(--text-tertiary)] lg:col-span-2 lg:mt-8">

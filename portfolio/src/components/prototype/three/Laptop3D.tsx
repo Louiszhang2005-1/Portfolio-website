@@ -55,7 +55,8 @@ function LaptopModel({ jobs, lid, screenOn, track }: LaptopProps) {
     () => {
       const s = state();
       return `${s.screen.toFixed(3)}|${s.track.toFixed(3)}|${loaded.current}`;
-    }
+    },
+    1.5
   );
 
   useFrame((state) => {
