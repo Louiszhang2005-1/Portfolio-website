@@ -20,10 +20,10 @@ Mechanical Engineering Intern on the Ship Integration team for the Canadian Surf
 
 ---
 
-### 💧 City of Montreal — Scientific Intern · Water Department
+### 💧 City of Montreal — Engineering Intern · Water Department
 **Period:** May–Aug 2025  
 **Skills:** Data Analysis · Environmental Engineering · Python · GIS  
-Scientific Intern at the City of Montreal's Water Department. Contributed to water quality monitoring initiatives and geospatial data pipelines for municipal infrastructure management.
+Engineering Intern at the City of Montreal's Water Department. Contributed to water quality monitoring initiatives and geospatial data pipelines for municipal infrastructure management.
 
 ---
 
@@ -35,10 +35,10 @@ Scientific Intern at the City of Montreal's Water Department. Contributed to wat
 **Skills:** CATIA V6 · Fusion 360 · GD&T · MS Project · Cold Welding · Systems Integration · FEA · Arduino · Raspberry Pi Pico  
 **GitHub:** https://github.com/Louiszhang2005-1
 
-PM & Systems Integrator for the Canadian Space Agency LEAP — OASIS Mission (Jan–May 2025, Polytechnique Montréal). Directed end-to-end design of a 3.1 m telescopic lunar produce-transport tube (Ø540 mm, 3080 mm deployed length), fully compliant with CSA performance and safety standards.
+PM & Systems Integrator for the Canadian Space Agency LEAP — OASIS Mission (Jan–May 2025, Polytechnique Montréal). Directed end-to-end design of a 3.1 m telescopic lunar produce-transport tube (Ø540 mm, 3080 mm deployed length), designed to CSA LEAP performance and safety requirements.
 
 - Managed 50+ part interfaces, achieving a 12% system mass reduction while sustaining a 2.5× structural safety factor
-- Ran thermal FEA over the 14-day lunar night cycle, validating zero mechanical interference across the full telescopic deployment sweep
+- Ran thermal FEA over the 14-day lunar night cycle and verified zero mechanical interference across the full telescopic deployment sweep with a kinematic motion study
 - Developed the rail-guided transport wagon's control logic on an Arduino microcontroller
 - Designed and programmed a Raspberry Pi Pico–driven belt conveyor for seamless vegetable transfer from lunar greenhouse to habitat module
 - Led physical integration: AL-6061 machining, MLI fabrication, PCB prototyping, wiring harnesses, and cold-welding of tab-to-tube joints
@@ -63,7 +63,7 @@ Produced a full exploded-view drawing with a bilingual French/English BOM follow
 **Skills:** Arduino C++ · IR Sensors · Color Sensor · DC Motors · Recycled Materials  
 **GitHub:** https://github.com/Louiszhang2005-1/RoboHacks-2025
 
-Autonomous seed-planting robot built in 24 hours at RoboHacks (Feb 2025) using entirely recycled materials — cardboard chassis, plastic bottles, and a paper-engineered seed dispenser.
+Autonomous seed-planting robot built in 24 hours at RoboHacks (Feb 2025) using recycled materials for the structure — cardboard chassis, plastic bottles, and a paper-engineered seed dispenser.
 
 Coded the full navigation and dispensing sequence in C++ on Arduino: two IR sensors fused with a color sensor for line-following, a servo-actuated paper dispenser for timed seed placement. All electronics wired on a breadboard from scratch under competition conditions.
 
@@ -93,7 +93,7 @@ Next steps: expand the question bank across more companies and offer a white-lab
 
 In Montreal, analog paper triage tags contribute to a 30% triage error rate, $1.7B in annual malpractice losses, and 10.5-hour average ER wait times. ResQ-Link replaces paper tags with a zero-power passive NFC bracelet.
 
-- Inductive copper coil (no battery required), passive NFC chip, IP68 medical-grade silicone band with translucent overmolded seal
+- Inductive copper coil (no battery required), passive NFC chip, medical-grade silicone band designed for IP68 with translucent overmolded seal
 - SmartTriage companion dashboard — real-time bracelet location maps, tag management (Morgue / Immediate / Delayed / Minor), registered staff tracking
 - Offline-mesh data sync so patient data reaches the hospital even when cellular fails
 - Business model: hardware 'Blade' at $1.50/unit + software 'Razor' SaaS at $10k–$50k/facility/year

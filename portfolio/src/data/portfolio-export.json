@@ -20,7 +20,7 @@
           "type": "internship",
           "category": "Internships",
           "title": "City of Montreal",
-          "subtitle": "Scientific Intern Â· Water Department",
+          "subtitle": "Engineering Intern Â· Water Department",
           "status": "active",
           "order": 1,
           "skills": [
@@ -29,7 +29,7 @@
             "Python",
             "GIS"
           ],
-          "summary": "Scientific Intern at the City of Montreal's Water Department (Mayâ€“Aug 2025). Contributed to water quality monitoring initiatives and geospatial data pipelines for municipal infrastructure management.",
+          "summary": "Engineering Intern at the City of Montreal's Water Department (Mayâ€“Aug 2025). Contributed to water quality monitoring initiatives and geospatial data pipelines for municipal infrastructure management.",
           "links": {
             "github": null,
             "demo": null
@@ -76,8 +76,7 @@
             "Manufacturing",
             "Automation",
             "Battery Cell Engineering",
-            "Python",
-            "Lean Six Sigma"
+            "Python"
           ],
           "summary": "Currently interning at Tesla's LFP factory, working on LFP Cell Manufacturing for Megapacks. Focused on Cell Manufacturing processes, production line optimization, and automation systems for utility-scale energy storage.",
           "links": {
@@ -113,7 +112,7 @@
             "Arduino",
             "Raspberry Pi Pico"
           ],
-          "summary": "PM & Systems Integrator for the Canadian Space Agency Lunar Exploration Accelerator Program (LEAP) â€” OASIS Mission (Janâ€“May 2025, Polytechnique MontrÃ©al). Directed end-to-end design of a 3.1m telescopic lunar produce-transport tube (Ã˜540mm, 3080mm deployed length) fully compliant with CSA performance and safety standards. Managed 50+ part interfaces, achieved a 12% system mass reduction while sustaining a 2.5Ã— structural safety factor. Ran thermal FEA over the 14-day lunar night cycle and validated zero mechanical interference across the full telescopic deployment sweep. Developed the rail-guided transport wagon's control logic on an Arduino microcontroller â€” ensuring precision positioning along the telescopic support tube. Designed and programmed a Raspberry Pi Picoâ€“driven belt conveyor for seamless vegetable transfer from lunar greenhouse to habitat module. Led physical integration: AL-6061 machining, MLI fabrication, PCB prototyping, wiring harnesses, and cold-welding of tab-to-tube joints.",
+          "summary": "PM & Systems Integrator for the Canadian Space Agency Lunar Exploration Accelerator Program (LEAP) â€” OASIS Mission (Janâ€“May 2025, Polytechnique MontrÃ©al). Directed end-to-end design of a 3.1m telescopic lunar produce-transport tube (Ã˜540mm, 3080mm deployed length) designed to CSA LEAP performance and safety requirements. Managed 50+ part interfaces, achieved a 12% system mass reduction while sustaining a 2.5Ã— structural safety factor. Ran thermal FEA over the 14-day lunar night cycle and validated zero mechanical interference across the full telescopic deployment sweep. Developed the rail-guided transport wagon's control logic on an Arduino microcontroller â€” ensuring precision positioning along the telescopic support tube. Designed and programmed a Raspberry Pi Picoâ€“driven belt conveyor for seamless vegetable transfer from lunar greenhouse to habitat module. Led physical integration: AL-6061 machining, MLI fabrication, PCB prototyping, wiring harnesses, and cold-welding of tab-to-tube joints.",
           "links": {
             "github": "https://github.com/Louiszhang2005-1",
             "demo": null
@@ -222,7 +221,7 @@
             "Medical Design",
             "Systems Architecture"
           ],
-          "summary": "Built at UpStart 2026 (Feb 2026) as part of a multidisciplinary team from Polytechnique MontrÃ©al. In Montreal, analog paper triage tags contribute to a 30% triage error rate, $1.7B in annual malpractice losses, and 10.5-hour average ER wait times. ResQ-Link replaces paper tags with a zero-power passive NFC bracelet: inductive copper coil (no battery required), passive NFC chip, IP68 medical-grade silicone band with translucent overmolded seal. Bundled with the SmartTriage companion dashboard â€” a full Command Center featuring real-time bracelet location maps, tag management (Morgue/Immediate/Delayed/Minor), registered staff tracking, and an offline-mesh data sync protocol so data reaches the hospital even when cellular fails. Business model: hardware 'Blade' at $1.50/unit (80% gross margin at scale) + software 'Razor' SaaS at $10kâ€“$50k/facility/year. Targeting $750k seed round for MUHC 5,000-unit pilot, Health Canada Class I/II certification, and Quebec 'Buy Local' procurement priority.",
+          "summary": "Built at UpStart 2026 (Feb 2026) as part of a multidisciplinary team from Polytechnique MontrÃ©al. In Montreal, analog paper triage tags contribute to a 30% triage error rate, $1.7B in annual malpractice losses, and 10.5-hour average ER wait times. ResQ-Link replaces paper tags with a zero-power passive NFC bracelet: inductive copper coil (no battery required), passive NFC chip, medical-grade silicone band designed for IP68 with translucent overmolded seal. Bundled with the SmartTriage companion dashboard â€” a full Command Center featuring real-time bracelet location maps, tag management (Morgue/Immediate/Delayed/Minor), registered staff tracking, and an offline-mesh data sync protocol so data reaches the hospital even when cellular fails. Business model: hardware 'Blade' at $1.50/unit (80% gross margin at scale) + software 'Razor' SaaS at $10kâ€“$50k/facility/year. Targeting $750k seed round for MUHC 5,000-unit pilot, Health Canada Class I/II certification, and Quebec 'Buy Local' procurement priority.",
           "links": {
             "github": "https://github.com/Louiszhang2005-1/Band",
             "demo": null
@@ -356,7 +355,7 @@
       "type": "internship",
       "category": "Internships",
       "title": "City of Montreal",
-      "subtitle": "Scientific Intern Â· Water Department",
+      "subtitle": "Engineering Intern Â· Water Department",
       "status": "active",
       "order": 1,
       "skills": [
@@ -365,7 +364,7 @@
         "Python",
         "GIS"
       ],
-      "summary": "Scientific Intern at the City of Montreal's Water Department (Mayâ€“Aug 2025). Contributed to water quality monitoring initiatives and geospatial data pipelines for municipal infrastructure management.",
+      "summary": "Engineering Intern at the City of Montreal's Water Department (Mayâ€“Aug 2025). Contributed to water quality monitoring initiatives and geospatial data pipelines for municipal infrastructure management.",
       "links": {
         "github": null,
         "demo": null
@@ -412,8 +411,7 @@
         "Manufacturing",
         "Automation",
         "Battery Cell Engineering",
-        "Python",
-        "Lean Six Sigma"
+        "Python"
       ],
       "summary": "Currently interning at Tesla's LFP factory, working on LFP Cell Manufacturing for Megapacks. Focused on Cell Manufacturing processes, production line optimization, and automation systems for utility-scale energy storage.",
       "links": {
@@ -446,7 +444,7 @@
         "Arduino",
         "Raspberry Pi Pico"
       ],
-      "summary": "PM & Systems Integrator for the Canadian Space Agency Lunar Exploration Accelerator Program (LEAP) â€” OASIS Mission (Janâ€“May 2025, Polytechnique MontrÃ©al). Directed end-to-end design of a 3.1m telescopic lunar produce-transport tube (Ã˜540mm, 3080mm deployed length) fully compliant with CSA performance and safety standards. Managed 50+ part interfaces, achieved a 12% system mass reduction while sustaining a 2.5Ã— structural safety factor. Ran thermal FEA over the 14-day lunar night cycle and validated zero mechanical interference across the full telescopic deployment sweep. Developed the rail-guided transport wagon's control logic on an Arduino microcontroller â€” ensuring precision positioning along the telescopic support tube. Designed and programmed a Raspberry Pi Picoâ€“driven belt conveyor for seamless vegetable transfer from lunar greenhouse to habitat module. Led physical integration: AL-6061 machining, MLI fabrication, PCB prototyping, wiring harnesses, and cold-welding of tab-to-tube joints.",
+      "summary": "PM & Systems Integrator for the Canadian Space Agency Lunar Exploration Accelerator Program (LEAP) â€” OASIS Mission (Janâ€“May 2025, Polytechnique MontrÃ©al). Directed end-to-end design of a 3.1m telescopic lunar produce-transport tube (Ã˜540mm, 3080mm deployed length) designed to CSA LEAP performance and safety requirements. Managed 50+ part interfaces, achieved a 12% system mass reduction while sustaining a 2.5Ã— structural safety factor. Ran thermal FEA over the 14-day lunar night cycle and validated zero mechanical interference across the full telescopic deployment sweep. Developed the rail-guided transport wagon's control logic on an Arduino microcontroller â€” ensuring precision positioning along the telescopic support tube. Designed and programmed a Raspberry Pi Picoâ€“driven belt conveyor for seamless vegetable transfer from lunar greenhouse to habitat module. Led physical integration: AL-6061 machining, MLI fabrication, PCB prototyping, wiring harnesses, and cold-welding of tab-to-tube joints.",
       "links": {
         "github": "https://github.com/Louiszhang2005-1",
         "demo": null
@@ -550,7 +548,7 @@
         "Medical Design",
         "Systems Architecture"
       ],
-      "summary": "Built at UpStart 2026 (Feb 2026) as part of a multidisciplinary team from Polytechnique MontrÃ©al. In Montreal, analog paper triage tags contribute to a 30% triage error rate, $1.7B in annual malpractice losses, and 10.5-hour average ER wait times. ResQ-Link replaces paper tags with a zero-power passive NFC bracelet: inductive copper coil (no battery required), passive NFC chip, IP68 medical-grade silicone band with translucent overmolded seal. Bundled with the SmartTriage companion dashboard â€” a full Command Center featuring real-time bracelet location maps, tag management (Morgue/Immediate/Delayed/Minor), registered staff tracking, and an offline-mesh data sync protocol so data reaches the hospital even when cellular fails. Business model: hardware 'Blade' at $1.50/unit (80% gross margin at scale) + software 'Razor' SaaS at $10kâ€“$50k/facility/year. Targeting $750k seed round for MUHC 5,000-unit pilot, Health Canada Class I/II certification, and Quebec 'Buy Local' procurement priority.",
+      "summary": "Built at UpStart 2026 (Feb 2026) as part of a multidisciplinary team from Polytechnique MontrÃ©al. In Montreal, analog paper triage tags contribute to a 30% triage error rate, $1.7B in annual malpractice losses, and 10.5-hour average ER wait times. ResQ-Link replaces paper tags with a zero-power passive NFC bracelet: inductive copper coil (no battery required), passive NFC chip, medical-grade silicone band designed for IP68 with translucent overmolded seal. Bundled with the SmartTriage companion dashboard â€” a full Command Center featuring real-time bracelet location maps, tag management (Morgue/Immediate/Delayed/Minor), registered staff tracking, and an offline-mesh data sync protocol so data reaches the hospital even when cellular fails. Business model: hardware 'Blade' at $1.50/unit (80% gross margin at scale) + software 'Razor' SaaS at $10kâ€“$50k/facility/year. Targeting $750k seed round for MUHC 5,000-unit pilot, Health Canada Class I/II certification, and Quebec 'Buy Local' procurement priority.",
       "links": {
         "github": "https://github.com/Louiszhang2005-1/Band",
         "demo": null
@@ -677,7 +675,7 @@
       "type": "internship",
       "category": "Internships",
       "title": "City of Montreal",
-      "subtitle": "Scientific Intern Â· Water Department",
+      "subtitle": "Engineering Intern Â· Water Department",
       "status": "active",
       "order": 1,
       "skills": [
@@ -686,7 +684,7 @@
         "Python",
         "GIS"
       ],
-      "summary": "Scientific Intern at the City of Montreal's Water Department (Mayâ€“Aug 2025). Contributed to water quality monitoring initiatives and geospatial data pipelines for municipal infrastructure management.",
+      "summary": "Engineering Intern at the City of Montreal's Water Department (Mayâ€“Aug 2025). Contributed to water quality monitoring initiatives and geospatial data pipelines for municipal infrastructure management.",
       "links": {
         "github": null,
         "demo": null
@@ -733,8 +731,7 @@
         "Manufacturing",
         "Automation",
         "Battery Cell Engineering",
-        "Python",
-        "Lean Six Sigma"
+        "Python"
       ],
       "summary": "Currently interning at Tesla's LFP factory, working on LFP Cell Manufacturing for Megapacks. Focused on Cell Manufacturing processes, production line optimization, and automation systems for utility-scale energy storage.",
       "links": {
@@ -765,7 +762,7 @@
         "Arduino",
         "Raspberry Pi Pico"
       ],
-      "summary": "PM & Systems Integrator for the Canadian Space Agency Lunar Exploration Accelerator Program (LEAP) â€” OASIS Mission (Janâ€“May 2025, Polytechnique MontrÃ©al). Directed end-to-end design of a 3.1m telescopic lunar produce-transport tube (Ã˜540mm, 3080mm deployed length) fully compliant with CSA performance and safety standards. Managed 50+ part interfaces, achieved a 12% system mass reduction while sustaining a 2.5Ã— structural safety factor. Ran thermal FEA over the 14-day lunar night cycle and validated zero mechanical interference across the full telescopic deployment sweep. Developed the rail-guided transport wagon's control logic on an Arduino microcontroller â€” ensuring precision positioning along the telescopic support tube. Designed and programmed a Raspberry Pi Picoâ€“driven belt conveyor for seamless vegetable transfer from lunar greenhouse to habitat module. Led physical integration: AL-6061 machining, MLI fabrication, PCB prototyping, wiring harnesses, and cold-welding of tab-to-tube joints.",
+      "summary": "PM & Systems Integrator for the Canadian Space Agency Lunar Exploration Accelerator Program (LEAP) â€” OASIS Mission (Janâ€“May 2025, Polytechnique MontrÃ©al). Directed end-to-end design of a 3.1m telescopic lunar produce-transport tube (Ã˜540mm, 3080mm deployed length) designed to CSA LEAP performance and safety requirements. Managed 50+ part interfaces, achieved a 12% system mass reduction while sustaining a 2.5Ã— structural safety factor. Ran thermal FEA over the 14-day lunar night cycle and validated zero mechanical interference across the full telescopic deployment sweep. Developed the rail-guided transport wagon's control logic on an Arduino microcontroller â€” ensuring precision positioning along the telescopic support tube. Designed and programmed a Raspberry Pi Picoâ€“driven belt conveyor for seamless vegetable transfer from lunar greenhouse to habitat module. Led physical integration: AL-6061 machining, MLI fabrication, PCB prototyping, wiring harnesses, and cold-welding of tab-to-tube joints.",
       "links": {
         "github": "https://github.com/Louiszhang2005-1",
         "demo": null
@@ -869,7 +866,7 @@
         "Medical Design",
         "Systems Architecture"
       ],
-      "summary": "Built at UpStart 2026 (Feb 2026) as part of a multidisciplinary team from Polytechnique MontrÃ©al. In Montreal, analog paper triage tags contribute to a 30% triage error rate, $1.7B in annual malpractice losses, and 10.5-hour average ER wait times. ResQ-Link replaces paper tags with a zero-power passive NFC bracelet: inductive copper coil (no battery required), passive NFC chip, IP68 medical-grade silicone band with translucent overmolded seal. Bundled with the SmartTriage companion dashboard â€” a full Command Center featuring real-time bracelet location maps, tag management (Morgue/Immediate/Delayed/Minor), registered staff tracking, and an offline-mesh data sync protocol so data reaches the hospital even when cellular fails. Business model: hardware 'Blade' at $1.50/unit (80% gross margin at scale) + software 'Razor' SaaS at $10kâ€“$50k/facility/year. Targeting $750k seed round for MUHC 5,000-unit pilot, Health Canada Class I/II certification, and Quebec 'Buy Local' procurement priority.",
+      "summary": "Built at UpStart 2026 (Feb 2026) as part of a multidisciplinary team from Polytechnique MontrÃ©al. In Montreal, analog paper triage tags contribute to a 30% triage error rate, $1.7B in annual malpractice losses, and 10.5-hour average ER wait times. ResQ-Link replaces paper tags with a zero-power passive NFC bracelet: inductive copper coil (no battery required), passive NFC chip, medical-grade silicone band designed for IP68 with translucent overmolded seal. Bundled with the SmartTriage companion dashboard â€” a full Command Center featuring real-time bracelet location maps, tag management (Morgue/Immediate/Delayed/Minor), registered staff tracking, and an offline-mesh data sync protocol so data reaches the hospital even when cellular fails. Business model: hardware 'Blade' at $1.50/unit (80% gross margin at scale) + software 'Razor' SaaS at $10kâ€“$50k/facility/year. Targeting $750k seed round for MUHC 5,000-unit pilot, Health Canada Class I/II certification, and Quebec 'Buy Local' procurement priority.",
       "links": {
         "github": "https://github.com/Louiszhang2005-1/Band",
         "demo": null

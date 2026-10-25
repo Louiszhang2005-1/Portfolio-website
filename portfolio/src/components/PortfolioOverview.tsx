@@ -70,11 +70,11 @@ export default function PortfolioOverview() {
         </p>
         <p className="m-0">
           <span className="font-black text-yellow-200">Highlights:</span> CSA Transport System, Autonomous
-          Reforestation Robot, Nursie, ResQ - Link, and Fully Integrated CRM Outreach Tool.
+          Reforestation Robot, Nursie, ResQ-Link, Trace, and Fully Integrated CRM Outreach Tool.
         </p>
         <p className="m-0">
           <span className="font-black text-emerald-200">Honors:</span> Lina & Jean-Guy Gaudreault Perseverance
-          Scholarship, Best Use of ElevenLabs, and RoboHacks Unexpected Expedition Award.
+          Scholarship, HackHarvard 1st Place (Chalk Prize), Best Use of ElevenLabs, and RoboHacks Unexpected Expedition Award.
         </p>
       </div>
 

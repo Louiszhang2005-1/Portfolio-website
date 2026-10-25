@@ -3,7 +3,7 @@
     {
       "id": "I-4",
       "title": "City of Montreal",
-      "subtitle": "Scientific Intern · Water Department",
+      "subtitle": "Engineering Intern · Water Department",
       "sector": "Internship Shores",
       "status": "active",
       "emoji": "💧",
@@ -14,7 +14,7 @@
         "Python",
         "GIS"
       ],
-      "details": "Scientific Intern at the City of Montreal's Water Department.\n\nContributed to water quality monitoring initiatives and geospatial data pipelines for municipal infrastructure management.",
+      "details": "Engineering Intern at the City of Montreal's Water Department.\n\nContributed to water quality monitoring initiatives and geospatial data pipelines for municipal infrastructure management.",
       "github": null,
       "demo": null,
       "image": "/logo/city-of-montreal.gif"
@@ -91,7 +91,7 @@
         "Arduino",
         "Raspberry Pi Pico"
       ],
-      "details": "PM & Systems Integrator for the Canadian Space Agency LEAP — OASIS Mission (Jan–May 2025, Polytechnique Montréal). Directed end-to-end design of a 3.1 m telescopic lunar produce-transport tube (Ø540 mm, 3080 mm deployed length), fully compliant with CSA performance and safety standards.\n\n• Managed 50+ part interfaces, achieving a 12% system mass reduction while sustaining a 2.5× structural safety factor\n• Ran thermal FEA over the 14-day lunar night cycle, validating zero mechanical interference across the full telescopic deployment sweep\n• Developed the rail-guided transport wagon's control logic on an Arduino microcontroller\n• Designed and programmed a Raspberry Pi Pico–driven belt conveyor for seamless vegetable transfer from lunar greenhouse to habitat module\n• Led physical integration: AL-6061 machining, MLI fabrication, PCB prototyping, wiring harnesses, and cold-welding of tab-to-tube joints",
+      "details": "PM & Systems Integrator for the Canadian Space Agency LEAP — OASIS Mission (Jan–May 2025, Polytechnique Montréal). Directed end-to-end design of a 3.1 m telescopic lunar produce-transport tube (Ø540 mm, 3080 mm deployed length), designed to CSA LEAP performance and safety requirements.\n\n• Managed 50+ part interfaces, achieving a 12% system mass reduction while sustaining a 2.5× structural safety factor\n• Ran thermal FEA over the 14-day lunar night cycle and verified zero mechanical interference across the full telescopic deployment sweep with a kinematic motion study\n• Developed the rail-guided transport wagon's control logic on an Arduino microcontroller\n• Designed and programmed a Raspberry Pi Pico–driven belt conveyor for seamless vegetable transfer from lunar greenhouse to habitat module\n• Led physical integration: AL-6061 machining, MLI fabrication, PCB prototyping, wiring harnesses, and cold-welding of tab-to-tube joints",
       "github": "https://github.com/Louiszhang2005-1",
       "demo": null,
       "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBfmEpezBSpneFvCrYKhOLUOseL8Ykp1jo-HSG-ffLWpXFUDPcJaLNQ_yYG5K3rrQojomG93egnxnwooCUeOcPCLWPOTN3DCgnuB1cKbCeyo00IDUBjs5tK3QD_526_Tv0wWlf_J9c26MbyCm2M9Bh0lHMTaYyyp_lR2bOctqYMSHKc0imzdeQ5FArd6MJgX1SS1NDA5WuXGr8-BMg81vmKL76Uzzftusbi3MNmNr5KKskCa3NgMBifjJq1unU1ixty6_658_OlN05p"
@@ -129,7 +129,7 @@
         "DC Motors",
         "Recycled Materials"
       ],
-      "details": "Autonomous seed-planting robot built in 24 hours at RoboHacks (Feb 2025) using entirely recycled materials — cardboard chassis, plastic bottles, and a paper-engineered seed dispenser.\n\nCoded the full navigation and dispensing sequence in C++ on Arduino: two IR sensors fused with a color sensor for line-following, a servo-actuated paper dispenser for timed seed placement. All electronics wired on a breadboard from scratch under competition conditions.\n\nWon the Unexpected Expedition Award and placed 5th overall.",
+      "details": "Autonomous seed-planting robot built in 24 hours at RoboHacks (Feb 2025) using recycled materials for the structure — cardboard chassis, plastic bottles, and a paper-engineered seed dispenser.\n\nCoded the full navigation and dispensing sequence in C++ on Arduino: two IR sensors fused with a color sensor for line-following, a servo-actuated paper dispenser for timed seed placement. All electronics wired on a breadboard from scratch under competition conditions.\n\nWon the Unexpected Expedition Award and placed 5th overall.",
       "github": "https://github.com/Louiszhang2005-1/RoboHacks-2025",
       "demo": null,
       "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuDAS80X_XNEuUFS6k-WwWNK4ujFPPuUxPpWvmTVpU1JR5SivSd5oUG2JcVNgHI4epz7XEJI6N7eCpY_5koJUANuAI1BYhptkTPhdi5UGO2lM2yHA1--6_Zdhkuwaf4AXh47aYn5TOW2B8af31QajqbXwz4Ldn2XPUjvQPK0SasCQYVwEJls5ZWv-YsDYabLJ6PaUZtolG1ufVsJARGvsPWji9-J_dMGuf0kpNNEYucYBsS8AG3SpRwrHKSZrvL4alOKLEcgHbwa7a7w"
@@ -173,7 +173,7 @@
         "Medical Design",
         "Systems Architecture"
       ],
-      "details": "In Montreal, analog paper triage tags contribute to a 30% triage error rate, $1.7B in annual malpractice losses, and 10.5-hour average ER wait times. ResQ-Link replaces paper tags with a zero-power passive NFC bracelet.\n\n• Inductive copper coil (no battery required), passive NFC chip, IP68 medical-grade silicone band with translucent overmolded seal\n• SmartTriage companion dashboard — real-time bracelet location maps, tag management (Morgue / Immediate / Delayed / Minor), registered staff tracking\n• Offline-mesh data sync so patient data reaches the hospital even when cellular fails\n• Business model: hardware 'Blade' at $1.50/unit + software 'Razor' SaaS at $10k–$50k/facility/year\n\nTargeting a $750k seed round for a MUHC 5,000-unit pilot, with Health Canada Class I/II certification and Quebec 'Buy Local' procurement priority.",
+      "details": "In Montreal, analog paper triage tags contribute to a 30% triage error rate, $1.7B in annual malpractice losses, and 10.5-hour average ER wait times. ResQ-Link replaces paper tags with a zero-power passive NFC bracelet.\n\n• Inductive copper coil (no battery required), passive NFC chip, medical-grade silicone band designed for IP68 with translucent overmolded seal\n• SmartTriage companion dashboard — real-time bracelet location maps, tag management (Morgue / Immediate / Delayed / Minor), registered staff tracking\n• Offline-mesh data sync so patient data reaches the hospital even when cellular fails\n• Business model: hardware 'Blade' at $1.50/unit + software 'Razor' SaaS at $10k–$50k/facility/year\n\nTargeting a $750k seed round for a MUHC 5,000-unit pilot, with Health Canada Class I/II certification and Quebec 'Buy Local' procurement priority.",
       "github": "https://github.com/Louiszhang2005-1/Band",
       "demo": null,
       "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuDAS80X_XNEuUFS6k-WwWNK4ujFPPuUxPpWvmTVpU1JR5SivSd5oUG2JcVNgHI4epz7XEJI6N7eCpY_5koJUANuAI1BYhptkTPhdi5UGO2lM2yHA1--6_Zdhkuwaf4AXh47aYn5TOW2B8af31QajqbXwz4Ldn2XPUjvQPK0SasCQYVwEJls5ZWv-YsDYabLJ6PaUZtolG1ufVsJARGvsPWji9-J_dMGuf0kpNNEYucYBsS8AG3SpRwrHKSZrvL4alOKLEcgHbwa7a7w"
@@ -216,6 +216,33 @@
     }
   ],
   "software": [
+    {
+      "id": "P-14",
+      "title": "Trace",
+      "subtitle": "HackHarvard 2026 · 1st Place, Best Data-Driven Agent (Chalk Prize) · Oct 2026",
+      "sector": "Code Cove",
+      "status": "active",
+      "emoji": "🔥",
+      "skills": [
+        "Python",
+        "React",
+        "Vite",
+        "Mapbox GL",
+        "three.js",
+        "WebGL Shaders",
+        "LLM Agents",
+        "Chalk",
+        "Photon",
+        "ElevenLabs",
+        "NASA FIRMS",
+        "NOAA",
+        "OpenStreetMap"
+      ],
+      "details": "Autonomous AI disaster agent that warns people before a wildfire or storm surge reaches their home — address by address, not whole evacuation zones. Won 1st place for Best Data-Driven Agent (Chalk Prize) at HackHarvard 2026. Covers wildfires in LA and Ventura counties and hurricanes on the US East Coast.\n\nWHY WE BUILT IT\nWhile interning at Tesla in Nevada, our team lived through several nearby fires. Coming from Canada and the East Coast, we had no idea whether we were in danger and couldn't find reliable information on where the fires were spreading. Trace turns satellite and environmental data into warnings people can actually act on.\n\nWHAT IT DOES\n• Every 15 minutes, pulls NASA satellite fire detections, national fire perimeters, NWS warnings, NOAA hurricane advisories and tide gauges, and hourly wind, humidity and fuel dryness\n• For each home, estimates hours until the hazard arrives from distance, wind direction and local sensitivity, then decides: watch, warn, or evacuate\n• Texts over iMessage (via Photon) at the first warning; an ElevenLabs voice agent calls at evacuate and answers questions about the fire, its direction, and which way to go\n• Time-aware router plans the fastest safe route with turn-by-turn directions, a map, and the latest time to leave — and says so if no safe route exists\n• Two-way conversation: text NOW for a route, WINDOW for when to leave, STATUS for the latest, LEFT once you're out\n• Web app replays 5 real fires and 4 hurricanes hour by hour with shader-rendered fire spread, 3D buildings that burn on the fire's clock, a thermal view, storm-surge flooding, and a live map of hot spots and Red Flag zones\n\nHOW WE BUILT IT\n• Burn-probability model over 806,000 grid cells from CAL FIRE perimeters, USGS terrain and LANDFIRE fuels (AUC 0.74 on unseen 2015–2025 fires vs 0.71 for fire history alone)\n• Rothermel spread simulation on a 30 m grid with hourly wind and fuel moisture\n• Parametric storm-surge model fitted on Sandy and Matthew, validated on Irma and Isabel against NOAA tide gauges\n• Agent sees each event only as it was known at that hour, so replays never use hindsight; an LLM policy via Chalk's Model Gateway calls fire tools before deciding and distills its own mistakes into lessons\n• Time-aware shortest-path search on OpenStreetMap road graphs that closes roads the fire or water will reach within a safety margin\n• Ran on Chalk Sandboxes (24/7 alert loop + MCP server, web app, learning loop) with Chalk Evaluations for alert quality\n• Safety-critical facts — routes, timing, steps — come from code, never invented by the LLM\n\nRESULTS (no-hindsight replays)\n• Warned 100% of destroyed homes across 600 households in the Eaton and Palisades fires, a median of 8.7 hours ahead\n• 92% of Hurricane Sandy evacuation routes stayed clear of flooding, vs 60% for the fastest route (92% vs 65% for Irma)\n• Spread simulation overlapped 85% of the real Palisades burn area and reached 99% of destroyed homes\n• Surge rules evacuated 100% of flooded homes in time, a median of 30.6 hours ahead\n• Cut New York routing over 297,000 road segments from ~100 s to 1–3 s per request by vectorizing the wind model and replacing a spatial join with a grid lookup\n\nWHAT WE LEARNED\nBack every claim with data, especially when lives are at stake: honest evaluation showed simple distance rings still evacuate more people in time on two fires (92.5% vs 82.5%), and we report it.",
+      "github": null,
+      "demo": null,
+      "image": null
+    },
     {
       "id": "P-9",
       "title": "CRM Outreach Tool",

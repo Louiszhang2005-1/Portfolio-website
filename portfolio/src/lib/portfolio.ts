@@ -55,6 +55,7 @@ const slugById: Record<string, string> = {
   "P-11": "mechprep",
   "P-12": "lazycare",
   "P-13": "interview-assistant",
+  "P-14": "trace",
 };
 
 const hiddenSkillItemIds = new Set();
@@ -68,9 +69,9 @@ const mediaById: Record<
     >
   >
 > = {
-  "I-4": { accent: "#178f9a", emoji: "Water", date: "May-Aug 2025", sortOrder: 3 },
+  "I-4": { accent: "#178f9a", emoji: "Water", date: "May – Aug 2025", sortOrder: 3 },
   "I-2": { accent: "#1f4f99", emoji: "Aero", date: "Jan – Apr 2026", sortOrder: 2 },
-  "I-1": { accent: "#d3222a", emoji: "Cell", date: "Jun 2026 – Aug 2026", sortOrder: 1 },
+  "I-1": { accent: "#d3222a", emoji: "Cell", date: "Jun – Aug 2026", sortOrder: 1 },
   "P-1": {
     image: fullPortfolioPages[1],
     gallery: fullPortfolioPages.slice(1, 4),
@@ -114,7 +115,7 @@ const mediaById: Record<
       { label: "Drawings", href: "/media/resq-link/drawings-dashboard.pdf" },
       { label: "Business model", href: "/media/resq-link/business-model-canvas.pdf" },
     ],
-    metrics: ["Passive NFC", "IP68 band", "$1.50 hardware target", "Offline mesh sync"],
+    metrics: ["Passive NFC", "IP68 design target", "$1.50 hardware target", "Offline mesh sync"],
     accent: "#c73655",
     emoji: "Rescue",
   },
@@ -153,6 +154,23 @@ const mediaById: Record<
     metrics: ["Voice interface", "NLP evaluation", "Team of 3"],
     accent: "#b45309",
     emoji: "Voice",
+  },
+  "P-14": {
+    image: "/media/trace/eaton-fire.webp",
+    gallery: [
+      "/media/trace/eaton-fire.webp",
+      "/media/trace/palisades-fire.webp",
+      "/media/trace/matthew-surge.webp",
+      "/media/trace/sandy-surge.webp",
+      "/media/trace/landing.jpg",
+    ],
+    links: [
+      { label: "Devpost", href: "https://devpost.com/software/trace-ory60i", kind: "demo" },
+      { label: "Eaton Fire simulation", href: "https://youtu.be/hJ-Hdr_mjXo", kind: "media" },
+    ],
+    metrics: ["1st place, Chalk Prize", "8.7h median warning", "92% flood-free routes", "85% burn-area match"],
+    accent: "#e8590c",
+    emoji: "Fire",
   },
 };
 
