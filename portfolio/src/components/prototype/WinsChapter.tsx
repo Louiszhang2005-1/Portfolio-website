@@ -4,8 +4,8 @@ import { ALSO_COMPETED, HONORS, WINS } from "./projectData";
 /** Static light section: no pinning, just the record. */
 export default function WinsChapter({ id }: { id: string }) {
   return (
-    <section id={id} data-theme="light" className="white px-6 pb-28 pt-28">
-      <div className="mx-auto max-w-6xl">
+    <section id={id} data-theme="light" className="white px-6 md:px-10 xl:px-16 pb-28 pt-28">
+      <div className="mx-auto max-w-[1480px]">
         <h2 className="max-w-3xl text-[clamp(2.25rem,4.5vw,3.75rem)]">Three hackathon wins.</h2>
         <p className="mt-4 max-w-[34rem] text-[1.0625rem] leading-[1.55] text-[var(--text-on-light-secondary)]">
           Each one has a full write-up in the projects below.

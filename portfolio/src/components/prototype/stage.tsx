@@ -28,7 +28,7 @@ export const withPads = (timeline: Beat[]): Beat[] =>
 /** The page's one orchestrated load moment: the name rises word by word. */
 export function HeroName({ text }: { text: string }) {
   return (
-    <h1 className="text-[clamp(3.25rem,7.5vw,6.5rem)] text-[var(--text)]">
+    <h1 className="text-[clamp(2.75rem,7.5vw,7.5rem)] text-[var(--text)]">
       {text.split(" ").map((w, i) => (
         <span key={w} className="word-mask mr-[0.22em]">
           <span style={{ animationDelay: `${150 + i * 90}ms` }}>{w}</span>
@@ -80,9 +80,9 @@ export function BeatCopy({ progress, beat, hero }: { progress: MotionValue<numbe
       ) : (
         <h2 className="text-[clamp(2.25rem,4.5vw,3.75rem)] text-[var(--text)]">{beat.title}</h2>
       )}
-      <p className="mt-5 max-w-[34rem] text-[1.0625rem] leading-[1.55] text-[var(--text-secondary)] sm:text-lg">{beat.body}</p>
+      <p className="mt-3 max-w-[34rem] text-base leading-[1.55] sm:mt-5 text-[var(--text-secondary)] sm:text-lg 2xl:max-w-[40rem] 2xl:text-xl">{beat.body}</p>
       {beat.tools && (
-        <div className="mt-5 flex max-w-md flex-wrap gap-1.5">
+        <div className="mt-4 flex max-w-md flex-wrap gap-1.5 sm:mt-5">
           {beat.tools.map((t) => (
             <span key={t} className="tag">
               {t}
@@ -90,9 +90,9 @@ export function BeatCopy({ progress, beat, hero }: { progress: MotionValue<numbe
           ))}
         </div>
       )}
-      {beat.note && <p className="mt-4 text-sm text-[var(--text-tertiary)]">{beat.note}</p>}
-      {beat.status && <OpenTo text={beat.status} className="mt-4" />}
-      {beat.actions && <div className="mt-7 flex flex-wrap gap-3">{beat.actions}</div>}
+      {beat.note && <p className="mt-3 max-w-[34rem] sm:mt-4 text-sm text-[var(--text-tertiary)] 2xl:max-w-[40rem] 2xl:text-base">{beat.note}</p>}
+      {beat.status && <OpenTo text={beat.status} className="mt-3 sm:mt-4" />}
+      {beat.actions && <div className="mt-5 flex flex-wrap gap-3 sm:mt-7">{beat.actions}</div>}
     </motion.div>
   );
 }
@@ -148,8 +148,8 @@ export function DeviceStage({
             "radial-gradient(55% 60% at 75% 10%,rgba(var(--accent-rgb),0.09),transparent 70%),radial-gradient(45% 55% at 10% 90%,rgba(96,120,160,0.08),transparent 70%)",
         }}
       />
-      <div className="relative mx-auto grid h-full max-w-6xl grid-rows-[minmax(0,1fr)_auto] items-center gap-4 px-6 pb-8 pt-16 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] md:grid-rows-1 md:gap-8 md:pb-6">
-        <div className="relative order-2 h-[350px] md:order-1 md:h-[400px]">{copy}</div>
+      <div className="relative mx-auto grid h-full max-w-[1480px] grid-rows-[minmax(0,1fr)_auto] items-center gap-2 px-6 pb-5 pt-16 md:px-10 xl:px-16 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] md:grid-rows-1 md:gap-8 md:pb-6">
+        <div className="relative order-2 h-[390px] md:order-1 md:h-[400px] 2xl:h-[480px]">{copy}</div>
         <div className="relative order-1 flex h-full min-h-0 items-center justify-center md:order-2 md:-mb-6">
           <motion.div
             className="absolute bottom-[12%] h-10 w-72 rounded-[50%] bg-[var(--mat-black)] blur-2xl"

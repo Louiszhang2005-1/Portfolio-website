@@ -121,8 +121,8 @@ function ChapterNav() {
 
 function ContactFooter() {
   return (
-    <footer id="contact" data-theme="light" className="white relative border-t border-[var(--border)] px-6 pb-16 pt-32">
-      <div className="mx-auto max-w-6xl">
+    <footer id="contact" data-theme="light" className="white relative border-t border-[var(--border)] px-6 md:px-10 xl:px-16 pb-16 pt-32">
+      <div className="mx-auto max-w-[1480px]">
         <h2 className="max-w-3xl text-[clamp(2.5rem,6vw,5rem)]">Let&apos;s build the next one.</h2>
         <p className="mt-5 max-w-xl text-lg text-[var(--text-secondary)]">
           Mechanical design, manufacturing engineering, mechatronics and robotics, from consumer hardware to batteries and aerospace.

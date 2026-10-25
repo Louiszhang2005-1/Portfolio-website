@@ -18,8 +18,8 @@ export default function ProjectsChapter({ id }: { id: string }) {
 /** Reduced motion: every project grouped in a plain list. */
 function StaticProjects({ id }: { id: string }) {
   return (
-    <section id={id} data-theme="light" className="light border-t border-[var(--border-light)] px-6 py-28">
-      <div className="mx-auto max-w-6xl">
+    <section id={id} data-theme="light" className="light border-t border-[var(--border-light)] px-6 md:px-10 xl:px-16 py-28">
+      <div className="mx-auto max-w-[1480px]">
         <h2 className="text-[clamp(2.25rem,4.5vw,3.75rem)]">Projects.</h2>
         {GROUPS.map((g: Group) => (
           <div key={g} className="mt-16">
@@ -86,11 +86,11 @@ function PinnedProjects({ id }: { id: string }) {
   return (
     <section ref={ref} id={id} data-theme="light" className="light relative border-t border-[var(--border-light)]" style={{ height: `${100 + n * VH_PER_PROJECT}vh` }}>
       <div className="sticky top-0 flex h-screen flex-col justify-start overflow-hidden pb-4 pt-[72px] md:justify-center">
-        <div className="mx-auto flex w-full max-w-6xl flex-wrap items-end justify-between gap-3 px-6">
+        <div className="mx-auto flex w-full max-w-[1480px] flex-wrap items-end justify-between gap-3 px-6 md:px-10 xl:px-16">
           <h2 className="text-[clamp(2rem,4.5vw,3.75rem)]">Projects.</h2>
           <Filters value={filter} onChange={changeFilter} />
         </div>
-        <div className="mx-auto mt-4 grid w-full max-w-6xl grid-cols-[minmax(0,1fr)] items-center gap-4 px-6 md:mt-6 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:gap-8 lg:gap-12">
+        <div className="mx-auto mt-4 grid w-full max-w-[1480px] grid-cols-[minmax(0,1fr)] items-center gap-4 px-6 md:px-10 xl:px-16 md:mt-6 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:gap-8 lg:gap-12">
           <div className="relative order-2 md:order-1">
             <AnimatePresence mode="wait">
               <motion.div
@@ -118,7 +118,7 @@ function PinnedProjects({ id }: { id: string }) {
             </AnimatePresence>
           </div>
         </div>
-        <div className="mx-auto mt-4 w-full max-w-6xl px-6 md:mt-6">
+        <div className="mx-auto mt-4 w-full max-w-[1480px] px-6 md:px-10 xl:px-16 md:mt-6">
           <Rail list={list} active={active} onPick={pick} />
         </div>
       </div>

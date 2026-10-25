@@ -63,7 +63,7 @@ function RoleDetails({ job, index }: { job: PortfolioItem; index: number }) {
 /** Reduced motion: no pinned hinge, roles as a plain list. */
 function StaticRoles({ id }: { id: string }) {
   return (
-    <section id={id} data-theme="light" className="light px-6 py-28">
+    <section id={id} data-theme="light" className="light px-6 md:px-10 xl:px-16 py-28">
       <div className="mx-auto max-w-3xl">
         <h2 className="text-[clamp(2.25rem,4.5vw,3.75rem)]">Where I&apos;ve worked.</h2>
         <div className="mt-12 space-y-14">
@@ -100,7 +100,7 @@ function PinnedRoles({ id }: { id: string }) {
   return (
     <section ref={ref} id={id} data-theme="light" className="light relative" style={{ height: `${110 + jobs.length * 60}vh` }}>
       <div className="sticky top-0 flex h-screen items-center overflow-hidden pt-14">
-        <div className="relative mx-auto grid w-full max-w-7xl grid-cols-[minmax(0,1fr)] items-center gap-6 px-6 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] md:gap-8 lg:gap-10">
+        <div className="relative mx-auto grid w-full max-w-[1480px] grid-cols-[minmax(0,1fr)] items-center gap-6 px-6 md:px-10 xl:px-16 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] md:gap-8 lg:gap-10">
           <div className="relative order-2 md:order-1">
             <h2 className="text-[clamp(2rem,4.5vw,3.75rem)] text-[var(--text-on-light)]">Where I&apos;ve worked.</h2>
             <motion.div

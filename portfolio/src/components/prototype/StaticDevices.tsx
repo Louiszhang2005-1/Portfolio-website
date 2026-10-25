@@ -17,8 +17,8 @@ export function StaticIntro({ id }: { id: string }) {
   const one = useMotionValue(1);
   const m: Motion = { spread: zero, fade: one, tilt: zero, dive: zero };
   return (
-    <section id={id} data-theme="light" className="white px-6 pb-24 pt-32">
-      <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2">
+    <section id={id} data-theme="light" className="white px-6 md:px-10 xl:px-16 pb-24 pt-32">
+      <div className="mx-auto grid max-w-[1480px] items-center gap-12 lg:grid-cols-2">
         <div>
           <h1 className="text-[clamp(3.25rem,7.5vw,6.5rem)]">Louis Zhang</h1>
           <p className="mt-5 max-w-[34rem] text-lg text-[var(--text-secondary)]">
@@ -52,8 +52,8 @@ export function StaticSkills({ id }: { id: string }) {
   const one = useMotionValue(1);
   const m: Motion = { spread: zero, fade: one, tilt: zero, dive: zero };
   return (
-    <section id={id} data-theme="light" className="white px-6 py-28">
-      <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2">
+    <section id={id} data-theme="light" className="white px-6 md:px-10 xl:px-16 py-28">
+      <div className="mx-auto grid max-w-[1480px] items-center gap-12 lg:grid-cols-2">
         <div>
           <h2 className="text-[clamp(2.25rem,4.5vw,3.75rem)]">What I work with.</h2>
           <dl className="mt-8 space-y-6">

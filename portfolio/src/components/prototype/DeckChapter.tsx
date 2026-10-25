@@ -74,8 +74,8 @@ export default function DeckChapter({ id }: { id: string }) {
 
 function StaticDeck({ id }: { id: string }) {
   return (
-    <section id={id} data-theme="light" className="light px-6 py-28">
-      <div className="mx-auto max-w-6xl">
+    <section id={id} data-theme="light" className="light px-6 md:px-10 xl:px-16 py-28">
+      <div className="mx-auto max-w-[1480px]">
         <Intro />
         <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-4">
           {fullPortfolioPages.map((src, i) => (
@@ -113,7 +113,7 @@ function PinnedDeck({ id }: { id: string }) {
   return (
     <section ref={ref} id={id} data-theme="light" className="light relative" style={{ height: `${100 + SPREADS * 45}vh` }}>
       <div className="sticky top-0 flex h-screen items-center overflow-hidden pt-14">
-        <div className="relative mx-auto grid w-full max-w-7xl grid-cols-[minmax(0,1fr)] items-center gap-6 px-6 md:grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)] md:gap-10 lg:gap-12">
+        <div className="relative mx-auto grid w-full max-w-[1480px] grid-cols-[minmax(0,1fr)] items-center gap-6 px-6 md:px-10 xl:px-16 md:grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)] md:gap-10 lg:gap-12">
           <div className="order-2 md:order-1">
             <Intro />
             <div className="tall-only hidden lg:block">
