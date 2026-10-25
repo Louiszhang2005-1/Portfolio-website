@@ -7,9 +7,9 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-// TODO: set metadataBase to the production Vercel URL once deployed, e.g.:
-// metadataBase: new URL("https://your-project.vercel.app")
 export const metadata: Metadata = {
+  // resolves Open Graph / Twitter image URLs for link previews
+  metadataBase: new URL("https://www.louiszhang.app"),
   title: {
     default: "Louis Zhang — Engineering Portfolio",
     template: "%s | Louis Zhang",

@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: PageProps) {
 
   const ogImage = item.image ?? "/preview-portfolio.png";
   return {
-    title: `${item.title} - Louis Zhang`,
+    title: item.title, // the root layout's template appends " | Louis Zhang"
     description: item.details.replace(/\s+/g, " ").trim().slice(0, 155),
     openGraph: {
       title: item.title,
