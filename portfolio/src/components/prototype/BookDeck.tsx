@@ -1,12 +1,22 @@
 "use client";
 
 import { motion, useTransform, type MotionValue } from "framer-motion";
+import type { ReactNode } from "react";
 import { fullPortfolioDocument, fullPortfolioPages } from "@/lib/portfolio";
 import { btnPrimaryLight } from "./stage";
 
-/** Page size in px (US letter, 8.5 x 11). */
-export const PW = 320;
-export const PH = 414;
+/**
+ * Page size in px (US letter, 8.5 x 11). Built large and only ever scaled down by <Fit>: a CSS-3D layer is
+ * rasterised at its own size, so scaling a small book up blurred the scans.
+ */
+export const PW = 600;
+export const PH = 776;
+/** The cover and end paper were laid out for a 320px page; CSS zoom re-lays them out (crisply) at PW. */
+const K = PW / 320;
+
+function Zoomed({ children }: { children: ReactNode }) {
+  return <div style={{ width: PW / K, height: PH / K, zoom: K }}>{children}</div>;
+}
 
 /**
  * Sheets, front + back. The cover's back carries page 1, then pages pair up across the spine,
@@ -27,6 +37,7 @@ const clamp01 = (v: number) => Math.min(1, Math.max(0, v));
 
 function Cover() {
   return (
+    <Zoomed>
     <div
       className="flex h-full w-full flex-col justify-between rounded-r-[6px] p-8"
       style={{
@@ -50,6 +61,7 @@ function Cover() {
         </p>
       </div>
     </div>
+    </Zoomed>
   );
 }
 
@@ -69,8 +81,9 @@ function Page({ page, title, side, mounted }: { page: number; title?: string; si
       )}
       {/* gutter shadow toward the spine */}
       <div
-        className="pointer-events-none absolute inset-y-0 w-10"
+        className="pointer-events-none absolute inset-y-0"
         style={{
+          width: 40 * K,
           [side === "left" ? "right" : "left"]: 0,
           background: `linear-gradient(${side === "left" ? "270deg" : "90deg"},rgba(0,0,0,0.18),transparent)`,
         }}
@@ -83,6 +96,7 @@ function Page({ page, title, side, mounted }: { page: number; title?: string; si
 function EndPaper({ active }: { active: boolean }) {
   const tab = active ? 0 : -1;
   return (
+    <Zoomed>
     <div className="flex h-full w-full flex-col justify-between bg-[var(--surface-light)] p-8" aria-hidden={!active}>
       <span className="h-1 w-10 rounded-full bg-[var(--accent)]" />
       <div>
@@ -103,6 +117,7 @@ function EndPaper({ active }: { active: boolean }) {
       </div>
       <p className="text-[12px] text-[var(--text-on-light-secondary)]">Louis Zhang · Polytechnique Montréal</p>
     </div>
+    </Zoomed>
   );
 }
 
@@ -146,7 +161,7 @@ function Sheet({
         {index === 0 && (
           <div
             className="absolute rounded-l-[6px]"
-            style={{ top: -4, bottom: -4, left: -8, right: 0, background: "var(--mat-graphite)", boxShadow: "0 30px 50px -25px rgba(0,0,0,0.45)" }}
+            style={{ top: -4 * K, bottom: -4 * K, left: -8 * K, right: 0, background: "var(--mat-graphite)", boxShadow: "0 30px 50px -25px rgba(0,0,0,0.45)" }}
           />
         )}
         <div className="absolute inset-0">
@@ -177,7 +192,7 @@ export default function BookDeck({
   const tilt = useTransform(intro, (v) => 24 - v * 12);
 
   return (
-    <div style={{ width: PW * 2, height: PH, perspective: 2200 }} className="relative">
+    <div style={{ width: PW * 2, height: PH, perspective: 2200 * K }} className="relative">
       <motion.div
         className="absolute inset-0"
         style={{ x, rotateX: tilt, transformStyle: "preserve-3d", transformOrigin: "50% 60%" }}
@@ -186,11 +201,11 @@ export default function BookDeck({
         <div
           className="absolute left-1/2 top-0 rounded-r-[6px]"
           style={{
-            width: PW + 8,
-            height: PH + 8,
-            marginTop: -4,
+            width: PW + 8 * K,
+            height: PH + 8 * K,
+            marginTop: -4 * K,
             background: "var(--mat-graphite)",
-            transform: "translateZ(-6px)",
+            transform: `translateZ(${-6 * K}px)`,
             boxShadow: "0 40px 60px -25px rgba(0,0,0,0.55)",
           }}
         />
@@ -198,7 +213,7 @@ export default function BookDeck({
           <div
             key={k}
             className="absolute left-1/2 top-0 bg-[var(--surface-light)]"
-            style={{ width: PW - 2 + k, height: PH, transform: `translateZ(${-k}px)`, borderRight: "1px solid var(--border-light)" }}
+            style={{ width: PW - 2 + k * K, height: PH, transform: `translateZ(${-k * K}px)`, borderRight: "1px solid var(--border-light)" }}
           />
         ))}
         <div className="absolute left-1/2 top-0" style={{ width: PW, height: PH, transform: "translateZ(-0.5px)" }}>

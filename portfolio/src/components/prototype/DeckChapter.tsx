@@ -1,10 +1,11 @@
 "use client";
 
 import { useMotionValueEvent, useReducedMotion } from "framer-motion";
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState, type MouseEvent } from "react";
 import { fullPortfolioDocument, fullPortfolioPages } from "@/lib/portfolio";
 import { useMap } from "./devices";
 import BookDeck, { PH, PW, SPREADS } from "./BookDeck";
+import PageViewer from "./PageViewer";
 import { Fit, btnGhostLight, btnPrimaryLight, useSmoothProgress } from "./stage";
 
 const PAGE_TITLES = [
@@ -108,6 +109,16 @@ function PinnedDeck({ id }: { id: string }) {
   useMotionValueEvent(flip, "change", (f) => setSpread(Math.min(SPREADS, Math.floor(f + 0.15))));
   const visible = pagesOn(spread);
 
+  const [reading, setReading] = useState<number | null>(null);
+  const closeReader = useCallback(() => setReading(null), []);
+  // the spine sits at the centre of the book's box once it is open: left half = left page, right half = right page
+  const readAt = (e: MouseEvent<HTMLDivElement>) => {
+    if (!visible.length) return setReading(0);
+    const r = e.currentTarget.getBoundingClientRect();
+    const right = e.clientX > r.left + r.width / 2;
+    setReading(right && visible[1] !== undefined ? visible[1] : visible[0]);
+  };
+
   const pick = (i: number) => {
     const el = ref.current;
     if (!el) return;
@@ -129,14 +140,26 @@ function PinnedDeck({ id }: { id: string }) {
             <p className="mt-4 text-sm text-[var(--text-on-light-secondary)] lg:hidden">
               {caption(visible)}
             </p>
+            <button
+              onClick={() => setReading(visible[0] ?? 0)}
+              className="link mt-3 text-sm font-medium lg:mt-5"
+            >
+              Read {visible.length > 1 ? "these pages" : "this page"} full size
+            </button>
           </div>
-          <div className="order-1 h-[300px] min-w-0 sm:h-[400px] md:order-2 md:h-[min(620px,calc(100vh-130px))]">
-            <Fit w={PW * 2 + 40} h={PH + 60} max={1.45}>
+          <div
+            className="order-1 h-[300px] min-w-0 cursor-zoom-in sm:h-[400px] md:order-2 md:h-[min(620px,calc(100vh-130px))]"
+            onClick={readAt}
+            title="Click a page to read it"
+          >
+            {/* the book is built at 2x and only scaled down, so the scans stay sharp */}
+            <Fit w={PW * 2 + 75} h={PH + 110} max={1}>
               <BookDeck flip={flip} intro={intro} spread={spread} titles={PAGE_TITLES} />
             </Fit>
           </div>
         </div>
       </div>
+      <PageViewer page={reading} titles={PAGE_TITLES} onClose={closeReader} onPage={setReading} />
     </section>
   );
 }
