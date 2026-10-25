@@ -22,6 +22,9 @@ export function canvasTexture(w: number, h: number, draw: (ctx: CanvasRenderingC
   canvas.dataset.w = String(w);
   canvas.dataset.h = String(h);
   const ctx = canvas.getContext("2d")!;
+  // logos and photos drawn into screens are downscaled; the default "low" quality aliases them
+  ctx.imageSmoothingEnabled = true;
+  ctx.imageSmoothingQuality = "high";
   ctx.setTransform(scale, 0, 0, scale, 0, 0);
   draw(ctx);
   const tex = new THREE.CanvasTexture(canvas);

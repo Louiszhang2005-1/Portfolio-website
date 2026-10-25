@@ -131,7 +131,7 @@ function PinnedDeck({ id }: { id: string }) {
   return (
     <section ref={ref} id={id} data-theme="light" className="light relative" style={{ height: `${100 + SPREADS * 45}vh` }}>
       <div className="sticky top-0 flex h-screen items-center overflow-hidden pt-14">
-        <div className="relative mx-auto grid w-full max-w-[1480px] grid-cols-[minmax(0,1fr)] items-center gap-6 px-6 md:px-10 xl:px-16 md:grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)] md:gap-10 lg:gap-12">
+        <div className="relative mx-auto grid w-full max-w-[1480px] grid-cols-[minmax(0,1fr)] items-center gap-6 px-6 md:px-10 xl:px-16 md:grid-cols-[minmax(0,0.7fr)_minmax(0,1.3fr)] md:gap-10 lg:grid-cols-[minmax(0,0.55fr)_minmax(0,1.45fr)] lg:gap-12">
           <div className="order-2 md:order-1">
             <Intro />
             <div className="tall-only hidden lg:block">
@@ -148,12 +148,12 @@ function PinnedDeck({ id }: { id: string }) {
             </button>
           </div>
           <div
-            className="order-1 h-[300px] min-w-0 cursor-zoom-in sm:h-[400px] md:order-2 md:h-[min(620px,calc(100vh-130px))]"
+            className="order-1 h-[300px] min-w-0 cursor-zoom-in sm:h-[440px] md:order-2 md:h-[min(860px,calc(100vh-100px))]"
             onClick={readAt}
             title="Click a page to read it"
           >
             {/* the book is built at 2x and only scaled down, so the scans stay sharp */}
-            <Fit w={PW * 2 + 75} h={PH + 110} max={1}>
+            <Fit w={PW * 2 + 48} h={PH + 64} max={1}>
               <BookDeck flip={flip} intro={intro} spread={spread} titles={PAGE_TITLES} />
             </Fit>
           </div>

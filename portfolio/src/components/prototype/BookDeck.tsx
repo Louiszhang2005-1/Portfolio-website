@@ -65,13 +65,21 @@ function Cover() {
   );
 }
 
+/**
+ * Pre-scaled scans for the book. Browsers shrink images inside CSS-3D layers without mipmaps, so a 2000px scan drawn
+ * ~500px wide turned small text to mush; srcset hands over one close to the drawn size instead.
+ */
+const pageSrc = (page: number, w: 600 | 1200) => fullPortfolioPages[page].replace("/full/", `/w${w}/`);
+
 /** `mounted` is false away from the open spread: a blank sheet stands in so the ~6 MB of scans load as you reach them. */
 function Page({ page, title, side, mounted }: { page: number; title?: string; side: "left" | "right"; mounted: boolean }) {
   return (
     <div className="relative h-full w-full overflow-hidden bg-[var(--surface-light)]">
       {mounted && (
         <img
-          src={fullPortfolioPages[page]}
+          src={pageSrc(page, 1200)}
+          srcSet={`${pageSrc(page, 600)} 600w, ${pageSrc(page, 1200)} 1200w, ${fullPortfolioPages[page]} 2000w`}
+          sizes={`${PW}px`}
           alt={`Portfolio page ${page + 1}${title ? `: ${title}` : ""}`}
           loading="lazy"
           decoding="async"
@@ -190,6 +198,8 @@ export default function BookDeck({
   // closed, the cover sits centred; it slides to the spine as the book opens
   const x = useTransform(flip, (f) => (-PW / 2) * (1 - clamp01(f)));
   const tilt = useTransform(intro, (v) => 24 - v * 12);
+  // ...and lies flat once open: a tilted page is keystoned and resampled, which is what made it unreadable
+  const flatten = useTransform(flip, (f) => -12 * clamp01(f));
 
   return (
     <div style={{ width: PW * 2, height: PH, perspective: 2200 * K }} className="relative">
@@ -197,6 +207,7 @@ export default function BookDeck({
         className="absolute inset-0"
         style={{ x, rotateX: tilt, transformStyle: "preserve-3d", transformOrigin: "50% 60%" }}
       >
+        <motion.div className="absolute inset-0" style={{ rotateX: flatten, transformStyle: "preserve-3d", transformOrigin: "50% 60%" }}>
         {/* back board + page block on the right */}
         <div
           className="absolute left-1/2 top-0 rounded-r-[6px]"
@@ -222,6 +233,7 @@ export default function BookDeck({
         {SHEETS.map((_, i) => (
           <Sheet key={i} index={i} flip={flip} spread={spread} titles={titles} />
         ))}
+        </motion.div>
       </motion.div>
     </div>
   );
