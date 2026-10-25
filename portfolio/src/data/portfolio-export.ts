@@ -284,7 +284,7 @@ export const portfolioData = {
           "type": "project",
           "category": "Software & AI",
           "title": "CRM Outreach Tool",
-          "subtitle": "Accenture Â· AOTC 2026 Â· Marâ€“Apr 2026",
+          "subtitle": "Accenture Â· AOTC 2026 Â· Janâ€“Apr 2026",
           "status": "active",
           "order": 1,
           "skills": [
@@ -606,7 +606,7 @@ export const portfolioData = {
       "type": "project",
       "category": "Software & AI",
       "title": "CRM Outreach Tool",
-      "subtitle": "Accenture Â· AOTC 2026 Â· Marâ€“Apr 2026",
+      "subtitle": "Accenture Â· AOTC 2026 Â· Janâ€“Apr 2026",
       "status": "active",
       "order": 1,
       "skills": [
@@ -924,7 +924,7 @@ export const portfolioData = {
       "type": "project",
       "category": "Software & AI",
       "title": "CRM Outreach Tool",
-      "subtitle": "Accenture Â· AOTC 2026 Â· Marâ€“Apr 2026",
+      "subtitle": "Accenture Â· AOTC 2026 Â· Janâ€“Apr 2026",
       "status": "active",
       "order": 1,
       "skills": [

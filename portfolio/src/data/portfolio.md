@@ -155,7 +155,7 @@ A fast-paced, real-time competitive party game for language learning. Players ba
 
 ### 🤖 CRM Outreach Tool — Accenture AOTC 2026
 **Event:** Accenture AOTC 2026  
-**Period:** Mar–Apr 2026  
+**Period:** Jan–Apr 2026  
 **Skills:** Next.js · React · TypeScript · Tailwind CSS · Gemini AI · Resend · Apollo.io · Google Sheets API  
 **GitHub:** https://github.com/Louiszhang2005-1/Fully-Integrated-CRM-Tool  
 **Demo:** https://www.youtube.com/watch?v=TVuFauDyA00

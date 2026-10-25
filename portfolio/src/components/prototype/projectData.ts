@@ -115,7 +115,7 @@ export const WINS = [
 export const ALSO_COMPETED = [
   { event: "McHacks 13", project: "MechPrep", slug: "mechprep", date: "Jan 2026" },
   { event: "UpStart 2026", project: "ResQ-Link", slug: "resq-link", date: "2026" },
-  { event: "Accenture AOTC 2026", project: "CRM Outreach Tool", slug: "crm-outreach-tool", date: "Mar–Apr 2026" },
+  { event: "Accenture AOTC 2026", project: "CRM Outreach Tool", slug: "crm-outreach-tool", date: "Jan–Apr 2026" },
   { event: "UdemHacks", project: "LazyCare", slug: "lazycare", date: "Mar 2025" },
   { event: "Brebeuf Hacks", project: "Interview Assistant", slug: "interview-assistant", date: "Jan 2024" },
 ];

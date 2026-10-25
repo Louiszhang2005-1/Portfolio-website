@@ -442,11 +442,11 @@ export const missions: Mission[] = [
     sector: "Code Cove",
     sectorColor: "#6a1b9a",
     title: "Fully Integrated CRM Outreach Tool",
-    subtitle: "AOTC 2026 · Accenture · Mar–Apr 2026",
+    subtitle: "AOTC 2026 · Accenture · Jan–Apr 2026",
     status: "active",
     landmark: "A data-funnel temple with AI circuits",
     position: { x: 1650, y: 1200 },
-    date: "Mar–Apr 2026",
+    date: "Jan–Apr 2026",
     chronoOrder: 202603,
     skills: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Gemini AI", "Resend", "Apollo.io", "Google Sheets API"],
     details:
