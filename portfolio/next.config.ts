@@ -23,6 +23,12 @@ const nextConfig: NextConfig = {
         destination: "/",
         permanent: false,
       },
+      {
+        // project renamed: LEAP is the CSA program, not the project
+        source: "/portfolio/csa-lunar-leap",
+        destination: "/portfolio/lunar-transport-system",
+        permanent: true,
+      },
     ];
   },
   webpack: (config, { dev }) => {

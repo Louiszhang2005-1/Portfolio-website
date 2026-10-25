@@ -149,7 +149,7 @@ export const missions: Mission[] = [
     id: "P-1",
     sector: "Aero Atoll",
     sectorColor: "#b8860b",
-    title: "CSA Transport System",
+    title: "Lunar Transport System",
     subtitle: "CSA LEAP · Vegetable Collection Transport System · Jan–May 2025 · Polytechnique Montréal",
     status: "active",
     landmark: "A miniature moon-base with a moving lunar wagon",

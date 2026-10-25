@@ -70,7 +70,7 @@ const credibilitySignals = [
 ];
 
 const featuredSignals = [
-  { title: "CSA Lunar LEAP", detail: "PM & Systems Integrator", accent: "#f2d98a" },
+  { title: "Lunar Transport System", detail: "PM & Systems Integrator", accent: "#f2d98a" },
   { title: "Autonomous Reforestation Robot", detail: "RoboHacks Award", accent: "#7ec850" },
   { title: "ResQ-Link", detail: "Passive NFC disaster-response hardware", accent: "#ff6b8a" },
   { title: "CRM Outreach Tool", detail: "AI + Google Sheets automation", accent: "#59eafb" },
@@ -439,7 +439,7 @@ export const LandingHero = () => {
 
               {/* Outer ring: 5 projects */}
               {[
-                { label: "CSA Lunar LEAP", emoji: "🌕", color: "#f2d98a" },
+                { label: "Lunar Transport System", emoji: "🌕", color: "#f2d98a" },
                 { label: "Robot", emoji: "🌱", color: "#7ec850" },
                 { label: "ResQ-Link", emoji: "🏥", color: "#ff6b8a" },
                 { label: "Nursie", emoji: "🏆", color: "#a855f7" },

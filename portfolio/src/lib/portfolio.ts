@@ -46,7 +46,7 @@ const slugById: Record<string, string> = {
   "I-4": "city-of-montreal",
   "I-2": "lockheed-martin",
   "I-1": "tesla",
-  "P-1": "csa-lunar-leap",
+  "P-1": "lunar-transport-system",
   "P-2": "axial-piston-pump",
   "P-3": "reforestation-robot",
   "P-4": "resq-link",

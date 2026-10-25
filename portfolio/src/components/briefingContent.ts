@@ -35,7 +35,7 @@ const PART2_LINES: Line[] = [
   { text: "Mechanical Engineering Intern: SolidWorks CAD and structural design of ship compartment components, VBA review automation.", color: SUB, indent: true },
   { text: "> City of Montréal", tag: "Water Testing", tagColor: "#0277bd" },
   { text: "Engineering Intern: water quality monitoring and geospatial data pipelines.", color: SUB, indent: true },
-  { text: "> CSA Transport System", tag: "Systems", tagColor: "#b45309" },
+  { text: "> Lunar Transport System", tag: "Systems", tagColor: "#b45309" },
   { text: "PM & systems integrator for a lunar produce-transport prototype: CATIA / Fusion 360 analysis, Arduino controls.", color: SUB, indent: true },
   { text: "> Hackathon wins", tag: "Awards", tagColor: "#059669" },
   { text: "HackHarvard 2026 1st place (Chalk Prize) · ConUHacks X Best Use of ElevenLabs · RoboHacks Unexpected Expedition Award.", color: SUB, indent: true },

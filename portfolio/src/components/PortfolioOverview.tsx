@@ -69,7 +69,7 @@ export default function PortfolioOverview() {
           Martin ship integration, and Tesla LFP cell engineering.
         </p>
         <p className="m-0">
-          <span className="font-black text-yellow-200">Highlights:</span> CSA Transport System, Autonomous
+          <span className="font-black text-yellow-200">Highlights:</span> Lunar Transport System, Autonomous
           Reforestation Robot, Nursie, ResQ-Link, Trace, and Fully Integrated CRM Outreach Tool.
         </p>
         <p className="m-0">

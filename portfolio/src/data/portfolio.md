@@ -29,7 +29,7 @@ Engineering Intern at the City of Montreal's Water Department. Contributed to wa
 
 ## Aerospace & Mechanical Projects
 
-### 🌕 CSA Lunar LEAP — PM & Systems Integrator
+### 🌕 Lunar Transport System — PM & Systems Integrator
 **Event:** Canadian Space Agency LEAP — OASIS Mission  
 **Period:** Jan–May 2025 · Polytechnique Montréal  
 **Skills:** CATIA V6 · Fusion 360 · GD&T · MS Project · Cold Welding · Systems Integration · FEA · Arduino · Raspberry Pi Pico  
