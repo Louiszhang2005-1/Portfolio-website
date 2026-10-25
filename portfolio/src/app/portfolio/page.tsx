@@ -7,13 +7,13 @@ export const metadata = {
     title: "Louis Zhang — Portfolio",
     description: "Mechanical and software engineer. Projects spanning aerospace, robotics, and full-stack development.",
     url: "/portfolio",
-    images: [{ url: "/preview-portfolio.png", alt: "Louis Zhang portfolio preview" }],
+    images: [{ url: "/og-home.png", alt: "Louis Zhang portfolio preview" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Louis Zhang — Portfolio",
     description: "Mechanical and software engineer. Projects spanning aerospace, robotics, and full-stack development.",
-    images: ["/preview-portfolio.png"],
+    images: ["/og-home.png"],
   },
 };
 

@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: PageProps) {
 
   if (!item) return { title: "Portfolio Item" };
 
-  const ogImage = item.image ?? "/preview-portfolio.png";
+  const ogImage = item.image ?? "/og-home.png";
   return {
     title: item.title, // the root layout's template appends " | Louis Zhang"
     description: item.details.replace(/\s+/g, " ").trim().slice(0, 155),

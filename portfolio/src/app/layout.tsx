@@ -26,7 +26,9 @@ export const metadata: Metadata = {
     locale: "en_US",
     images: [
       {
-        url: "/preview-portfolio.png",
+        url: "/og-home.png",
+        width: 1200,
+        height: 630,
         alt: "Louis Zhang — engineering portfolio preview",
       },
     ],
@@ -36,7 +38,7 @@ export const metadata: Metadata = {
     title: "Louis Zhang — Engineering Portfolio",
     description:
       "Aerospace, robotics, and software projects. Internships at Tesla, Lockheed Martin, and City of Montreal.",
-    images: ["/preview-portfolio.png"],
+    images: ["/og-home.png"],
   },
 };
 
