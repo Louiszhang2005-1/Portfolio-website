@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ALSO_COMPETED, HONORS, WINS } from "./projectData";
+import { ALSO_COMPETED, RECOGNITION, WINS } from "./projectData";
 
 /** Static light section: no pinning, just the record. */
 export default function WinsChapter({ id }: { id: string }) {
@@ -56,15 +56,17 @@ export default function WinsChapter({ id }: { id: string }) {
             ))}
           </ul>
 
-          {/* a compact row under the table instead of a mostly empty side column */}
-          <div className="mt-10 flex flex-col gap-1 rounded-[16px] border border-[var(--border-light)] bg-[var(--surface-light)] px-5 py-4 sm:flex-row sm:items-baseline sm:gap-6">
-            <h3 className="shrink-0 text-lg text-[var(--text-on-light)]">Honors</h3>
-            <ul className="space-y-1 text-[15px] text-[var(--text-on-light-secondary)]">
-              {HONORS.map((h) => (
-                <li key={h}>{h}</li>
-              ))}
-            </ul>
-          </div>
+          {/* scholarship, leadership, judging: a hairline row of facts, no cards or pills */}
+          <h3 className="mt-14 text-lg text-[var(--text-on-light)]">Beyond the hackathons</h3>
+          <dl className="mt-4 grid border-t border-[var(--border-light)] sm:grid-cols-3">
+            {RECOGNITION.map((r) => (
+              <div key={r.label} className="border-b border-[var(--border-light)] py-5 sm:border-b-0 sm:pr-8 sm:[&:not(:first-child)]:border-l sm:[&:not(:first-child)]:pl-8">
+                <dt className="text-sm text-[var(--text-on-light-secondary)]">{r.label}</dt>
+                <dd className="mt-2 text-[17px] font-medium leading-snug text-[var(--text-on-light)]">{r.title}</dd>
+                <dd className="mt-1 text-[15px] text-[var(--text-on-light-secondary)]">{r.detail}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </div>
     </section>

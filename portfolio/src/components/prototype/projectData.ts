@@ -120,4 +120,9 @@ export const ALSO_COMPETED = [
   { event: "Brebeuf Hacks", project: "Interview Assistant", slug: "interview-assistant", date: "Jan 2024" },
 ];
 
-export const HONORS = ["Lina & Jean-Guy Gaudreault Perseverance Scholarship"];
+/** Beyond the wins: from Louis's LinkedIn education entry. */
+export const RECOGNITION = [
+  { label: "Scholarship", title: "Lina & Jean-Guy Gaudreault Perseverance Scholarship", detail: "$2,500" },
+  { label: "Leadership", title: "Vice President of Events", detail: "Google Developer Group, Polytechnique Montréal" },
+  { label: "Judging", title: "Judge", detail: "MPC Hacks" },
+];

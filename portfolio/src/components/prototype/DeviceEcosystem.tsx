@@ -133,7 +133,8 @@ function ChapterNav() {
 
 /** Right column of the footer: a recap of facts already on the page, plus jump links back to each chapter. */
 const RECAP: [string, string][] = [
-  ["Studying", "Mechanical engineering, Polytechnique Montréal"],
+  ["Studying", "B.Eng. Mechanical Engineering, Polytechnique Montréal"],
+  ["Leadership", "VP of Events, Google Developer Group Polytechnique"],
   ["Interned at", "Tesla, Lockheed Martin, City of Montréal"],
   ["Hackathons", "HackHarvard 2026, ConUHacks X, RoboHacks 2025"],
 ];
