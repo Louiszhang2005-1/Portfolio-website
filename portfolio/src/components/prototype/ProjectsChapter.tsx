@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion, useMotionValueEvent, useReducedMotion, useScroll } from "framer-motion";
 import { useLayoutEffect, useRef, useState } from "react";
-import { GROUPS, type Group } from "./projectData";
+import { GROUPS, allProjects, type Group } from "./projectData";
 import { Detail, Filters, Rail, Showcase, filterList, type Filter } from "./ProjectsParts";
 
 /** Projects step inside this window of the chapter's own scroll track. */
@@ -19,7 +19,7 @@ export default function ProjectsChapter({ id }: { id: string }) {
 function StaticProjects({ id }: { id: string }) {
   return (
     <section id={id} data-theme="light" className="light border-t border-[var(--border-light)] px-6 md:px-10 xl:px-16 py-28">
-      <div className="mx-auto max-w-[1480px]">
+      <div className="mx-auto max-w-[1352px]">
         <h2 className="text-[clamp(2.25rem,4.5vw,3.75rem)]">Projects.</h2>
         {GROUPS.map((g: Group) => (
           <div key={g} className="mt-16">
@@ -91,18 +91,22 @@ function PinnedProjects({ id }: { id: string }) {
           <Filters value={filter} onChange={changeFilter} />
         </div>
         <div className="mx-auto mt-4 grid w-full max-w-[1480px] grid-cols-[minmax(0,1fr)] items-center gap-4 px-6 md:px-10 xl:px-16 md:mt-6 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:gap-8 lg:gap-12">
-          <div className="relative order-2 md:order-1">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={item.id}
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -12 }}
-                transition={{ duration: 0.25 }}
-              >
-                <Detail item={item} />
-              </motion.div>
-            </AnimatePresence>
+          {/* every project's copy is stacked in one grid cell, so the block is always as tall as the tallest one
+              and the rail below never moves when the project changes */}
+          <div className="relative order-2 grid md:order-1">
+            {allProjects.map((p) => {
+              const on = p.id === item.id;
+              return (
+                <div
+                  key={p.id}
+                  inert={!on}
+                  aria-hidden={!on}
+                  className={`[grid-area:1/1] transition-[opacity,transform,visibility] ${on ? "visible translate-y-0 opacity-100 delay-150 duration-300" : "invisible translate-y-3 opacity-0 duration-150"}`}
+                >
+                  <Detail item={p} />
+                </div>
+              );
+            })}
           </div>
           <div className="order-1 mx-auto w-full max-w-[420px] md:order-2 md:max-w-none">
             <AnimatePresence mode="wait">

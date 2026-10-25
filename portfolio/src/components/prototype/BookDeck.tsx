@@ -1,7 +1,8 @@
 "use client";
 
 import { motion, useTransform, type MotionValue } from "framer-motion";
-import { fullPortfolioPages } from "@/lib/portfolio";
+import { fullPortfolioDocument, fullPortfolioPages } from "@/lib/portfolio";
+import { btnPrimaryLight } from "./stage";
 
 /** Page size in px (US letter, 8.5 x 11). */
 export const PW = 320;
@@ -9,9 +10,9 @@ export const PH = 414;
 
 /**
  * Sheets, front + back. The cover's back carries page 1, then pages pair up across the spine,
- * so the book reads like the printed deck: [cover] [1|2] [3|4] [5|6] [7|end].
+ * so the book reads like the printed deck: [cover] [1|2] [3|4] [5|6] [7|end paper].
  */
-const SHEETS: { front: number | "cover"; back: number | "end" }[] = [
+const SHEETS: { front: number | "cover"; back: number }[] = [
   { front: "cover", back: 0 },
   { front: 1, back: 2 },
   { front: 3, back: 4 },
@@ -36,13 +37,17 @@ function Cover() {
     >
       <span className="h-1 w-10 rounded-full bg-[var(--accent)]" />
       <div>
-        <p className="text-[13px] text-[var(--text-secondary)]">Engineering portfolio</p>
-        <p className="mt-2 text-[2.4rem] font-semibold leading-[0.95] text-[var(--text)]" style={{ fontStretch: "125%" }}>
+        <p className="text-[13px] font-medium tracking-wide" style={{ color: "var(--accent)" }}>
+          Engineering portfolio
+        </p>
+        <p className="mt-2 text-[2.4rem] font-semibold leading-[0.95]" style={{ fontStretch: "125%", color: "#f5f5f7" }}>
           Louis
           <br />
           Zhang
         </p>
-        <p className="mt-4 text-[13px] text-[var(--text-tertiary)]">Polytechnique Montréal</p>
+        <p className="mt-4 text-[13px]" style={{ color: "rgba(245,245,247,0.62)" }}>
+          Polytechnique Montréal
+        </p>
       </div>
     </div>
   );
@@ -74,10 +79,29 @@ function Page({ page, title, side, mounted }: { page: number; title?: string; si
   );
 }
 
-function EndPaper() {
+/** The last right-hand page: a finished end paper with the way to the full PDF. */
+function EndPaper({ active }: { active: boolean }) {
+  const tab = active ? 0 : -1;
   return (
-    <div className="flex h-full w-full items-end bg-[var(--surface-light)] p-8">
-      <p className="text-sm text-[var(--text-on-light-secondary)]">End of the portfolio. The full PDF is one click away.</p>
+    <div className="flex h-full w-full flex-col justify-between bg-[var(--surface-light)] p-8" aria-hidden={!active}>
+      <span className="h-1 w-10 rounded-full bg-[var(--accent)]" />
+      <div>
+        <p className="font-mono text-xs uppercase tracking-[0.14em] text-[var(--text-on-light-secondary)]">End of the book</p>
+        <p className="mt-3 text-[1.9rem] font-semibold leading-[1.05] text-[var(--text-on-light)]">
+          Seven pages.
+          <br />
+          One PDF.
+        </p>
+        <p className="mt-3 text-[14px] leading-[1.5] text-[var(--text-on-light-secondary)]">
+          Every project at full resolution, ready to share.
+        </p>
+        <div className="mt-6">
+          <a className={btnPrimaryLight} href={fullPortfolioDocument.href} target="_blank" rel="noopener noreferrer" tabIndex={tab}>
+            Open the full PDF
+          </a>
+        </div>
+      </div>
+      <p className="text-[12px] text-[var(--text-on-light-secondary)]">Louis Zhang · Polytechnique Montréal</p>
     </div>
   );
 }
@@ -118,11 +142,16 @@ function Sheet({
         className="absolute inset-0"
         style={{ transform: "rotateY(180deg)", backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}
       >
-        {sheet.back === "end" ? (
-          <EndPaper />
-        ) : (
-          <Page page={sheet.back} title={titles[sheet.back]} side="left" mounted={near(index + 1, spread)} />
+        {/* the cover's inside board rides with the cover, so it never sweeps out past the book while turning */}
+        {index === 0 && (
+          <div
+            className="absolute rounded-l-[6px]"
+            style={{ top: -4, bottom: -4, left: -8, right: 0, background: "var(--mat-graphite)", boxShadow: "0 30px 50px -25px rgba(0,0,0,0.45)" }}
+          />
         )}
+        <div className="absolute inset-0">
+          <Page page={sheet.back} title={titles[sheet.back]} side="left" mounted={near(index + 1, spread)} />
+        </div>
         <motion.div className="pointer-events-none absolute inset-0 bg-[var(--mat-black)]" style={{ opacity: shade }} />
       </div>
     </motion.div>
@@ -146,7 +175,6 @@ export default function BookDeck({
   // closed, the cover sits centred; it slides to the spine as the book opens
   const x = useTransform(flip, (f) => (-PW / 2) * (1 - clamp01(f)));
   const tilt = useTransform(intro, (v) => 24 - v * 12);
-  const leftEdge = useTransform(flip, (f) => clamp01(f * 2));
 
   return (
     <div style={{ width: PW * 2, height: PH, perspective: 2200 }} className="relative">
@@ -174,20 +202,8 @@ export default function BookDeck({
           />
         ))}
         <div className="absolute left-1/2 top-0" style={{ width: PW, height: PH, transform: "translateZ(-0.5px)" }}>
-          <EndPaper />
+          <EndPaper active={spread >= SPREADS} />
         </div>
-        {/* front board inside, revealed on the left once the cover turns */}
-        <motion.div
-          className="absolute right-1/2 top-0 rounded-l-[6px]"
-          style={{
-            width: PW + 8,
-            height: PH + 8,
-            marginTop: -4,
-            background: "var(--mat-graphite)",
-            transform: "translateZ(-6px)",
-            opacity: leftEdge,
-          }}
-        />
         {SHEETS.map((_, i) => (
           <Sheet key={i} index={i} flip={flip} spread={spread} titles={titles} />
         ))}

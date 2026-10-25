@@ -5,7 +5,7 @@ import { ALSO_COMPETED, HONORS, WINS } from "./projectData";
 export default function WinsChapter({ id }: { id: string }) {
   return (
     <section id={id} data-theme="light" className="white px-6 md:px-10 xl:px-16 pb-28 pt-28">
-      <div className="mx-auto max-w-[1480px]">
+      <div className="mx-auto max-w-[1352px]">
         <h2 className="max-w-3xl text-[clamp(2.25rem,4.5vw,3.75rem)]">Three hackathon wins.</h2>
         <p className="mt-4 max-w-[34rem] text-[1.0625rem] leading-[1.55] text-[var(--text-on-light-secondary)]">
           Each one has a full write-up in the projects below.
@@ -22,8 +22,10 @@ export default function WinsChapter({ id }: { id: string }) {
                   {w.event}, {w.date}
                 </span>
                 <h3 className="mt-4 text-[1.6rem] leading-[1.1] text-[var(--text-on-light)]">{w.prize}</h3>
-                {w.sponsor && <span className="mt-2 text-sm text-[var(--text-on-light-secondary)]">{w.sponsor}</span>}
-                <span className="mt-auto flex items-center justify-between border-t border-[var(--border-light)] pt-4 text-[15px]">
+                {/* the subtitle line is always reserved, so every card's title and divider sit on the same lines */}
+                <span className="mt-2 min-h-5 text-sm leading-5 text-[var(--text-on-light-secondary)]">{w.sponsor ?? " "}</span>
+                <span aria-hidden className="min-h-6 flex-1" />
+                <span className="flex items-center justify-between border-t border-[var(--border-light)] pt-4 text-[15px]">
                   <span className="font-medium text-[var(--text-on-light)]">{w.project}</span>
                   <span className="link">Read the case study</span>
                 </span>
@@ -32,30 +34,32 @@ export default function WinsChapter({ id }: { id: string }) {
           ))}
         </ol>
 
-        <div className="mt-14 grid gap-10 md:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
-          <div>
-            <h3 className="text-lg text-[var(--text-on-light)]">Also built at</h3>
-            <ul className="mt-3 divide-y divide-[var(--border-light)] border-y border-[var(--border-light)]">
-              {ALSO_COMPETED.map((c) => (
-                <li key={c.event}>
-                  <Link
-                    href={`/portfolio/${c.slug}`}
-                    // the visible cells read as a table; the link's name says it as a sentence
-                    aria-label={`${c.project}, built at ${c.event}, ${c.date}`}
-                    // fixed date column keeps every row's columns on the same lines
-                    className="grid min-h-[48px] grid-cols-[minmax(0,1fr)_minmax(0,1fr)_7.5rem] items-center gap-4 px-2 text-left text-[15px] transition-colors hover:bg-[var(--surface-light)]"
-                  >
-                    <span className="truncate font-medium text-[var(--text-on-light)]">{c.event}</span>
-                    <span className="truncate text-[var(--text-on-light-secondary)]">{c.project}</span>
-                    <span className="whitespace-nowrap text-right font-mono text-xs tabular-nums text-[var(--text-on-light-secondary)]">{c.date}</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-lg text-[var(--text-on-light)]">Honors</h3>
-            <ul className="mt-3 space-y-2 text-[15px] text-[var(--text-on-light-secondary)]">
+        <div className="mt-14">
+          <h3 className="text-lg text-[var(--text-on-light)]">Also built at</h3>
+          <ul className="mt-3 divide-y divide-[var(--border-light)] border-y border-[var(--border-light)]">
+            {ALSO_COMPETED.map((c) => (
+              <li key={c.event}>
+                <Link
+                  href={`/portfolio/${c.slug}`}
+                  // the visible cells read as a table; the link's name says it as a sentence
+                  aria-label={`${c.project}, built at ${c.event}, ${c.date}`}
+                  // phones: event over project, date on the right; wider: three columns on fixed lines
+                  className="grid min-h-[48px] grid-cols-[minmax(0,1fr)_auto] items-center gap-x-4 px-2 py-2.5 text-left text-[15px] transition-colors hover:bg-[var(--surface-light)] sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_7.5rem] sm:py-0"
+                >
+                  <span className="flex min-w-0 flex-col sm:contents">
+                    <span className="font-medium text-[var(--text-on-light)] sm:truncate">{c.event}</span>
+                    <span className="text-[var(--text-on-light-secondary)] sm:truncate">{c.project}</span>
+                  </span>
+                  <span className="whitespace-nowrap text-right font-mono text-xs tabular-nums text-[var(--text-on-light-secondary)]">{c.date}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          {/* a compact row under the table instead of a mostly empty side column */}
+          <div className="mt-10 flex flex-col gap-1 rounded-[16px] border border-[var(--border-light)] bg-[var(--surface-light)] px-5 py-4 sm:flex-row sm:items-baseline sm:gap-6">
+            <h3 className="shrink-0 text-lg text-[var(--text-on-light)]">Honors</h3>
+            <ul className="space-y-1 text-[15px] text-[var(--text-on-light-secondary)]">
               {HONORS.map((h) => (
                 <li key={h}>{h}</li>
               ))}

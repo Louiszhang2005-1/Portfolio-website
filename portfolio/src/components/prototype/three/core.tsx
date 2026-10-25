@@ -248,7 +248,7 @@ export function Layer3D({
     const passed = clamp01(m.dive.get() - order);
     g.position.set(local * drift[0], local * drift[1], (index - (total - 1) / 2) * local * gap);
     g.scale.setScalar(1 + passed * 0.3);
-    const op = m.fade.get() * (1 - clamp01((passed - 0.45) / 0.55));
+    const op = m.fade.get() * (1 - clamp01((passed - 0.35) / 0.4)); // short dissolve: half-faded parts read as grey slabs
     for (const mat of mats.current) {
       mat.opacity = (mat.userData.base as number) * op;
       mat.visible = op > 0.01;
@@ -303,10 +303,19 @@ export function Callout({ part, c }: { part: Part; c: CalloutRef }) {
   );
 }
 
+/** True from Tailwind's lg breakpoint up, where Callout labels render (they are `max-lg:hidden`). `matches` is live. */
+let wideQuery: MediaQueryList | null = null;
+export function calloutsShown() {
+  if (typeof window === "undefined") return true;
+  wideQuery ??= window.matchMedia("(min-width: 1024px)");
+  return wideQuery.matches;
+}
+
 const ROW = 34; // min vertical distance between labels, px
 
 /**
- * Engineering-drawing callouts: labels sit in one column right of the part, sorted by their part's height,
+ * Engineering-drawing callouts: labels sit in one column right of the part in stacking order (callouts[0] is the
+ * bottom layer, so it is the lowest label; anchors are chosen to project in the same order, so leaders never cross),
  * pushed apart to a minimum row spacing and kept inside the view; a leader line runs from each part to its label.
  * Mount after the model so it runs after every Layer3D has reported this frame.
  */
@@ -348,7 +357,7 @@ export function CalloutLayout({
       }
     }
     const colX = Math.min(right + 28, size.width - 200);
-    const sorted = [...live].sort((a, b) => a.ay - b.ay);
+    const sorted = [...live].sort((a, b) => callouts.indexOf(b) - callouts.indexOf(a));
     const ys = sorted.map((c) => c.ay);
     for (let i = 1; i < ys.length; i++) ys[i] = Math.max(ys[i], ys[i - 1] + ROW);
     // if the column overflows the bottom, slide it up (never above the top margin)
@@ -374,23 +383,49 @@ export function CalloutLayout({
  * Frames the subject: moves the camera so a `w` x `h` box fills `fill` of the view, whatever its aspect.
  * Replaces the CSS Fit wrapper; the 3D device always reads large without spilling under the nav.
  */
-export function FitCamera({ w, h, fill = 0.86, fov = 28, y = 0, lookY = 0 }: { w: number; h: number; fill?: number; fov?: number; y?: number; lookY?: number }) {
+export function FitCamera({
+  w,
+  h,
+  fill = 0.86,
+  fov = 28,
+  y = 0,
+  lookY = 0,
+  pose,
+}: {
+  w: number;
+  h: number;
+  fill?: number;
+  fov?: number;
+  y?: number;
+  lookY?: number;
+  /** optional per-frame camera height / aim (e.g. follow a laptop lid); distance still comes from the fit */
+  pose?: () => { y: number; lookY: number };
+}) {
   const cam = useRef<THREE.PerspectiveCamera>(null);
-  const fitted = useRef({ w: -1, h: -1 });
+  const fitted = useRef({ w: -1, h: -1, dist: 1, y: NaN, lookY: NaN });
   const { size } = useThree();
   useFrame(() => {
     const c = cam.current;
+    if (!c) return;
+    const f = fitted.current;
+    const p = pose ? pose() : { y, lookY };
     // the framing only depends on the view's size, so skip the projection rebuild unless it changed
-    if (!c || (fitted.current.w === size.width && fitted.current.h === size.height)) return;
-    fitted.current = { w: size.width, h: size.height };
-    const aspect = size.width / Math.max(1, size.height);
-    const t = Math.tan(THREE.MathUtils.degToRad(fov / 2));
-    const dist = Math.max(h / fill / 2 / t, w / fill / 2 / (t * aspect));
-    c.aspect = aspect;
-    c.fov = fov;
-    c.position.set(0, y, dist);
-    c.lookAt(0, lookY, 0);
-    c.updateProjectionMatrix();
+    if (f.w !== size.width || f.h !== size.height) {
+      const aspect = size.width / Math.max(1, size.height);
+      const t = Math.tan(THREE.MathUtils.degToRad(fov / 2));
+      f.dist = Math.max(h / fill / 2 / t, w / fill / 2 / (t * aspect));
+      f.w = size.width;
+      f.h = size.height;
+      f.y = NaN;
+      c.aspect = aspect;
+      c.fov = fov;
+      c.updateProjectionMatrix();
+    }
+    if (p.y === f.y && p.lookY === f.lookY) return;
+    f.y = p.y;
+    f.lookY = p.lookY;
+    c.position.set(0, p.y, f.dist);
+    c.lookAt(0, p.lookY, 0);
   });
   return <PerspectiveCamera ref={cam} makeDefault near={0.05} far={100} />;
 }

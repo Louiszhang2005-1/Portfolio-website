@@ -19,7 +19,7 @@ const T = {
 const beats = withPads([
   {
     start: 0,
-    end: 0.34,
+    end: 0.37,
     title: "Louis Zhang",
     body: "Mechanical engineering student at Polytechnique Montréal. I design hardware and write the software that runs on it.",
     note: "Interned at Tesla, Lockheed Martin and the City of Montréal. Hackathon winner at HackHarvard 2026, ConUHacks X and RoboHacks 2025.",
@@ -36,7 +36,7 @@ const beats = withPads([
     ),
   },
   {
-    start: 0.46,
+    start: 0.41,
     end: 1,
     title: "Every product is an assembly.",
     body: "Band, sensors, cell, board, case, glass: each layer is its own engineering problem.",

@@ -75,7 +75,7 @@ export default function DeckChapter({ id }: { id: string }) {
 function StaticDeck({ id }: { id: string }) {
   return (
     <section id={id} data-theme="light" className="light px-6 md:px-10 xl:px-16 py-28">
-      <div className="mx-auto max-w-[1480px]">
+      <div className="mx-auto max-w-[1352px]">
         <Intro />
         <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-4">
           {fullPortfolioPages.map((src, i) => (
@@ -92,13 +92,20 @@ function StaticDeck({ id }: { id: string }) {
 /** Pages visible on spread `s`: cover alone, then [1|2], [3|4], [5|6], [7]. */
 const pagesOn = (s: number) => (s < 1 ? [] : [2 * s - 2, 2 * s - 1].filter((i) => i < fullPortfolioPages.length));
 
+function caption(visible: number[]) {
+  if (!visible.length) return "Cover";
+  const label = visible.length > 1 ? `Pages ${visible.map((i) => i + 1).join(" and ")}` : `Page ${visible[0] + 1}`;
+  return `${label}: ${PAGE_TITLES[visible[0]]}`;
+}
+
 function PinnedDeck({ id }: { id: string }) {
   const ref = useRef<HTMLElement>(null);
   const p = useSmoothProgress(ref);
   const flip = useMap(p, PAGES, [0, SPREADS]);
   const intro = useMap(p, [0, PAGES[0]], [0, 1]);
   const [spread, setSpread] = useState(0);
-  useMotionValueEvent(flip, "change", (f) => setSpread(Math.round(f)));
+  // a spread counts as open once its turning sheet has nearly landed, so the caption tracks what is visible
+  useMotionValueEvent(flip, "change", (f) => setSpread(Math.min(SPREADS, Math.floor(f + 0.15))));
   const visible = pagesOn(spread);
 
   const pick = (i: number) => {
@@ -120,7 +127,7 @@ function PinnedDeck({ id }: { id: string }) {
               <PageList active={visible} onPick={pick} />
             </div>
             <p className="mt-4 text-sm text-[var(--text-on-light-secondary)] lg:hidden">
-              {visible.length ? `Pages ${visible.map((i) => i + 1).join(" and ")}: ${PAGE_TITLES[visible[0]]}` : "Cover"}
+              {caption(visible)}
             </p>
           </div>
           <div className="order-1 h-[300px] min-w-0 sm:h-[400px] md:order-2 md:h-[min(620px,calc(100vh-130px))]">

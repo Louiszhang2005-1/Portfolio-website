@@ -27,18 +27,22 @@ const chapters = [
   { label: "Wins", id: "chapter-wins" },
   { label: "Projects", id: "chapter-projects" },
 ];
+/** The footer is tracked too (it lights the Contact button), so "Projects" does not stay lit at the end. */
+const CONTACT_ID = "contact";
+const tracked = [...chapters.map((c) => c.id), CONTACT_ID];
 
 function useChapterPosition() {
   const [state, setState] = useState({ active: 0, progress: 0, light: false });
   useEffect(() => {
     const onScroll = () => {
-      const probe = window.innerHeight * 0.3;
+      // a section is current once its top crosses the middle of the viewport, i.e. once it fills most of the view
+      const probe = window.innerHeight * 0.5;
       let active = 0;
-      chapters.forEach((c, i) => {
-        const el = document.getElementById(c.id);
+      tracked.forEach((id, i) => {
+        const el = document.getElementById(id);
         if (el && el.getBoundingClientRect().top <= probe) active = i;
       });
-      const el = document.getElementById(chapters[active].id);
+      const el = document.getElementById(tracked[active]);
       const rect = el?.getBoundingClientRect();
       const span = rect ? Math.max(1, rect.height - window.innerHeight) : 1;
       const progress = rect ? Math.min(1, Math.max(0, -rect.top / span)) : 0;
@@ -58,10 +62,15 @@ function useChapterPosition() {
 function ChapterNav() {
   const { active, progress, light } = useChapterPosition();
   const navRef = useRef<HTMLElement>(null);
-  // on narrow screens the pill row scrolls; keep the current chapter visible in it
+  const atContact = active === chapters.length;
+  // on narrow screens the pill row scrolls: centre the current pill in it (clear of the edge fades). Sets the row's
+  // own scrollLeft, since scrollIntoView could also scroll the page vertically.
   useEffect(() => {
-    const el = navRef.current?.children[active] as HTMLElement | undefined;
-    el?.scrollIntoView({ block: "nearest", inline: "nearest" });
+    const nav = navRef.current;
+    const el = nav?.children[active] as HTMLElement | undefined;
+    if (!nav || !el || nav.scrollWidth <= nav.clientWidth) return;
+    const left = el.offsetLeft - nav.offsetLeft - (nav.clientWidth - el.offsetWidth) / 2;
+    nav.scrollTo({ left: Math.max(0, left), behavior: "smooth" });
   }, [active]);
   const fg = light ? "var(--text-on-light)" : "var(--text)";
   const muted = light ? "var(--text-on-light-secondary)" : "var(--text-secondary)";
@@ -110,7 +119,10 @@ function ChapterNav() {
         {/* recruiters shouldn't have to scroll to the end to reach me */}
         <a
           href="#contact"
-          className="inline-flex min-h-[34px] shrink-0 items-center rounded-full bg-[var(--accent)] px-3 text-[13px] font-semibold text-[var(--accent-ink)] transition-colors hover:bg-[var(--accent-hover)] sm:px-4"
+          aria-current={atContact ? "location" : undefined}
+          className="inline-flex min-h-[34px] shrink-0 items-center rounded-full bg-[var(--accent)] px-3 text-[13px] font-semibold text-[var(--accent-ink)] transition-[background-color,box-shadow] hover:bg-[var(--accent-hover)] sm:px-4"
+          // at the footer the Contact button is the current location: ring it in the bar's text colour
+          style={atContact ? { boxShadow: `0 0 0 2px ${light ? "var(--bg-light)" : "var(--bg)"}, 0 0 0 4px ${fg}` } : undefined}
         >
           Contact
         </a>
@@ -119,30 +131,62 @@ function ChapterNav() {
   );
 }
 
+/** Right column of the footer: a recap of facts already on the page, plus jump links back to each chapter. */
+const RECAP: [string, string][] = [
+  ["Studying", "Mechanical engineering, Polytechnique Montréal"],
+  ["Interned at", "Tesla, Lockheed Martin, City of Montréal"],
+  ["Hackathons", "HackHarvard 2026, ConUHacks X, RoboHacks 2025"],
+];
+
+function FooterRecap() {
+  return (
+    <div className="lg:border-l lg:border-[var(--border)] lg:pl-12">
+      <dl className="space-y-5">
+        {RECAP.map(([k, v]) => (
+          <div key={k}>
+            <dt className="text-sm text-[var(--text-tertiary)]">{k}</dt>
+            <dd className="mt-1 text-[17px] text-[var(--text)]">{v}</dd>
+          </div>
+        ))}
+      </dl>
+      <nav aria-label="Back to a chapter" className="mt-8 flex flex-wrap gap-x-5 gap-y-2 text-[15px]">
+        {chapters.map((c) => (
+          <a key={c.id} href={`#${c.id}`} className="text-[var(--text-secondary)] underline-offset-4 transition-colors hover:text-[var(--text)] hover:underline">
+            {c.label}
+          </a>
+        ))}
+      </nav>
+    </div>
+  );
+}
+
 function ContactFooter() {
   return (
-    <footer id="contact" data-theme="light" className="white relative border-t border-[var(--border)] px-6 md:px-10 xl:px-16 pb-16 pt-32">
-      <div className="mx-auto max-w-[1480px]">
-        <h2 className="max-w-3xl text-[clamp(2.5rem,6vw,5rem)]">Let&apos;s build the next one.</h2>
-        <p className="mt-5 max-w-xl text-lg text-[var(--text-secondary)]">
-          Mechanical design, manufacturing engineering, mechatronics and robotics, from consumer hardware to batteries and aerospace.
-        </p>
-        <OpenTo className="mt-5" />
-        <div className="mt-8 flex flex-wrap gap-3">
-          <a className={btnPrimaryDark} href={`mailto:${CONTACT.email}`}>
-            {CONTACT.email}
-          </a>
-          <a className={btnGhostDark} href={CONTACT.linkedin} target="_blank" rel="noopener noreferrer">
-            LinkedIn
-          </a>
-          <a className={btnGhostDark} href={CONTACT.github} target="_blank" rel="noopener noreferrer">
-            GitHub
-          </a>
-          <Link className={btnGhostDark} href="/game">
-            Play the game version
-          </Link>
+    <footer id={CONTACT_ID} data-theme="light" className="white relative border-t border-[var(--border)] px-6 md:px-10 xl:px-16 pb-16 pt-32">
+      <div className="mx-auto grid max-w-[1352px] gap-14 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:items-end lg:gap-16">
+        <div>
+          <h2 className="max-w-3xl text-[clamp(2.5rem,6vw,5rem)]">Let&apos;s build the next one.</h2>
+          <p className="mt-5 max-w-xl text-lg text-[var(--text-secondary)]">
+            Mechanical design, manufacturing engineering, mechatronics and robotics, from consumer hardware to batteries and aerospace.
+          </p>
+          <OpenTo className="mt-5" />
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a className={btnPrimaryDark} href={`mailto:${CONTACT.email}`}>
+              {CONTACT.email}
+            </a>
+            <a className={btnGhostDark} href={CONTACT.linkedin} target="_blank" rel="noopener noreferrer">
+              LinkedIn
+            </a>
+            <a className={btnGhostDark} href={CONTACT.github} target="_blank" rel="noopener noreferrer">
+              GitHub
+            </a>
+            <Link className={btnGhostDark} href="/game">
+              Play the game version
+            </Link>
+          </div>
         </div>
-        <p className="mt-24 border-t border-[var(--border)] pt-6 text-sm text-[var(--text-tertiary)]">
+        <FooterRecap />
+        <p className="mt-10 border-t border-[var(--border)] pt-6 text-sm text-[var(--text-tertiary)] lg:col-span-2 lg:mt-8">
           Louis Zhang · Mechanical engineering, Polytechnique Montréal
         </p>
       </div>

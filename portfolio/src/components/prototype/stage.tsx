@@ -17,12 +17,16 @@ export type Beat = {
   pad?: number;
 };
 
-/** Each fade fits inside half the gap to its neighbours, so two headings never show at once. */
+/**
+ * Each fade fills exactly half the gap to its neighbours: the outgoing beat reaches 0 at the gap's midpoint, where
+ * the incoming one starts, so two headings never show at once and the blank moment is a single point. Timelines keep
+ * their gaps short (≤ 0.04 of the track) so a copy block is readable on almost every frame.
+ */
 export const withPads = (timeline: Beat[]): Beat[] =>
   timeline.map((b, i) => {
     const before = i > 0 ? b.start - timeline[i - 1].end : Infinity;
     const after = i < timeline.length - 1 ? timeline[i + 1].start - b.end : Infinity;
-    return { ...b, pad: Math.min(0.03, before / 2, after / 2) };
+    return { ...b, pad: Math.min(0.04, before / 2, after / 2) };
   });
 
 /** The page's one orchestrated load moment: the name rises word by word. */

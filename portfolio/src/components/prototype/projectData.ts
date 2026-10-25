@@ -35,6 +35,14 @@ const thumbnailById: Record<string, string> = {
   "P-5": "/media/nursie/dashboard.png",
 };
 
+/**
+ * Wide screenshots shown as a region instead of a centre crop: x, y = top-left as a fraction of the image,
+ * w = fraction of the image width that fills the frame. Nursie: rooms 104-105 and the live fall alert.
+ */
+export const FRAMING: Record<string, { x: number; y: number; w: number }> = {
+  "P-5": { x: 0.482, y: 0, w: 0.515 },
+};
+
 /** Technical drawings: shown whole on white, never cropped like a photo. */
 export const DRAWINGS = new Set(["P-2", "P-4"]);
 

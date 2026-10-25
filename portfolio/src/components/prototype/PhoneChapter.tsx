@@ -52,19 +52,24 @@ const disciplines: Omit<Beat, "start" | "end">[] = [
 const beats = withPads([
   {
     start: 0,
-    end: 0.11,
+    end: 0.12,
     title: "What I work with.",
     body: "Mechanical Engineering at Polytechnique Montréal, working across hardware and software. Here is the toolkit, layer by layer.",
   },
   {
-    start: 0.18,
-    end: 0.32,
+    start: 0.15,
+    end: 0.34,
     title: "Four disciplines, one device.",
     body: "Each pair of layers is a set of skills. Keep scrolling to go inside.",
   },
-  ...disciplines.map((b, i) => ({ ...b, start: diveAt(i * 2) + 0.006, end: diveAt(i * 2 + 2) - 0.006 })),
+  // the last discipline holds through the pull-out, so the copy never blanks before "Assembled."
+  ...disciplines.map((b, i) => ({
+    ...b,
+    start: diveAt(i * 2) + 0.006,
+    end: i === disciplines.length - 1 ? 0.9 : diveAt(i * 2 + 2) - 0.006,
+  })),
   {
-    start: 0.945,
+    start: 0.93,
     end: 1,
     title: "Assembled.",
     body: "Every icon is a tool I use. Next, where I've used them.",
@@ -78,9 +83,10 @@ function DepthHud({ dive, progress }: { dive: MotionValue<number>; progress: Mot
   const opacity = useMap(progress, [0.34, 0.36, 0.86, 0.88], [0, 1, 1, 0]);
   const layer = Math.min(LAYERS, Math.floor(d) + 1);
   return (
+    // aligned to the stage's content column (same max width and gutters as DeviceStage), not the window edge
     <motion.div
       style={{ opacity }}
-      className="absolute bottom-8 left-6 hidden items-center gap-4 font-mono lg:flex text-[10px] uppercase tracking-[0.2em] text-[var(--text-tertiary)] sm:left-10"
+      className="pointer-events-none absolute inset-x-0 bottom-8 mx-auto hidden w-full max-w-[1480px] items-center gap-4 px-6 font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--text-tertiary)] md:px-10 lg:flex xl:px-16"
     >
       <span>
         Layer <span className="text-[var(--text)]">{String(layer).padStart(2, "0")}</span>/08

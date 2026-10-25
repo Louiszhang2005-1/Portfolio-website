@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  AnimatePresence,
-  motion,
-  useMotionValueEvent,
-  useReducedMotion,
-  useTransform,
-} from "framer-motion";
+import { motion, useMotionValueEvent, useReducedMotion, useTransform } from "framer-motion";
 import dynamic from "next/dynamic";
 import { useRef, useState } from "react";
 import { internships, type PortfolioItem } from "@/lib/portfolio";
@@ -90,12 +84,12 @@ function PinnedRoles({ id }: { id: string }) {
   const track = useTransform(p, (v) => clamp((v - T.windows) / (1 - T.windows), 0, 0.9999) * jobs.length);
   const [active, setActive] = useState(0);
   useMotionValueEvent(track, "change", (v) => setActive(Math.min(jobs.length - 1, Math.floor(v))));
-  const detailsOpacity = useMap(p, [0.18, 0.25], [0, 1]);
+  // the first role arrives with the lid, so the column under the heading is never left empty for long
+  const detailsOpacity = useMap(p, [0, 0.05], [0, 1]);
   const detailsHidden = useHiddenBelow(detailsOpacity);
   // lid: lying on the deck (PI/2) → open, leaning slightly back
   const lid = useMap(p, T.lid, [Math.PI / 2, -0.22]);
   const screenOn = useMap(p, T.screen, [0, 1]);
-  const job = jobs[active];
 
   return (
     <section ref={ref} id={id} data-theme="light" className="light relative" style={{ height: `${110 + jobs.length * 60}vh` }}>
@@ -103,23 +97,31 @@ function PinnedRoles({ id }: { id: string }) {
         <div className="relative mx-auto grid w-full max-w-[1480px] grid-cols-[minmax(0,1fr)] items-center gap-6 px-6 md:px-10 xl:px-16 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] md:gap-8 lg:gap-10">
           <div className="relative order-2 md:order-1">
             <h2 className="text-[clamp(2rem,4.5vw,3.75rem)] text-[var(--text-on-light)]">Where I&apos;ve worked.</h2>
+            {/* every role sits in the same grid cell, so the block is always as tall as the longest role: the heading
+                and laptop never shift when the company changes, and the swap is instant (no blank frame between roles) */}
             <motion.div
               style={{ opacity: detailsOpacity }}
               aria-hidden={detailsHidden || undefined}
               inert={detailsHidden}
-              className="relative mt-5 md:mt-7"
+              className="relative mt-5 grid md:mt-7"
             >
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={job.id}
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -12 }}
-                  transition={{ duration: 0.25 }}
-                >
-                  <RoleDetails job={job} index={active} />
-                </motion.div>
-              </AnimatePresence>
+              {jobs.map((j, i) => {
+                const on = i === active;
+                return (
+                  <motion.div
+                    key={j.id}
+                    aria-hidden={!on || undefined}
+                    inert={!on}
+                    className="[grid-area:1/1]"
+                    style={{ visibility: on ? "visible" : "hidden" }}
+                    initial={false}
+                    animate={on ? { opacity: [0.35, 1], y: [6, 0] } : { opacity: 0, y: 0 }}
+                    transition={{ duration: on ? 0.22 : 0 }}
+                  >
+                    <RoleDetails job={j} index={i} />
+                  </motion.div>
+                );
+              })}
             </motion.div>
           </div>
           <div className="order-1 h-[220px] min-w-0 sm:h-[300px] md:order-2 md:h-[min(620px,calc(100vh-150px))]">

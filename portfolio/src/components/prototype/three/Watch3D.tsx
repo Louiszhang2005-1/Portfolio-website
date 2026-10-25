@@ -10,6 +10,7 @@ import * as THREE from "three";
 import {
   Callout,
   CalloutLayout,
+  calloutsShown,
   DeviceView,
   FitCamera,
   Layer3D,
@@ -47,27 +48,59 @@ const zAt = (i: number) => (i - (N - 1) / 2) * 0.012;
 
 type WatchProps = { m: DeviceMotion; notif: MotionValue<number>; hero: MotionValue<number> };
 
-/** Band strap whose far end fades out, so a large watch never ends in a hard edge. */
-function useStrapFade() {
-  return useMemo(
-    () =>
-      canvasTexture(8, 256, (ctx) => {
-        const g = ctx.createLinearGradient(0, 0, 0, 256);
-        // fully transparent well before the far end, so the view's edge never cuts the band
-        g.addColorStop(0, "black");
-        g.addColorStop(0.55, "black");
-        g.addColorStop(0.92, "white");
-        g.addColorStop(1, "white");
-        ctx.fillStyle = g;
-        ctx.fillRect(0, 0, 8, 256);
-      }).tex,
-    []
-  );
+/**
+ * Band strap alpha: opaque at the lugs, smoothly transparent before the view's edge (even at the hero scale), and a short fade at the case end so the exploded strap never shows a hard cut. v=0 is the case end.
+ */
+function useStrapTextures() {
+  return useMemo(() => {
+    const alpha = canvasTexture(8, 256, (ctx) => {
+      // canvas y=0 is the far end (v=1)
+      const g = ctx.createLinearGradient(0, 0, 0, 256);
+      // the view's top/bottom edge sits only ~0.08 past the case at the hero scale, so the fade must finish by then
+      g.addColorStop(0, "black");
+      g.addColorStop(0.85, "black");
+      for (let k = 1; k <= 6; k++) {
+        const x = k / 6;
+        const v = Math.round(255 * x * x * (3 - 2 * x));
+        g.addColorStop(0.85 + x * 0.11, `rgb(${v},${v},${v})`);
+      }
+      g.addColorStop(0.975, "white");
+      g.addColorStop(1, "rgb(60,60,60)");
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, 8, 256);
+    }).tex;
+    // rounded-edge shading across the strap, so it reads as a moulded band rather than a flat slab
+    const map = canvasTexture(64, 8, (ctx) => {
+      const g = ctx.createLinearGradient(0, 0, 64, 0);
+      g.addColorStop(0, "#6b6b6b");
+      g.addColorStop(0.12, "#d8d8d8");
+      g.addColorStop(0.5, "#ffffff");
+      g.addColorStop(0.88, "#d8d8d8");
+      g.addColorStop(1, "#6b6b6b");
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, 64, 8);
+    }).tex;
+    return { alpha, map };
+  }, []);
+}
+
+/** Strap box without its two end caps: the caps carried a sliver of opaque alpha and read as a floating hairline. */
+function strapGeometry(w: number, h: number, d: number) {
+  const g = new THREE.BoxGeometry(w, h, d);
+  const idx = g.index!.array;
+  const keep: number[] = [];
+  g.groups.forEach((gr, i) => {
+    if (i === 2 || i === 3) return; // +y / -y faces
+    for (let k = gr.start; k < gr.start + gr.count; k++) keep.push(idx[k]);
+  });
+  g.setIndex(keep);
+  g.clearGroups();
+  return g;
 }
 
 function WatchModel({ rig, m, notif, hero, labels }: WatchProps & { labels: CalloutRef[]; rig: RefObject<THREE.Group | null> }) {
   const mat = useMaterials();
-  const fade = useStrapFade();
+  const strapTex = useStrapTextures();
   const geo = useMemo(
     () => ({
       case: slab(W, H, R, 0.1, [{ w: W - 0.04, h: H - 0.04, r: R - 0.02 }], 0.014),
@@ -75,15 +108,18 @@ function WatchModel({ rig, m, notif, hero, labels }: WatchProps & { labels: Call
       screen: roundedPlane(W - 0.05, H - 0.05, R - 0.025),
       bezel: slab(W - 0.03, H - 0.03, R - 0.015, 0.006),
       glass: slab(W - 0.005, H - 0.005, R - 0.003, 0.008, [], 0.004),
+      strap: strapGeometry(0.3, 0.56, 0.035),
     }),
     []
   );
   const strapMat = useMemo(() => {
     const s = mat.rubber.clone();
-    s.alphaMap = fade;
+    s.alphaMap = strapTex.alpha;
+    s.map = strapTex.map;
     s.transparent = true;
+    s.side = THREE.DoubleSide;
     return s;
-  }, [mat, fade]);
+  }, [mat, strapTex]);
   const cellLabel = useMemo(() => canvasTexture(256, 256, (ctx) => drawCellLabel(ctx, ["Li-ion", "3.85 V", "308 mAh"])).tex, []);
   const screen = useScreen(
     360,
@@ -97,8 +133,10 @@ function WatchModel({ rig, m, notif, hero, labels }: WatchProps & { labels: Call
     if (!g) return;
     const t = m.tilt.get();
     g.rotation.set(-t * 1.0 + 0.02, -0.12 * (1 - t), t * 0.66);
-    g.scale.setScalar((1 - t * 0.5) * hero.get());
-    g.position.x = -t * 0.14;
+    // callouts only show from lg up; below that the view is full width, so keep the teardown centred and larger
+    const wide = calloutsShown();
+    g.scale.setScalar((1 - t * (wide ? 0.5 : 0.36)) * hero.get());
+    g.position.x = wide ? -t * 0.14 : 0;
     g.position.y = Math.sin(state.clock.elapsedTime * 1.05) * 0.006;
   });
 
@@ -110,9 +148,7 @@ function WatchModel({ rig, m, notif, hero, labels }: WatchProps & { labels: Call
       <Layer3D {...L} index={0} anchor={[0.14, -0.42, zAt(0)]} label={labels[0]}>
         <group position-z={zAt(0) - 0.01}>
           {[1, -1].map((dir) => (
-            <mesh key={dir} position={[0, dir * (H / 2 + 0.26), 0]} rotation-z={dir === 1 ? 0 : Math.PI} material={strapMat}>
-              <boxGeometry args={[0.3, 0.56, 0.035]} />
-            </mesh>
+            <mesh key={dir} geometry={geo.strap} position={[0, dir * (H / 2 + 0.26), 0]} rotation-z={dir === 1 ? 0 : Math.PI} material={strapMat} />
           ))}
         </group>
       </Layer3D>

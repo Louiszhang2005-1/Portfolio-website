@@ -11,6 +11,7 @@ import {
   Callout,
   clamp01,
   CalloutLayout,
+  calloutsShown,
   DeviceView,
   FitCamera,
   Layer3D,
@@ -53,11 +54,12 @@ type PhoneProps = {
   lockOn: MotionValue<number>;
   homeOn: MotionValue<number>;
   codeOn: MotionValue<number>;
+  /** chapter progress; kept for API compatibility (the screen now keys off homeOn alone) */
   progress: MotionValue<number>;
   diveScale: MotionValue<number>;
 };
 
-function PhoneModel({ rig, m, lockOn, homeOn, codeOn, progress, diveScale, labels }: PhoneProps & { labels: CalloutRef[]; rig: RefObject<THREE.Group | null> }) {
+function PhoneModel({ rig, m, lockOn, homeOn, codeOn, diveScale, labels }: PhoneProps & { labels: CalloutRef[]; rig: RefObject<THREE.Group | null> }) {
   const mat = useMaterials();
   const geo = useMemo(
     () => ({
@@ -70,6 +72,7 @@ function PhoneModel({ rig, m, lockOn, homeOn, codeOn, progress, diveScale, label
       bezel: slab(W - 0.03, H - 0.03, R - 0.015, 0.006),
       screen: roundedPlane(W - 0.06, H - 0.06, R - 0.03),
       glass: slab(W, H, R, 0.006, [], 0.003),
+      camWindow: roundedPlane(0.34, 0.34, 0.07),
     }),
     []
   );
@@ -79,7 +82,6 @@ function PhoneModel({ rig, m, lockOn, homeOn, codeOn, progress, diveScale, label
     lock: quantize(lockOn.get(), 1 / 20),
     home: quantize(homeOn.get(), 1 / 20),
     code: quantize(codeOn.get(), 1 / 20),
-    progress: quantize(progress.get(), 1 / 200),
   });
   const screen = useScreen(
     540,
@@ -87,7 +89,7 @@ function PhoneModel({ rig, m, lockOn, homeOn, codeOn, progress, diveScale, label
     (ctx) => drawPhone(ctx, state()),
     () => {
       const s = state();
-      return [s.lock, s.home, s.code, s.progress > 0.93 ? s.progress : 0].map((v) => v.toFixed(3)).join() + new Date().getMinutes();
+      return [s.lock, s.home, s.code].map((v) => v.toFixed(3)).join() + new Date().getMinutes();
     }
   );
 
@@ -97,20 +99,31 @@ function PhoneModel({ rig, m, lockOn, homeOn, codeOn, progress, diveScale, label
     const t = m.tilt.get();
     g.rotation.set(-t * 1.0, 0, t * 0.66);
     g.scale.setScalar((1 - t * 0.4) * diveScale.get());
-    g.position.x = -t * 0.3 * clamp01((m.spread.get() - 0.3) / 0.7);
+    g.position.x = calloutsShown() ? -t * 0.3 * clamp01((m.spread.get() - 0.3) / 0.7) : 0;
     g.position.y = Math.sin(state.clock.elapsedTime * 1.05) * 0.012;
   });
 
-  const anchor = (i: number): [number, number, number] => [W / 2 - 0.02, -H / 2 + 0.03, zAt(i)];
+  /* Anchors are picked so they project in stacking order once exploded (screen-up ≈ 0.33x + 0.43y + 0.84z at full
+     tilt, 0.2 per layer): the label column is in layer order too, so no two leader lines cross. */
   const L = { m, total: N, gap: GAP };
 
   return (
     <group ref={rig}>
-      <Layer3D {...L} index={0} anchor={anchor(0)} label={labels[0]}>
-        <mesh geometry={geo.back} material={mat.graphite} position-z={zAt(0)} />
+      <Layer3D {...L} index={0} anchor={[W / 2 - 0.02, -H / 2 + 0.03, zAt(0)]} label={labels[0]}>
+        {/* inner face of the back glass: charging coil + camera window, so the last layer of the dive reads as a part */}
+        <group position-z={zAt(0)}>
+          <mesh geometry={geo.back} material={mat.graphite} />
+          <mesh material={mat.gold} position={[0, -0.12, 0.0065]}>
+            <ringGeometry args={[0.1, 0.17, 48]} />
+          </mesh>
+          <mesh material={mat.kapton} position={[0, -0.12, 0.007]}>
+            <circleGeometry args={[0.1, 48]} />
+          </mesh>
+          <mesh geometry={geo.camWindow} material={mat.ink} position={[-W / 2 + 0.2, H / 2 - 0.22, 0.0065]} />
+        </group>
       </Layer3D>
 
-      <Layer3D {...L} index={1} drift={[-0.08, 0.05]} anchor={[0.05, 0.55, zAt(1)]} label={labels[1]}>
+      <Layer3D {...L} index={1} drift={[-0.08, 0.05]} anchor={[0.22, 0.5, zAt(1)]} label={labels[1]}>
         <group position={[-W / 2 + 0.2, H / 2 - 0.22, zAt(1)]}>
           {[
             [-0.06, 0.06],
@@ -132,7 +145,7 @@ function PhoneModel({ rig, m, lockOn, homeOn, codeOn, progress, diveScale, label
         </group>
       </Layer3D>
 
-      <Layer3D {...L} index={2} drift={[0.05, 0.02]} anchor={[0.27, -0.55, zAt(2)]} label={labels[2]}>
+      <Layer3D {...L} index={2} drift={[0.05, 0.02]} anchor={[0.26, 0.1, zAt(2)]} label={labels[2]}>
         <group position={[0, -0.2, zAt(2)]}>
           <RoundedBox args={[0.56, 0.72, 0.018]} radius={0.03} smoothness={4} material={mat.cell} />
           <mesh position-z={0.0095}>
@@ -145,7 +158,7 @@ function PhoneModel({ rig, m, lockOn, homeOn, codeOn, progress, diveScale, label
         </group>
       </Layer3D>
 
-      <Layer3D {...L} index={3} drift={[-0.05, -0.02]} anchor={[0.29, 0.24, zAt(3)]} label={labels[3]}>
+      <Layer3D {...L} index={3} drift={[-0.05, -0.02]} anchor={[0.28, 0.26, zAt(3)]} label={labels[3]}>
         <group position={[0, 0.44, zAt(3)]}>
           <RoundedBox args={[0.6, 0.42, 0.012]} radius={0.025} smoothness={3} material={mat.pcb} />
           <mesh material={mat.steel} position={[-0.13, 0.03, 0.012]}>
@@ -171,7 +184,7 @@ function PhoneModel({ rig, m, lockOn, homeOn, codeOn, progress, diveScale, label
         </group>
       </Layer3D>
 
-      <Layer3D {...L} index={4} anchor={anchor(4)} label={labels[4]}>
+      <Layer3D {...L} index={4} anchor={[W / 2 - 0.03, 0, zAt(4)]} label={labels[4]}>
         <group position-z={zAt(4)}>
           <mesh geometry={geo.midframe} material={mat.brushed} />
           <mesh material={mat.steel} position={[-0.14, -0.62, 0.01]}>
@@ -183,7 +196,7 @@ function PhoneModel({ rig, m, lockOn, homeOn, codeOn, progress, diveScale, label
         </group>
       </Layer3D>
 
-      <Layer3D {...L} index={5} anchor={[W / 2 - 0.02, -H / 2 + 0.03, zAt(5)]} label={labels[5]}>
+      <Layer3D {...L} index={5} anchor={[W / 2, 0.1, zAt(5)]} label={labels[5]}>
         <group position-z={zAt(5)}>
           <mesh geometry={geo.frame} material={mat.alu} />
           <mesh material={mat.alu} position={[W / 2 + 0.006, 0.2, 0]}>
@@ -198,7 +211,7 @@ function PhoneModel({ rig, m, lockOn, homeOn, codeOn, progress, diveScale, label
         </group>
       </Layer3D>
 
-      <Layer3D {...L} index={6} anchor={anchor(6)} label={labels[6]}>
+      <Layer3D {...L} index={6} anchor={[W / 2 - 0.03, 0, zAt(6)]} label={labels[6]}>
         <group position-z={zAt(6)}>
           <mesh geometry={geo.bezel} material={mat.ink} />
           <mesh geometry={geo.screen} position-z={0.0035}>
@@ -207,7 +220,7 @@ function PhoneModel({ rig, m, lockOn, homeOn, codeOn, progress, diveScale, label
         </group>
       </Layer3D>
 
-      <Layer3D {...L} index={7} anchor={anchor(7)} label={labels[7]}>
+      <Layer3D {...L} index={7} anchor={[W / 2 - 0.02, 0, zAt(7)]} label={labels[7]}>
         <mesh geometry={geo.glass} material={mat.glass} position-z={zAt(7) + 0.004} />
       </Layer3D>
     </group>

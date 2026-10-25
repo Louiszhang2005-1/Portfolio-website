@@ -6,12 +6,17 @@ import type { MotionValue } from "framer-motion";
 import { useMemo, useRef } from "react";
 import * as THREE from "three";
 import type { PortfolioItem } from "@/lib/portfolio";
-import { DeviceView, FitCamera, Studio, canvasTexture, quantize, useMaterials, useScreen } from "./core";
+import { DeviceView, FitCamera, Studio, canvasTexture, clamp01, easeInOut, quantize, useMaterials, useScreen } from "./core";
 import { drawKeyboard, drawLaptop } from "./screens";
 
 const BW = 3.0; // base width
 const BD = 2.0; // base depth
 const LH = 1.95; // lid height
+
+const CLOSED = Math.PI / 2;
+const OPEN = -0.22;
+/** 0 closed → 1 fully open, from the lid angle */
+const openness = (lid: MotionValue<number>) => clamp01((CLOSED - lid.get()) / (CLOSED - OPEN));
 
 type LaptopProps = {
   jobs: PortfolioItem[];
@@ -38,7 +43,11 @@ function LaptopModel({ jobs, lid, screenOn, track }: LaptopProps) {
   }, [jobs]);
   const keyboard = useMemo(() => canvasTexture(1024, 420, drawKeyboard).tex, []);
   // the 1280x800 upload is the most expensive per-frame work on the page: redraw only on a visible step
-  const state = () => ({ screen: quantize(screenOn.get(), 1 / 20), track: quantize(track.get(), 1 / 40) });
+  // the panel wakes while the lid is still rising (not only once it is open), so it is never a black slab on screen
+  const state = () => ({
+    screen: quantize(Math.max(screenOn.get(), 1 - (1 - clamp01((openness(lid) - 0.1) / 0.3)) ** 2), 1 / 20),
+    track: quantize(track.get(), 1 / 40),
+  });
   const screen = useScreen(
     1280,
     800,
@@ -81,10 +90,17 @@ function LaptopModel({ jobs, lid, screenOn, track }: LaptopProps) {
   );
 }
 
+function pose(lid: MotionValue<number>) {
+  const o = easeInOut(quantize(openness(lid), 1 / 100));
+  return { y: 2.1 + (1.15 - 2.1) * o, lookY: 0.05 + (0.72 - 0.05) * o };
+}
+
 export default function Laptop3D(props: LaptopProps) {
   return (
     <DeviceView label="3D laptop whose screen shows one window per internship">
-      <FitCamera w={3.5} h={2.75} fill={0.98} y={1.15} lookY={0.72} />
+      {/* aim follows the lid: a closed laptop is a flat slab near y=0, so centre it instead of leaving it at the
+          bottom of a frame sized for the open screen */}
+      <FitCamera w={3.5} h={2.75} fill={0.98} pose={() => pose(props.lid)} />
       <Studio intensity={1.05} />
       <LaptopModel {...props} />
     </DeviceView>
