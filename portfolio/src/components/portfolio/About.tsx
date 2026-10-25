@@ -30,7 +30,7 @@ export default function About() {
             </h2>
             <div className="space-y-4 text-[var(--color-on-surface-variant)] leading-relaxed">
               <p>
-                I&apos;m Louis, a Mechanical Engineering student at Polytechnique Montréal. I bridge the gap between hardware and software — from designing lunar transport systems with CATIA to building full-stack apps with Next.js.
+                I&apos;m Louis, a Mechanical Engineering Student at Polytechnique Montréal. I bridge the gap between hardware and software — from designing lunar transport systems with CATIA to building full-stack apps with Next.js.
               </p>
               <p>
                 I&apos;ve interned at Tesla&apos;s LFP cell factory, Lockheed Martin, and the City of Montreal. On the competition circuit, I&apos;ve won hackathon awards at HackHarvard, ConUHacks, and RoboHacks.

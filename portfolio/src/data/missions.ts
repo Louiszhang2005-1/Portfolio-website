@@ -278,7 +278,7 @@ export const missions: Mission[] = [
     chronoOrder: 202601,
     skills: ["React", "SolidWorks", "Blender", "Python", "AI API", "CAD Integration"],
     details:
-      "Built at McHacks 13 (Jan 2026). As mechanical engineering students who spent countless hours scrolling Glassdoor and LinkedIn for interview prep, we created MechPrep: a platform to help mechanical and aerospace students prepare for interviews. We built 3D models in SolidWorks and Blender, then used React and Python to integrate the CAD assets into an interactive experience. The hardest parts were integrating the AI API and bringing CAD into the app. Next steps include adding more questions from different companies and helping companies generate interview questions for applicants.",
+      "Built at McHacks 13 (Jan 2026). As Mechanical Engineering Students who spent countless hours scrolling Glassdoor and LinkedIn for interview prep, we created MechPrep: a platform to help mechanical and aerospace students prepare for interviews. We built 3D models in SolidWorks and Blender, then used React and Python to integrate the CAD assets into an interactive experience. The hardest parts were integrating the AI API and bringing CAD into the app. Next steps include adding more questions from different companies and helping companies generate interview questions for applicants.",
     emoji: "🔧",
     color: "#5c6bc0",
     gravityMass: 650,

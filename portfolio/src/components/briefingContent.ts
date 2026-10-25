@@ -21,7 +21,7 @@ const KEY = "rgba(125,240,240,0.95)";
 
 const PART1_LINES: Line[] = [
   { text: "Identity confirmed: Louis Zhang." },
-  { text: "Mechanical engineering student building across hardware, manufacturing, aerospace, robotics, and software." },
+  { text: "Mechanical Engineering Student building across hardware, manufacturing, aerospace, robotics, and software." },
   { text: `${GAME_CONTACT.availability}.`, color: "#a7f3d0" },
   { text: "The internship route runs City of Montréal → Lockheed Martin → Tesla." },
   { text: "Sail between islands to open each project's blueprint, or press M for the full project list." },

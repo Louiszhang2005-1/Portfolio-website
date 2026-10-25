@@ -3,7 +3,7 @@ import DeviceEcosystem from "@/components/prototype/DeviceEcosystem";
 
 const title = "Louis Zhang · Mechanical engineering portfolio";
 const description =
-  "Louis Zhang, mechanical engineering student at Polytechnique Montréal. Hardware, software and internships at Tesla, Lockheed Martin and the City of Montréal. Open to 2027 internship opportunities.";
+  "Louis Zhang, Mechanical Engineering Student at Polytechnique Montréal. Hardware, software and internships at Tesla, Lockheed Martin and the City of Montréal. Open to 2027 internship opportunities.";
 
 export const metadata: Metadata = {
   // absolute: skip the root layout's title template

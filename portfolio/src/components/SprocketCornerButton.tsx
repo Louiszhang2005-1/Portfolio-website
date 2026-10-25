@@ -72,7 +72,7 @@ export default function SprocketCornerButton({ open, onOpenChange, onOpenProject
 
             <p className="font-headline text-xl font-black text-white">{GAME_CONTACT.name}</p>
             <p className="text-[12px] font-semibold text-cyan-50/80">
-              Mechanical Engineering student · Polytechnique Montréal
+              Mechanical Engineering Student · Polytechnique Montréal
             </p>
             <p className="mt-2 inline-flex items-center gap-2 rounded-full border border-emerald-200/35 bg-emerald-300/12 px-3 py-1 text-[11px] font-bold text-emerald-100">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-300" />

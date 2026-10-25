@@ -22,7 +22,7 @@ export function StaticIntro({ id }: { id: string }) {
         <div>
           <h1 className="text-[clamp(3.25rem,7.5vw,6.5rem)]">Louis Zhang</h1>
           <p className="mt-5 max-w-[34rem] text-lg text-[var(--text-secondary)]">
-            Mechanical engineering student at Polytechnique Montréal. I design hardware and write the software that runs
+            Mechanical Engineering Student at Polytechnique Montréal. I design hardware and write the software that runs
             on it.
           </p>
           <p className="mt-4 max-w-[34rem] text-sm text-[var(--text-tertiary)]">

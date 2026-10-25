@@ -83,7 +83,7 @@ export function drawWatch(ctx: CanvasRenderingContext2D, notif: number) {
     ctx.textAlign = "left";
     ctx.fillStyle = t["--text"];
     ctx.font = `600 24px ${DISPLAY}`;
-    wrapText(ctx, "Mechanical engineering student. Hardware + software.", W - 92).forEach((line, i) =>
+    wrapText(ctx, "Mechanical Engineering Student. Hardware + software.", W - 92).forEach((line, i) =>
       ctx.fillText(line, 46, y + 78 + i * 30)
     );
   }

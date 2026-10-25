@@ -193,7 +193,7 @@ export function Watch({ m, notif }: { m: Motion; notif: MotionValue<number> }) {
               <span>now</span>
             </div>
             <p className="mt-1 text-[11px] font-semibold leading-snug text-[var(--text)]">
-              Mechanical engineering student. Hardware + software.
+              Mechanical Engineering Student. Hardware + software.
             </p>
           </motion.div>
         </div>
