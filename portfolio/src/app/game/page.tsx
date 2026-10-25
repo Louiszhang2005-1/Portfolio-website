@@ -2,7 +2,9 @@
 /* eslint-disable react-hooks/refs */
 
 import { useMemo, useState, useCallback, useEffect } from "react";
+import { MotionConfig } from "framer-motion";
 import { useMatterEngine } from "@/hooks/useMatterEngine";
+import { getMissionById } from "@/data/missions";
 import GameWorld from "@/components/GameWorld";
 import ShipRenderer from "@/components/ShipRenderer";
 import HUD from "@/components/HUD";
@@ -10,7 +12,8 @@ import DialogueBubble from "@/components/DialogueBubble";
 import BlueprintModal from "@/components/BlueprintModal";
 import MobileControls from "@/components/MobileControls";
 import TreasureMap from "@/components/TreasureMap";
-import MissionBriefing, { SprocketCornerButton } from "@/components/MissionBriefing";
+import MissionBriefing from "@/components/MissionBriefing";
+import SprocketCornerButton from "@/components/SprocketCornerButton";
 import PortShop from "@/components/PortShop";
 import AssemblyModal from "@/components/AssemblyModal";
 import GameChrome from "@/components/GameChrome";
@@ -48,6 +51,33 @@ export default function Home() {
 
   const handleAssemblyComplete = useCallback(() => {
     // Assembly passed — could add bonus score here
+  }, []);
+
+  // Recruiter quick brief (contact, availability, internships)
+  const [briefOpen, setBriefOpen] = useState(false);
+  const [mobileHint, setMobileHint] = useState(true);
+  const { openMap, inspectMission, closeMap } = game;
+
+  const handleOpenProjects = useCallback(() => {
+    setBriefOpen(false);
+    openMap();
+  }, [openMap]);
+
+  const handleOpenContact = useCallback(() => {
+    closeMap();
+    setBriefOpen(true);
+  }, [closeMap]);
+
+  const handleInspectById = useCallback((id: string) => {
+    const mission = getMissionById(id);
+    if (!mission) return;
+    setBriefOpen(false);
+    inspectMission(mission);
+  }, [inspectMission]);
+
+  useEffect(() => {
+    const t = setTimeout(() => setMobileHint(false), 9000);
+    return () => clearTimeout(t);
   }, []);
 
   const handleMobileInteract = useCallback(() => {
@@ -100,17 +130,24 @@ export default function Home() {
   ), [nightOpacity]);
 
   return (
-    <div className="fixed inset-0 w-screen h-screen overflow-hidden select-none touch-none">
-      <div className="pointer-events-none fixed left-3 right-3 top-[72px] z-[75] md:hidden">
-        <div className="mx-auto max-w-[340px] rounded-[8px] border border-amber-200/35 bg-slate-950/72 px-3 py-2 text-center shadow-lg backdrop-blur-xl">
-          <p className="font-label text-[9px] font-black uppercase tracking-[0.18em] text-amber-100/90">
-            Desktop-only recommended
-          </p>
-          <p className="mt-0.5 text-[11px] font-semibold leading-snug text-white/78">
-            The full physics game is made for a computer. On mobile, use this as a preview and play properly on desktop.
-          </p>
+    <MotionConfig reducedMotion="user">
+    <div className="game-root fixed inset-0 w-screen h-screen overflow-hidden select-none touch-none">
+      {mobileHint && !game.nearbyIsland && !game.mapOpen && !briefOpen && (
+        <div className="fixed left-[76px] right-3 top-[calc(env(safe-area-inset-top)+4.75rem)] z-[55] md:hidden">
+          <div className="flex items-start gap-2 rounded-[8px] border border-amber-200/35 bg-slate-950/85 px-3 py-2 shadow-lg backdrop-blur-xl">
+            <p className="min-w-0 flex-1 text-[11px] font-semibold leading-snug text-white/90">
+              Best on desktop. Tap <b className="text-cyan-200">Projects</b> for the full list.
+            </p>
+            <button
+              onClick={() => setMobileHint(false)}
+              className="-mr-1 grid h-6 w-6 shrink-0 place-items-center rounded text-xs text-white/80"
+              aria-label="Dismiss hint"
+            >
+              ✕
+            </button>
+          </div>
         </div>
-      </div>
+      )}
 
       {/* ── GAME WORLD (with parallax layers) ── */}
       <GameWorld
@@ -178,6 +215,7 @@ export default function Home() {
         onIslandClick={game.navigateToIsland}
         onToggleMap={game.toggleMap}
         onReturnHome={game.returnHome}
+        onOpenContact={handleOpenContact}
         score={game.score}
         collectedItems={game.collectedItems}
         isHullCritical={game.isHullCritical}
@@ -232,6 +270,7 @@ export default function Home() {
         onClose={game.closeMap}
         visitedIds={game.visitedIds}
         onNavigate={game.navigateToIsland}
+        onInspect={game.inspectMission}
         boatPosition={game.hudPosition}
         boatHeading={game.hudHeading}
       />
@@ -240,7 +279,7 @@ export default function Home() {
       <MobileControls
         onJoystickChange={game.setVirtualJoystickInput}
         onMap={game.toggleMap}
-        onReturnHome={game.returnHome}
+        onContact={handleOpenContact}
         onInteract={handleMobileInteract}
         canInteract={Boolean(game.nearbyIsland)}
         isDocked={game.isDocked}
@@ -248,8 +287,14 @@ export default function Home() {
       />
 
       {/* ── MISSION BRIEFING (onboarding) ── */}
-      <MissionBriefing />
-      <SprocketCornerButton />
+      <SprocketCornerButton
+        open={briefOpen}
+        onOpenChange={setBriefOpen}
+        onOpenProjects={handleOpenProjects}
+        onInspect={handleInspectById}
+      />
+      <MissionBriefing onOpenProjects={handleOpenProjects} onOpenContact={handleOpenContact} />
     </div>
+    </MotionConfig>
   );
 }

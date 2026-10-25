@@ -20,6 +20,19 @@ export default function GameChrome() {
           Live Portfolio Expedition
         </span>
       </div>
+
+      {/* Reduced motion: stop decorative CSS loops anywhere in the game (framer
+          motion is handled by <MotionConfig reducedMotion="user"> in the page). */}
+      <style>{`
+        @media (prefers-reduced-motion: reduce) {
+          .game-root *, .game-root *::before, .game-root *::after {
+            animation-duration: 0.001ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.001ms !important;
+            scroll-behavior: auto !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }

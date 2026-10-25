@@ -3,12 +3,15 @@
 import React, { useState } from "react";
 import { missions, sectorInfo, Mission, WORLD_BOUNDS } from "@/data/missions";
 import { getSectorRoutes } from "@/lib/routeGeometry";
+import MapProjectList from "./MapProjectList";
 
 interface TreasureMapProps {
   isOpen: boolean;
   onClose: () => void;
   visitedIds: Set<string>;
   onNavigate: (mission: Mission) => void;
+  /** Open a mission blueprint directly from the list */
+  onInspect: (mission: Mission) => void;
   boatPosition: { x: number; y: number };
   boatHeading: number;
 }
@@ -34,17 +37,19 @@ const toMapY = (wy: number) => ((wy + WORLD_BOUNDS) / (WORLD_BOUNDS * 2)) * 100;
 const SECTOR_ROUTES = getSectorRoutes();
 
 const TreasureMap = React.memo(function TreasureMap({
-  isOpen, onClose, visitedIds, onNavigate, boatPosition, boatHeading,
+  isOpen, onClose, visitedIds, onNavigate, onInspect, boatPosition, boatHeading,
 }: TreasureMapProps) {
   const [hoveredSector, setHoveredSector] = useState<string | null>(null);
   const [hoveredIsland, setHoveredIsland] = useState<string | null>(null);
+  // Small screens show one pane at a time; the list is the fast path.
+  const [view, setView] = useState<"list" | "chart">("list");
 
   if (!isOpen) return null;
 
   const totalActive = missions.filter((m) => m.status === "active").length;
 
   return (
-    <div className="fixed inset-0 z-[90] flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-[90] flex items-center justify-center p-2 sm:p-4" role="dialog" aria-modal="true" aria-label="Treasure map and project list">
       {/* Backdrop */}
       <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={onClose} />
 
@@ -65,29 +70,45 @@ const TreasureMap = React.memo(function TreasureMap({
         }} />
 
         {/* ── Header ── */}
-        <div className="shrink-0 z-40 border-b border-[#8b6730]/25 bg-[#f8e5b7]/92 px-6 pb-3 pt-4 backdrop-blur-md">
-          <div className="flex items-center justify-between">
+        <div className="shrink-0 z-40 border-b border-[#8b6730]/25 bg-[#f8e5b7]/92 px-4 pb-3 pt-3 backdrop-blur-md sm:px-6 sm:pt-4">
+          <div className="flex items-center justify-between gap-2">
             <div className="flex items-center gap-3">
-              <span className="text-3xl">🗺️</span>
+              <span className="hidden text-3xl sm:inline">🗺️</span>
               <div>
                 <h2 className="text-xl font-headline font-black text-[#4a3520] tracking-tight">
                   Captain&apos;s Treasure Map
                 </h2>
-                <p className="text-[11px] font-label uppercase tracking-widest text-[#8a6e40] font-bold">
+                <p className="text-[11px] font-label uppercase tracking-widest text-[#6b5130] font-bold">
                   ⭐ {visitedIds.size}/{totalActive} locations discovered
                 </p>
               </div>
             </div>
-            <button
-              onClick={onClose}
-              className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-[8px] border border-[#6f4c21]/10 bg-[#a08050]/16 text-lg font-bold text-[#4a3520] transition-colors hover:bg-[#a08050]/28"
-            >
-              ✕
-            </button>
+            <div className="flex items-center gap-2">
+              <div className="flex rounded-[8px] border border-[#6f4c21]/20 bg-[#a08050]/10 p-0.5 lg:hidden" role="tablist">
+                {(["list", "chart"] as const).map((v) => (
+                  <button
+                    key={v}
+                    role="tab"
+                    aria-selected={view === v}
+                    onClick={() => setView(v)}
+                    className={`rounded-[6px] px-3 py-1.5 font-label text-[11px] font-black uppercase tracking-wider ${view === v ? "bg-[#4a3520] text-[#fff1c8]" : "text-[#4a3520]"}`}
+                  >
+                    {v === "list" ? "List" : "Chart"}
+                  </button>
+                ))}
+              </div>
+              <button
+                onClick={onClose}
+                aria-label="Close map"
+                className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-[8px] border border-[#6f4c21]/10 bg-[#a08050]/16 text-lg font-bold text-[#4a3520] transition-colors hover:bg-[#a08050]/28"
+              >
+                ✕
+              </button>
+            </div>
           </div>
 
           {/* Legend */}
-          <div className="mt-2 flex flex-wrap items-center gap-3 text-[10px] font-label text-[#8a6e40] uppercase tracking-wider">
+          <div className="mt-2 hidden flex-wrap items-center gap-3 text-[10px] font-label text-[#6b5130] uppercase tracking-wider sm:flex">
             <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-[#e65100] inline-block" /> Internships</span>
             <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-[#b8860b] inline-block" /> Mech/Aero</span>
             <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-[#c62828] inline-block" /> Robotics/IoT</span>
@@ -96,8 +117,9 @@ const TreasureMap = React.memo(function TreasureMap({
         </div>
 
         {/* ── MAP VIEWPORT — fills remaining space ── */}
+        <div className="mx-3 my-3 flex min-h-0 flex-1 gap-3 sm:mx-4">
         <div
-          className="relative flex-1 min-h-0 mx-4 my-3 overflow-hidden rounded-[8px] border border-[#6f4c21]/24 shadow-[inset_0_0_60px_rgba(4,30,40,0.55),0_18px_40px_rgba(64,42,10,0.16)]"
+          className={`relative min-h-0 flex-1 overflow-hidden rounded-[8px] border border-[#6f4c21]/24 shadow-[inset_0_0_60px_rgba(4,30,40,0.55),0_18px_40px_rgba(64,42,10,0.16)] ${view === "list" ? "hidden lg:block" : ""}`}
           style={{ background: "linear-gradient(160deg, #0c5b7d, #0f7ea6 30%, #0a6486 60%, #06384c)" }}
         >
           {/* Nautical chart grid */}
@@ -188,7 +210,7 @@ const TreasureMap = React.memo(function TreasureMap({
             <div className="relative">
               <div className="w-5 h-5 rounded-full bg-white/60 border-2 border-cyan-300/80 shadow-lg"
                 style={{ boxShadow: "0 0 12px rgba(0,200,255,0.4)" }} />
-              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 whitespace-nowrap text-[6px] font-label font-bold text-white/80 bg-black/30 px-1.5 py-0.5 rounded">
+              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 whitespace-nowrap text-[9px] font-label font-bold text-white bg-black/40 px-1.5 py-0.5 rounded">
                 🏠 Home Port
               </div>
             </div>
@@ -246,11 +268,11 @@ const TreasureMap = React.memo(function TreasureMap({
                 </div>
                 {isVisited && <span className="text-[8px] -mt-0.5">⭐</span>}
                 {isLocked && <span className="text-[7px] text-white/60 font-bold">🔒</span>}
-                <span className="text-[7px] font-label font-bold text-white/90 mt-0.5 whitespace-nowrap drop-shadow-lg max-w-[60px] truncate">
+                <span className="text-[10px] font-label font-bold text-white mt-0.5 whitespace-nowrap max-w-[88px] truncate rounded bg-black/35 px-1" style={{ textShadow: "0 1px 2px rgba(0,0,0,0.8)" }}>
                   {m.title}
                 </span>
                 {isHovered && !isLocked && (
-                  <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 bg-black/80 text-white text-[7px] font-label px-2 py-1 rounded whitespace-nowrap z-30 pointer-events-none border border-white/10">
+                  <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 bg-black/85 text-white text-[11px] font-label px-2 py-1 rounded whitespace-nowrap z-30 pointer-events-none border border-white/10">
                     {m.subtitle} · <span style={{ color: m.fieldType === "typhoon" ? "#ff9800" : "#ab47bc" }}>{m.fieldType === "typhoon" ? "🌀 Typhoon" : "🕳️ Gravity"}</span>
                   </div>
                 )}
@@ -294,14 +316,24 @@ const TreasureMap = React.memo(function TreasureMap({
           </div>
 
           {/* Sector labels */}
-          <div className="absolute text-[7px] font-label font-black uppercase tracking-widest z-10" style={{ left: "12%", top: "16%", color: "#e65100", opacity: 0.65, textShadow: "0 1px 3px rgba(0,0,0,0.5)" }}>Internship Shores</div>
-          <div className="absolute text-[7px] font-label font-black uppercase tracking-widest z-10" style={{ left: "62%", top: "10%", color: "#b8860b", opacity: 0.65, textShadow: "0 1px 3px rgba(0,0,0,0.5)" }}>Aero Atoll</div>
-          <div className="absolute text-[7px] font-label font-black uppercase tracking-widest z-10" style={{ left: "10%", top: "70%", color: "#c62828", opacity: 0.65, textShadow: "0 1px 3px rgba(0,0,0,0.5)" }}>Robotics &amp; IoT</div>
-          <div className="absolute text-[7px] font-label font-black uppercase tracking-widest z-10" style={{ left: "60%", top: "68%", color: "#6a1b9a", opacity: 0.65, textShadow: "0 1px 3px rgba(0,0,0,0.5)" }}>Code Cove</div>
+          <div className="absolute text-[10px] font-label font-black uppercase tracking-widest z-10 pointer-events-none" style={{ left: "12%", top: "16%", color: "#e65100", opacity: 0.9, textShadow: "0 1px 3px rgba(0,0,0,0.5)" }}>Internship Shores</div>
+          <div className="absolute text-[10px] font-label font-black uppercase tracking-widest z-10 pointer-events-none" style={{ left: "62%", top: "10%", color: "#b8860b", opacity: 0.65, textShadow: "0 1px 3px rgba(0,0,0,0.5)" }}>Aero Atoll</div>
+          <div className="absolute text-[10px] font-label font-black uppercase tracking-widest z-10 pointer-events-none" style={{ left: "10%", top: "70%", color: "#c62828", opacity: 0.65, textShadow: "0 1px 3px rgba(0,0,0,0.5)" }}>Robotics &amp; IoT</div>
+          <div className="absolute text-[10px] font-label font-black uppercase tracking-widest z-10 pointer-events-none" style={{ left: "60%", top: "68%", color: "#6a1b9a", opacity: 0.65, textShadow: "0 1px 3px rgba(0,0,0,0.5)" }}>Code Cove</div>
+        </div>
+
+        {/* ── Project list (recruiter fast path) ── */}
+        <aside className={`min-h-0 w-full rounded-[8px] border border-[#6f4c21]/20 bg-[#fdf0cf]/70 p-2 lg:block lg:w-[310px] lg:shrink-0 ${view === "chart" ? "hidden" : "block"}`}>
+          <MapProjectList
+            visitedIds={visitedIds}
+            onInspect={onInspect}
+            onSail={(m) => { onNavigate(m); onClose(); }}
+          />
+        </aside>
         </div>
 
         {/* ── Sector strip (replaces Territory cards) ── */}
-        <div className="shrink-0 flex flex-wrap gap-2 px-4 py-3 border-t border-[#8b6730]/20">
+        <div className="shrink-0 hidden flex-wrap gap-2 px-4 py-3 border-t border-[#8b6730]/20 sm:flex">
           {sectorInfo.map((sector) => {
             const sectorMissions = missions.filter((m) => m.sector === sector.name);
             const discovered = sectorMissions.filter((m) => visitedIds.has(m.id)).length;
@@ -328,8 +360,8 @@ const TreasureMap = React.memo(function TreasureMap({
         </div>
 
         {/* ── Footer ── */}
-        <div className="shrink-0 px-6 pb-4 text-center">
-          <span className="text-[10px] font-label text-[#8a6e40]/60 uppercase tracking-widest">
+        <div className="hidden shrink-0 px-6 pb-4 text-center sm:block">
+          <span className="text-[10px] font-label text-[#6b5130] uppercase tracking-widest">
             Press <kbd className="bg-[#a08050]/15 px-1.5 py-0.5 rounded font-bold mx-0.5">M</kbd> or <kbd className="bg-[#a08050]/15 px-1.5 py-0.5 rounded font-bold mx-0.5">ESC</kbd> to close
           </span>
         </div>

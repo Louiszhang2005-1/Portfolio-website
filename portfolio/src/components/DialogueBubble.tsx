@@ -16,7 +16,7 @@ export default function DialogueBubble({ nearbyIsland, onInspect }: DialogueBubb
       {nearbyIsland && (
         <motion.div
           key={nearbyIsland.id}
-          className="fixed bottom-[calc(env(safe-area-inset-bottom)+10.25rem)] left-1/2 z-50 w-full max-w-3xl -translate-x-1/2 px-4 md:bottom-6"
+          className="fixed left-1/2 top-[calc(env(safe-area-inset-top)+8.25rem)] z-50 w-full max-w-3xl -translate-x-1/2 px-4 md:bottom-6 md:top-auto md:max-w-[580px]"
           initial={{ opacity: 0, y: 44, scale: 0.96 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 28, scale: 0.98 }}
@@ -29,9 +29,9 @@ export default function DialogueBubble({ nearbyIsland, onInspect }: DialogueBubb
               style={{ background: `linear-gradient(90deg, transparent, ${nearbyIsland.color}, transparent)` }}
             />
 
-            <div className="grid gap-4 p-4 sm:grid-cols-[74px_1fr_auto] sm:items-center">
+            <div className="grid gap-3 p-3 sm:grid-cols-[74px_1fr_auto] sm:items-center sm:gap-4 sm:p-4">
               <div
-                className="grid h-[74px] w-[74px] place-items-center rounded-md border text-3xl shadow-[inset_0_0_30px_rgba(255,255,255,0.05)]"
+                className="hidden h-[74px] w-[74px] sm:grid place-items-center rounded-md border text-3xl shadow-[inset_0_0_30px_rgba(255,255,255,0.05)]"
                 style={{
                   borderColor: `${nearbyIsland.color}66`,
                   background: `radial-gradient(circle, ${nearbyIsland.color}33, rgba(15,23,42,0.82) 68%)`,
@@ -43,7 +43,7 @@ export default function DialogueBubble({ nearbyIsland, onInspect }: DialogueBubb
 
               <div className="min-w-0">
                 <div className="mb-2 flex flex-wrap items-center gap-2">
-                  <span className="font-label text-[9px] font-black uppercase tracking-[0.28em] text-cyan-100/60">
+                  <span className="font-label text-[9px] font-black uppercase tracking-[0.28em] text-cyan-100/80">
                     Mission Contact
                   </span>
                   <span
@@ -65,12 +65,12 @@ export default function DialogueBubble({ nearbyIsland, onInspect }: DialogueBubb
                 ) : (
                   <p className="font-headline text-base font-black leading-snug text-white sm:text-lg">
                     Arrived at <span style={{ color: nearbyIsland.color }}>{nearbyIsland.title}</span>.
-                    <span className="text-cyan-100/72"> Inspect the {nearbyIsland.subtitle} blueprint?</span>
+                    <span className="text-cyan-100/85"> {nearbyIsland.subtitle}</span>
                   </p>
                 )}
 
                 {!isLocked && (
-                  <p className="mt-2 font-label text-[10px] font-bold uppercase tracking-[0.18em] text-cyan-100/42">
+                  <p className="mt-2 font-label text-[10px] font-bold uppercase tracking-[0.18em] text-cyan-100/75">
                     Tap Inspect or press ENTER
                   </p>
                 )}

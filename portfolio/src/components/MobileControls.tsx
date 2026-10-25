@@ -2,13 +2,13 @@
 
 import { useCallback, useRef, useState } from "react";
 import Link from "next/link";
-import { Anchor, Home, LogOut, Map, Navigation, Search } from "lucide-react";
+import { Anchor, LogOut, Mail, Map, Navigation, Search } from "lucide-react";
 import type { VirtualJoystickInput } from "@/hooks/useMatterEngine";
 
 interface MobileControlsProps {
   onJoystickChange: (input: VirtualJoystickInput) => void;
   onMap: () => void;
-  onReturnHome: () => void;
+  onContact: () => void;
   onInteract: () => void;
   canInteract: boolean;
   isDocked: boolean;
@@ -20,7 +20,7 @@ const STICK_RADIUS = 54;
 export default function MobileControls({
   onJoystickChange,
   onMap,
-  onReturnHome,
+  onContact,
   onInteract,
   canInteract,
   isDocked,
@@ -144,27 +144,28 @@ export default function MobileControls({
         </button>
         <button
           onClick={onMap}
-          className="flex h-12 items-center justify-center gap-2 rounded-[8px] border border-cyan-100/20 bg-slate-950/48 px-3 font-label text-[10px] font-black uppercase tracking-[0.14em] text-cyan-50/76 shadow-lg backdrop-blur-xl"
+          className="flex h-12 items-center justify-center gap-2 rounded-[8px] border border-cyan-100/30 bg-cyan-500/30 px-3 font-label text-[10px] font-black uppercase tracking-[0.14em] text-cyan-50 shadow-lg backdrop-blur-xl"
         >
           <Map className="h-4 w-4" />
-          Map
+          Projects
         </button>
         <button
-          onClick={onReturnHome}
-          className="flex h-12 items-center justify-center gap-2 rounded-[8px] border border-emerald-100/20 bg-emerald-300/12 px-3 font-label text-[10px] font-black uppercase tracking-[0.14em] text-emerald-50/76 shadow-lg backdrop-blur-xl"
+          onClick={onContact}
+          className="flex h-12 items-center justify-center gap-2 rounded-[8px] border border-violet-100/25 bg-violet-400/20 px-3 font-label text-[10px] font-black uppercase tracking-[0.14em] text-violet-50 shadow-lg backdrop-blur-xl"
         >
-          <Home className="h-4 w-4" />
-          Home
+          <Mail className="h-4 w-4" />
+          Contact
         </button>
         <Link
           href="/"
-          className="flex h-12 items-center justify-center gap-2 rounded-[8px] border border-rose-100/20 bg-rose-300/12 px-3 font-label text-[10px] font-black uppercase tracking-[0.14em] text-rose-50/76 shadow-lg backdrop-blur-xl"
+          className="flex h-12 items-center justify-center gap-2 rounded-[8px] border border-rose-100/25 bg-rose-300/15 px-3 font-label text-[10px] font-black uppercase tracking-[0.14em] text-rose-50 shadow-lg backdrop-blur-xl"
+          aria-label="Back to the main portfolio site"
         >
           <LogOut className="h-4 w-4" />
-          Exit
+          Site
         </Link>
         {nearbyLabel && (
-          <div className="rounded-[8px] border border-white/10 bg-black/38 px-2 py-1.5 text-center font-label text-[8px] font-bold uppercase tracking-[0.12em] text-white/48 backdrop-blur-xl">
+          <div className="rounded-[8px] border border-white/10 bg-black/50 px-2 py-1.5 text-center font-label text-[9px] font-bold uppercase tracking-[0.12em] text-white/80 backdrop-blur-xl">
             {nearbyLabel}
           </div>
         )}

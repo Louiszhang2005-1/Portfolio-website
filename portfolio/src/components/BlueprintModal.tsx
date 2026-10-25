@@ -2,7 +2,13 @@
 
 import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import Link from "next/link";
 import { Mission } from "@/data/missions";
+import { allPortfolioItems } from "@/lib/portfolio";
+
+/* The main site's portfolio data is the canonical copy; the game reuses its
+   write-ups so both versions stay in sync. */
+const portfolioById = new Map(allPortfolioItems.map((item) => [item.id, item]));
 
 interface BlueprintModalProps {
   mission: Mission | null;
@@ -41,6 +47,8 @@ export default function BlueprintModal({ mission, isOpen, onClose }: BlueprintMo
 
   if (!mission) return null;
 
+  const portfolioItem = portfolioById.get(mission.id);
+  const details = portfolioItem?.details || mission.details;
   const parts = mission.assemblyParts?.slice(0, 6) ?? [];
   const hasParts = parts.length > 0;
   const moduleCount = Math.max(mission.skills.length, parts.length || 1);
@@ -125,7 +133,7 @@ export default function BlueprintModal({ mission, isOpen, onClose }: BlueprintMo
                     <h2 className="font-headline text-2xl font-black leading-tight text-white sm:text-4xl">
                       {mission.title}
                     </h2>
-                    <p className="mt-1 max-w-2xl text-sm font-bold text-cyan-100/55 sm:text-base">{mission.subtitle}</p>
+                    <p className="mt-1 max-w-2xl text-sm font-bold text-cyan-100/85 sm:text-base">{mission.subtitle}</p>
                   </div>
                 </div>
               </header>
@@ -187,7 +195,7 @@ export default function BlueprintModal({ mission, isOpen, onClose }: BlueprintMo
                     </div>
                   )}
 
-                  <div className="relative min-h-[260px] overflow-hidden rounded-lg border border-cyan-100/16 bg-cyan-100/[0.035] p-4">
+                  <div className="relative hidden min-h-[260px] overflow-hidden rounded-lg border border-cyan-100/16 bg-cyan-100/[0.035] p-4 lg:block">
                     <div className="absolute inset-5 rounded-full border border-cyan-100/14 blueprint-orbit" />
                     <div className="absolute left-1/2 top-[43%] h-32 w-32 -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan-100/18 bg-slate-950/62" />
                     <div className="absolute left-1/2 top-[43%] grid h-20 w-20 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-md border border-cyan-100/26 bg-cyan-200/12 shadow-[0_0_28px_rgba(34,211,238,0.24)]">
@@ -216,17 +224,17 @@ export default function BlueprintModal({ mission, isOpen, onClose }: BlueprintMo
                     )}
                   </div>
 
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="hidden grid-cols-2 gap-3 sm:grid">
                     <DataTile label="Mission Code" value={mission.id} />
                     <DataTile label="Sector" value={mission.sector} />
                     <DataTile label="Systems" value={`${moduleCount} modules`} />
-                    <DataTile label="Media" value={mediaSrc ? "ATTACHED" : "MISSING"} highlight={Boolean(mediaSrc)} />
+                    <DataTile label="Media" value={mediaSrc ? "ATTACHED" : "NONE"} highlight={Boolean(mediaSrc)} />
                   </div>
                 </section>
 
                 <section className="grid gap-5 content-start">
                   <div>
-                    <h3 className="mb-3 flex items-center gap-2 font-label text-[10px] font-black uppercase tracking-[0.2em] text-cyan-100/55">
+                    <h3 className="mb-3 flex items-center gap-2 font-label text-[10px] font-black uppercase tracking-[0.2em] text-cyan-100/80">
                       <span className="material-symbols-outlined icon-lock text-[17px]">manufacturing</span>
                       Tech Stack
                     </h3>
@@ -248,19 +256,19 @@ export default function BlueprintModal({ mission, isOpen, onClose }: BlueprintMo
                   <div className="h-px bg-cyan-100/16" />
 
                   <div>
-                    <h3 className="mb-3 flex items-center gap-2 font-label text-[10px] font-black uppercase tracking-[0.2em] text-cyan-100/55">
+                    <h3 className="mb-3 flex items-center gap-2 font-label text-[10px] font-black uppercase tracking-[0.2em] text-cyan-100/80">
                       <span className="material-symbols-outlined icon-lock text-[17px]">article</span>
                       Mission Brief
                     </h3>
                     <div className="relative overflow-hidden rounded-lg border border-white/10 bg-black/24 p-4">
                       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-100/70 to-transparent blueprint-scan" />
-                      <p className="text-sm font-semibold leading-7 text-cyan-50/84 sm:text-base whitespace-pre-line">{mission.details}</p>
+                      <p className="text-sm font-semibold leading-7 text-cyan-50/84 sm:text-base whitespace-pre-line">{details}</p>
                     </div>
                   </div>
 
                   {hasParts && (
                     <div>
-                      <h3 className="mb-3 flex items-center gap-2 font-label text-[10px] font-black uppercase tracking-[0.2em] text-cyan-100/55">
+                      <h3 className="mb-3 flex items-center gap-2 font-label text-[10px] font-black uppercase tracking-[0.2em] text-cyan-100/80">
                         <span className="material-symbols-outlined icon-lock text-[17px]">account_tree</span>
                         Assembly Nodes
                       </h3>
@@ -277,7 +285,7 @@ export default function BlueprintModal({ mission, isOpen, onClose }: BlueprintMo
 
                   {mission.resources && mission.resources.length > 0 && (
                     <div>
-                      <h3 className="mb-3 flex items-center gap-2 font-label text-[10px] font-black uppercase tracking-[0.2em] text-cyan-100/55">
+                      <h3 className="mb-3 flex items-center gap-2 font-label text-[10px] font-black uppercase tracking-[0.2em] text-cyan-100/80">
                         <span className="material-symbols-outlined icon-lock text-[17px]">folder_open</span>
                         Mission Resources
                       </h3>
@@ -296,9 +304,19 @@ export default function BlueprintModal({ mission, isOpen, onClose }: BlueprintMo
                   )}
 
                   <div className="grid gap-3 sm:grid-cols-2">
-                    <ActionLink href={mission.github} icon="code" label="GitHub" emptyLabel="Classified" />
-                    <ActionLink href={mission.demo} icon="rocket_launch" label="Live Demo" emptyLabel="Coming Soon" />
+                    <ActionLink href={mission.github} icon="code" label="GitHub" emptyLabel="No public repo" />
+                    <ActionLink href={mission.demo} icon="rocket_launch" label="Live Demo" emptyLabel="No public demo" />
                   </div>
+
+                  {portfolioItem && (
+                    <Link
+                      href={`/portfolio/${portfolioItem.slug}`}
+                      className="flex min-h-12 items-center justify-center gap-2 rounded-md border border-amber-200/35 bg-amber-300/10 px-4 py-3 font-headline text-sm font-black text-amber-50 transition-colors hover:bg-amber-300/18"
+                    >
+                      <span className="material-symbols-outlined icon-lock text-[18px]">article</span>
+                      Full case study on the main site
+                    </Link>
+                  )}
 
                   <motion.button
                     onClick={onClose}
@@ -310,7 +328,7 @@ export default function BlueprintModal({ mission, isOpen, onClose }: BlueprintMo
                     Return to Ship
                   </motion.button>
 
-                  <div className="text-center font-label text-[10px] font-black uppercase tracking-[0.18em] text-cyan-100/38">
+                  <div className="text-center font-label text-[10px] font-black uppercase tracking-[0.18em] text-cyan-100/70">
                     Press <kbd className="mx-1 rounded border border-cyan-100/18 bg-cyan-300/10 px-1.5 py-0.5 text-cyan-100/75">ESC</kbd> to close
                   </div>
                 </section>
@@ -326,7 +344,7 @@ export default function BlueprintModal({ mission, isOpen, onClose }: BlueprintMo
 function DataTile({ label, value, highlight }: { label: string; value: string; highlight?: boolean }) {
   return (
     <div className="rounded-md border border-white/10 bg-slate-950/58 p-3">
-      <div className="font-label text-[9px] font-black uppercase tracking-[0.18em] text-cyan-100/38">{label}</div>
+      <div className="font-label text-[9px] font-black uppercase tracking-[0.18em] text-cyan-100/70">{label}</div>
       <div className="mt-1 truncate font-headline text-sm font-black" style={{ color: highlight ? "#86efac" : "#dff9ff" }}>
         {value}
       </div>
@@ -337,7 +355,7 @@ function DataTile({ label, value, highlight }: { label: string; value: string; h
 function ActionLink({ href, icon, label, emptyLabel }: { href?: string; icon: string; label: string; emptyLabel: string }) {
   if (!href) {
     return (
-      <div className="flex min-h-12 items-center justify-center gap-2 rounded-md border border-white/10 bg-white/[0.035] px-4 py-3 font-headline text-sm font-black text-white/28">
+      <div className="flex min-h-12 items-center justify-center gap-2 rounded-md border border-white/10 bg-white/[0.035] px-4 py-3 font-headline text-sm font-black text-white/55">
         <span className="material-symbols-outlined icon-lock text-[18px]">lock</span>
         {emptyLabel}
       </div>

@@ -20,6 +20,7 @@ interface HUDProps {
   onIslandClick: (mission: Mission) => void;
   onToggleMap: () => void;
   onReturnHome: () => void;
+  onOpenContact: () => void;
   score: number;
   collectedItems: Set<string>;
   isHullCritical: boolean;
@@ -52,8 +53,8 @@ const INTERNSHIP_ROUTE = [
 const IDLE_TIPS = [
   "🌀 Use gravitational slingshots to navigate efficiently",
   "🔧 Dock at Home Port to repair hull stress",
-  "🧩 Some islands have Assembly Mode — build the project!",
-  "🗺️ Open the full Treasure Map with Map or M",
+  "🗺️ Press M (or Projects) for the full project list",
+  "✉️ Contact opens Louis's email, LinkedIn and availability",
   "⚓ Use Inspect or ENTER near an island",
   "⚙️ This is Louis Zhang's interactive résumé — explore!",
   "🔥 Avoid thermal vents — they spike boiler pressure!",
@@ -130,7 +131,7 @@ function CircularGauge({ value, label, icon, warning }: {
         </span>
       </div>
       <div className="text-center mt-0.5">
-        <span className="text-[7px] font-label uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.4)" }}>
+        <span className="text-[8px] font-label uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.7)" }}>
           {label}
         </span>
       </div>
@@ -140,7 +141,7 @@ function CircularGauge({ value, label, icon, warning }: {
 
 export default function HUD({
   visitedCount, speed, boilerPressure, stressState, nearbyIsland, boatPosition, boatHeading,
-  nearestGravityAngle, onIslandClick, onToggleMap, onReturnHome, score, collectedItems, isHullCritical: hullCrit, isBoilerCritical: boilerCrit, isDocked,
+  nearestGravityAngle, onIslandClick, onToggleMap, onReturnHome, onOpenContact, score, collectedItems, isHullCritical: hullCrit, isBoilerCritical: boilerCrit, isDocked,
 }: HUDProps) {
   const totalActive = missions.filter((m) => m.status === "active").length;
   const scorePercent = MAX_COLLECTIBLE_SCORE > 0 ? (score / MAX_COLLECTIBLE_SCORE) * 100 : 0;
@@ -214,7 +215,7 @@ export default function HUD({
       </AnimatePresence>
 
       {/* ── Top Bar ── */}
-      <header className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 md:px-6 py-3">
+      <header className="pointer-events-none fixed top-0 left-0 w-full z-50 flex justify-between items-start gap-3 px-4 md:px-6 py-3 [&>*]:pointer-events-auto">
         <motion.div className="shrink min-w-0" initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ type: "spring", stiffness: 200, damping: 20 }}>
           <h1 className="text-xl md:text-2xl font-black text-white font-headline tracking-normal drop-shadow-lg">
             Isle Commander
@@ -244,28 +245,32 @@ export default function HUD({
             <span className="text-base">💰</span>
             <span className="font-headline font-bold text-yellow-100 text-xs tracking-tight">{score} pts</span>
           </div>
-          <div className="hidden xl:flex shrink-0 bg-white/10 backdrop-blur-md px-3 py-2 rounded-full shadow-lg items-center gap-2 border border-white/10">
+          <div className="hidden 2xl:flex shrink-0 bg-white/10 backdrop-blur-md px-3 py-2 rounded-full shadow-lg items-center gap-2 border border-white/10">
             <span className="text-sm" style={{ animation: isMoving ? "gearSpin 2s linear infinite" : "none" }}>⚙️</span>
             <span className="font-label font-bold text-white text-xs">{(speed * 20).toFixed(0)} kn</span>
           </div>
-          <button onClick={onToggleMap} className="hidden shrink-0 bg-cyan-500/50 hover:bg-cyan-500/70 backdrop-blur-md px-3 py-2 rounded-full shadow-lg md:flex items-center gap-2 border border-cyan-300/30 transition-colors cursor-pointer">
+          <button onClick={onToggleMap} title="Map & project list (M)" className="hidden shrink-0 bg-cyan-500/50 hover:bg-cyan-500/70 backdrop-blur-md px-3 py-2 rounded-full shadow-lg md:flex items-center gap-2 border border-cyan-300/30 transition-colors cursor-pointer">
             <span className="text-base">🗺️</span>
-            <span className="font-label font-bold text-white text-xs uppercase tracking-wider hidden lg:inline">Map</span>
-            <kbd className="hidden xl:inline text-[8px] font-label text-cyan-200/60 bg-black/20 px-1 rounded">M</kbd>
+            <span className="font-label font-bold text-white text-xs uppercase tracking-wider">Projects</span>
+            <kbd className="hidden xl:inline text-[9px] font-label text-cyan-50/85 bg-black/25 px-1 rounded">M</kbd>
           </button>
-          <button onClick={onReturnHome} className="hidden shrink-0 bg-emerald-500/35 hover:bg-emerald-500/55 backdrop-blur-md px-3 py-2 rounded-full shadow-lg md:flex items-center gap-2 border border-emerald-200/30 transition-colors cursor-pointer">
-            <span className="material-symbols-outlined icon-lock text-[17px] text-emerald-100">home</span>
-            <span className="font-label font-bold text-white text-xs uppercase tracking-wider hidden lg:inline">Home</span>
+          <button onClick={onOpenContact} title="Contact & quick brief" className="hidden shrink-0 bg-violet-500/40 hover:bg-violet-500/60 backdrop-blur-md px-3 py-2 rounded-full shadow-lg md:flex items-center gap-2 border border-violet-200/30 transition-colors cursor-pointer">
+            <span className="material-symbols-outlined icon-lock text-[17px] text-violet-50">mail</span>
+            <span className="font-label font-bold text-white text-xs uppercase tracking-wider">Contact</span>
           </button>
-          <Link href="/" className="hidden shrink-0 bg-rose-500/30 hover:bg-rose-500/50 backdrop-blur-md px-3 py-2 rounded-full shadow-lg md:flex items-center gap-2 border border-rose-200/30 transition-colors cursor-pointer">
-            <span className="material-symbols-outlined text-[17px] text-rose-100">logout</span>
-            <span className="font-label font-bold text-white text-xs uppercase tracking-wider hidden lg:inline">Exit</span>
+          <button onClick={onReturnHome} title="Sail back to Home Port" className="hidden shrink-0 bg-emerald-500/35 hover:bg-emerald-500/55 backdrop-blur-md px-3 py-2 rounded-full shadow-lg xl:flex items-center gap-2 border border-emerald-200/30 transition-colors cursor-pointer">
+            <span className="material-symbols-outlined icon-lock text-[17px] text-emerald-100">anchor</span>
+            <span className="font-label font-bold text-white text-xs uppercase tracking-wider">Port</span>
+          </button>
+          <Link href="/" title="Back to the main portfolio site" className="hidden shrink-0 bg-rose-500/30 hover:bg-rose-500/50 backdrop-blur-md px-3 py-2 rounded-full shadow-lg md:flex items-center gap-2 border border-rose-200/30 transition-colors cursor-pointer">
+            <span className="material-symbols-outlined icon-lock text-[17px] text-rose-100">logout</span>
+            <span className="font-label font-bold text-white text-xs uppercase tracking-wider hidden lg:inline">Main site</span>
           </Link>
         </motion.div>
       </header>
 
       {/* ── Engine Bay — Circular Gauges (Bottom Left) ── */}
-      <div className="fixed bottom-4 left-4 z-40 hidden md:block">
+      <div className={`fixed bottom-4 left-4 z-40 hidden ${nearbyIsland ? "lg:block" : "md:block"}`}>
         <div className="bg-black/50 backdrop-blur-md p-3 rounded-xl shadow-xl border border-white/10" style={{ transform: `translate(${springOffset.current.x * 0.5}px, ${springOffset.current.y * 0.5}px)` }}>
           <div className="flex items-center gap-2 mb-2">
             <span className="text-xs" style={{ animation: isMoving ? "gearSpin 1.5s linear infinite" : "none" }}>⚙️</span>
@@ -305,7 +310,7 @@ export default function HUD({
       </div>
 
       {/* ── Captain's Log (Bottom Left, above gauges) ── */}
-      <div className="fixed bottom-52 left-4 w-64 z-40 hidden md:block">
+      <div className="fixed bottom-[224px] left-4 w-64 z-40 hidden md:block">
         <div className="bg-black/50 backdrop-blur-md p-3 rounded-xl shadow-xl border border-white/10">
           <div className="flex items-center gap-2 mb-2.5">
             <span className="text-xs">📟</span>
@@ -322,16 +327,16 @@ export default function HUD({
               </motion.p>
             </AnimatePresence>
           </div>
-          <div className="font-label text-[9px] text-white/35 leading-relaxed space-y-0.5 border-t border-white/10 pt-2">
-            <div className="flex justify-between"><span>HDG</span><span className="text-white/55">{Math.round(boatHeading)}°</span></div>
-            <div className="flex justify-between"><span>SPEED</span><span className="text-white/55">{(speed * 20).toFixed(0)} kn</span></div>
-            <div className="flex justify-between"><span>PROGRESS</span><span className="text-white/55">{visitedCount}/{totalActive} islands</span></div>
+          <div className="font-label text-[9px] text-white/60 leading-relaxed space-y-0.5 border-t border-white/10 pt-2">
+            <div className="flex justify-between"><span>HDG</span><span className="text-white/80">{Math.round(boatHeading)}°</span></div>
+            <div className="flex justify-between"><span>SPEED</span><span className="text-white/80">{(speed * 20).toFixed(0)} kn</span></div>
+            <div className="flex justify-between"><span>PROGRESS</span><span className="text-white/80">{visitedCount}/{totalActive} islands</span></div>
           </div>
         </div>
       </div>
 
       {/* ── Score Panel (Bottom Centre) ── */}
-      <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-40 hidden md:block">
+      <div className={`fixed bottom-4 left-1/2 -translate-x-1/2 z-40 hidden ${nearbyIsland ? "" : "md:block"}`}>
         <div className="bg-black/50 backdrop-blur-md px-5 py-3 rounded-2xl shadow-xl border border-yellow-400/15 min-w-[220px]">
           <div className="flex items-center justify-between mb-1.5">
             <span className="font-label text-[9px] uppercase font-bold tracking-widest text-yellow-300/70">Perseverance Points</span>
@@ -341,8 +346,8 @@ export default function HUD({
             <div className="h-full rounded-full transition-all duration-500" style={{ width: `${scorePercent}%`, background: "linear-gradient(90deg, #f59e0b, #fbbf24, #fde68a)", boxShadow: "0 0 6px rgba(251,191,36,0.6)" }} />
           </div>
           <div className="flex justify-between mt-1">
-            <span className="font-label text-[8px] text-white/30">🪙 {collectedItems.size} collected</span>
-            <span className="font-label text-[8px] text-white/30">{scorePercent.toFixed(0)}%</span>
+            <span className="font-label text-[9px] text-white/65">🪙 {collectedItems.size} collected</span>
+            <span className="font-label text-[9px] text-white/65">{scorePercent.toFixed(0)}%</span>
           </div>
         </div>
       </div>
