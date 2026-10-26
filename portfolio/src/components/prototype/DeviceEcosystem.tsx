@@ -1,7 +1,6 @@
 "use client";
 
 import { useReducedMotion } from "framer-motion";
-import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import "./prototype.css";
@@ -17,7 +16,6 @@ import Loader from "./Loader";
 import { CONTACT, OpenTo, useWebGL } from "./stage";
 
 /** single shared WebGL canvas for every 3D device; client-only */
-const ThreeRoot = dynamic(() => import("./three/ThreeRoot"), { ssr: false });
 
 /** Each chapter scrolls on its own track; the bar names them by content and shows progress through the current one. */
 const chapters = [
@@ -220,7 +218,6 @@ export default function DeviceEcosystem() {
       <span data-token-source className="on-dark hidden" />
       <Loader static={reduced} />
       <ChapterNav />
-      {!reduced && <ThreeRoot />}
       {reduced ? <StaticIntro id="chapter-intro" /> : <WatchChapter id="chapter-intro" />}
       <DeckChapter id="chapter-deck" />
       {reduced ? <StaticSkills id="chapter-skills" /> : <PhoneChapter id="chapter-skills" />}

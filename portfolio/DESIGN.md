@@ -248,7 +248,7 @@ a, button, [role="button"] { transition: color .2s, background-color .2s, border
 - Easter egg: the watch shows your real local time.
 
 ### 3D: react-three-fiber, one canvas
-- three.js via @react-three/fiber 9 + drei 10. **One** fixed, pointer-transparent WebGL canvas for the whole page; each device chapter registers a drei `<View>` box, and off-screen views are not drawn.
+- three.js via @react-three/fiber 9 + drei 10. Each device gets its **own** small canvas inside its sticky stage (`DeviceCanvas`), mounted only within a screen of the viewport and animating only while visible. (A single fixed canvas with drei `<View>`s lagged behind iOS momentum scrolling and bled into the next section.)
 - Devices (watch, phone, laptop) are **modelled in code** (extruded rounded slabs, real layer geometry): no downloaded model files, no licensing, and every layer can explode on its own.
 - Lighting is an environment built from code `<Lightformer>` panels (no HDR fetched from a CDN).
 - Screens are canvas textures redrawn only when their content changes; callouts stay DOM text, re-projected from 3D anchors each frame.

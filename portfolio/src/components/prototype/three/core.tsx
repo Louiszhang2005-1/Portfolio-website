@@ -2,12 +2,13 @@
 /* eslint-disable react-hooks/immutability -- three.js objects (textures, materials, groups) are mutated per frame
    inside useFrame by design; that is how react-three-fiber animates without re-rendering React. */
 
-import { Environment, Lightformer, PerspectiveCamera, View } from "@react-three/drei";
+import { Environment, Lightformer, PerspectiveCamera } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import type { MotionValue } from "framer-motion";
-import { useEffect, useLayoutEffect, useMemo, useRef, type ReactNode, type RefObject } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode, type RefObject } from "react";
 import * as THREE from "three";
 
+import DeviceCanvas from "./DeviceCanvas";
 import { readTokens } from "./tokens";
 
 export { readTokens, type Tokens } from "./tokens";
@@ -398,21 +399,8 @@ export function FitCamera({
   return <PerspectiveCamera ref={cam} makeDefault near={0.05} far={100} />;
 }
 
-/* How many DeviceViews are on screen. ThreeRoot subscribes and stops the render loop at zero. */
-let visibleViews = 0;
-const viewListeners = new Set<() => void>();
-export function subscribeDeviceViews(fn: () => void) {
-  viewListeners.add(fn);
-  return () => void viewListeners.delete(fn);
-}
-export const anyDeviceViewVisible = () => visibleViews > 0;
-function countView(delta: number) {
-  visibleViews += delta;
-  viewListeners.forEach((fn) => fn());
-}
-
 /**
- * A device viewport: the shared canvas draws into this box; overlays (callouts) sit on top as DOM.
+ * A device viewport with its own canvas (DeviceCanvas); overlays (callouts) sit on top as DOM.
  * The canvas itself is invisible to assistive tech, so the box is an image with a spoken description.
  */
 export function DeviceView({
@@ -427,28 +415,24 @@ export function DeviceView({
   caption?: RefObject<HTMLDivElement | null>;
 }) {
   const box = useRef<HTMLDivElement>(null);
+  // mounted within a screen of the viewport (context + textures ready before it scrolls in), animating only while visible
+  const [near, setNear] = useState(false);
+  const [live, setLive] = useState(false);
   useEffect(() => {
     const el = box.current;
     if (!el) return;
-    let on = false;
-    // a margin so the loop is already running when the device's first pixels scroll in
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting === on) return;
-        on = entry.isIntersecting;
-        countView(on ? 1 : -1);
-      },
-      { rootMargin: "120px 0px" }
-    );
-    io.observe(el);
+    const mount = new IntersectionObserver(([e]) => setNear(e.isIntersecting), { rootMargin: "100% 0px" });
+    const run = new IntersectionObserver(([e]) => setLive(e.isIntersecting), { rootMargin: "80px 0px" });
+    mount.observe(el);
+    run.observe(el);
     return () => {
-      io.disconnect();
-      if (on) countView(-1);
+      mount.disconnect();
+      run.disconnect();
     };
   }, []);
   return (
     <div ref={box} role="img" aria-label={label} className="relative h-full min-h-0 w-full min-w-0">
-      <View className="absolute inset-0">{children}</View>
+      {near && <DeviceCanvas live={live}>{children}</DeviceCanvas>}
       {overlay && (
         <div aria-hidden="true" className="pointer-events-none absolute inset-0">
           {overlay}

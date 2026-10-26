@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-/* Same signal DeviceSkeleton listens to: ThreeRoot fires it once the canvas has drawn a frame. */
+/* Same signal DeviceSkeleton listens to: a DeviceCanvas fires it once it has drawn a frame. */
 const READY = "proto:three-ready";
 type ReadyWindow = Window & { __protoThreeReady?: boolean };
 

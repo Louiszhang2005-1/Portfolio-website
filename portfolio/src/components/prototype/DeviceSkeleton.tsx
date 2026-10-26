@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 
-/* "3D is on screen" signal, sent by ThreeRoot after the canvas draws its first frame. A window event plus a flag
-   (not module state): ThreeRoot lives in its own lazily loaded chunk, so module-level state was not shared. */
+/* "3D is on screen" signal, sent by a DeviceCanvas after it draws its first frame. A window event plus a flag
+   (not module state): the 3D code lives in its own lazily loaded chunk, so module-level state was not shared. */
 const READY = "proto:three-ready";
 type ReadyWindow = Window & { __protoThreeReady?: boolean };
 export function markThreeReady() {
