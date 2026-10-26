@@ -57,7 +57,7 @@ export default function WatchChapter({ id }: { id: string }) {
   const cue = useMap(p, [0, 0.05], [1, 0]);
 
   return (
-    <section ref={ref} id={id} data-theme="light" className="white relative h-[180vh]">
+    <section ref={ref} id={id} data-theme="light" className="white relative h-[180svh]">
       <DeviceStage
         shadow={shadow}
         overlay={

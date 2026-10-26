@@ -97,7 +97,7 @@ export function BeatCopy({ progress, beat, hero }: { progress: MotionValue<numbe
           ))}
         </div>
       )}
-      {beat.note && <p className="mt-3 max-w-[34rem] sm:mt-4 text-sm text-[var(--text-tertiary)] 2xl:max-w-[40rem] 2xl:text-base">{beat.note}</p>}
+      {beat.note && <p className="phone-tall-only mt-3 max-w-[34rem] sm:mt-4 text-sm text-[var(--text-tertiary)] 2xl:max-w-[40rem] 2xl:text-base">{beat.note}</p>}
       {beat.status && <OpenTo text={beat.status} className="mt-3 sm:mt-4" />}
       {beat.actions && <div className="mt-5 flex flex-wrap gap-3 sm:mt-7">{beat.actions}</div>}
     </motion.div>
@@ -146,7 +146,7 @@ export function DeviceStage({
   shadow?: MotionValue<number>;
 }) {
   return (
-    <div className="sticky top-0 h-screen overflow-hidden">
+    <div className="sticky top-0 h-[100svh] overflow-hidden">
       <div
         className="absolute inset-0"
         style={{
@@ -156,7 +156,7 @@ export function DeviceStage({
         }}
       />
       <div className="relative mx-auto grid h-full max-w-[1480px] grid-rows-[minmax(0,1fr)_auto] items-center gap-2 px-6 pb-5 pt-16 md:px-10 xl:px-16 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] md:grid-rows-1 md:gap-8 md:pb-6">
-        <div className="relative order-2 h-[390px] md:order-1 md:h-[400px] 2xl:h-[480px]">{copy}</div>
+        <div className="relative order-2 h-[min(390px,56svh)] md:order-1 md:h-[400px] 2xl:h-[480px]">{copy}</div>
         <div className="relative order-1 flex h-full min-h-0 items-center justify-center md:order-2 md:-mb-6">
           <motion.div
             className="absolute bottom-[12%] h-10 w-72 rounded-[50%] bg-[var(--mat-black)] blur-2xl"
@@ -189,8 +189,10 @@ const hasWebGL = () => {
   if (lost) return false;
   if (webgl === null) {
     try {
-      // two cores or fewer can't hold the shared canvas at a usable frame rate
-      const lowEnd = (navigator.hardwareConcurrency ?? 8) <= 2;
+      // two cores or fewer can't hold the shared canvas at a usable frame rate. iOS Safari may under-report cores
+      // (privacy rounding), and every iPhone that runs a current Safari handles the canvas, so it is never "low end".
+      const ios = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+      const lowEnd = !ios && (navigator.hardwareConcurrency ?? 8) <= 2;
       const c = document.createElement("canvas");
       webgl = !lowEnd && !!(c.getContext("webgl2") || c.getContext("webgl"));
     } catch {

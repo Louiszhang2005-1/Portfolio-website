@@ -58,7 +58,9 @@ export default function ThreeRoot() {
   // low-core devices (incl. iPhones, which report few cores) get high-DPI; only the ceiling drops a little.
   const [dpr] = useState<[number, number]>(() => [1, (navigator.hardwareConcurrency ?? 8) <= 4 ? 1.75 : 2]);
   return (
-    <div className="pointer-events-none fixed inset-0 z-30">
+    // 100lvh, not inset-0: on iOS a fixed inset-0 box resizes as Safari's toolbar collapses, which reallocated the
+    // drawing buffer mid-scroll; the large viewport height never changes, so the canvas is sized once
+    <div className="pointer-events-none fixed inset-x-0 top-0 z-30 h-[100lvh]">
       <WebGLBoundary>
         <Canvas
           dpr={dpr}

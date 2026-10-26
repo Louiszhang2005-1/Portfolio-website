@@ -135,7 +135,7 @@ export function Detail({ item }: { item: ProjectItem }) {
       <h3 className="mt-3 text-[clamp(1.6rem,3vw,2.5rem)] text-[var(--text-on-light)]">{item.title}</h3>
       <p className="mt-1 text-[15px] text-[var(--text-on-light-secondary)]">{context(item.subtitle)}</p>
       {/* exclusive ranges, so the clamp never depends on utility order: 2 lines on phones, 3 on short windows, 4 on tall */}
-      <p className="mt-3 line-clamp-2 max-w-[32rem] text-[15px] leading-[1.55] text-[var(--text-on-light-secondary)] [@media(min-width:640px)_and_(max-height:859px)]:line-clamp-3 [@media(min-width:640px)_and_(min-height:860px)]:line-clamp-4">
+      <p className="phone-roomy-only mt-3 line-clamp-2 max-w-[32rem] text-[15px] leading-[1.55] text-[var(--text-on-light-secondary)] [@media(min-width:640px)_and_(max-height:859px)]:line-clamp-3 [@media(min-width:640px)_and_(min-height:860px)]:line-clamp-4">
         {summary(item.details, context(item.subtitle))}
       </p>
       {item.metrics.length > 0 && (
@@ -154,7 +154,7 @@ export function Detail({ item }: { item: ProjectItem }) {
         </dl>
       )}
       {/* buttons stay on one row: smaller and shorter-labelled on phones */}
-      <div className="mt-5 flex flex-nowrap gap-2 sm:gap-3 [&>*]:whitespace-nowrap max-sm:[&>*]:px-4 max-sm:[&>*]:text-[14px]">
+      <div className="mt-4 flex flex-nowrap gap-2 sm:mt-5 sm:gap-3 [&>*]:whitespace-nowrap max-sm:[&>*]:px-4 max-sm:[&>*]:text-[14px]">
         {item.slug ? (
           <Link href={`/portfolio/${item.slug}`} className={btnPrimaryLight}>
             <span className="sm:hidden">Case study</span>
@@ -325,7 +325,7 @@ export function Showcase({ item, eager = false }: { item: ProjectItem; eager?: b
   return (
     <div
       // drawings sit as a sheet on a drafting-grid desk; screenshots get a dark mat behind any letterboxing
-      className={`relative aspect-[16/10] max-h-[24vh] w-full overflow-hidden rounded-[20px] border border-[var(--border-light)] shadow-[0_24px_48px_-28px_rgba(0,0,0,0.3)] md:max-h-[calc(100vh-330px)] ${item.image && !drawing ? "bg-[var(--mat-ink)]" : "bg-[var(--bg-light)]"}`}
+      className={`relative aspect-[16/10] max-h-[24svh] w-full max-md:[@media(max-height:760px)]:max-h-[18svh] overflow-hidden rounded-[20px] border border-[var(--border-light)] shadow-[0_24px_48px_-28px_rgba(0,0,0,0.3)] md:max-h-[calc(100svh-330px)] ${item.image && !drawing ? "bg-[var(--mat-ink)]" : "bg-[var(--bg-light)]"}`}
       style={drawing ? { backgroundImage: GRID, backgroundSize: "16px 16px" } : undefined}
     >
       {item.image && drawing ? (
@@ -452,7 +452,7 @@ export function Rail({ list, active, onPick }: { list: ProjectItem[]; active: nu
                   )}
                 </span>
                 <span
-                  className="mt-2 block truncate text-[13px] leading-5 transition-colors group-hover:text-[var(--text-on-light)]"
+                  className="phone-tall-only mt-2 block truncate text-[13px] leading-5 transition-colors group-hover:text-[var(--text-on-light)]"
                   style={{ color: on ? "var(--text-on-light)" : "var(--text-on-light-secondary)" }}
                 >
                   {item.title}

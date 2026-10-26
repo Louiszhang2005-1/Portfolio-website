@@ -129,26 +129,26 @@ function PinnedDeck({ id }: { id: string }) {
   };
 
   return (
-    <section ref={ref} id={id} data-theme="light" className="light relative" style={{ height: `${100 + SPREADS * 45}vh` }}>
-      <div className="sticky top-0 flex h-screen items-center overflow-hidden pt-14">
+    <section ref={ref} id={id} data-theme="light" className="light relative" style={{ height: `${100 + SPREADS * 45}svh` }}>
+      <div className="sticky top-0 flex h-[100svh] items-center overflow-hidden pt-14">
         <div className="relative mx-auto grid w-full max-w-[1480px] grid-cols-[minmax(0,1fr)] items-center gap-6 px-6 md:px-10 xl:px-16 md:grid-cols-[minmax(0,0.7fr)_minmax(0,1.3fr)] md:gap-10 lg:grid-cols-[minmax(0,0.55fr)_minmax(0,1.45fr)] lg:gap-12">
           <div className="order-2 md:order-1">
             <Intro />
             <div className="tall-only hidden lg:block">
               <PageList active={visible} onPick={pick} />
             </div>
-            <p className="mt-4 text-sm text-[var(--text-on-light-secondary)] lg:hidden">
+            <p className="phone-roomy-only mt-4 text-sm text-[var(--text-on-light-secondary)] lg:hidden">
               {caption(visible)}
             </p>
             <button
               onClick={() => setReading(visible[0] ?? 0)}
-              className="link mt-3 text-sm font-medium lg:mt-5"
+              className="link mt-1 inline-flex items-center text-sm font-medium max-lg:min-h-[44px] lg:mt-5"
             >
               Read {visible.length > 1 ? "these pages" : "this page"} full size
             </button>
           </div>
           <div
-            className="order-1 h-[300px] min-w-0 cursor-zoom-in sm:h-[440px] md:order-2 md:h-[min(860px,calc(100vh-100px))]"
+            className="order-1 h-[min(236px,34svh)] min-w-0 cursor-zoom-in sm:h-[min(440px,50svh)] md:order-2 md:h-[min(860px,calc(100svh-100px))]"
             onClick={readAt}
             title="Click a page to read it"
           >

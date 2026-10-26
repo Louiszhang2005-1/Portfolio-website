@@ -93,8 +93,8 @@ function PinnedRoles({ id }: { id: string }) {
   const screenOn = useMap(p, T.screen, [0, 1]);
 
   return (
-    <section ref={ref} id={id} data-theme="light" className="light relative" style={{ height: `${110 + jobs.length * 60}vh` }}>
-      <div className="sticky top-0 flex h-screen items-center overflow-hidden pt-14">
+    <section ref={ref} id={id} data-theme="light" className="light relative" style={{ height: `${110 + jobs.length * 60}svh` }}>
+      <div className="sticky top-0 flex h-[100svh] items-center overflow-hidden pt-14">
         <div className="relative mx-auto grid w-full max-w-[1480px] grid-cols-[minmax(0,1fr)] items-center gap-6 px-6 md:px-10 xl:px-16 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] md:gap-8 lg:gap-10">
           <div className="relative order-2 md:order-1">
             <h2 className="text-[clamp(2rem,4.5vw,3.75rem)] text-[var(--text-on-light)]">Where I&apos;ve worked.</h2>
@@ -125,7 +125,7 @@ function PinnedRoles({ id }: { id: string }) {
               })}
             </motion.div>
           </div>
-          <div className="relative order-1 h-[220px] min-w-0 sm:h-[300px] md:order-2 md:h-[min(620px,calc(100vh-150px))]">
+          <div className="relative order-1 h-[min(220px,30svh)] min-w-0 max-md:[@media(max-height:600px)]:h-[25svh] sm:h-[min(300px,40svh)] md:order-2 md:h-[min(620px,calc(100svh-150px))]">
             <DeviceSkeleton kind="laptop" />
             <Laptop3D jobs={jobs} lid={lid} screenOn={screenOn} track={track} />
           </div>

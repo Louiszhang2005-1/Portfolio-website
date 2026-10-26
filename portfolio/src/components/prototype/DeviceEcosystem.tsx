@@ -13,6 +13,7 @@ import { StaticIntro, StaticSkills } from "./StaticDevices";
 import WatchChapter from "./WatchChapter";
 import WinsChapter from "./WinsChapter";
 import { ACCENT } from "./parts";
+import Loader from "./Loader";
 import { CONTACT, OpenTo, useWebGL } from "./stage";
 
 /** single shared WebGL canvas for every 3D device; client-only */
@@ -217,6 +218,7 @@ export default function DeviceEcosystem() {
   return (
     <main className="proto min-h-screen overflow-x-clip">
       <span data-token-source className="on-dark hidden" />
+      <Loader static={reduced} />
       <ChapterNav />
       {!reduced && <ThreeRoot />}
       {reduced ? <StaticIntro id="chapter-intro" /> : <WatchChapter id="chapter-intro" />}

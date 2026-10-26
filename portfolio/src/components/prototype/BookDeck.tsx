@@ -79,7 +79,8 @@ function Page({ page, title, side, mounted }: { page: number; title?: string; si
         <img
           src={pageSrc(page, 1200)}
           srcSet={`${pageSrc(page, 600)} 600w, ${pageSrc(page, 1200)} 1200w, ${fullPortfolioPages[page]} 2000w`}
-          sizes={`${PW}px`}
+          // phones draw a page ~170px wide (the book is scaled to fit): a 2000w scan there cost MBs of download and decode
+          sizes={`(max-width: 767px) 200px, ${PW}px`}
           alt={`Portfolio page ${page + 1}${title ? `: ${title}` : ""}`}
           loading="lazy"
           decoding="async"

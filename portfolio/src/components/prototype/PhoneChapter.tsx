@@ -116,7 +116,7 @@ export default function PhoneChapter({ id }: { id: string }) {
   const codeOn = useMap(p, T.code, [0, 1, 1, 0]);
 
   return (
-    <section ref={ref} id={id} data-theme="light" className="white relative h-[320vh]">
+    <section ref={ref} id={id} data-theme="light" className="white relative h-[320svh]">
       <DeviceStage
         shadow={shadow}
         copy={beats.map((b) => (
