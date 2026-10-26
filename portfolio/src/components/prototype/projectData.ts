@@ -123,6 +123,6 @@ export const ALSO_COMPETED = [
 /** Beyond the wins: from Louis's LinkedIn education entry. */
 export const RECOGNITION = [
   { label: "Scholarship", title: "Lina & Jean-Guy Gaudreault Perseverance Scholarship", detail: "$2,500" },
-  { label: "Leadership", title: "Vice President of Events", detail: "Google Developer Group, Polytechnique Montréal" },
+  { label: "Leadership", title: "VP Events", detail: "Google Developer Group, Polytechnique Montréal" },
   { label: "Judging", title: "Judge", detail: "MPC Hacks" },
 ];
