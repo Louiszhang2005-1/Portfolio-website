@@ -2,7 +2,7 @@
 
 import { useReducedMotion } from "framer-motion";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import "./prototype.css";
 import DeckChapter from "./DeckChapter";
 import ExperienceChapter from "./ExperienceChapter";
@@ -11,7 +11,6 @@ import ProjectsChapter from "./ProjectsChapter";
 import { StaticIntro, StaticSkills } from "./StaticDevices";
 import WatchChapter from "./WatchChapter";
 import WinsChapter from "./WinsChapter";
-import { ACCENT } from "./parts";
 import Loader from "./Loader";
 import { CONTACT, OpenTo, useWebGL } from "./stage";
 
@@ -60,45 +59,33 @@ function useChapterPosition() {
 
 function ChapterNav() {
   const { active, progress, light } = useChapterPosition();
-  const navRef = useRef<HTMLElement>(null);
   const atContact = active === chapters.length;
-  // on narrow screens the pill row scrolls: centre the current pill in it (clear of the edge fades). Sets the row's
-  // own scrollLeft, since scrollIntoView could also scroll the page vertically.
-  useEffect(() => {
-    const nav = navRef.current;
-    const el = nav?.children[active] as HTMLElement | undefined;
-    if (!nav || !el || nav.scrollWidth <= nav.clientWidth) return;
-    const left = el.offsetLeft - nav.offsetLeft - (nav.clientWidth - el.offsetWidth) / 2;
-    nav.scrollTo({ left: Math.max(0, left), behavior: "smooth" });
-  }, [active]);
   const fg = light ? "var(--text-on-light)" : "var(--text)";
   const muted = light ? "var(--text-on-light-secondary)" : "var(--text-secondary)";
+  const current = chapters[active]?.label ?? (atContact ? "Contact" : "");
 
   return (
     <header
-      className="fixed inset-x-0 top-0 z-40 border-b backdrop-blur-md transition-colors duration-300"
+      className="fixed inset-x-0 top-0 z-40 border-b backdrop-blur-xl backdrop-saturate-150 transition-colors duration-300"
       // solid frosted bar: a fade-to-transparent let page text show through behind the nav links
       style={{
-        background: light ? "rgba(var(--bg-light-rgb),.88)" : "rgba(var(--bg-rgb),.85)",
+        background: light ? "rgba(var(--bg-light-rgb),.82)" : "rgba(var(--bg-rgb),.8)",
         borderColor: light ? "var(--border-light)" : "var(--border)",
       }}
     >
       {/* first tab stop: the projects are what most visitors came for */}
       <a
         href="#chapter-projects"
-        className="sr-only left-3 top-3 z-50 rounded-full bg-[var(--text)] text-[13px] font-medium text-[var(--bg)] focus:not-sr-only focus:fixed focus:px-4 focus:py-2"
+        className="sr-only left-3 top-3 z-50 rounded-md bg-[var(--text)] text-[13px] font-medium text-[var(--bg)] focus:not-sr-only focus:fixed focus:px-4 focus:py-2"
       >
         Skip to projects
       </a>
-      {/* progress through the current chapter */}
-      <div className="h-[2px] origin-left bg-[var(--accent)]" style={{ transform: `scaleX(${progress})` }} />
-      <div className="flex items-center justify-between gap-2 px-3 py-2.5 sm:gap-4 sm:px-6">
-        <Link href="/" className="flex shrink-0 items-center gap-2.5 text-sm font-medium" style={{ color: fg }}>
-          <span className="h-1.5 w-1.5 rounded-full" style={{ background: ACCENT }} />
-          {/* on phones the dot alone is the home link, leaving room for the chapters and Contact */}
-          <span className="sr-only sm:not-sr-only">Louis Zhang</span>
+      {/* quiet typographic bar: wordmark, text links, a hairline under the current chapter; no pills */}
+      <div className="mx-auto grid h-12 max-w-[1480px] grid-cols-[1fr_auto_1fr] items-center gap-4 px-5 md:px-10 xl:px-16">
+        <Link href="/" className="wide justify-self-start whitespace-nowrap text-[15px] tracking-tight" style={{ color: fg }}>
+          Louis Zhang
         </Link>
-        <nav ref={navRef} aria-label="Chapters" className="-mr-1 flex min-w-0 items-center gap-0.5 overflow-x-auto [scrollbar-width:none] max-md:[mask-image:linear-gradient(to_right,transparent,#000_14px,#000_calc(100%-20px),transparent)] max-md:px-2">
+        <nav aria-label="Chapters" className="hidden h-full items-stretch md:flex">
           {chapters.map((c, i) => {
             const on = i === active;
             // plain anchors: deep-linkable, work without JS; html scroll-behavior keeps the glide
@@ -107,25 +94,40 @@ function ChapterNav() {
                 key={c.id}
                 href={`#${c.id}`}
                 aria-current={on ? "location" : undefined}
-                className="inline-flex min-h-[40px] shrink-0 items-center rounded-full px-2.5 text-[13px] font-medium transition-colors sm:min-h-[34px] sm:px-3.5"
-                style={on ? { background: fg, color: light ? "var(--bg-light)" : "var(--bg)" } : { color: muted }}
+                className="relative flex items-center px-3.5 text-[13px] transition-colors duration-200 hover:!text-[var(--text)]"
+                style={{ color: on ? fg : muted }}
               >
                 {c.label}
+                <span
+                  aria-hidden
+                  className="absolute inset-x-3.5 -bottom-px h-px origin-center transition-transform duration-300"
+                  style={{ background: fg, transform: `scaleX(${on ? 1 : 0})` }}
+                />
               </a>
             );
           })}
         </nav>
+        {/* phones: the bar names where you are instead of a cramped scrolling row */}
+        <span aria-hidden className="text-[13px] md:hidden" style={{ color: muted }}>
+          {current}
+        </span>
         {/* recruiters shouldn't have to scroll to the end to reach me */}
         <a
           href="#contact"
           aria-current={atContact ? "location" : undefined}
-          className="inline-flex min-h-[34px] shrink-0 items-center rounded-full bg-[var(--accent)] px-3 text-[13px] font-semibold text-[var(--accent-ink)] transition-[background-color,box-shadow] hover:bg-[var(--accent-hover)] sm:px-4"
-          // at the footer the Contact button is the current location: ring it in the bar's text colour
-          style={atContact ? { boxShadow: `0 0 0 2px ${light ? "var(--bg-light)" : "var(--bg)"}, 0 0 0 4px ${fg}` } : undefined}
+          className="group justify-self-end whitespace-nowrap text-[13px] font-medium"
+          style={{ color: fg }}
         >
-          Contact
+          <span className="bg-[linear-gradient(currentColor,currentColor)] bg-[length:0%_1px] bg-left-bottom bg-no-repeat pb-0.5 transition-[background-size] duration-300 group-hover:bg-[length:100%_1px]" style={atContact ? { backgroundSize: "100% 1px" } : undefined}>
+            Contact
+          </span>
+          <span aria-hidden className="ml-1 inline-block text-[var(--accent-on-light)] transition-transform duration-300 group-hover:translate-x-0.5">
+            →
+          </span>
         </a>
       </div>
+      {/* progress through the current chapter: a hairline, not a stripe */}
+      <div className="absolute inset-x-0 bottom-[-1px] h-px origin-left bg-[var(--accent)] opacity-70" style={{ transform: `scaleX(${progress})` }} />
     </header>
   );
 }
