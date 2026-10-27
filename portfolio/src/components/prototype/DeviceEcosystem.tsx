@@ -63,6 +63,23 @@ function ChapterNav() {
   const fg = light ? "var(--text-on-light)" : "var(--text)";
   const muted = light ? "var(--text-on-light-secondary)" : "var(--text-secondary)";
   const current = chapters[active]?.label ?? (atContact ? "Contact" : "");
+  // phones: the current chapter name opens a small menu of every chapter
+  const [menu, setMenu] = useState(false);
+  useEffect(() => {
+    if (!menu) return;
+    const close = () => setMenu(false);
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && close();
+    // tap outside the bar closes it (a fixed overlay can't be used: the bar's backdrop-filter contains it)
+    const onTap = (e: PointerEvent) => !(e.target as Element).closest("header") && close();
+    window.addEventListener("keydown", onKey);
+    document.addEventListener("pointerdown", onTap);
+    window.addEventListener("scroll", close, { passive: true });
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.removeEventListener("pointerdown", onTap);
+      window.removeEventListener("scroll", close);
+    };
+  }, [menu]);
 
   return (
     <header
@@ -107,10 +124,21 @@ function ChapterNav() {
             );
           })}
         </nav>
-        {/* phones: the bar names where you are instead of a cramped scrolling row */}
-        <span aria-hidden className="text-[13px] md:hidden" style={{ color: muted }}>
+        {/* phones: the bar names where you are; tapping it opens the chapter menu */}
+        <button
+          type="button"
+          onClick={() => setMenu((m) => !m)}
+          aria-expanded={menu}
+          aria-controls="chapter-menu"
+          aria-label={`Sections, currently ${current}`}
+          className="flex min-h-[44px] items-center gap-1.5 px-2 text-[13px] md:hidden"
+          style={{ color: menu ? fg : muted }}
+        >
           {current}
-        </span>
+          <svg aria-hidden width="10" height="6" viewBox="0 0 10 6" className="transition-transform duration-200" style={{ transform: menu ? "rotate(180deg)" : undefined }}>
+            <path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
         {/* recruiters shouldn't have to scroll to the end to reach me */}
         <a
           href="#contact"
@@ -126,6 +154,37 @@ function ChapterNav() {
           </span>
         </a>
       </div>
+      {menu && (
+        <>
+          <nav
+            id="chapter-menu"
+            aria-label="Sections"
+            // solid, not frosted: a backdrop-filter nested in the bar's own doesn't blur, so the page showed through
+            className="absolute inset-x-0 top-full border-b shadow-[0_24px_40px_-24px_rgba(0,0,0,0.25)] md:hidden"
+            style={{ background: light ? "var(--bg-light)" : "var(--bg)", borderColor: light ? "var(--border-light)" : "var(--border)" }}
+          >
+            <ul className="px-5 py-2">
+              {[...chapters, { id: CONTACT_ID, label: "Contact" }].map((c, i) => {
+                const on = i === active;
+                return (
+                  <li key={c.id} className="border-b last:border-b-0" style={{ borderColor: light ? "var(--border-light)" : "var(--border)" }}>
+                    <a
+                      href={`#${c.id}`}
+                      onClick={() => setMenu(false)}
+                      aria-current={on ? "location" : undefined}
+                      className="flex min-h-[48px] items-center justify-between text-[15px]"
+                      style={{ color: on ? fg : muted, fontWeight: on ? 500 : 400 }}
+                    >
+                      {c.label}
+                      {on && <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />}
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
+        </>
+      )}
       {/* progress through the current chapter: a hairline, not a stripe */}
       <div className="absolute inset-x-0 bottom-[-1px] h-px origin-left bg-[var(--accent)] opacity-70" style={{ transform: `scaleX(${progress})` }} />
     </header>
