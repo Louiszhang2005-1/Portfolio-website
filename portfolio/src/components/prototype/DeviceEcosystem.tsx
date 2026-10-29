@@ -209,7 +209,7 @@ const RECAP: [string, string][] = [
   ["Studying", "B.Eng. Mechanical Engineering, Polytechnique Montréal"],
   ["Leadership", "VP Events, Google Developer Group Polytechnique"],
   ["Interned at", "Tesla, Lockheed Martin, City of Montréal"],
-  ["Hackathons", "HackHarvard 2026, ConUHacks X, RoboHacks 2025"],
+  ["Hackathon wins", "HackHarvard 2026, ConUHacks X, RoboHacks 2025"],
 ];
 
 function FooterRecap() {
