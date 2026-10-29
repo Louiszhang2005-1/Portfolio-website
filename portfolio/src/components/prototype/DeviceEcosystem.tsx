@@ -2,7 +2,7 @@
 
 import { useReducedMotion } from "framer-motion";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./prototype.css";
 import DeckChapter from "./DeckChapter";
 import ExperienceChapter from "./ExperienceChapter";
@@ -13,8 +13,6 @@ import WatchChapter from "./WatchChapter";
 import WinsChapter from "./WinsChapter";
 import Loader from "./Loader";
 import { CONTACT, OpenTo, useWebGL } from "./stage";
-
-/** single shared WebGL canvas for every 3D device; client-only */
 
 /** Each chapter scrolls on its own track; the bar names them by content and shows progress through the current one. */
 const chapters = [
@@ -29,10 +27,18 @@ const chapters = [
 const CONTACT_ID = "contact";
 const tracked = [...chapters.map((c) => c.id), CONTACT_ID];
 
+/**
+ * Current chapter for the bar. Measured once per frame, and React only hears about it when the chapter or theme
+ * changes; the progress hairline is written straight to the DOM. Re-rendering the frosted bar on every scroll event
+ * made it stutter on phones, worst in Projects where the page is already swapping a project per step.
+ */
 function useChapterPosition() {
-  const [state, setState] = useState({ active: 0, progress: 0, light: false });
+  const bar = useRef<HTMLDivElement>(null);
+  const [state, setState] = useState({ active: 0, light: false });
   useEffect(() => {
-    const onScroll = () => {
+    let frame = 0;
+    const measure = () => {
+      frame = 0;
       // a section is current once its top crosses the middle of the viewport, i.e. once it fills most of the view
       const probe = window.innerHeight * 0.5;
       let active = 0;
@@ -44,21 +50,27 @@ function useChapterPosition() {
       const rect = el?.getBoundingClientRect();
       const span = rect ? Math.max(1, rect.height - window.innerHeight) : 1;
       const progress = rect ? Math.min(1, Math.max(0, -rect.top / span)) : 0;
-      setState({ active, progress, light: el?.dataset.theme === "light" });
+      if (bar.current) bar.current.style.transform = `scaleX(${progress})`;
+      const light = el?.dataset.theme === "light";
+      setState((s) => (s.active === active && s.light === light ? s : { active, light }));
     };
-    onScroll();
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(measure);
+    };
+    measure();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
     return () => {
+      cancelAnimationFrame(frame);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
   }, []);
-  return state;
+  return { ...state, bar };
 }
 
 function ChapterNav() {
-  const { active, progress, light } = useChapterPosition();
+  const { active, light, bar } = useChapterPosition();
   const atContact = active === chapters.length;
   const fg = light ? "var(--text-on-light)" : "var(--text)";
   const muted = light ? "var(--text-on-light-secondary)" : "var(--text-secondary)";
@@ -143,7 +155,8 @@ function ChapterNav() {
         <a
           href="#contact"
           aria-current={atContact ? "location" : undefined}
-          className="group justify-self-end whitespace-nowrap text-[13px] font-medium"
+          // phones: once the middle already reads "Contact", a second one beside it is noise
+          className={`group justify-self-end whitespace-nowrap text-[13px] font-medium ${atContact ? "max-md:invisible" : ""}`}
           style={{ color: fg }}
         >
           <span className="bg-[linear-gradient(currentColor,currentColor)] bg-[length:0%_1px] bg-left-bottom bg-no-repeat pb-0.5 transition-[background-size] duration-300 group-hover:bg-[length:100%_1px]" style={atContact ? { backgroundSize: "100% 1px" } : undefined}>
@@ -186,7 +199,7 @@ function ChapterNav() {
         </>
       )}
       {/* progress through the current chapter: a hairline, not a stripe */}
-      <div className="absolute inset-x-0 bottom-[-1px] h-px origin-left bg-[var(--accent)] opacity-70" style={{ transform: `scaleX(${progress})` }} />
+      <div ref={bar} className="absolute inset-x-0 bottom-[-1px] h-px origin-left bg-[var(--accent)] opacity-70" style={{ transform: "scaleX(0)" }} />
     </header>
   );
 }

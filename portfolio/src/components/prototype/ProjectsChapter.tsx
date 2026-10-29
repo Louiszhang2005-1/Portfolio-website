@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion, useMotionValueEvent, useReducedMotion, useScroll } from "framer-motion";
+import { useMotionValueEvent, useReducedMotion, useScroll } from "framer-motion";
 import { useLayoutEffect, useRef, useState } from "react";
 import { GROUPS, allProjects, type Group } from "./projectData";
 import { Detail, Filters, Rail, Showcase, filterList, type Filter } from "./ProjectsParts";
@@ -108,18 +108,21 @@ function PinnedProjects({ id }: { id: string }) {
               );
             })}
           </div>
-          <div className="order-1 mx-auto w-full max-w-[420px] md:order-2 md:max-w-none">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={item.id}
-                initial={{ opacity: 0, scale: 0.98 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.98 }}
-                transition={{ duration: 0.3 }}
-              >
-                <Showcase item={item} eager />
-              </motion.div>
-            </AnimatePresence>
+          {/* stacked and crossfaded like the copy: swapping one mounted image out before the next mounted left the
+              frame empty while it faded and decoded, a visible gap on every step */}
+          <div className="order-1 mx-auto grid w-full max-w-[420px] md:order-2 md:max-w-none">
+            {allProjects.map((p) => {
+              const on = p.id === item.id;
+              return (
+                <div
+                  key={p.id}
+                  aria-hidden={!on}
+                  className={`[grid-area:1/1] transition-[opacity,transform,visibility] duration-300 ${on ? "visible scale-100 opacity-100" : "invisible scale-[0.98] opacity-0"}`}
+                >
+                  <Showcase item={p} eager={on} />
+                </div>
+              );
+            })}
           </div>
         </div>
         <div className="phone-roomy-only mx-auto mt-3 w-full max-w-[1480px] px-6 md:px-10 xl:px-16 md:mt-6">
