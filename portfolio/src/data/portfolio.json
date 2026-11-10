@@ -76,7 +76,7 @@
     {
       "id": "P-1",
       "title": "Lunar Transport System",
-      "subtitle": "PM & Systems Integrator · CSA LEAP · Jan–May 2025 · Polytechnique Montréal",
+      "subtitle": "PM & Systems Integrator · CSA LEAP · Jan.–May 2025 · Polytechnique Montréal",
       "sector": "Aero Atoll",
       "status": "active",
       "emoji": "🌕",
@@ -91,7 +91,7 @@
         "Arduino",
         "Raspberry Pi Pico"
       ],
-      "details": "PM & Systems Integrator for the Canadian Space Agency LEAP — OASIS Mission (Jan–May 2025, Polytechnique Montréal). Directed end-to-end design of a 3.1 m telescopic lunar produce-transport tube (Ø540 mm, 3080 mm deployed length), designed to CSA LEAP performance and safety requirements.\n\n• Managed 50+ part interfaces, achieving a 12% system mass reduction while sustaining a 2.5× structural safety factor\n• Ran thermal FEA over the 14-day lunar night cycle and verified zero mechanical interference across the full telescopic deployment sweep with a kinematic motion study\n• Developed the rail-guided transport wagon's control logic on an Arduino microcontroller\n• Designed and programmed a Raspberry Pi Pico–driven belt conveyor for seamless vegetable transfer from lunar greenhouse to habitat module\n• Led physical integration: AL-6061 machining, MLI fabrication, PCB prototyping, wiring harnesses, and cold-welding of tab-to-tube joints",
+      "details": "PM & Systems Integrator for the Canadian Space Agency LEAP — OASIS Mission (Jan.–May 2025, Polytechnique Montréal). Directed end-to-end design of a 3.1 m telescopic lunar produce-transport tube (Ø540 mm, 3080 mm deployed length), designed to CSA LEAP performance and safety requirements.\n\n• Managed 50+ part interfaces, achieving a 12% system mass reduction while sustaining a 2.5× structural safety factor\n• Ran thermal FEA over the 14-day lunar night cycle and verified zero mechanical interference across the full telescopic deployment sweep with a kinematic motion study\n• Developed the rail-guided transport wagon's control logic on an Arduino microcontroller\n• Designed and programmed a Raspberry Pi Pico–driven belt conveyor for seamless vegetable transfer from lunar greenhouse to habitat module\n• Led physical integration: AL-6061 machining, MLI fabrication, PCB prototyping, wiring harnesses, and cold-welding of tab-to-tube joints",
       "github": "https://github.com/Louiszhang2005-1",
       "demo": null,
       "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBfmEpezBSpneFvCrYKhOLUOseL8Ykp1jo-HSG-ffLWpXFUDPcJaLNQ_yYG5K3rrQojomG93egnxnwooCUeOcPCLWPOTN3DCgnuB1cKbCeyo00IDUBjs5tK3QD_526_Tv0wWlf_J9c26MbyCm2M9Bh0lHMTaYyyp_lR2bOctqYMSHKc0imzdeQ5FArd6MJgX1SS1NDA5WuXGr8-BMg81vmKL76Uzzftusbi3MNmNr5KKskCa3NgMBifjJq1unU1ixty6_658_OlN05p"
@@ -99,7 +99,7 @@
     {
       "id": "P-2",
       "title": "Axial Piston Pump",
-      "subtitle": "Hydraulic System Design · Nov–Dec 2024 · Polytechnique Montréal",
+      "subtitle": "Hydraulic System Design · Nov.–Dec. 2024 · Polytechnique Montréal",
       "sector": "Aero Atoll",
       "status": "active",
       "emoji": "⚙️",
@@ -110,7 +110,7 @@
         "GD&T",
         "Assembly Modeling"
       ],
-      "details": "3D CAD modeling project at Polytechnique Montréal (Nov–Dec 2024). Fully modeled a high-performance axial piston hydraulic pump from the ground up.\n\nThe assembly houses 9 individual piston assemblies — each comprising a piston and slipper pad — retained by a retaining plate and centered via a spherical nut. Optimized component geometry and assembly parameters for mechanical durability.\n\nProduced a full exploded-view drawing with a bilingual French/English BOM following standard drafting conventions.",
+      "details": "3D CAD modeling project at Polytechnique Montréal (Nov.–Dec. 2024). Fully modeled a high-performance axial piston hydraulic pump from the ground up.\n\nThe assembly houses 9 individual piston assemblies — each comprising a piston and slipper pad — retained by a retaining plate and centered via a spherical nut. Optimized component geometry and assembly parameters for mechanical durability.\n\nProduced a full exploded-view drawing with a bilingual French/English BOM following standard drafting conventions.",
       "github": null,
       "demo": null,
       "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBfmEpezBSpneFvCrYKhOLUOseL8Ykp1jo-HSG-ffLWpXFUDPcJaLNQ_yYG5K3rrQojomG93egnxnwooCUeOcPCLWPOTN3DCgnuB1cKbCeyo00IDUBjs5tK3QD_526_Tv0wWlf_J9c26MbyCm2M9Bh0lHMTaYyyp_lR2bOctqYMSHKc0imzdeQ5FArd6MJgX1SS1NDA5WuXGr8-BMg81vmKL76Uzzftusbi3MNmNr5KKskCa3NgMBifjJq1unU1ixty6_658_OlN05p"
@@ -118,7 +118,7 @@
     {
       "id": "P-3",
       "title": "Reforestation Robot",
-      "subtitle": "RoboHacks · Feb 2025 · Unexpected Expedition Award · 5th Overall",
+      "subtitle": "RoboHacks · Feb. 2025 · Unexpected Expedition Award · 5th Overall",
       "sector": "Robotics & IoT",
       "status": "active",
       "emoji": "🌱",
@@ -129,7 +129,7 @@
         "DC Motors",
         "Recycled Materials"
       ],
-      "details": "Autonomous seed-planting robot built in 24 hours at RoboHacks (Feb 2025) using recycled materials for the structure — cardboard chassis, plastic bottles, and a paper-engineered seed dispenser.\n\nCoded the full navigation and dispensing sequence in C++ on Arduino: two IR sensors fused with a color sensor for line-following, a servo-actuated paper dispenser for timed seed placement. All electronics wired on a breadboard from scratch under competition conditions.\n\nWon the Unexpected Expedition Award and placed 5th overall.",
+      "details": "Autonomous seed-planting robot built in 24 hours at RoboHacks (Feb. 2025) using recycled materials for the structure — cardboard chassis, plastic bottles, and a paper-engineered seed dispenser.\n\nCoded the full navigation and dispensing sequence in C++ on Arduino: two IR sensors fused with a color sensor for line-following, a servo-actuated paper dispenser for timed seed placement. All electronics wired on a breadboard from scratch under competition conditions.\n\nWon the Unexpected Expedition Award and placed 5th overall.",
       "github": "https://github.com/Louiszhang2005-1/RoboHacks-2025",
       "demo": null,
       "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuDAS80X_XNEuUFS6k-WwWNK4ujFPPuUxPpWvmTVpU1JR5SivSd5oUG2JcVNgHI4epz7XEJI6N7eCpY_5koJUANuAI1BYhptkTPhdi5UGO2lM2yHA1--6_Zdhkuwaf4AXh47aYn5TOW2B8af31QajqbXwz4Ldn2XPUjvQPK0SasCQYVwEJls5ZWv-YsDYabLJ6PaUZtolG1ufVsJARGvsPWji9-J_dMGuf0kpNNEYucYBsS8AG3SpRwrHKSZrvL4alOKLEcgHbwa7a7w"
@@ -137,7 +137,7 @@
     {
       "id": "P-11",
       "title": "MechPrep",
-      "subtitle": "McHacks 13 · Jan 2026",
+      "subtitle": "McHacks 13 · Jan. 2026",
       "sector": "Aero Atoll",
       "status": "active",
       "emoji": "🔧",
@@ -150,7 +150,7 @@
         "3D Modeling",
         "CAD Integration"
       ],
-      "details": "An interactive interview prep platform tailored for mechanical and aerospace engineering students, built at McHacks 13 (Jan 2026).\n\nDesigned and modeled 3D components in SolidWorks and Blender, then integrated the CAD models into a React + Python web app to make them interactive and educational. An AI API generates and evaluates interview questions in real time.\n\nNext steps: expand the question bank across more companies and offer a white-label tool for companies to build their own technical interview question sets.",
+      "details": "An interactive interview prep platform tailored for mechanical and aerospace engineering students, built at McHacks 13 (Jan. 2026).\n\nDesigned and modeled 3D components in SolidWorks and Blender, then integrated the CAD models into a React + Python web app to make them interactive and educational. An AI API generates and evaluates interview questions in real time.\n\nNext steps: expand the question bank across more companies and offer a white-label tool for companies to build their own technical interview question sets.",
       "github": null,
       "demo": "https://devpost.com/software/mechie",
       "image": null
@@ -160,7 +160,7 @@
     {
       "id": "P-4",
       "title": "ResQ-Link",
-      "subtitle": "UpStart 2026 · Digital System for Disaster Management",
+      "subtitle": "UpStart 2026 · Feb. 2026 · Digital System for Disaster Management",
       "sector": "Robotics & IoT",
       "status": "active",
       "emoji": "🏥",
@@ -181,7 +181,7 @@
     {
       "id": "P-5",
       "title": "Nursie",
-      "subtitle": "Best Use of ElevenLabs · ConUHacks X · Jan 2026",
+      "subtitle": "Best Use of ElevenLabs · ConUHacks X · Jan. 2026",
       "sector": "Robotics & IoT",
       "status": "active",
       "emoji": "🏆",
@@ -196,7 +196,7 @@
         "ElevenLabs",
         "OpenWRT"
       ],
-      "details": "On-premises AI nurse assistant for Quebec long-term care facilities (CHSLDs), built at ConUHacks X (Jan 2026).\n\nFalls among seniors (65+) have risen 47% between 2008 and 2019 — Nursie closes the gap between unwitnessed falls and delayed staff response.\n\n• Detects falls using mmWave radar (IWR6843) fused with a floor vibration mat\n• Tracks room context via magnetic door sensor + PIR presence node on ESP32/FreeRTOS\n• Monitors vital signs via smartwatch integration\n• Sends immediate alerts — phone call + dashboard push — to staff on detection\n• Builds a resident profile in MongoDB over time to flag unusual behavior\n• Provides a voice interface for residents via ElevenLabs for questions, appointment reminders, and medication prompts\n\nDesigned for 3× sensor redundancy to reduce false positives. Privacy by architecture — all data stays on the facility's local OpenWRT LAN, no cameras, no cloud. Won Best Use of ElevenLabs at ConUHacks X.",
+      "details": "On-premises AI nurse assistant for Quebec long-term care facilities (CHSLDs), built at ConUHacks X (Jan. 2026).\n\nFalls among seniors (65+) have risen 47% between 2008 and 2019 — Nursie closes the gap between unwitnessed falls and delayed staff response.\n\n• Detects falls using mmWave radar (IWR6843) fused with a floor vibration mat\n• Tracks room context via magnetic door sensor + PIR presence node on ESP32/FreeRTOS\n• Monitors vital signs via smartwatch integration\n• Sends immediate alerts — phone call + dashboard push — to staff on detection\n• Builds a resident profile in MongoDB over time to flag unusual behavior\n• Provides a voice interface for residents via ElevenLabs for questions, appointment reminders, and medication prompts\n\nDesigned for 3× sensor redundancy to reduce false positives. Privacy by architecture — all data stays on the facility's local OpenWRT LAN, no cameras, no cloud. Won Best Use of ElevenLabs at ConUHacks X.",
       "github": "https://github.com/Louiszhang2005-1",
       "demo": "https://devpost.com/software/nursie",
       "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuDAS80X_XNEuUFS6k-WwWNK4ujFPPuUxPpWvmTVpU1JR5SivSd5oUG2JcVNgHI4epz7XEJI6N7eCpY_5koJUANuAI1BYhptkTPhdi5UGO2lM2yHA1--6_Zdhkuwaf4AXh47aYn5TOW2B8af31QajqbXwz4Ldn2XPUjvQPK0SasCQYVwEJls5ZWv-YsDYabLJ6PaUZtolG1ufVsJARGvsPWji9-J_dMGuf0kpNNEYucYBsS8AG3SpRwrHKSZrvL4alOKLEcgHbwa7a7w"
@@ -219,7 +219,7 @@
     {
       "id": "P-14",
       "title": "Trace",
-      "subtitle": "HackHarvard 2026 · 1st Place, Best Data-Driven Agent (Chalk Prize) · Oct 2026",
+      "subtitle": "HackHarvard 2026 · 1st Place, Best Data-Driven Agent (Chalk Prize) · Oct. 2026",
       "sector": "Code Cove",
       "status": "active",
       "emoji": "🔥",
@@ -246,7 +246,7 @@
     {
       "id": "P-9",
       "title": "CRM Outreach Tool",
-      "subtitle": "Accenture · AOTC 2026 · Jan–Apr 2026",
+      "subtitle": "Accenture · AOTC 2026 · Jan.–Apr. 2026",
       "sector": "Code Cove",
       "status": "active",
       "emoji": "🤖",
@@ -268,7 +268,7 @@
     {
       "id": "P-12",
       "title": "LazyCare",
-      "subtitle": "UdemHacks · Mar 2025 · AI Health Assistant",
+      "subtitle": "UdemHacks · Mar. 2025 · AI Health Assistant",
       "sector": "Code Cove",
       "status": "active",
       "emoji": "💊",
@@ -290,7 +290,7 @@
     {
       "id": "P-13",
       "title": "Interview Assistant",
-      "subtitle": "Brebeuf Hacks · Jan 2024 · Voice AI",
+      "subtitle": "Brebeuf Hacks · Jan. 2024 · Voice AI",
       "sector": "Code Cove",
       "status": "active",
       "emoji": "🎤",
@@ -301,7 +301,7 @@
         "API Integration",
         "Natural Language Processing"
       ],
-      "details": "Voice-based virtual interviewing assistant designed to help computer science students prepare for technical interviews, built at Brebeuf Hacks (Jan 2024) in a team of 3.\n\nThe assistant presents personalized interview questions verbally, listens to the response, and evaluates it using NLP algorithms. Built with Python and an AI/NLP API.\n\nFeatures a realistic spoken-word interface so students can practice verbal answers, not just type them.",
+      "details": "Voice-based virtual interviewing assistant designed to help computer science students prepare for technical interviews, built at Brebeuf Hacks (Jan. 2024) in a team of 3.\n\nThe assistant presents personalized interview questions verbally, listens to the response, and evaluates it using NLP algorithms. Built with Python and an AI/NLP API.\n\nFeatures a realistic spoken-word interface so students can practice verbal answers, not just type them.",
       "github": "https://github.com/Louiszhang2005-1/Virtual_interviewing_assistant",
       "demo": null,
       "image": null

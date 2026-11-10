@@ -69,9 +69,9 @@ const mediaById: Record<
     >
   >
 > = {
-  "I-4": { accent: "#178f9a", emoji: "Water", date: "May – Aug 2025", sortOrder: 3 },
-  "I-2": { accent: "#1f4f99", emoji: "Aero", date: "Jan – Apr 2026", sortOrder: 2 },
-  "I-1": { accent: "#d3222a", emoji: "Cell", date: "Jun – Aug 2026", sortOrder: 1 },
+  "I-4": { accent: "#178f9a", emoji: "Water", date: "May – Aug. 2025", sortOrder: 3 },
+  "I-2": { accent: "#1f4f99", emoji: "Aero", date: "Jan. – Apr. 2026", sortOrder: 2 },
+  "I-1": { accent: "#d3222a", emoji: "Cell", date: "June – Aug. 2026", sortOrder: 1 },
   "P-1": {
     image: fullPortfolioPages[1],
     gallery: fullPortfolioPages.slice(1, 4),

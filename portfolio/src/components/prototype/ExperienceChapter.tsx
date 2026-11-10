@@ -6,7 +6,7 @@ import dynamic from "next/dynamic";
 import { useRef, useState } from "react";
 import { internships, type PortfolioItem } from "@/lib/portfolio";
 import { useMap } from "./devices";
-import { useHiddenBelow, useWebGL, useSmoothProgress } from "./stage";
+import { useHiddenBelow, useWebGL, useSmoothProgress, type Hold } from "./stage";
 
 const Laptop3D = dynamic(() => import("./three/Laptop3D"), { ssr: false });
 
@@ -14,6 +14,8 @@ const Laptop3D = dynamic(() => import("./three/Laptop3D"), { ssr: false });
 const jobs = internships.filter((i) => i.status === "active");
 
 const T = { lid: [0.02, 0.2], screen: [0.16, 0.22], windows: 0.24 };
+/** Rests: each role, centred in its slice of the window track, so its card and copy can be read. */
+const HOLDS: Hold[] = jobs.map((_, j) => [T.windows + ((j + 0.5) / jobs.length) * (1 - T.windows), 0.12]);
 
 const clamp = (v: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, v));
 const paragraphs = (s: string) => s.split(/\n\n+/).slice(0, 3);
@@ -81,7 +83,7 @@ export default function ExperienceChapter({ id }: { id: string }) {
 
 function PinnedRoles({ id }: { id: string }) {
   const ref = useRef<HTMLElement>(null);
-  const p = useSmoothProgress(ref);
+  const p = useSmoothProgress(ref, HOLDS);
   const track = useTransform(p, (v) => clamp((v - T.windows) / (1 - T.windows), 0, 0.9999) * jobs.length);
   const [active, setActive] = useState(0);
   useMotionValueEvent(track, "change", (v) => setActive(Math.min(jobs.length - 1, Math.floor(v))));
@@ -93,7 +95,7 @@ function PinnedRoles({ id }: { id: string }) {
   const screenOn = useMap(p, T.screen, [0, 1]);
 
   return (
-    <section ref={ref} id={id} data-theme="light" className="light relative" style={{ height: `${110 + jobs.length * 60}svh` }}>
+    <section ref={ref} id={id} data-theme="light" className="light relative" style={{ height: `${110 + jobs.length * 80}svh` }}>
       <div className="sticky top-0 flex h-[100svh] items-center overflow-hidden pt-14">
         <div className="relative mx-auto grid w-full max-w-[1480px] grid-cols-[minmax(0,1fr)] items-center gap-6 px-6 md:px-10 xl:px-16 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] md:gap-8 lg:gap-10">
           <div className="relative order-2 md:order-1">

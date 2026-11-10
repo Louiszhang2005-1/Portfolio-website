@@ -7,21 +7,21 @@
 ## Internships
 
 ### ⚡ Tesla — Manufacturing Engineering Intern · LFP Cell Engineering
-**Period:** Jun 2026 – Aug 2026  
+**Period:** June 2026 – Aug. 2026  
 **Skills:** Battery Cell Manufacturing · PLC · HMI Design · Equipment Design · Root Cause Analysis · Python  
 Interned at Tesla's LFP factory on the LFP Cell Engineering team for Megapack battery cells. Worked on cell production processes, PLC/HMI controls, equipment design, and root-cause analysis for utility-scale energy storage lines.
 
 ---
 
 ### ✈️ Lockheed Martin — Mechanical Engineering Intern · Ship Integration
-**Period:** Jan 2026 – Apr 2026  
+**Period:** Jan. 2026 – Apr. 2026  
 **Skills:** SOLIDWORKS · Engineering Drawings · VBA Programming · Windchill · Confluence  
 Mechanical Engineering Intern on the Ship Integration team for the Canadian Surface Combatant program, Compartments team. Specialized in 3D CAD modeling and structural design of ship compartment components in SolidWorks, transforming engineering drawings into complete assemblies. Built VBA scripts to automate the peer-review process across several partner companies, improving overall turnaround time.
 
 ---
 
 ### 💧 City of Montreal — Engineering Intern · Water Department
-**Period:** May–Aug 2025  
+**Period:** May–Aug. 2025  
 **Skills:** Data Analysis · Environmental Engineering · Python · GIS  
 Engineering Intern at the City of Montreal's Water Department. Contributed to water quality monitoring initiatives and geospatial data pipelines for municipal infrastructure management.
 
@@ -31,11 +31,11 @@ Engineering Intern at the City of Montreal's Water Department. Contributed to wa
 
 ### 🌕 Lunar Transport System — PM & Systems Integrator
 **Event:** Canadian Space Agency LEAP — OASIS Mission  
-**Period:** Jan–May 2025 · Polytechnique Montréal  
+**Period:** Jan.–May 2025 · Polytechnique Montréal  
 **Skills:** CATIA V6 · Fusion 360 · GD&T · MS Project · Cold Welding · Systems Integration · FEA · Arduino · Raspberry Pi Pico  
 **GitHub:** https://github.com/Louiszhang2005-1
 
-PM & Systems Integrator for the Canadian Space Agency LEAP — OASIS Mission (Jan–May 2025, Polytechnique Montréal). Directed end-to-end design of a 3.1 m telescopic lunar produce-transport tube (Ø540 mm, 3080 mm deployed length), designed to CSA LEAP performance and safety requirements.
+PM & Systems Integrator for the Canadian Space Agency LEAP — OASIS Mission (Jan.–May 2025, Polytechnique Montréal). Directed end-to-end design of a 3.1 m telescopic lunar produce-transport tube (Ø540 mm, 3080 mm deployed length), designed to CSA LEAP performance and safety requirements.
 
 - Managed 50+ part interfaces, achieving a 12% system mass reduction while sustaining a 2.5× structural safety factor
 - Ran thermal FEA over the 14-day lunar night cycle and verified zero mechanical interference across the full telescopic deployment sweep with a kinematic motion study
@@ -46,10 +46,10 @@ PM & Systems Integrator for the Canadian Space Agency LEAP — OASIS Mission (Ja
 ---
 
 ### ⚙️ Axial Piston Pump — Hydraulic System Design
-**Period:** Nov–Dec 2024 · Polytechnique Montréal  
+**Period:** Nov.–Dec. 2024 · Polytechnique Montréal  
 **Skills:** 3D CAD · SolidWorks · Mechanical Design · GD&T · Assembly Modeling  
 
-3D CAD modeling project at Polytechnique Montréal (Nov–Dec 2024). Fully modeled a high-performance axial piston hydraulic pump from the ground up.
+3D CAD modeling project at Polytechnique Montréal (Nov.–Dec. 2024). Fully modeled a high-performance axial piston hydraulic pump from the ground up.
 
 The assembly houses 9 individual piston assemblies — each comprising a piston and slipper pad — retained by a retaining plate and centered via a spherical nut. Optimized component geometry and assembly parameters for mechanical durability.
 
@@ -58,12 +58,12 @@ Produced a full exploded-view drawing with a bilingual French/English BOM follow
 ---
 
 ### 🌱 Reforestation Robot — RoboHacks
-**Event:** RoboHacks · Feb 2025  
+**Event:** RoboHacks · Feb. 2025  
 **Awards:** Unexpected Expedition Award · 5th Place Overall  
 **Skills:** Arduino C++ · IR Sensors · Color Sensor · DC Motors · Recycled Materials  
 **GitHub:** https://github.com/Louiszhang2005-1/RoboHacks-2025
 
-Autonomous seed-planting robot built in 24 hours at RoboHacks (Feb 2025) using recycled materials for the structure — cardboard chassis, plastic bottles, and a paper-engineered seed dispenser.
+Autonomous seed-planting robot built in 24 hours at RoboHacks (Feb. 2025) using recycled materials for the structure — cardboard chassis, plastic bottles, and a paper-engineered seed dispenser.
 
 Coded the full navigation and dispensing sequence in C++ on Arduino: two IR sensors fused with a color sensor for line-following, a servo-actuated paper dispenser for timed seed placement. All electronics wired on a breadboard from scratch under competition conditions.
 
@@ -72,11 +72,11 @@ Won the Unexpected Expedition Award and placed 5th overall.
 ---
 
 ### 🔧 MechPrep — McHacks 13
-**Event:** McHacks 13 · Jan 2026  
+**Event:** McHacks 13 · Jan. 2026  
 **Skills:** SolidWorks · Blender · React · Python · AI API · 3D Modeling · CAD Integration  
 **Devpost:** https://devpost.com/software/mechie
 
-An interactive interview prep platform tailored for mechanical and aerospace engineering students, built at McHacks 13 (Jan 2026).
+An interactive interview prep platform tailored for mechanical and aerospace engineering students, built at McHacks 13 (Jan. 2026).
 
 Designed and modeled 3D components in SolidWorks and Blender, then integrated the CAD models into a React + Python web app to make them interactive and educational. An AI API generates and evaluates interview questions in real time.
 
@@ -87,7 +87,7 @@ Next steps: expand the question bank across more companies and offer a white-lab
 ## Robotics & IoT Projects
 
 ### 🏥 ResQ-Link — UpStart 2026
-**Event:** UpStart 2026 · Feb 2026 · Polytechnique Montréal  
+**Event:** UpStart 2026 · Feb. 2026 · Polytechnique Montréal  
 **Skills:** SolidWorks · Passive NFC · IP68 Design · PCB Prototyping · Next.js · Medical Design · Systems Architecture  
 **GitHub:** https://github.com/Louiszhang2005-1/Band
 
@@ -103,13 +103,13 @@ Targeting a $750k seed round for a MUHC 5,000-unit pilot, with Health Canada Cla
 ---
 
 ### 🏆 Nursie — ConUHacks X
-**Event:** ConUHacks X · Jan 2026  
+**Event:** ConUHacks X · Jan. 2026  
 **Awards:** Best Use of ElevenLabs  
 **Skills:** Python · C++ · mmWave Radar · ESP32 / FreeRTOS · ROS 2 · MongoDB · Gemini AI · ElevenLabs · OpenWRT  
 **GitHub:** https://github.com/Louiszhang2005-1  
 **Devpost:** https://devpost.com/software/nursie
 
-On-premises AI nurse assistant for Quebec long-term care facilities (CHSLDs), built at ConUHacks X (Jan 2026).
+On-premises AI nurse assistant for Quebec long-term care facilities (CHSLDs), built at ConUHacks X (Jan. 2026).
 
 Falls among seniors (65+) have risen 47% between 2008 and 2019 — Nursie closes the gap between unwitnessed falls and delayed staff response.
 
@@ -145,7 +145,7 @@ AI-powered system designed to analyze technical and scientific documents, includ
 ---
 
 ### 🎮 LingoBattles — ConUHacks IX
-**Event:** ConUHacks IX · Jan 2024  
+**Event:** ConUHacks IX · Jan. 2024  
 **Skills:** React · WebSockets · Real-time Multiplayer · Game Design  
 **GitHub:** https://github.com/Louiszhang2005-1
 
@@ -155,7 +155,7 @@ A fast-paced, real-time competitive party game for language learning. Players ba
 
 ### 🤖 CRM Outreach Tool — Accenture AOTC 2026
 **Event:** Accenture AOTC 2026  
-**Period:** Jan–Apr 2026  
+**Period:** Jan.–Apr. 2026  
 **Skills:** Next.js · React · TypeScript · Tailwind CSS · Gemini AI · Resend · Apollo.io · Google Sheets API  
 **GitHub:** https://github.com/Louiszhang2005-1/Fully-Integrated-CRM-Tool  
 **Demo:** https://www.youtube.com/watch?v=TVuFauDyA00
@@ -172,7 +172,7 @@ Total running cost: ~$0/month on free tiers.
 ---
 
 ### 💊 LazyCare — UdemHacks
-**Event:** UdemHacks · Mar 2025  
+**Event:** UdemHacks · Mar. 2025  
 **Skills:** Next.js · Node.js · Express · Python · FastAPI · Fine-tuning · TinyLlama · AI  
 **GitHub:** https://github.com/Karencheenn/LazyCare
 
@@ -185,11 +185,11 @@ Features: personalized profile management, AI chat interface, and full conversat
 ---
 
 ### 🎤 Interview Assistant — Brebeuf Hacks
-**Event:** Brebeuf Hacks · Jan 2024  
+**Event:** Brebeuf Hacks · Jan. 2024  
 **Skills:** Python · NLP · Voice AI · API Integration · Natural Language Processing  
 **GitHub:** https://github.com/Louiszhang2005-1/Virtual_interviewing_assistant
 
-Voice-based virtual interviewing assistant designed to help computer science students prepare for technical interviews, built at Brebeuf Hacks (Jan 2024) in a team of 3.
+Voice-based virtual interviewing assistant designed to help computer science students prepare for technical interviews, built at Brebeuf Hacks (Jan. 2024) in a team of 3.
 
 The assistant presents personalized interview questions verbally, listens to the response, and evaluates it using NLP algorithms. Built with Python and an AI/NLP API.
 

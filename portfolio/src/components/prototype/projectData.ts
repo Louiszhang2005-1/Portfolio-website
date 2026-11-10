@@ -121,17 +121,17 @@ export const allProjects: ProjectItem[] = [
 
 /** Hackathon results, from the project data already on the site. */
 export const WINS = [
-  { event: "HackHarvard 2026", prize: "1st place, Best Data-Driven Agent", sponsor: "Chalk Prize", project: "Trace", slug: "trace", date: "Oct 2026" },
-  { event: "ConUHacks X", prize: "Best Use of ElevenLabs", project: "Nursie", slug: "nursie", date: "Jan 2026" },
-  { event: "RoboHacks 2025", prize: "Unexpected Expedition Award", sponsor: "5th overall", project: "Reforestation Robot", slug: "reforestation-robot", date: "Feb 2025" },
+  { event: "HackHarvard 2026", prize: "1st place, Best Data-Driven Agent", sponsor: "Chalk Prize", project: "Trace", slug: "trace", date: "Oct. 2026" },
+  { event: "ConUHacks X", prize: "Best Use of ElevenLabs", project: "Nursie", slug: "nursie", date: "Jan. 2026" },
+  { event: "RoboHacks 2025", prize: "Unexpected Expedition Award", sponsor: "5th overall", project: "Reforestation Robot", slug: "reforestation-robot", date: "Feb. 2025" },
 ];
 
 export const ALSO_COMPETED = [
-  { event: "McHacks 13", project: "MechPrep", slug: "mechprep", date: "Jan 2026" },
-  { event: "UpStart 2026", project: "ResQ-Link", slug: "resq-link", date: "2026" },
-  { event: "Accenture AOTC 2026", project: "CRM Outreach Tool", slug: "crm-outreach-tool", date: "Jan–Apr 2026" },
-  { event: "UdemHacks", project: "LazyCare", slug: "lazycare", date: "Mar 2025" },
-  { event: "Brebeuf Hacks", project: "Interview Assistant", slug: "interview-assistant", date: "Jan 2024" },
+  { event: "McHacks 13", project: "MechPrep", slug: "mechprep", date: "Jan. 2026" },
+  { event: "UpStart 2026", project: "ResQ-Link", slug: "resq-link", date: "Feb. 2026" },
+  { event: "Accenture AOTC 2026", project: "CRM Outreach Tool", slug: "crm-outreach-tool", date: "Jan.–Apr. 2026" },
+  { event: "UdemHacks", project: "LazyCare", slug: "lazycare", date: "Mar. 2025" },
+  { event: "Brebeuf Hacks", project: "Interview Assistant", slug: "interview-assistant", date: "Jan. 2024" },
 ];
 
 /** Beyond the wins: from Louis's LinkedIn education entry and his own notes. One line per detail. */
@@ -139,5 +139,5 @@ export const RECOGNITION = [
   { label: "Scholarship", title: "Lina & Jean-Guy Gaudreault Perseverance Scholarship", detail: ["$2,500"] },
   { label: "Leadership", title: "VP Events", detail: ["Google Developer Group, Polytechnique Montréal"] },
   { label: "Speaking", title: "Guest speaker, SCS Concordia", detail: ["Landing tech internships, to 100 students"] },
-  { label: "Judging", title: "Hackathon judge", detail: ["MPC Hacks, May 2026", "Hack 2 the Future, Nov 2026"] },
+  { label: "Judging", title: "Hackathon judge", detail: ["MPC Hacks, May 2026", "Hack 2 the Future, Nov. 2026"] },
 ];

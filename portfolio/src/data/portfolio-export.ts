@@ -43,7 +43,7 @@ export const portfolioData = {
             "Python",
             "GIS"
           ],
-          "summary": "Engineering Intern at the City of Montreal's Water Department (Mayâ€“Aug 2025). Contributed to water quality monitoring initiatives and geospatial data pipelines for municipal infrastructure management.",
+          "summary": "Engineering Intern at the City of Montreal's Water Department (Mayâ€“Aug. 2025). Contributed to water quality monitoring initiatives and geospatial data pipelines for municipal infrastructure management.",
           "links": {
             "github": null,
             "demo": null
@@ -141,7 +141,7 @@ export const portfolioData = {
           "type": "project",
           "category": "Aerospace & Mechanical",
           "title": "Axial Piston Pump",
-          "subtitle": "Hydraulic System Design Â· Novâ€“Dec 2024 Â· Polytechnique MontrÃ©al",
+          "subtitle": "Hydraulic System Design Â· Novâ€“Dec. 2024 Â· Polytechnique MontrÃ©al",
           "status": "active",
           "order": 2,
           "skills": [
@@ -151,7 +151,7 @@ export const portfolioData = {
             "GD&T",
             "Assembly Modeling"
           ],
-          "summary": "3D CAD modeling project at Polytechnique MontrÃ©al (Novâ€“Dec 2024). Fully modeled a high-performance axial piston hydraulic pump from the ground up. The assembly consists of a Cylinder Block (Bloc-cylindre) housing 9 individual Piston Assemblies â€” each comprising a Piston and a Slipper Pad (Patin) â€” retained by a Retaining Plate (Plaque de retenue) and centered via a Spherical Nut (Noix sphÃ©rique). Optimized component geometry and assembly parameters to enhance mechanical durability and functionality. Produced a full exploded-view drawing with bilingual French/English BOM following standard drafting conventions.",
+          "summary": "3D CAD modeling project at Polytechnique MontrÃ©al (Novâ€“Dec. 2024). Fully modeled a high-performance axial piston hydraulic pump from the ground up. The assembly consists of a Cylinder Block (Bloc-cylindre) housing 9 individual Piston Assemblies â€” each comprising a Piston and a Slipper Pad (Patin) â€” retained by a Retaining Plate (Plaque de retenue) and centered via a Spherical Nut (Noix sphÃ©rique). Optimized component geometry and assembly parameters to enhance mechanical durability and functionality. Produced a full exploded-view drawing with bilingual French/English BOM following standard drafting conventions.",
           "links": {
             "github": null,
             "demo": null
@@ -166,7 +166,7 @@ export const portfolioData = {
           "type": "project",
           "category": "Aerospace & Mechanical",
           "title": "Reforestation Robot",
-          "subtitle": "RoboHacks Feb 2025 Â· Unexpected Expedition Award Â· 5th Overall",
+          "subtitle": "RoboHacks Feb. 2025 Â· Unexpected Expedition Award Â· 5th Overall",
           "status": "active",
           "order": 3,
           "skills": [
@@ -176,7 +176,7 @@ export const portfolioData = {
             "DC Motors",
             "Recycled Materials"
           ],
-          "summary": "ðŸ† Winner â€” Unexpected Expedition Award Â· 5th Place Overall at RoboHacks (Feb 2025). Built a fully autonomous seed-planting robot in 24 hours using recycled materials â€” cardboard chassis, plastic bottles, and a paper-engineered seed dispenser. Coded the full navigation and dispensing sequence in C++ on Arduino: two IR sensors fused with a color sensor for line-following, servo-actuated paper dispenser for timed seed placement. Wired all electronics on a breadboard from scratch under competition conditions.",
+          "summary": "ðŸ† Winner â€” Unexpected Expedition Award Â· 5th Place Overall at RoboHacks (Feb. 2025). Built a fully autonomous seed-planting robot in 24 hours using recycled materials â€” cardboard chassis, plastic bottles, and a paper-engineered seed dispenser. Coded the full navigation and dispensing sequence in C++ on Arduino: two IR sensors fused with a color sensor for line-following, servo-actuated paper dispenser for timed seed placement. Wired all electronics on a breadboard from scratch under competition conditions.",
           "links": {
             "github": "https://github.com/Louiszhang2005-1/RoboHacks-2025",
             "demo": null
@@ -191,7 +191,7 @@ export const portfolioData = {
           "type": "project",
           "category": "Aerospace & Mechanical",
           "title": "MechPrep",
-          "subtitle": "McHacks 13 Â· Jan 2026",
+          "subtitle": "McHacks 13 Â· Jan. 2026",
           "status": "active",
           "order": 4,
           "skills": [
@@ -203,7 +203,7 @@ export const portfolioData = {
             "3D Modeling",
             "CAD Integration"
           ],
-          "summary": "Built at McHacks 13 (Jan 2026). As Mechanical Engineering Students who have spent countless hours scrolling Glassdoor and LinkedIn preparing for technical interviews, we built MechPrep â€” an interactive interview prep platform tailored for mechanical and aerospace engineering students. Designed and modeled 3D components in SolidWorks and Blender, then integrated the CAD models into a React + Python web app to make them interactive and educational. Integrated an AI API to generate and evaluate interview questions. Key challenges: wiring the AI API into the project architecture and embedding interactive CAD models into the browser. Next steps: expand the question bank across more companies and offer a white-label tool to help companies generate their own technical interview questions.",
+          "summary": "Built at McHacks 13 (Jan. 2026). As Mechanical Engineering Students who have spent countless hours scrolling Glassdoor and LinkedIn preparing for technical interviews, we built MechPrep â€” an interactive interview prep platform tailored for mechanical and aerospace engineering students. Designed and modeled 3D components in SolidWorks and Blender, then integrated the CAD models into a React + Python web app to make them interactive and educational. Integrated an AI API to generate and evaluate interview questions. Key challenges: wiring the AI API into the project architecture and embedding interactive CAD models into the browser. Next steps: expand the question bank across more companies and offer a white-label tool to help companies generate their own technical interview questions.",
           "links": {
             "github": null,
             "demo": "https://devpost.com/software/mechie"
@@ -223,7 +223,7 @@ export const portfolioData = {
           "type": "project",
           "category": "Robotics & IoT",
           "title": "ResQ-Link",
-          "subtitle": "UpStart 2026 Â· Digital System for Disaster Management",
+          "subtitle": "UpStart 2026 Â· Feb. 2026 Â· Digital System for Disaster Management",
           "status": "active",
           "order": 1,
           "skills": [
@@ -235,7 +235,7 @@ export const portfolioData = {
             "Medical Design",
             "Systems Architecture"
           ],
-          "summary": "Built at UpStart 2026 (Feb 2026) as part of a multidisciplinary team from Polytechnique MontrÃ©al. In Montreal, analog paper triage tags contribute to a 30% triage error rate, $1.7B in annual malpractice losses, and 10.5-hour average ER wait times. ResQ-Link replaces paper tags with a zero-power passive NFC bracelet: inductive copper coil (no battery required), passive NFC chip, medical-grade silicone band designed for IP68 with translucent overmolded seal. Bundled with the SmartTriage companion dashboard â€” a full Command Center featuring real-time bracelet location maps, tag management (Morgue/Immediate/Delayed/Minor), registered staff tracking, and an offline-mesh data sync protocol so data reaches the hospital even when cellular fails. Business model: hardware 'Blade' at $1.50/unit (80% gross margin at scale) + software 'Razor' SaaS at $10kâ€“$50k/facility/year. Targeting $750k seed round for MUHC 5,000-unit pilot, Health Canada Class I/II certification, and Quebec 'Buy Local' procurement priority.",
+          "summary": "Built at UpStart 2026 (Feb. 2026) as part of a multidisciplinary team from Polytechnique MontrÃ©al. In Montreal, analog paper triage tags contribute to a 30% triage error rate, $1.7B in annual malpractice losses, and 10.5-hour average ER wait times. ResQ-Link replaces paper tags with a zero-power passive NFC bracelet: inductive copper coil (no battery required), passive NFC chip, medical-grade silicone band designed for IP68 with translucent overmolded seal. Bundled with the SmartTriage companion dashboard â€” a full Command Center featuring real-time bracelet location maps, tag management (Morgue/Immediate/Delayed/Minor), registered staff tracking, and an offline-mesh data sync protocol so data reaches the hospital even when cellular fails. Business model: hardware 'Blade' at $1.50/unit (80% gross margin at scale) + software 'Razor' SaaS at $10kâ€“$50k/facility/year. Targeting $750k seed round for MUHC 5,000-unit pilot, Health Canada Class I/II certification, and Quebec 'Buy Local' procurement priority.",
           "links": {
             "github": "https://github.com/Louiszhang2005-1/Band",
             "demo": null
@@ -264,7 +264,7 @@ export const portfolioData = {
             "ElevenLabs",
             "OpenWRT"
           ],
-          "summary": "ðŸ† Winner at ConUHacks X â€” Best Use of ElevenLabs (Jan 2026). Co-founded an on-premises AI nurse assistant for Quebec long-term care facilities (CHSLDs). Falls among seniors (65+) have risen 47% between 2008â€“2019 â€” Nursie closes the gap between unwitnessed falls and delayed staff response. What it does: (1) detects falls using mmWave radar (IWR6843) fused with a floor vibration mat; (2) tracks room context via magnetic door sensor + PIR presence/occupancy node on ESP32/FreeRTOS; (3) monitors vital signs via smartwatch integration; (4) sends immediate alerts â€” phone call + dashboard push â€” to staff on detection; (5) builds a resident profile in MongoDB over time to flag unusual behavior (e.g. leaving the apartment at night); (6) provides a voice interface for residents via ElevenLabs for questions, appointment reminders, and medication prompts. Design principles: fast reliable detection over fancy features; 3Ã— sensor redundancy to reduce false positives (radar + vibration mat + wearable fused for confidence scoring); privacy by architecture â€” all data stays on the facility's local OpenWRT LAN, no cameras, no cloud.",
+          "summary": "ðŸ† Winner at ConUHacks X â€” Best Use of ElevenLabs (Jan. 2026). Co-founded an on-premises AI nurse assistant for Quebec long-term care facilities (CHSLDs). Falls among seniors (65+) have risen 47% between 2008â€“2019 â€” Nursie closes the gap between unwitnessed falls and delayed staff response. What it does: (1) detects falls using mmWave radar (IWR6843) fused with a floor vibration mat; (2) tracks room context via magnetic door sensor + PIR presence/occupancy node on ESP32/FreeRTOS; (3) monitors vital signs via smartwatch integration; (4) sends immediate alerts â€” phone call + dashboard push â€” to staff on detection; (5) builds a resident profile in MongoDB over time to flag unusual behavior (e.g. leaving the apartment at night); (6) provides a voice interface for residents via ElevenLabs for questions, appointment reminders, and medication prompts. Design principles: fast reliable detection over fancy features; 3Ã— sensor redundancy to reduce false positives (radar + vibration mat + wearable fused for confidence scoring); privacy by architecture â€” all data stays on the facility's local OpenWRT LAN, no cameras, no cloud.",
           "links": {
             "github": "https://github.com/Louiszhang2005-1",
             "demo": "https://devpost.com/software/nursie"
@@ -284,7 +284,7 @@ export const portfolioData = {
           "type": "project",
           "category": "Software & AI",
           "title": "CRM Outreach Tool",
-          "subtitle": "Accenture Â· AOTC 2026 Â· Janâ€“Apr 2026",
+          "subtitle": "Accenture Â· AOTC 2026 Â· Janâ€“Apr. 2026",
           "status": "active",
           "order": 1,
           "skills": [
@@ -312,7 +312,7 @@ export const portfolioData = {
           "type": "project",
           "category": "Software & AI",
           "title": "LazyCare",
-          "subtitle": "UdemHacks Â· Mar 2025 Â· AI Health Assistant",
+          "subtitle": "UdemHacks Â· Mar. 2025 Â· AI Health Assistant",
           "status": "active",
           "order": 2,
           "skills": [
@@ -325,7 +325,7 @@ export const portfolioData = {
             "TinyLlama",
             "AI"
           ],
-          "summary": "Built at UdemHacks (Mar 2025). LazyCare is an AI health assistant that provides personalized health recommendations via text-based interactions. Backend stack: Next.js frontend, Node.js/Express middleware, and a Python FastAPI service running a fine-tuned TinyLlama model for domain-specific health analysis. Fine-tuning allows the model to give more accurate, context-aware answers than a vanilla LLM. Features: personalized profile management, AI chat interface, and full conversation history so the assistant learns your context over time.",
+          "summary": "Built at UdemHacks (Mar. 2025). LazyCare is an AI health assistant that provides personalized health recommendations via text-based interactions. Backend stack: Next.js frontend, Node.js/Express middleware, and a Python FastAPI service running a fine-tuned TinyLlama model for domain-specific health analysis. Fine-tuning allows the model to give more accurate, context-aware answers than a vanilla LLM. Features: personalized profile management, AI chat interface, and full conversation history so the assistant learns your context over time.",
           "links": {
             "github": "https://github.com/Karencheenn/LazyCare",
             "demo": null
@@ -340,7 +340,7 @@ export const portfolioData = {
           "type": "project",
           "category": "Software & AI",
           "title": "Interview Assistant",
-          "subtitle": "Brebeuf Hacks Â· Jan 2024 Â· Voice AI",
+          "subtitle": "Brebeuf Hacks Â· Jan. 2024 Â· Voice AI",
           "status": "active",
           "order": 3,
           "skills": [
@@ -350,7 +350,7 @@ export const portfolioData = {
             "API Integration",
             "Natural Language Processing"
           ],
-          "summary": "Built at Brebeuf Hacks (Jan 2024) in a team of 3. A voice-based virtual interviewing assistant designed to help computer science students prepare for technical interviews. The assistant presents personalized interview questions verbally, listens to the interviewee's response, and evaluates the answer using natural language processing algorithms. Developed with Python and integrated an AI/NLP API to power the intelligent question-and-answer pipeline. Features a user-friendly voice interface so students can practice in a realistic spoken-word format rather than typing.",
+          "summary": "Built at Brebeuf Hacks (Jan. 2024) in a team of 3. A voice-based virtual interviewing assistant designed to help computer science students prepare for technical interviews. The assistant presents personalized interview questions verbally, listens to the interviewee's response, and evaluates the answer using natural language processing algorithms. Developed with Python and integrated an AI/NLP API to power the intelligent question-and-answer pipeline. Features a user-friendly voice interface so students can practice in a realistic spoken-word format rather than typing.",
           "links": {
             "github": "https://github.com/Louiszhang2005-1/Virtual_interviewing_assistant",
             "demo": null
@@ -378,7 +378,7 @@ export const portfolioData = {
         "Python",
         "GIS"
       ],
-      "summary": "Engineering Intern at the City of Montreal's Water Department (Mayâ€“Aug 2025). Contributed to water quality monitoring initiatives and geospatial data pipelines for municipal infrastructure management.",
+      "summary": "Engineering Intern at the City of Montreal's Water Department (Mayâ€“Aug. 2025). Contributed to water quality monitoring initiatives and geospatial data pipelines for municipal infrastructure management.",
       "links": {
         "github": null,
         "demo": null
@@ -473,7 +473,7 @@ export const portfolioData = {
       "type": "project",
       "category": "Aerospace & Mechanical",
       "title": "Axial Piston Pump",
-      "subtitle": "Hydraulic System Design Â· Novâ€“Dec 2024 Â· Polytechnique MontrÃ©al",
+      "subtitle": "Hydraulic System Design Â· Novâ€“Dec. 2024 Â· Polytechnique MontrÃ©al",
       "status": "active",
       "order": 2,
       "skills": [
@@ -483,7 +483,7 @@ export const portfolioData = {
         "GD&T",
         "Assembly Modeling"
       ],
-      "summary": "3D CAD modeling project at Polytechnique MontrÃ©al (Novâ€“Dec 2024). Fully modeled a high-performance axial piston hydraulic pump from the ground up. The assembly consists of a Cylinder Block (Bloc-cylindre) housing 9 individual Piston Assemblies â€” each comprising a Piston and a Slipper Pad (Patin) â€” retained by a Retaining Plate (Plaque de retenue) and centered via a Spherical Nut (Noix sphÃ©rique). Optimized component geometry and assembly parameters to enhance mechanical durability and functionality. Produced a full exploded-view drawing with bilingual French/English BOM following standard drafting conventions.",
+      "summary": "3D CAD modeling project at Polytechnique MontrÃ©al (Novâ€“Dec. 2024). Fully modeled a high-performance axial piston hydraulic pump from the ground up. The assembly consists of a Cylinder Block (Bloc-cylindre) housing 9 individual Piston Assemblies â€” each comprising a Piston and a Slipper Pad (Patin) â€” retained by a Retaining Plate (Plaque de retenue) and centered via a Spherical Nut (Noix sphÃ©rique). Optimized component geometry and assembly parameters to enhance mechanical durability and functionality. Produced a full exploded-view drawing with bilingual French/English BOM following standard drafting conventions.",
       "links": {
         "github": null,
         "demo": null
@@ -498,7 +498,7 @@ export const portfolioData = {
       "type": "project",
       "category": "Aerospace & Mechanical",
       "title": "Reforestation Robot",
-      "subtitle": "RoboHacks Feb 2025 Â· Unexpected Expedition Award Â· 5th Overall",
+      "subtitle": "RoboHacks Feb. 2025 Â· Unexpected Expedition Award Â· 5th Overall",
       "status": "active",
       "order": 3,
       "skills": [
@@ -508,7 +508,7 @@ export const portfolioData = {
         "DC Motors",
         "Recycled Materials"
       ],
-      "summary": "ðŸ† Winner â€” Unexpected Expedition Award Â· 5th Place Overall at RoboHacks (Feb 2025). Built a fully autonomous seed-planting robot in 24 hours using recycled materials â€” cardboard chassis, plastic bottles, and a paper-engineered seed dispenser. Coded the full navigation and dispensing sequence in C++ on Arduino: two IR sensors fused with a color sensor for line-following, servo-actuated paper dispenser for timed seed placement. Wired all electronics on a breadboard from scratch under competition conditions.",
+      "summary": "ðŸ† Winner â€” Unexpected Expedition Award Â· 5th Place Overall at RoboHacks (Feb. 2025). Built a fully autonomous seed-planting robot in 24 hours using recycled materials â€” cardboard chassis, plastic bottles, and a paper-engineered seed dispenser. Coded the full navigation and dispensing sequence in C++ on Arduino: two IR sensors fused with a color sensor for line-following, servo-actuated paper dispenser for timed seed placement. Wired all electronics on a breadboard from scratch under competition conditions.",
       "links": {
         "github": "https://github.com/Louiszhang2005-1/RoboHacks-2025",
         "demo": null
@@ -523,7 +523,7 @@ export const portfolioData = {
       "type": "project",
       "category": "Aerospace & Mechanical",
       "title": "MechPrep",
-      "subtitle": "McHacks 13 Â· Jan 2026",
+      "subtitle": "McHacks 13 Â· Jan. 2026",
       "status": "active",
       "order": 4,
       "skills": [
@@ -535,7 +535,7 @@ export const portfolioData = {
         "3D Modeling",
         "CAD Integration"
       ],
-      "summary": "Built at McHacks 13 (Jan 2026). As Mechanical Engineering Students who have spent countless hours scrolling Glassdoor and LinkedIn preparing for technical interviews, we built MechPrep â€” an interactive interview prep platform tailored for mechanical and aerospace engineering students. Designed and modeled 3D components in SolidWorks and Blender, then integrated the CAD models into a React + Python web app to make them interactive and educational. Integrated an AI API to generate and evaluate interview questions. Key challenges: wiring the AI API into the project architecture and embedding interactive CAD models into the browser. Next steps: expand the question bank across more companies and offer a white-label tool to help companies generate their own technical interview questions.",
+      "summary": "Built at McHacks 13 (Jan. 2026). As Mechanical Engineering Students who have spent countless hours scrolling Glassdoor and LinkedIn preparing for technical interviews, we built MechPrep â€” an interactive interview prep platform tailored for mechanical and aerospace engineering students. Designed and modeled 3D components in SolidWorks and Blender, then integrated the CAD models into a React + Python web app to make them interactive and educational. Integrated an AI API to generate and evaluate interview questions. Key challenges: wiring the AI API into the project architecture and embedding interactive CAD models into the browser. Next steps: expand the question bank across more companies and offer a white-label tool to help companies generate their own technical interview questions.",
       "links": {
         "github": null,
         "demo": "https://devpost.com/software/mechie"
@@ -550,7 +550,7 @@ export const portfolioData = {
       "type": "project",
       "category": "Robotics & IoT",
       "title": "ResQ-Link",
-      "subtitle": "UpStart 2026 Â· Digital System for Disaster Management",
+      "subtitle": "UpStart 2026 Â· Feb. 2026 Â· Digital System for Disaster Management",
       "status": "active",
       "order": 1,
       "skills": [
@@ -562,7 +562,7 @@ export const portfolioData = {
         "Medical Design",
         "Systems Architecture"
       ],
-      "summary": "Built at UpStart 2026 (Feb 2026) as part of a multidisciplinary team from Polytechnique MontrÃ©al. In Montreal, analog paper triage tags contribute to a 30% triage error rate, $1.7B in annual malpractice losses, and 10.5-hour average ER wait times. ResQ-Link replaces paper tags with a zero-power passive NFC bracelet: inductive copper coil (no battery required), passive NFC chip, medical-grade silicone band designed for IP68 with translucent overmolded seal. Bundled with the SmartTriage companion dashboard â€” a full Command Center featuring real-time bracelet location maps, tag management (Morgue/Immediate/Delayed/Minor), registered staff tracking, and an offline-mesh data sync protocol so data reaches the hospital even when cellular fails. Business model: hardware 'Blade' at $1.50/unit (80% gross margin at scale) + software 'Razor' SaaS at $10kâ€“$50k/facility/year. Targeting $750k seed round for MUHC 5,000-unit pilot, Health Canada Class I/II certification, and Quebec 'Buy Local' procurement priority.",
+      "summary": "Built at UpStart 2026 (Feb. 2026) as part of a multidisciplinary team from Polytechnique MontrÃ©al. In Montreal, analog paper triage tags contribute to a 30% triage error rate, $1.7B in annual malpractice losses, and 10.5-hour average ER wait times. ResQ-Link replaces paper tags with a zero-power passive NFC bracelet: inductive copper coil (no battery required), passive NFC chip, medical-grade silicone band designed for IP68 with translucent overmolded seal. Bundled with the SmartTriage companion dashboard â€” a full Command Center featuring real-time bracelet location maps, tag management (Morgue/Immediate/Delayed/Minor), registered staff tracking, and an offline-mesh data sync protocol so data reaches the hospital even when cellular fails. Business model: hardware 'Blade' at $1.50/unit (80% gross margin at scale) + software 'Razor' SaaS at $10kâ€“$50k/facility/year. Targeting $750k seed round for MUHC 5,000-unit pilot, Health Canada Class I/II certification, and Quebec 'Buy Local' procurement priority.",
       "links": {
         "github": "https://github.com/Louiszhang2005-1/Band",
         "demo": null
@@ -591,7 +591,7 @@ export const portfolioData = {
         "ElevenLabs",
         "OpenWRT"
       ],
-      "summary": "ðŸ† Winner at ConUHacks X â€” Best Use of ElevenLabs (Jan 2026). Co-founded an on-premises AI nurse assistant for Quebec long-term care facilities (CHSLDs). Falls among seniors (65+) have risen 47% between 2008â€“2019 â€” Nursie closes the gap between unwitnessed falls and delayed staff response. What it does: (1) detects falls using mmWave radar (IWR6843) fused with a floor vibration mat; (2) tracks room context via magnetic door sensor + PIR presence/occupancy node on ESP32/FreeRTOS; (3) monitors vital signs via smartwatch integration; (4) sends immediate alerts â€” phone call + dashboard push â€” to staff on detection; (5) builds a resident profile in MongoDB over time to flag unusual behavior (e.g. leaving the apartment at night); (6) provides a voice interface for residents via ElevenLabs for questions, appointment reminders, and medication prompts. Design principles: fast reliable detection over fancy features; 3Ã— sensor redundancy to reduce false positives (radar + vibration mat + wearable fused for confidence scoring); privacy by architecture â€” all data stays on the facility's local OpenWRT LAN, no cameras, no cloud.",
+      "summary": "ðŸ† Winner at ConUHacks X â€” Best Use of ElevenLabs (Jan. 2026). Co-founded an on-premises AI nurse assistant for Quebec long-term care facilities (CHSLDs). Falls among seniors (65+) have risen 47% between 2008â€“2019 â€” Nursie closes the gap between unwitnessed falls and delayed staff response. What it does: (1) detects falls using mmWave radar (IWR6843) fused with a floor vibration mat; (2) tracks room context via magnetic door sensor + PIR presence/occupancy node on ESP32/FreeRTOS; (3) monitors vital signs via smartwatch integration; (4) sends immediate alerts â€” phone call + dashboard push â€” to staff on detection; (5) builds a resident profile in MongoDB over time to flag unusual behavior (e.g. leaving the apartment at night); (6) provides a voice interface for residents via ElevenLabs for questions, appointment reminders, and medication prompts. Design principles: fast reliable detection over fancy features; 3Ã— sensor redundancy to reduce false positives (radar + vibration mat + wearable fused for confidence scoring); privacy by architecture â€” all data stays on the facility's local OpenWRT LAN, no cameras, no cloud.",
       "links": {
         "github": "https://github.com/Louiszhang2005-1",
         "demo": "https://devpost.com/software/nursie"
@@ -606,7 +606,7 @@ export const portfolioData = {
       "type": "project",
       "category": "Software & AI",
       "title": "CRM Outreach Tool",
-      "subtitle": "Accenture Â· AOTC 2026 Â· Janâ€“Apr 2026",
+      "subtitle": "Accenture Â· AOTC 2026 Â· Janâ€“Apr. 2026",
       "status": "active",
       "order": 1,
       "skills": [
@@ -634,7 +634,7 @@ export const portfolioData = {
       "type": "project",
       "category": "Software & AI",
       "title": "LazyCare",
-      "subtitle": "UdemHacks Â· Mar 2025 Â· AI Health Assistant",
+      "subtitle": "UdemHacks Â· Mar. 2025 Â· AI Health Assistant",
       "status": "active",
       "order": 2,
       "skills": [
@@ -647,7 +647,7 @@ export const portfolioData = {
         "TinyLlama",
         "AI"
       ],
-      "summary": "Built at UdemHacks (Mar 2025). LazyCare is an AI health assistant that provides personalized health recommendations via text-based interactions. Backend stack: Next.js frontend, Node.js/Express middleware, and a Python FastAPI service running a fine-tuned TinyLlama model for domain-specific health analysis. Fine-tuning allows the model to give more accurate, context-aware answers than a vanilla LLM. Features: personalized profile management, AI chat interface, and full conversation history so the assistant learns your context over time.",
+      "summary": "Built at UdemHacks (Mar. 2025). LazyCare is an AI health assistant that provides personalized health recommendations via text-based interactions. Backend stack: Next.js frontend, Node.js/Express middleware, and a Python FastAPI service running a fine-tuned TinyLlama model for domain-specific health analysis. Fine-tuning allows the model to give more accurate, context-aware answers than a vanilla LLM. Features: personalized profile management, AI chat interface, and full conversation history so the assistant learns your context over time.",
       "links": {
         "github": "https://github.com/Karencheenn/LazyCare",
         "demo": null
@@ -662,7 +662,7 @@ export const portfolioData = {
       "type": "project",
       "category": "Software & AI",
       "title": "Interview Assistant",
-      "subtitle": "Brebeuf Hacks Â· Jan 2024 Â· Voice AI",
+      "subtitle": "Brebeuf Hacks Â· Jan. 2024 Â· Voice AI",
       "status": "active",
       "order": 3,
       "skills": [
@@ -672,7 +672,7 @@ export const portfolioData = {
         "API Integration",
         "Natural Language Processing"
       ],
-      "summary": "Built at Brebeuf Hacks (Jan 2024) in a team of 3. A voice-based virtual interviewing assistant designed to help computer science students prepare for technical interviews. The assistant presents personalized interview questions verbally, listens to the interviewee's response, and evaluates the answer using natural language processing algorithms. Developed with Python and integrated an AI/NLP API to power the intelligent question-and-answer pipeline. Features a user-friendly voice interface so students can practice in a realistic spoken-word format rather than typing.",
+      "summary": "Built at Brebeuf Hacks (Jan. 2024) in a team of 3. A voice-based virtual interviewing assistant designed to help computer science students prepare for technical interviews. The assistant presents personalized interview questions verbally, listens to the interviewee's response, and evaluates the answer using natural language processing algorithms. Developed with Python and integrated an AI/NLP API to power the intelligent question-and-answer pipeline. Features a user-friendly voice interface so students can practice in a realistic spoken-word format rather than typing.",
       "links": {
         "github": "https://github.com/Louiszhang2005-1/Virtual_interviewing_assistant",
         "demo": null
@@ -698,7 +698,7 @@ export const portfolioData = {
         "Python",
         "GIS"
       ],
-      "summary": "Engineering Intern at the City of Montreal's Water Department (Mayâ€“Aug 2025). Contributed to water quality monitoring initiatives and geospatial data pipelines for municipal infrastructure management.",
+      "summary": "Engineering Intern at the City of Montreal's Water Department (Mayâ€“Aug. 2025). Contributed to water quality monitoring initiatives and geospatial data pipelines for municipal infrastructure management.",
       "links": {
         "github": null,
         "demo": null
@@ -791,7 +791,7 @@ export const portfolioData = {
       "type": "project",
       "category": "Aerospace & Mechanical",
       "title": "Axial Piston Pump",
-      "subtitle": "Hydraulic System Design Â· Novâ€“Dec 2024 Â· Polytechnique MontrÃ©al",
+      "subtitle": "Hydraulic System Design Â· Novâ€“Dec. 2024 Â· Polytechnique MontrÃ©al",
       "status": "active",
       "order": 2,
       "skills": [
@@ -801,7 +801,7 @@ export const portfolioData = {
         "GD&T",
         "Assembly Modeling"
       ],
-      "summary": "3D CAD modeling project at Polytechnique MontrÃ©al (Novâ€“Dec 2024). Fully modeled a high-performance axial piston hydraulic pump from the ground up. The assembly consists of a Cylinder Block (Bloc-cylindre) housing 9 individual Piston Assemblies â€” each comprising a Piston and a Slipper Pad (Patin) â€” retained by a Retaining Plate (Plaque de retenue) and centered via a Spherical Nut (Noix sphÃ©rique). Optimized component geometry and assembly parameters to enhance mechanical durability and functionality. Produced a full exploded-view drawing with bilingual French/English BOM following standard drafting conventions.",
+      "summary": "3D CAD modeling project at Polytechnique MontrÃ©al (Novâ€“Dec. 2024). Fully modeled a high-performance axial piston hydraulic pump from the ground up. The assembly consists of a Cylinder Block (Bloc-cylindre) housing 9 individual Piston Assemblies â€” each comprising a Piston and a Slipper Pad (Patin) â€” retained by a Retaining Plate (Plaque de retenue) and centered via a Spherical Nut (Noix sphÃ©rique). Optimized component geometry and assembly parameters to enhance mechanical durability and functionality. Produced a full exploded-view drawing with bilingual French/English BOM following standard drafting conventions.",
       "links": {
         "github": null,
         "demo": null
@@ -816,7 +816,7 @@ export const portfolioData = {
       "type": "project",
       "category": "Aerospace & Mechanical",
       "title": "Reforestation Robot",
-      "subtitle": "RoboHacks Feb 2025 Â· Unexpected Expedition Award Â· 5th Overall",
+      "subtitle": "RoboHacks Feb. 2025 Â· Unexpected Expedition Award Â· 5th Overall",
       "status": "active",
       "order": 3,
       "skills": [
@@ -826,7 +826,7 @@ export const portfolioData = {
         "DC Motors",
         "Recycled Materials"
       ],
-      "summary": "ðŸ† Winner â€” Unexpected Expedition Award Â· 5th Place Overall at RoboHacks (Feb 2025). Built a fully autonomous seed-planting robot in 24 hours using recycled materials â€” cardboard chassis, plastic bottles, and a paper-engineered seed dispenser. Coded the full navigation and dispensing sequence in C++ on Arduino: two IR sensors fused with a color sensor for line-following, servo-actuated paper dispenser for timed seed placement. Wired all electronics on a breadboard from scratch under competition conditions.",
+      "summary": "ðŸ† Winner â€” Unexpected Expedition Award Â· 5th Place Overall at RoboHacks (Feb. 2025). Built a fully autonomous seed-planting robot in 24 hours using recycled materials â€” cardboard chassis, plastic bottles, and a paper-engineered seed dispenser. Coded the full navigation and dispensing sequence in C++ on Arduino: two IR sensors fused with a color sensor for line-following, servo-actuated paper dispenser for timed seed placement. Wired all electronics on a breadboard from scratch under competition conditions.",
       "links": {
         "github": "https://github.com/Louiszhang2005-1/RoboHacks-2025",
         "demo": null
@@ -841,7 +841,7 @@ export const portfolioData = {
       "type": "project",
       "category": "Aerospace & Mechanical",
       "title": "MechPrep",
-      "subtitle": "McHacks 13 Â· Jan 2026",
+      "subtitle": "McHacks 13 Â· Jan. 2026",
       "status": "active",
       "order": 4,
       "skills": [
@@ -853,7 +853,7 @@ export const portfolioData = {
         "3D Modeling",
         "CAD Integration"
       ],
-      "summary": "Built at McHacks 13 (Jan 2026). As Mechanical Engineering Students who have spent countless hours scrolling Glassdoor and LinkedIn preparing for technical interviews, we built MechPrep â€” an interactive interview prep platform tailored for mechanical and aerospace engineering students. Designed and modeled 3D components in SolidWorks and Blender, then integrated the CAD models into a React + Python web app to make them interactive and educational. Integrated an AI API to generate and evaluate interview questions. Key challenges: wiring the AI API into the project architecture and embedding interactive CAD models into the browser. Next steps: expand the question bank across more companies and offer a white-label tool to help companies generate their own technical interview questions.",
+      "summary": "Built at McHacks 13 (Jan. 2026). As Mechanical Engineering Students who have spent countless hours scrolling Glassdoor and LinkedIn preparing for technical interviews, we built MechPrep â€” an interactive interview prep platform tailored for mechanical and aerospace engineering students. Designed and modeled 3D components in SolidWorks and Blender, then integrated the CAD models into a React + Python web app to make them interactive and educational. Integrated an AI API to generate and evaluate interview questions. Key challenges: wiring the AI API into the project architecture and embedding interactive CAD models into the browser. Next steps: expand the question bank across more companies and offer a white-label tool to help companies generate their own technical interview questions.",
       "links": {
         "github": null,
         "demo": "https://devpost.com/software/mechie"
@@ -868,7 +868,7 @@ export const portfolioData = {
       "type": "project",
       "category": "Robotics & IoT",
       "title": "ResQ-Link",
-      "subtitle": "UpStart 2026 Â· Digital System for Disaster Management",
+      "subtitle": "UpStart 2026 Â· Feb. 2026 Â· Digital System for Disaster Management",
       "status": "active",
       "order": 1,
       "skills": [
@@ -880,7 +880,7 @@ export const portfolioData = {
         "Medical Design",
         "Systems Architecture"
       ],
-      "summary": "Built at UpStart 2026 (Feb 2026) as part of a multidisciplinary team from Polytechnique MontrÃ©al. In Montreal, analog paper triage tags contribute to a 30% triage error rate, $1.7B in annual malpractice losses, and 10.5-hour average ER wait times. ResQ-Link replaces paper tags with a zero-power passive NFC bracelet: inductive copper coil (no battery required), passive NFC chip, medical-grade silicone band designed for IP68 with translucent overmolded seal. Bundled with the SmartTriage companion dashboard â€” a full Command Center featuring real-time bracelet location maps, tag management (Morgue/Immediate/Delayed/Minor), registered staff tracking, and an offline-mesh data sync protocol so data reaches the hospital even when cellular fails. Business model: hardware 'Blade' at $1.50/unit (80% gross margin at scale) + software 'Razor' SaaS at $10kâ€“$50k/facility/year. Targeting $750k seed round for MUHC 5,000-unit pilot, Health Canada Class I/II certification, and Quebec 'Buy Local' procurement priority.",
+      "summary": "Built at UpStart 2026 (Feb. 2026) as part of a multidisciplinary team from Polytechnique MontrÃ©al. In Montreal, analog paper triage tags contribute to a 30% triage error rate, $1.7B in annual malpractice losses, and 10.5-hour average ER wait times. ResQ-Link replaces paper tags with a zero-power passive NFC bracelet: inductive copper coil (no battery required), passive NFC chip, medical-grade silicone band designed for IP68 with translucent overmolded seal. Bundled with the SmartTriage companion dashboard â€” a full Command Center featuring real-time bracelet location maps, tag management (Morgue/Immediate/Delayed/Minor), registered staff tracking, and an offline-mesh data sync protocol so data reaches the hospital even when cellular fails. Business model: hardware 'Blade' at $1.50/unit (80% gross margin at scale) + software 'Razor' SaaS at $10kâ€“$50k/facility/year. Targeting $750k seed round for MUHC 5,000-unit pilot, Health Canada Class I/II certification, and Quebec 'Buy Local' procurement priority.",
       "links": {
         "github": "https://github.com/Louiszhang2005-1/Band",
         "demo": null
@@ -909,7 +909,7 @@ export const portfolioData = {
         "ElevenLabs",
         "OpenWRT"
       ],
-      "summary": "ðŸ† Winner at ConUHacks X â€” Best Use of ElevenLabs (Jan 2026). Co-founded an on-premises AI nurse assistant for Quebec long-term care facilities (CHSLDs). Falls among seniors (65+) have risen 47% between 2008â€“2019 â€” Nursie closes the gap between unwitnessed falls and delayed staff response. What it does: (1) detects falls using mmWave radar (IWR6843) fused with a floor vibration mat; (2) tracks room context via magnetic door sensor + PIR presence/occupancy node on ESP32/FreeRTOS; (3) monitors vital signs via smartwatch integration; (4) sends immediate alerts â€” phone call + dashboard push â€” to staff on detection; (5) builds a resident profile in MongoDB over time to flag unusual behavior (e.g. leaving the apartment at night); (6) provides a voice interface for residents via ElevenLabs for questions, appointment reminders, and medication prompts. Design principles: fast reliable detection over fancy features; 3Ã— sensor redundancy to reduce false positives (radar + vibration mat + wearable fused for confidence scoring); privacy by architecture â€” all data stays on the facility's local OpenWRT LAN, no cameras, no cloud.",
+      "summary": "ðŸ† Winner at ConUHacks X â€” Best Use of ElevenLabs (Jan. 2026). Co-founded an on-premises AI nurse assistant for Quebec long-term care facilities (CHSLDs). Falls among seniors (65+) have risen 47% between 2008â€“2019 â€” Nursie closes the gap between unwitnessed falls and delayed staff response. What it does: (1) detects falls using mmWave radar (IWR6843) fused with a floor vibration mat; (2) tracks room context via magnetic door sensor + PIR presence/occupancy node on ESP32/FreeRTOS; (3) monitors vital signs via smartwatch integration; (4) sends immediate alerts â€” phone call + dashboard push â€” to staff on detection; (5) builds a resident profile in MongoDB over time to flag unusual behavior (e.g. leaving the apartment at night); (6) provides a voice interface for residents via ElevenLabs for questions, appointment reminders, and medication prompts. Design principles: fast reliable detection over fancy features; 3Ã— sensor redundancy to reduce false positives (radar + vibration mat + wearable fused for confidence scoring); privacy by architecture â€” all data stays on the facility's local OpenWRT LAN, no cameras, no cloud.",
       "links": {
         "github": "https://github.com/Louiszhang2005-1",
         "demo": "https://devpost.com/software/nursie"
@@ -924,7 +924,7 @@ export const portfolioData = {
       "type": "project",
       "category": "Software & AI",
       "title": "CRM Outreach Tool",
-      "subtitle": "Accenture Â· AOTC 2026 Â· Janâ€“Apr 2026",
+      "subtitle": "Accenture Â· AOTC 2026 Â· Janâ€“Apr. 2026",
       "status": "active",
       "order": 1,
       "skills": [
@@ -952,7 +952,7 @@ export const portfolioData = {
       "type": "project",
       "category": "Software & AI",
       "title": "LazyCare",
-      "subtitle": "UdemHacks Â· Mar 2025 Â· AI Health Assistant",
+      "subtitle": "UdemHacks Â· Mar. 2025 Â· AI Health Assistant",
       "status": "active",
       "order": 2,
       "skills": [
@@ -965,7 +965,7 @@ export const portfolioData = {
         "TinyLlama",
         "AI"
       ],
-      "summary": "Built at UdemHacks (Mar 2025). LazyCare is an AI health assistant that provides personalized health recommendations via text-based interactions. Backend stack: Next.js frontend, Node.js/Express middleware, and a Python FastAPI service running a fine-tuned TinyLlama model for domain-specific health analysis. Fine-tuning allows the model to give more accurate, context-aware answers than a vanilla LLM. Features: personalized profile management, AI chat interface, and full conversation history so the assistant learns your context over time.",
+      "summary": "Built at UdemHacks (Mar. 2025). LazyCare is an AI health assistant that provides personalized health recommendations via text-based interactions. Backend stack: Next.js frontend, Node.js/Express middleware, and a Python FastAPI service running a fine-tuned TinyLlama model for domain-specific health analysis. Fine-tuning allows the model to give more accurate, context-aware answers than a vanilla LLM. Features: personalized profile management, AI chat interface, and full conversation history so the assistant learns your context over time.",
       "links": {
         "github": "https://github.com/Karencheenn/LazyCare",
         "demo": null
@@ -980,7 +980,7 @@ export const portfolioData = {
       "type": "project",
       "category": "Software & AI",
       "title": "Interview Assistant",
-      "subtitle": "Brebeuf Hacks Â· Jan 2024 Â· Voice AI",
+      "subtitle": "Brebeuf Hacks Â· Jan. 2024 Â· Voice AI",
       "status": "active",
       "order": 3,
       "skills": [
@@ -990,7 +990,7 @@ export const portfolioData = {
         "API Integration",
         "Natural Language Processing"
       ],
-      "summary": "Built at Brebeuf Hacks (Jan 2024) in a team of 3. A voice-based virtual interviewing assistant designed to help computer science students prepare for technical interviews. The assistant presents personalized interview questions verbally, listens to the interviewee's response, and evaluates the answer using natural language processing algorithms. Developed with Python and integrated an AI/NLP API to power the intelligent question-and-answer pipeline. Features a user-friendly voice interface so students can practice in a realistic spoken-word format rather than typing.",
+      "summary": "Built at Brebeuf Hacks (Jan. 2024) in a team of 3. A voice-based virtual interviewing assistant designed to help computer science students prepare for technical interviews. The assistant presents personalized interview questions verbally, listens to the interviewee's response, and evaluates the answer using natural language processing algorithms. Developed with Python and integrated an AI/NLP API to power the intelligent question-and-answer pipeline. Features a user-friendly voice interface so students can practice in a realistic spoken-word format rather than typing.",
       "links": {
         "github": "https://github.com/Louiszhang2005-1/Virtual_interviewing_assistant",
         "demo": null

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useMotionValueEvent, useScroll, useSpring, type MotionValue } from "framer-motion";
+import { motion, useMotionValueEvent, useScroll, useSpring, useTransform, type MotionValue } from "framer-motion";
 import { useEffect, useRef, useState, useSyncExternalStore, type ReactNode } from "react";
 import { useMap } from "./devices";
 
@@ -170,13 +170,39 @@ export function DeviceStage({
   );
 }
 
+/** A rest on the timeline: progress `at` holds still for `len` of the chapter's scroll track. */
+export type Hold = [at: number, len: number];
+
+/**
+ * Raw scroll → timeline, with flat stretches at each hold. The scroll itself stays native (no scroll-jacking): the
+ * animation simply waits on its readable moments, so the page feels heavier there. Holds must sit strictly inside
+ * (0, 1), sorted; everything between them shares the remaining track linearly.
+ */
+function holdCurve(holds: Hold[]): [number[], number[]] {
+  const move = 1 - holds.reduce((s, [, len]) => s + len, 0);
+  const raw = [0];
+  const out = [0];
+  let rested = 0;
+  for (const [at, len] of holds) {
+    raw.push(at * move + rested, at * move + rested + len);
+    out.push(at, at);
+    rested += len;
+  }
+  raw.push(1);
+  out.push(1);
+  return [raw, out];
+}
+
 /**
  * A chapter's scroll progress (0 → 1 across its pinned track), eased through a spring so every scroll-driven
- * animation glides into place instead of stepping with the wheel. Light damping keeps it responsive.
+ * animation glides into place instead of stepping with the wheel. Light damping keeps it responsive; the spring
+ * also eases into and out of each hold.
  */
-export function useSmoothProgress(ref: React.RefObject<HTMLElement | null>) {
+export function useSmoothProgress(ref: React.RefObject<HTMLElement | null>, holds: Hold[] = []) {
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
-  return useSpring(scrollYProgress, { stiffness: 170, damping: 34, mass: 0.35, restDelta: 0.0005 });
+  const [raw, out] = holdCurve(holds);
+  const timeline = useTransform(scrollYProgress, raw, out);
+  return useSpring(timeline, { stiffness: 170, damping: 34, mass: 0.35, restDelta: 0.0005 });
 }
 
 /**

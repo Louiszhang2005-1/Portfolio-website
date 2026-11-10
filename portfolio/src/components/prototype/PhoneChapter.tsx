@@ -5,7 +5,7 @@ import DeviceSkeleton from "./DeviceSkeleton";
 import dynamic from "next/dynamic";
 import { useRef, useState } from "react";
 import { useMap, type Motion } from "./devices";
-import { BeatCopy, DeviceStage, withPads, type Beat, useSmoothProgress } from "./stage";
+import { BeatCopy, DeviceStage, withPads, type Beat, type Hold, useSmoothProgress } from "./stage";
 
 const Phone3D = dynamic(() => import("./three/Phone3D"), { ssr: false });
 
@@ -21,6 +21,8 @@ const T = {
 };
 const LAYERS = 8;
 const diveAt = (r: number) => T.dive[0] + (r * (T.dive[1] - T.dive[0])) / LAYERS;
+/** Rests: the exploded stack, each discipline (centred on its pair of layers), and the assembled home screen. */
+const HOLDS: Hold[] = [[0.3, 0.05], ...[1, 3, 5, 7].map((r): Hold => [diveAt(r), 0.07]), [0.97, 0.05]];
 
 /** The dive passes two layers per discipline. Skills only: experience and projects get their own chapters. */
 const disciplines: Omit<Beat, "start" | "end">[] = [
@@ -102,7 +104,7 @@ function DepthHud({ dive, progress }: { dive: MotionValue<number>; progress: Mot
 
 export default function PhoneChapter({ id }: { id: string }) {
   const ref = useRef<HTMLElement>(null);
-  const p = useSmoothProgress(ref);
+  const p = useSmoothProgress(ref, HOLDS);
   const one = useMotionValue(1);
   // inside the phone the stack stays slightly tilted and separated, so it reads as layers, not a flat slab
   const tilt = useMap(p, T.tilt, [0, 0, 1, 1, 0.4, 0.4, 0]);
@@ -116,7 +118,7 @@ export default function PhoneChapter({ id }: { id: string }) {
   const codeOn = useMap(p, T.code, [0, 1, 1, 0]);
 
   return (
-    <section ref={ref} id={id} data-theme="light" className="white relative h-[320svh]">
+    <section ref={ref} id={id} data-theme="light" className="white relative h-[440svh]">
       <DeviceStage
         shadow={shadow}
         copy={beats.map((b) => (
