@@ -296,36 +296,37 @@ export function drawLaptop(
   ctx.globalAlpha = s.screen;
   wallpaper(ctx, W, H);
 
-  // menu bar with the internship timeline. Type is sized for the texture's ~1/4 on-page scale.
-  const MB = 64;
-  ctx.fillStyle = "rgba(0,0,0,0.5)";
+  // menu bar: one tab per internship, the current one lit, with a progress rule along the bottom edge.
+  // Type is sized for the texture's ~1/4 on-page scale.
+  const MB = 68;
+  ctx.fillStyle = "rgba(0,0,0,0.55)";
   ctx.fillRect(0, 0, W, MB);
   ctx.textAlign = "left";
   ctx.fillStyle = t["--text"];
-  ctx.font = `600 30px ${DISPLAY}`;
-  ctx.fillText("Experience", 28, 42);
-  const x0 = 240;
-  const x1 = W - 180;
-  ctx.fillStyle = "rgba(255,255,255,0.2)";
-  ctx.fillRect(x0, 31, x1 - x0, 3);
-  ctx.fillStyle = t["--text-secondary"];
+  ctx.font = `600 32px ${DISPLAY}`;
+  ctx.fillText("Experience", 32, 45);
+  const x0 = 260;
+  const x1 = W - 190;
+  const seg = (x1 - x0) / jobs.length;
+  const active = Math.min(Math.floor(s.track), jobs.length - 1);
+  ctx.textAlign = "center";
   jobs.forEach((j, i) => {
-    fitFont(ctx, company(j), (x1 - x0) / jobs.length - 24, 500, 26, DISPLAY, 16);
-    ctx.fillText(company(j), x0 + (i / jobs.length) * (x1 - x0) + 16, 42);
+    ctx.fillStyle = i === active ? t["--text"] : t["--text-tertiary"];
+    fitFont(ctx, company(j), seg - 24, i === active ? 600 : 500, 28, DISPLAY, 16);
+    ctx.fillText(company(j), x0 + (i + 0.5) * seg, 45);
   });
-  const mx = x0 + (Math.min(s.track, jobs.length - 0.001) / jobs.length) * (x1 - x0);
-  ctx.beginPath();
-  ctx.arc(mx, 32, 10, 0, Math.PI * 2);
+  ctx.fillStyle = "rgba(255,255,255,0.14)";
+  ctx.fillRect(x0, MB - 4, x1 - x0, 4);
   ctx.fillStyle = t["--accent"];
-  ctx.fill();
+  ctx.fillRect(x0, MB - 4, (Math.min(s.track, jobs.length) / jobs.length) * (x1 - x0), 4);
   ctx.textAlign = "right";
   ctx.fillStyle = t["--text-secondary"];
-  ctx.font = `500 26px ${DISPLAY}`;
-  ctx.fillText(`${jobs.length} roles`, W - 28, 42);
+  ctx.font = `500 28px ${DISPLAY}`;
+  ctx.fillText(`${jobs.length} roles`, W - 32, 45);
 
   // windows, back to front: one big, simple card per role (logo, company, role, three tools, dates)
-  const WW = 1080;
-  const WH = 590;
+  const WW = 1120;
+  const WH = 600;
   const order = jobs
     .map((job, i) => ({ job, rel: i + 0.5 - s.track }))
     .sort((a, b) => Math.abs(b.rel) - Math.abs(a.rel));
@@ -338,7 +339,7 @@ export function drawLaptop(
     if (op <= 0.01) continue;
     ctx.save();
     ctx.globalAlpha = s.screen * op;
-    ctx.translate(W / 2 + x, MB + (H - MB) / 2 + 10 + y);
+    ctx.translate(W / 2 + x, MB + (H - MB) / 2 + 6 + y);
     ctx.scale(sc, sc);
     ctx.translate(-WW / 2, -WH / 2);
     ctx.shadowColor = "rgba(0,0,0,0.6)";
@@ -353,60 +354,70 @@ export function drawLaptop(
     ctx.stroke();
     // title bar
     ctx.fillStyle = t["--surface-hover"];
-    rr(ctx, 0, 0, WW, 64, [22, 22, 0, 0]);
+    rr(ctx, 0, 0, WW, 68, [22, 22, 0, 0]);
     ctx.fill();
     for (let d = 0; d < 3; d++) {
       ctx.beginPath();
-      ctx.arc(34 + d * 32, 32, 10, 0, Math.PI * 2);
+      ctx.arc(36 + d * 34, 34, 11, 0, Math.PI * 2);
       ctx.fillStyle = t["--mat-alu-lo"];
       ctx.fill();
     }
     ctx.textAlign = "left";
     ctx.fillStyle = t["--text-secondary"];
-    ctx.font = `500 26px ${DISPLAY}`;
-    ctx.fillText(company(job), 150, 41);
+    ctx.font = `500 28px ${DISPLAY}`;
+    ctx.fillText(company(job), 156, 44);
 
     ctx.globalAlpha = s.screen * op * content;
     const logo = job.image ? logos[job.image] : undefined;
-    const L = 132;
-    rr(ctx, 44, 104, L, L, 22);
+    // logos are mostly wide wordmarks: a landscape tile shows them at a readable size instead of a sliver
+    const LW = 210;
+    const LH = 150;
+    const LY = 108;
+    rr(ctx, 48, LY, LW, LH, 24);
     ctx.fillStyle = t["--surface-light"];
     ctx.fill();
     if (logo?.complete && logo.naturalWidth) {
       ctx.save();
-      rr(ctx, 44, 104, L, L, 22);
+      rr(ctx, 48, LY, LW, LH, 24);
       ctx.clip();
-      const r = Math.min(L / logo.naturalWidth, L / logo.naturalHeight);
+      const r = Math.min(LW / logo.naturalWidth, LH / logo.naturalHeight);
       const lw = logo.naturalWidth * r;
       const lh = logo.naturalHeight * r;
-      ctx.drawImage(logo, 44 + (L - lw) / 2, 104 + (L - lh) / 2, lw, lh);
+      ctx.drawImage(logo, 48 + (LW - lw) / 2, LY + (LH - lh) / 2, lw, lh);
       ctx.restore();
     }
-    const tx0 = 44 + L + 32;
+    const tx0 = 48 + LW + 36;
     ctx.fillStyle = t["--text"];
-    fitFont(ctx, job.title, WW - tx0 - 44, 600, 64, DISPLAY, 36);
-    ctx.fillText(job.title, tx0, 170);
+    fitFont(ctx, job.title, WW - tx0 - 48, 600, 72, DISPLAY, 40);
+    ctx.fillText(job.title, tx0, LY + 64);
     ctx.fillStyle = t["--text-secondary"];
-    ctx.font = `400 34px ${DISPLAY}`;
-    wrapText(ctx, job.subtitle, WW - tx0 - 44)
+    ctx.font = `400 38px ${DISPLAY}`;
+    wrapText(ctx, job.subtitle, WW - tx0 - 48)
       .slice(0, 2)
-      .forEach((line, i) => ctx.fillText(line, tx0, 220 + i * 42));
-    let cx = 44;
-    ctx.font = `500 30px ${DISPLAY}`;
+      .forEach((line, i) => ctx.fillText(line, tx0, LY + 120 + i * 46));
+    // tags wrap onto a second row rather than dropping one
+    let cx = 48;
+    let cy = 330;
+    ctx.font = `500 34px ${DISPLAY}`;
+    ctx.lineWidth = 2.5;
     for (const skill of job.skills.slice(0, 3)) {
-      const w = ctx.measureText(skill).width + 40;
-      if (cx + w > WW - 44) break;
-      rr(ctx, cx, 346, w, 56, 28);
-      ctx.strokeStyle = "rgba(255,255,255,0.2)";
+      const w = ctx.measureText(skill).width + 48;
+      if (cx + w > WW - 48) {
+        if (cy > 330) break;
+        cx = 48;
+        cy += 80;
+      }
+      rr(ctx, cx, cy, w, 66, 33);
+      ctx.strokeStyle = "rgba(255,255,255,0.28)";
       ctx.stroke();
-      ctx.fillStyle = t["--text-secondary"];
-      ctx.fillText(skill, cx + 20, 384);
-      cx += w + 14;
+      ctx.fillStyle = t["--text"];
+      ctx.fillText(skill, cx + 24, cy + 45);
+      cx += w + 16;
     }
     ctx.textAlign = "left";
-    ctx.fillStyle = t["--text-tertiary"];
-    ctx.font = `500 30px ${MONO}`;
-    ctx.fillText(job.date, 44, WH - 48);
+    ctx.fillStyle = t["--text-secondary"];
+    ctx.font = `500 36px ${MONO}`;
+    ctx.fillText(job.date, 48, WH - 52);
     ctx.restore();
   }
   ctx.globalAlpha = 1;

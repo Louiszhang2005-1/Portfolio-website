@@ -1,12 +1,11 @@
 "use client";
 
-import { useMotionValueEvent, useReducedMotion } from "framer-motion";
-import { useCallback, useRef, useState, type MouseEvent } from "react";
+import { useMotionValueEvent, useReducedMotion, useTransform } from "framer-motion";
+import { useCallback, useEffect, useRef, useState, type MouseEvent } from "react";
 import { fullPortfolioDocument, fullPortfolioPages } from "@/lib/portfolio";
-import { useMap } from "./devices";
 import BookDeck, { PH, PW, SPREADS } from "./BookDeck";
 import PageViewer from "./PageViewer";
-import { Fit, btnGhostLight, btnPrimaryLight, useSmoothProgress } from "./stage";
+import { btnGhostLight, btnPrimaryLight, useSmoothProgress } from "./stage";
 
 const PAGE_TITLES = [
   "Profile and skills",
@@ -20,6 +19,55 @@ const PAGE_TITLES = [
 
 /** Pages flip inside this window of the chapter's own scroll track. */
 const PAGES = [0.08, 0.96];
+/** Share of each spread's scroll the book rests open on it, flat and readable, before the next sheet turns. */
+const HOLD = 0.4;
+/** Room around the book for its tilt and shadow, in model px. */
+const PAD_X = 32;
+const PAD_Y = 56;
+/** Largest fit scale: on big screens the pages grow past the 600px model (the flat spread is drawn at real size). */
+const MAX_SCALE = 1.2;
+
+const clamp01 = (v: number) => Math.min(1, Math.max(0, v));
+const smooth = (t: number) => t * t * (3 - 2 * t);
+
+/** Scroll progress -> sheets turned. Rests on each spread for HOLD of its share, centred on `PAGES` + s/SPREADS. */
+function flipAt(p: number) {
+  const u = clamp01((p - PAGES[0]) / (PAGES[1] - PAGES[0])) * SPREADS;
+  const i = Math.floor(u);
+  return Math.min(SPREADS, i + smooth(clamp01((u - i - HOLD / 2) / (1 - HOLD))));
+}
+
+/**
+ * Fit scale for the book, measured from its box. The box may run past the grid column to the viewport's right edge
+ * (less a margin): on laptops the column alone left the pages too small to read.
+ */
+function useBookFit() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [fit, setFit] = useState({ scale: 0, width: 0 });
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const measure = () => {
+      const r = el.getBoundingClientRect();
+      const vw = document.documentElement.clientWidth;
+      // phones stack the book full width, centred: only the two-column layout may borrow the right margin
+      const width = vw < 768 ? r.width : Math.max(r.width, vw - Math.max(16, vw * 0.02) - r.left);
+      let raw = Math.min(MAX_SCALE, width / (PW * 2 + PAD_X), r.height / (PH + PAD_Y));
+      // just short of 1:1, take it (eating into the padding): the 600w scan then lands pixel for pixel on 1x screens
+      if (raw > 0.96 && raw < 1) raw = 1;
+      // a whole number of px per page keeps the flat spread on the pixel grid
+      setFit({ scale: Math.floor(PW * raw) / PW, width });
+    };
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    window.addEventListener("resize", measure);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", measure);
+    };
+  }, []);
+  return [ref, fit] as const;
+}
 
 function PageList({ active, onPick }: { active: number[]; onPick: (i: number) => void }) {
   return (
@@ -102,8 +150,9 @@ function caption(visible: number[]) {
 function PinnedDeck({ id }: { id: string }) {
   const ref = useRef<HTMLElement>(null);
   const p = useSmoothProgress(ref);
-  const flip = useMap(p, PAGES, [0, SPREADS]);
-  const intro = useMap(p, [0, PAGES[0]], [0, 1]);
+  const flip = useTransform(p, flipAt);
+  const intro = useTransform(p, (v) => clamp01(v / PAGES[0]));
+  const [bookRef, book] = useBookFit();
   const [spread, setSpread] = useState(0);
   // a spread counts as open once its turning sheet has nearly landed, so the caption tracks what is visible
   useMotionValueEvent(flip, "change", (f) => setSpread(Math.min(SPREADS, Math.floor(f + 0.15))));
@@ -131,7 +180,7 @@ function PinnedDeck({ id }: { id: string }) {
   return (
     <section ref={ref} id={id} data-theme="light" className="light relative" style={{ height: `${100 + SPREADS * 45}svh` }}>
       <div className="sticky top-0 flex h-[100svh] items-center overflow-hidden pt-14">
-        <div className="relative mx-auto grid w-full max-w-[1480px] grid-cols-[minmax(0,1fr)] items-center gap-6 px-6 md:px-10 xl:px-16 md:grid-cols-[minmax(0,0.7fr)_minmax(0,1.3fr)] md:gap-10 lg:grid-cols-[minmax(0,0.55fr)_minmax(0,1.45fr)] lg:gap-12">
+        <div className="relative mx-auto grid w-full max-w-[1480px] grid-cols-[minmax(0,1fr)] items-center gap-6 px-6 md:px-10 xl:px-16 md:grid-cols-[minmax(0,0.7fr)_minmax(0,1.3fr)] md:gap-10 lg:grid-cols-[minmax(0,0.5fr)_minmax(0,1.5fr)] lg:gap-12">
           <div className="order-2 md:order-1">
             <Intro />
             <div className="tall-only hidden lg:block">
@@ -148,14 +197,17 @@ function PinnedDeck({ id }: { id: string }) {
             </button>
           </div>
           <div
-            className="order-1 h-[min(236px,34svh)] min-w-0 cursor-zoom-in sm:h-[min(440px,50svh)] md:order-2 md:h-[min(860px,calc(100svh-100px))]"
-            onClick={readAt}
-            title="Click a page to read it"
+            ref={bookRef}
+            className="relative order-1 h-[min(236px,34svh)] min-w-0 sm:h-[min(440px,50svh)] md:order-2 md:h-[min(1000px,calc(100svh-96px))]"
           >
-            {/* the book is built at 2x and only scaled down, so the scans stay sharp */}
-            <Fit w={PW * 2 + 48} h={PH + 64} max={1}>
-              <BookDeck flip={flip} intro={intro} spread={spread} titles={PAGE_TITLES} />
-            </Fit>
+            <div
+              className="absolute inset-y-0 left-0 flex cursor-zoom-in items-center justify-center"
+              style={{ width: book.width, visibility: book.scale ? "visible" : "hidden" }}
+              onClick={readAt}
+              title="Click a page to read it"
+            >
+              <BookDeck flip={flip} intro={intro} spread={spread} titles={PAGE_TITLES} scale={book.scale} />
+            </div>
           </div>
         </div>
       </div>

@@ -125,7 +125,7 @@ function PinnedRoles({ id }: { id: string }) {
               })}
             </motion.div>
           </div>
-          <div className="relative order-1 h-[min(220px,30svh)] min-w-0 max-md:[@media(max-height:600px)]:h-[25svh] sm:h-[min(300px,40svh)] md:order-2 md:h-[min(620px,calc(100svh-150px))]">
+          <div className="relative order-1 h-[min(270px,33svh)] min-w-0 max-md:[@media(max-height:600px)]:h-[25svh] sm:h-[min(300px,40svh)] md:order-2 md:h-[min(620px,calc(100svh-150px))]">
             <DeviceSkeleton kind="laptop" />
             <Laptop3D jobs={jobs} lid={lid} screenOn={screenOn} track={track} />
           </div>

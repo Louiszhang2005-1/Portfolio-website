@@ -56,14 +56,22 @@ export default function WinsChapter({ id }: { id: string }) {
             ))}
           </ul>
 
-          {/* scholarship, leadership, judging: a hairline row of facts, no cards or pills */}
+          {/* scholarship, leadership, speaking, judging: a hairline grid of facts, no cards or pills;
+              two columns on tablets, one row of four on desktop */}
           <h3 className="mt-14 text-lg text-[var(--text-on-light)]">Beyond the hackathons</h3>
-          <dl className="mt-4 grid border-t border-[var(--border-light)] sm:grid-cols-3">
+          <dl className="mt-4 grid border-t border-[var(--border-light)] sm:grid-cols-2 lg:grid-cols-4">
             {RECOGNITION.map((r) => (
-              <div key={r.label} className="border-b border-[var(--border-light)] py-5 sm:border-b-0 sm:pr-8 sm:[&:not(:first-child)]:border-l sm:[&:not(:first-child)]:pl-8">
+              <div
+                key={r.label}
+                className="border-b border-[var(--border-light)] py-5 sm:pr-8 sm:even:border-l sm:even:pl-8 lg:border-b-0 lg:[&:not(:first-child)]:border-l lg:[&:not(:first-child)]:pl-8"
+              >
                 <dt className="text-sm text-[var(--text-on-light-secondary)]">{r.label}</dt>
                 <dd className="mt-2 text-[17px] font-medium leading-snug text-[var(--text-on-light)]">{r.title}</dd>
-                <dd className="mt-1 text-[15px] text-[var(--text-on-light-secondary)]">{r.detail}</dd>
+                {r.detail.map((d) => (
+                  <dd key={d} className="mt-1 text-[15px] text-[var(--text-on-light-secondary)]">
+                    {d}
+                  </dd>
+                ))}
               </div>
             ))}
           </dl>

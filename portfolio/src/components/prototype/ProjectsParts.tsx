@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useLayoutEffect, useRef, useState, type KeyboardEvent } from "react";
-import { DRAWINGS, FRAMING, GROUPS, allProjects, type ProjectItem } from "./projectData";
+import { DRAWINGS, FOCUS, FRAMING, GROUPS, allProjects, type ProjectItem } from "./projectData";
 import { btnGhostLight, btnPrimaryLight } from "./stage";
 
 export const FILTERS = ["All", ...GROUPS] as const;
@@ -342,7 +342,7 @@ export function Showcase({ item, eager = false }: { item: ProjectItem; eager?: b
           style={{ width: `${100 / crop.w}%`, transform: `translate(-${crop.x * 100}%, -${crop.y * 100}%)` }}
         />
       ) : item.image ? (
-        <img src={item.image} alt={item.title} {...load} className="h-full w-full object-cover object-top" />
+        <img src={item.image} alt={item.title} {...load} className="h-full w-full object-cover" style={{ objectPosition: FOCUS[item.id] ?? "center" }} />
       ) : item.visual === "lane" ? (
         <LaneVisual />
       ) : item.visual === "latex" ? (
@@ -441,7 +441,8 @@ export function Rail({ list, active, onPick }: { list: ProjectItem[]; active: nu
                       alt=""
                       loading="lazy"
                       decoding="async"
-                      className={`h-full w-full ${DRAWINGS.has(item.id) ? "bg-white object-contain p-1" : "object-cover object-top"}`}
+                      className={`h-full w-full ${DRAWINGS.has(item.id) ? "bg-white object-contain p-1" : "object-cover"}`}
+                      style={DRAWINGS.has(item.id) ? undefined : { objectPosition: FOCUS[item.id] ?? "center" }}
                     />
                   ) : item.visual === "latex" ? (
                     <span className="flex h-full w-full items-center justify-center bg-[var(--bg-light)]">

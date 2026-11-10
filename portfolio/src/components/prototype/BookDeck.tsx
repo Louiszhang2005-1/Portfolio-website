@@ -6,8 +6,8 @@ import { fullPortfolioDocument, fullPortfolioPages } from "@/lib/portfolio";
 import { btnPrimaryLight } from "./stage";
 
 /**
- * Page size in px (US letter, 8.5 x 11). Built large and only ever scaled down by <Fit>: a CSS-3D layer is
- * rasterised at its own size, so scaling a small book up blurred the scans.
+ * Page size in px (US letter, 8.5 x 11) of the 3D model. The model is scaled to fit by `scale`; the open spread at
+ * rest is drawn again, flat and at its real on-screen size, by <FlatSpread> (see there).
  */
 export const PW = 600;
 export const PH = 776;
@@ -66,21 +66,35 @@ function Cover() {
 }
 
 /**
- * Pre-scaled scans for the book. Browsers shrink images inside CSS-3D layers without mipmaps, so a 2000px scan drawn
- * ~500px wide turned small text to mush; srcset hands over one close to the drawn size instead.
+ * Pre-scaled scans for the book (rendered from the PDF, 4:4:4 chroma so thin coloured text stays crisp). Browsers shrink
+ * images without mipmaps in 3D layers, so a 2000px scan drawn ~500px wide turned small text to mush; srcset hands over
+ * one close to the drawn size instead. `sizes` is the page's real on-screen width, not its pre-scale layout width.
  */
-const pageSrc = (page: number, w: 600 | 1200) => fullPortfolioPages[page].replace("/full/", `/w${w}/`);
+const pageSrc = (page: number, w: 600 | 1200 | 1800) => fullPortfolioPages[page].replace("/full/", `/w${w}/`);
+const pageSrcSet = (page: number) =>
+  `${pageSrc(page, 600)} 600w, ${pageSrc(page, 1200)} 1200w, ${pageSrc(page, 1800)} 1800w, ${fullPortfolioPages[page]} 2000w`;
 
 /** `mounted` is false away from the open spread: a blank sheet stands in so the ~6 MB of scans load as you reach them. */
-function Page({ page, title, side, mounted }: { page: number; title?: string; side: "left" | "right"; mounted: boolean }) {
+function Page({
+  page,
+  title,
+  side,
+  mounted,
+  sizes,
+}: {
+  page: number;
+  title?: string;
+  side: "left" | "right";
+  mounted: boolean;
+  sizes: string;
+}) {
   return (
     <div className="relative h-full w-full overflow-hidden bg-[var(--surface-light)]">
       {mounted && (
         <img
           src={pageSrc(page, 1200)}
-          srcSet={`${pageSrc(page, 600)} 600w, ${pageSrc(page, 1200)} 1200w, ${fullPortfolioPages[page]} 2000w`}
-          // phones draw a page ~170px wide (the book is scaled to fit): a 2000w scan there cost MBs of download and decode
-          sizes={`(max-width: 767px) 200px, ${PW}px`}
+          srcSet={pageSrcSet(page)}
+          sizes={sizes}
           alt={`Portfolio page ${page + 1}${title ? `: ${title}` : ""}`}
           loading="lazy"
           decoding="async"
@@ -88,11 +102,11 @@ function Page({ page, title, side, mounted }: { page: number; title?: string; si
           draggable={false}
         />
       )}
-      {/* gutter shadow toward the spine */}
+      {/* gutter shadow toward the spine (40px of the 320px page it was drawn for) */}
       <div
         className="pointer-events-none absolute inset-y-0"
         style={{
-          width: 40 * K,
+          width: "12.5%",
           [side === "left" ? "right" : "left"]: 0,
           background: `linear-gradient(${side === "left" ? "270deg" : "90deg"},rgba(0,0,0,0.18),transparent)`,
         }}
@@ -135,11 +149,13 @@ function Sheet({
   flip,
   spread,
   titles,
+  sizes,
 }: {
   index: number;
   flip: MotionValue<number>;
   spread: number;
   titles: string[];
+  sizes: string;
 }) {
   const sheet = SHEETS[index];
   const local = useTransform(flip, (f) => clamp01(f - index));
@@ -158,7 +174,7 @@ function Sheet({
         {sheet.front === "cover" ? (
           <Cover />
         ) : (
-          <Page page={sheet.front} title={titles[sheet.front]} side="right" mounted={near(index, spread)} />
+          <Page page={sheet.front} title={titles[sheet.front]} side="right" mounted={near(index, spread)} sizes={sizes} />
         )}
         <motion.div className="pointer-events-none absolute inset-0 bg-[var(--mat-black)]" style={{ opacity: shade }} />
       </div>
@@ -174,10 +190,47 @@ function Sheet({
           />
         )}
         <div className="absolute inset-0">
-          <Page page={sheet.back} title={titles[sheet.back]} side="left" mounted={near(index + 1, spread)} />
+          <Page page={sheet.back} title={titles[sheet.back]} side="left" mounted={near(index + 1, spread)} sizes={sizes} />
         </div>
         <motion.div className="pointer-events-none absolute inset-0 bg-[var(--mat-black)]" style={{ opacity: shade }} />
       </div>
+    </motion.div>
+  );
+}
+
+/**
+ * The open spread, drawn flat at its real on-screen size over the 3D model whenever no sheet is turning. However
+ * sharp the scans, the 3D layer resamples them through the fit scale and the perspective (every sheet sits a little
+ * nearer or further, so it is never exactly 1:1): that is what blurred small text. Plain <img>s at layout size are
+ * drawn pixel for pixel. The end paper stays in the model (its link must be clickable); this layer ignores the pointer.
+ */
+function FlatSpread({
+  spread,
+  scale,
+  titles,
+  sizes,
+  show,
+}: {
+  spread: number;
+  scale: number;
+  titles: string[];
+  sizes: string;
+  show: MotionValue<number>;
+}) {
+  if (spread < 1) return null;
+  const left = SHEETS[spread - 1].back;
+  const right = SHEETS[spread]?.front;
+  const pw = PW * scale;
+  return (
+    <motion.div className="pointer-events-none absolute left-0 top-0 flex" style={{ height: PH * scale, opacity: show }} aria-hidden>
+      <div style={{ width: pw }}>
+        <Page page={left} title={titles[left]} side="left" mounted sizes={sizes} />
+      </div>
+      {typeof right === "number" && (
+        <div style={{ width: pw }}>
+          <Page page={right} title={titles[right]} side="right" mounted sizes={sizes} />
+        </div>
+      )}
     </motion.div>
   );
 }
@@ -188,9 +241,12 @@ export default function BookDeck({
   intro,
   spread,
   titles,
+  scale,
 }: {
   flip: MotionValue<number>;
   intro: MotionValue<number>;
+  /** Fit scale: the book is drawn `PW * 2 * scale` wide. */
+  scale: number;
   /** Spread currently open (rounded `flip`). */
   spread: number;
   /** Page titles by page index, for alt text. */
@@ -201,9 +257,17 @@ export default function BookDeck({
   const tilt = useTransform(intro, (v) => 24 - v * 12);
   // ...and lies flat once open: a tilted page is keystoned and resampled, which is what made it unreadable
   const flatten = useTransform(flip, (f) => -12 * clamp01(f));
+  // the flat copy shows only once the book is open and the turning sheet has landed exactly
+  const flat = useTransform<number, number>([flip, intro], ([f, v]) => (v > 0.999 && f > 0.5 && Math.abs(f - Math.round(f)) < 0.002 ? 1 : 0));
+  // the browser multiplies in devicePixelRatio, so a 2x screen gets the 1200w scan for a ~500px page
+  const sizes = `${Math.max(1, Math.round(PW * scale))}px`;
 
   return (
-    <div style={{ width: PW * 2, height: PH, perspective: 2200 * K }} className="relative">
+    <div style={{ width: PW * 2 * scale, height: PH * scale }} className="relative">
+    <div
+      className="absolute left-0 top-0"
+      style={{ width: PW * 2, height: PH, perspective: 2200 * K, transform: `scale(${scale})`, transformOrigin: "0 0" }}
+    >
       <motion.div
         className="absolute inset-0"
         style={{ x, rotateX: tilt, transformStyle: "preserve-3d", transformOrigin: "50% 60%" }}
@@ -232,10 +296,12 @@ export default function BookDeck({
           <EndPaper active={spread >= SPREADS} />
         </div>
         {SHEETS.map((_, i) => (
-          <Sheet key={i} index={i} flip={flip} spread={spread} titles={titles} />
+          <Sheet key={i} index={i} flip={flip} spread={spread} titles={titles} sizes={sizes} />
         ))}
         </motion.div>
       </motion.div>
+    </div>
+    <FlatSpread spread={spread} scale={scale} titles={titles} sizes={sizes} show={flat} />
     </div>
   );
 }

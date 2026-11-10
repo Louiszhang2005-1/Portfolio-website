@@ -3,7 +3,7 @@
 import { RoundedBox } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import type { MotionValue } from "framer-motion";
-import { useMemo, useRef } from "react";
+import { useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import type { PortfolioItem } from "@/lib/portfolio";
 import { DeviceView, FitCamera, Studio, canvasTexture, clamp01, easeInOut, quantize, useMaterials, useScreen } from "./core";
@@ -15,6 +15,16 @@ const LH = 1.95; // lid height
 
 const CLOSED = Math.PI / 2;
 const OPEN = -0.22;
+/**
+ * The screen texture is supersampled ~1.5-2x its on-page size, so plain trilinear filtering always blends in the
+ * half-resolution mip and the type goes soft. Biasing the lookup one level sharper samples the full-res texture at
+ * rest, while the mips still catch the strong minification of a half-open lid or a phone-sized laptop.
+ */
+const SHARP_MAP = THREE.ShaderChunk.map_fragment.replace("texture2D( map, vMapUv )", "texture2D( map, vMapUv, -0.85 )");
+function sharpenMap(shader: { fragmentShader: string }) {
+  shader.fragmentShader = shader.fragmentShader.replace("#include <map_fragment>", SHARP_MAP);
+}
+
 /** 0 closed → 1 fully open, from the lid angle */
 const openness = (lid: MotionValue<number>) => clamp01((CLOSED - lid.get()) / (CLOSED - OPEN));
 
@@ -27,6 +37,8 @@ type LaptopProps = {
 
 function LaptopModel({ jobs, lid, screenOn, track }: LaptopProps) {
   const mat = useMaterials();
+  // phones show the screen a few hundred pixels wide: the 1x texture is already ~3x that and half the upload
+  const [scale] = useState(() => (window.innerWidth < 768 || (navigator.hardwareConcurrency ?? 8) <= 4 ? 1 : 1.5));
   const lidRef = useRef<THREE.Group>(null);
   const rig = useRef<THREE.Group>(null);
   const loaded = useRef(0);
@@ -56,7 +68,7 @@ function LaptopModel({ jobs, lid, screenOn, track }: LaptopProps) {
       const s = state();
       return `${s.screen.toFixed(3)}|${s.track.toFixed(3)}|${loaded.current}`;
     },
-    1.5
+    scale
   );
 
   useFrame((state) => {
@@ -65,7 +77,7 @@ function LaptopModel({ jobs, lid, screenOn, track }: LaptopProps) {
   });
 
   return (
-    <group ref={rig} rotation-y={-0.32} position-x={0.1}>
+    <group ref={rig} rotation-y={-0.26} position-x={0.1}>
       {/* deck */}
       <RoundedBox args={[BW, 0.08, BD]} radius={0.035} smoothness={4} material={mat.alu} position={[0, -0.04, 0]} />
       <mesh rotation-x={-Math.PI / 2} position={[0, 0.001, -0.3]}>
@@ -84,7 +96,7 @@ function LaptopModel({ jobs, lid, screenOn, track }: LaptopProps) {
         </mesh>
         <mesh position={[0, LH / 2 + 0.03, 0.005]}>
           <planeGeometry args={[BW - 0.24, (BW - 0.24) / 1.6]} />
-          <meshBasicMaterial map={screen} toneMapped={false} />
+          <meshBasicMaterial map={screen} toneMapped={false} onBeforeCompile={sharpenMap} />
         </mesh>
       </group>
     </group>

@@ -43,6 +43,20 @@ export const FRAMING: Record<string, { x: number; y: number; w: number }> = {
   "P-5": { x: 0.482, y: 0, w: 0.515 },
 };
 
+/**
+ * Focal point (CSS object-position) for photos and renders cropped to the 16/10 frame; anything not listed is centred.
+ * Reforestation Robot: a portrait shot whose top half is legs, so the frame sits on the breadboard and dispenser.
+ * The square app renders lean up so their title bars stay in frame.
+ */
+export const FOCUS: Record<string, string> = {
+  "P-1": "50% 30%",
+  "P-3": "50% 62%",
+  "P-9": "50% 35%",
+  "P-11": "50% 20%",
+  "P-12": "50% 15%",
+  "P-13": "50% 40%",
+};
+
 /** Technical drawings: shown whole on white, never cropped like a photo. */
 export const DRAWINGS = new Set(["P-2", "P-4"]);
 
@@ -120,9 +134,10 @@ export const ALSO_COMPETED = [
   { event: "Brebeuf Hacks", project: "Interview Assistant", slug: "interview-assistant", date: "Jan 2024" },
 ];
 
-/** Beyond the wins: from Louis's LinkedIn education entry. */
+/** Beyond the wins: from Louis's LinkedIn education entry and his own notes. One line per detail. */
 export const RECOGNITION = [
-  { label: "Scholarship", title: "Lina & Jean-Guy Gaudreault Perseverance Scholarship", detail: "$2,500" },
-  { label: "Leadership", title: "VP Events", detail: "Google Developer Group, Polytechnique Montréal" },
-  { label: "Judging", title: "Judge", detail: "MPC Hacks" },
+  { label: "Scholarship", title: "Lina & Jean-Guy Gaudreault Perseverance Scholarship", detail: ["$2,500"] },
+  { label: "Leadership", title: "VP Events", detail: ["Google Developer Group, Polytechnique Montréal"] },
+  { label: "Speaking", title: "Guest speaker, SCS Concordia", detail: ["Landing tech internships, to 100 students"] },
+  { label: "Judging", title: "Hackathon judge", detail: ["MPC Hacks, May 2026", "Hack 2 the Future, Nov 2026"] },
 ];

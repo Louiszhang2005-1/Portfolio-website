@@ -51,10 +51,12 @@ export function useScreen(
     // webfonts load after first paint; redraw once they are ready so canvas text uses Archivo / JetBrains Mono
     document.fonts?.ready.then(() => (last.current = ""));
   }, []);
-  useFrame(() => {
+  useFrame(({ gl }) => {
     const k = key();
     if (k === last.current) return;
     last.current = k;
+    // screens are seen at a slant: take all the anisotropy the GPU offers (the 8 above is the static-texture default)
+    screen.tex.anisotropy = Math.min(16, gl.capabilities.getMaxAnisotropy());
     screen.ctx.setTransform(scale, 0, 0, scale, 0, 0);
     drawRef.current(screen.ctx);
     screen.tex.needsUpdate = true;
