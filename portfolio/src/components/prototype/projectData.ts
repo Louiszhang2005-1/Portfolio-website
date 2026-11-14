@@ -139,5 +139,5 @@ export const RECOGNITION = [
   { label: "Scholarship", title: "Lina & Jean-Guy Gaudreault Perseverance Scholarship", detail: ["$2,500"] },
   { label: "Leadership", title: "VP Events", detail: ["Google Developer Group, Polytechnique Montréal"] },
   { label: "Speaking", title: "Guest speaker, SCS Concordia", detail: ["Landing tech internships, to 100 students"] },
-  { label: "Judging", title: "Hackathon judge", detail: ["MPC Hacks, May 2026", "Hack 2 the Future, Nov. 2026"] },
+  { label: "Judging", title: "Hackathon judge", detail: ["MPC Hacks, May 2026", "Hack Découverte, Nov. 2026"] },
 ];

@@ -209,7 +209,7 @@ const RECAP: [string, string][] = [
   ["Leadership", "VP Events, Google Developer Group Polytechnique"],
   ["Interned at", "Tesla, Lockheed Martin, City of Montréal"],
   ["Hackathon wins", "HackHarvard 2026, ConUHacks X, RoboHacks 2025"],
-  ["Speaking and judging", "Guest speaker at SCS Concordia; judge at MPC Hacks and Hack 2 the Future"],
+  ["Speaking and judging", "Guest speaker at SCS Concordia; judge at MPC Hacks and Hack Découverte"],
 ];
 
 /** Brand marks (Simple Icons paths, 24×24). */
