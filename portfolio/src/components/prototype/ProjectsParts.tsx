@@ -154,7 +154,7 @@ export function Detail({ item }: { item: ProjectItem }) {
         </dl>
       )}
       {/* buttons stay on one row: smaller and shorter-labelled on phones */}
-      <div className="mt-4 flex flex-nowrap gap-2 sm:mt-5 sm:gap-3 [&>*]:whitespace-nowrap max-sm:[&>*]:px-4 max-sm:[&>*]:text-[14px]">
+      <div className="mt-4 flex flex-nowrap gap-2 sm:mt-5 sm:gap-3 [&>*]:whitespace-nowrap max-sm:[&>*]:px-4 max-sm:[&>*]:text-[14px] max-[360px]:[&>*]:px-3 max-[360px]:[&>*]:text-[13px]">
         {item.slug ? (
           <Link href={`/portfolio/${item.slug}`} className={btnPrimaryLight}>
             <span className="sm:hidden">Case study</span>

@@ -1,12 +1,12 @@
 "use client";
 
-import { motion, useMotionValueEvent, useReducedMotion, useTransform } from "framer-motion";
+import { motion, useMotionValueEvent, useTransform } from "framer-motion";
 import DeviceSkeleton from "./DeviceSkeleton";
 import dynamic from "next/dynamic";
 import { useRef, useState } from "react";
 import { internships, type PortfolioItem } from "@/lib/portfolio";
 import { useMap } from "./devices";
-import { useHiddenBelow, useWebGL, useSmoothProgress, type Hold } from "./stage";
+import { useHiddenBelow, useWebGL, useSmoothProgress, type Hold, useReducedMotionSafe } from "./stage";
 
 const Laptop3D = dynamic(() => import("./three/Laptop3D"), { ssr: false });
 
@@ -77,7 +77,7 @@ function StaticRoles({ id }: { id: string }) {
 
 export default function ExperienceChapter({ id }: { id: string }) {
   const webgl = useWebGL();
-  const reduced = useReducedMotion() || !webgl;
+  const reduced = useReducedMotionSafe() || !webgl;
   return reduced ? <StaticRoles id={id} /> : <PinnedRoles id={id} />;
 }
 

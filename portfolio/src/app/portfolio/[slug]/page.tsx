@@ -10,6 +10,9 @@ type PageProps = {
   params: Promise<{ slug: string }>;
 };
 
+/** Only the known projects exist: an unknown slug is a real 404, not a 200 that renders the not-found page. */
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return allPortfolioItems.map((item) => ({ slug: item.slug }));
 }

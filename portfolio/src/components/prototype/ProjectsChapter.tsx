@@ -1,9 +1,10 @@
 "use client";
 
-import { useMotionValueEvent, useReducedMotion, useScroll } from "framer-motion";
+import { useMotionValueEvent, useScroll } from "framer-motion";
 import { useLayoutEffect, useRef, useState } from "react";
 import { GROUPS, allProjects, type Group } from "./projectData";
 import { Detail, Filters, Rail, Showcase, filterList, type Filter } from "./ProjectsParts";
+import { useReducedMotionSafe } from "./stage";
 
 /** Projects step inside this window of the chapter's own scroll track. */
 const STEP = [0.05, 0.97];
@@ -11,7 +12,7 @@ const STEP = [0.05, 0.97];
 const VH_PER_PROJECT = 32;
 
 export default function ProjectsChapter({ id }: { id: string }) {
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionSafe();
   return reduced ? <StaticProjects id={id} /> : <PinnedProjects id={id} />;
 }
 
@@ -93,7 +94,7 @@ function PinnedProjects({ id }: { id: string }) {
         <div className="mx-auto mt-3 grid w-full max-w-[1480px] grid-cols-[minmax(0,1fr)] items-center gap-4 px-6 md:px-10 xl:px-16 md:mt-6 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:gap-8 lg:gap-12">
           {/* every project's copy is stacked in one grid cell, so the block is always as tall as the tallest one
               and the rail below never moves when the project changes */}
-          <div className="relative order-2 grid md:order-1">
+          <div className="relative order-2 grid grid-cols-[minmax(0,1fr)] md:order-1">
             {allProjects.map((p) => {
               const on = p.id === item.id;
               return (
@@ -110,7 +111,7 @@ function PinnedProjects({ id }: { id: string }) {
           </div>
           {/* stacked and crossfaded like the copy: swapping one mounted image out before the next mounted left the
               frame empty while it faded and decoded, a visible gap on every step */}
-          <div className="order-1 mx-auto grid w-full max-w-[420px] md:order-2 md:max-w-none">
+          <div className="order-1 mx-auto grid w-full max-w-[420px] grid-cols-[minmax(0,1fr)] md:order-2 md:max-w-none">
             {allProjects.map((p) => {
               const on = p.id === item.id;
               return (

@@ -1,6 +1,5 @@
 "use client";
 
-import { useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import "./prototype.css";
@@ -12,7 +11,7 @@ import { StaticIntro, StaticSkills } from "./StaticDevices";
 import WatchChapter from "./WatchChapter";
 import WinsChapter from "./WinsChapter";
 import Loader from "./Loader";
-import { CONTACT, OpenTo, useWebGL } from "./stage";
+import { CONTACT, OpenTo, useWebGL, useReducedMotionSafe } from "./stage";
 
 /** Each chapter scrolls on its own track; the bar names them by content and shows progress through the current one. */
 const chapters = [
@@ -252,7 +251,7 @@ function FooterRecap() {
 function ContactFooter() {
   return (
     <footer id={CONTACT_ID} data-theme="light" className="white relative border-t border-[var(--border)] px-6 md:px-10 xl:px-16 pb-16 pt-32">
-      <div className="mx-auto grid max-w-[1352px] gap-14 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:items-end lg:gap-16">
+      <div className="mx-auto grid max-w-[1352px] grid-cols-[minmax(0,1fr)] gap-14 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:items-end lg:gap-16">
         <div>
           <h2 className="max-w-3xl text-[clamp(2.5rem,6vw,5rem)]">Let&apos;s build the next one.</h2>
           <p className="mt-5 max-w-xl text-lg text-[var(--text-secondary)]">
@@ -260,7 +259,7 @@ function ContactFooter() {
           </p>
           <OpenTo className="mt-6" />
           {/* typographic contact: the address itself is the call to action, no button chrome */}
-          <a href={`mailto:${CONTACT.email}`} className="group mt-10 inline-flex max-w-full items-baseline gap-3 text-[var(--text)]">
+          <a href={`mailto:${CONTACT.email}`} className="group mt-10 flex w-fit max-w-full items-baseline gap-3 text-[var(--text)]">
             <span className="wide truncate bg-[linear-gradient(currentColor,currentColor)] bg-[length:0%_2px] bg-left-bottom bg-no-repeat pb-1 text-[clamp(1.5rem,3.4vw,2.6rem)] leading-tight transition-[background-size] duration-300 group-hover:bg-[length:100%_2px]">
               {CONTACT.email}
             </span>
@@ -308,7 +307,7 @@ function ContactFooter() {
 export default function DeviceEcosystem() {
   // reduced motion or no WebGL: static layouts with the CSS device drawings
   const webgl = useWebGL();
-  const reduced = useReducedMotion() || !webgl;
+  const reduced = useReducedMotionSafe() || !webgl;
   return (
     <main className="proto min-h-screen overflow-x-clip">
       <span data-token-source className="on-dark hidden" />

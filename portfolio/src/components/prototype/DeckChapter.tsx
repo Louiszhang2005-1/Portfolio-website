@@ -1,11 +1,11 @@
 "use client";
 
-import { useMotionValueEvent, useReducedMotion, useTransform } from "framer-motion";
+import { useMotionValueEvent, useTransform } from "framer-motion";
 import { useCallback, useEffect, useRef, useState, type MouseEvent } from "react";
 import { fullPortfolioDocument, fullPortfolioPages } from "@/lib/portfolio";
 import BookDeck, { PH, PW, SPREADS } from "./BookDeck";
 import PageViewer from "./PageViewer";
-import { btnGhostLight, btnPrimaryLight, useSmoothProgress } from "./stage";
+import { btnGhostLight, btnPrimaryLight, useSmoothProgress, useReducedMotionSafe } from "./stage";
 
 const PAGE_TITLES = [
   "Profile and skills",
@@ -117,7 +117,7 @@ function Intro() {
 }
 
 export default function DeckChapter({ id }: { id: string }) {
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionSafe();
   return reduced ? <StaticDeck id={id} /> : <PinnedDeck id={id} />;
 }
 

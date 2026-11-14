@@ -30,13 +30,14 @@ function WordsPullUp({
   className?: string;
   style?: React.CSSProperties;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLHeadingElement>(null);
   const prefersReduced = useReducedMotion();
   const isInView = useInView(ref, { once: true });
   const words = text.split(" ");
 
+  // the project title is the page's one h1
   return (
-    <div ref={ref} className={`flex flex-wrap justify-center ${className}`} style={style}>
+    <h1 ref={ref} className={`flex flex-wrap justify-center ${className}`} style={style}>
       {words.map((word, i) => (
         <motion.span
           key={`${word}-${i}`}
@@ -49,7 +50,7 @@ function WordsPullUp({
           {word}
         </motion.span>
       ))}
-    </div>
+    </h1>
   );
 }
 

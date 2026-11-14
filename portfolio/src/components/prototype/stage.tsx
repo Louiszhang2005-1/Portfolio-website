@@ -56,7 +56,7 @@ export function useHiddenBelow(value: MotionValue<number>, threshold = 0.05) {
 export const AVAILABILITY = "Open to 2027 internship opportunities";
 export function OpenTo({ text = AVAILABILITY, className = "" }: { text?: string; className?: string }) {
   return (
-    <p className={`inline-flex w-fit items-center gap-2.5 text-[14px] font-medium text-[var(--text-secondary)] ${className}`}>
+    <p className={`flex w-fit items-center gap-2.5 text-[14px] font-medium text-[var(--text-secondary)] ${className}`}>
       <span aria-hidden className="relative flex h-2 w-2">
         <span className="absolute inset-0 animate-ping rounded-full bg-[var(--success)] opacity-40 [animation-duration:2.4s]" />
         <span className="relative h-2 w-2 rounded-full bg-[var(--success)]" />
@@ -236,6 +236,20 @@ const subscribeWebGL = (notify: () => void) => {
   return () => window.removeEventListener("proto:webgl-lost", onLost);
 };
 export const useWebGL = () => useSyncExternalStore(subscribeWebGL, hasWebGL, () => true);
+
+/**
+ * prefers-reduced-motion, hydration-safe. framer's useReducedMotion is null on the server and true on the client's
+ * first render, so the page rendered different layouts on each side and React threw the server HTML away. The server
+ * snapshot here is `false`: hydrate the animated layout, then switch once mounted.
+ */
+const REDUCE = "(prefers-reduced-motion: reduce)";
+const subscribeReduced = (notify: () => void) => {
+  const q = window.matchMedia(REDUCE);
+  q.addEventListener("change", notify);
+  return () => q.removeEventListener("change", notify);
+};
+export const useReducedMotionSafe = () =>
+  useSyncExternalStore(subscribeReduced, () => window.matchMedia(REDUCE).matches, () => false);
 
 /** Buttons (DESIGN.md §4). */
 export const btn =

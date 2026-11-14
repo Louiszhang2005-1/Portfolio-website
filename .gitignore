@@ -18,3 +18,9 @@ pnpm-debug.log*
 
 # ruflo / claude-flow tool state
 .claude-flow/
+
+# local tool state and editor settings (kept on disk, not published)
+.claude/settings.local.json
+.vscode/
+.playwright-cli/
+ruvector.db
