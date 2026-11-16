@@ -11,6 +11,7 @@ import { StaticIntro, StaticSkills } from "./StaticDevices";
 import WatchChapter from "./WatchChapter";
 import WinsChapter from "./WinsChapter";
 import Loader from "./Loader";
+import StepNav from "./StepNav";
 import { CONTACT, OpenTo, useWebGL, useReducedMotionSafe } from "./stage";
 
 /** Each chapter scrolls on its own track; the bar names them by content and shows progress through the current one. */
@@ -25,6 +26,8 @@ const chapters = [
 /** The footer is tracked too (it lights the Contact button), so "Projects" does not stay lit at the end. */
 const CONTACT_ID = "contact";
 const tracked = [...chapters.map((c) => c.id), CONTACT_ID];
+/** Everything the step arrows can land on, in page order (module-level, so its identity never changes). */
+const stepChapters = [...chapters, { id: CONTACT_ID, label: "Contact" }];
 
 /**
  * Current chapter for the bar. Measured once per frame, and React only hears about it when the chapter or theme
@@ -150,21 +153,24 @@ function ChapterNav() {
             <path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </button>
-        {/* recruiters shouldn't have to scroll to the end to reach me */}
-        <a
-          href="#contact"
-          aria-current={atContact ? "location" : undefined}
-          // phones: once the middle already reads "Contact", a second one beside it is noise
-          className={`group justify-self-end whitespace-nowrap text-[13px] font-medium ${atContact ? "max-md:invisible" : ""}`}
-          style={{ color: fg }}
-        >
-          <span className="bg-[linear-gradient(currentColor,currentColor)] bg-[length:0%_1px] bg-left-bottom bg-no-repeat pb-0.5 transition-[background-size] duration-300 group-hover:bg-[length:100%_1px]" style={atContact ? { backgroundSize: "100% 1px" } : undefined}>
-            Contact
-          </span>
-          <span aria-hidden className="ml-1 inline-block text-[var(--accent-on-light)] transition-transform duration-300 group-hover:translate-x-0.5">
-            →
-          </span>
-        </a>
+        {/* step arrows, then contact (recruiters shouldn't have to scroll to the end to reach me). Phones keep the
+            arrows; Contact is in the sections menu and at the foot of the page */}
+        <div className="flex items-center gap-3 justify-self-end md:gap-5">
+          <StepNav chapters={stepChapters} color={muted} />
+          <a
+            href="#contact"
+            aria-current={atContact ? "location" : undefined}
+            className="group whitespace-nowrap text-[13px] font-medium max-md:hidden"
+            style={{ color: fg }}
+          >
+            <span className="bg-[linear-gradient(currentColor,currentColor)] bg-[length:0%_1px] bg-left-bottom bg-no-repeat pb-0.5 transition-[background-size] duration-300 group-hover:bg-[length:100%_1px]" style={atContact ? { backgroundSize: "100% 1px" } : undefined}>
+              Contact
+            </span>
+            <span aria-hidden className="ml-1 inline-block text-[var(--accent-on-light)] transition-transform duration-300 group-hover:translate-x-0.5">
+              →
+            </span>
+          </a>
+        </div>
       </div>
       {menu && (
         <>

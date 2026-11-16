@@ -194,6 +194,21 @@ function holdCurve(holds: Hold[]): [number[], number[]] {
 }
 
 /**
+ * Where each hold sits on the raw scroll track (its middle), for the step arrows: a step lands the animation at rest.
+ * Written to a section as `data-stops` (fractions of its track, comma-separated); StepNav reads them from the DOM.
+ */
+export function holdStops(holds: Hold[]): number[] {
+  const move = 1 - holds.reduce((s, [, len]) => s + len, 0);
+  let rested = 0;
+  return holds.map(([at, len]) => {
+    const mid = at * move + rested + len / 2;
+    rested += len;
+    return mid;
+  });
+}
+export const stopsAttr = (stops: number[]) => stops.map((v) => v.toFixed(4)).join(",");
+
+/**
  * A chapter's scroll progress (0 → 1 across its pinned track), eased through a spring so every scroll-driven
  * animation glides into place instead of stepping with the wheel. Light damping keeps it responsive; the spring
  * also eases into and out of each hold.

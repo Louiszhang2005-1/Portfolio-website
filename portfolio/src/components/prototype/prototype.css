@@ -232,3 +232,10 @@ body:has(.proto) {
   animation: proto-sheen 1.6s ease-in-out infinite;
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.04);
 }
+
+/* Step arrows (top bar): the next arrow nudges until it is first used */
+@keyframes step-nudge { 0%, 70%, 100% { transform: translateY(0); } 80% { transform: translateY(3px); } 90% { transform: translateY(-1px); } }
+.proto .step-nudge svg { animation: step-nudge 2.6s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .proto .step-nudge svg { animation: none; }
+}

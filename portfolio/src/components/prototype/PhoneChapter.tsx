@@ -5,7 +5,7 @@ import DeviceSkeleton from "./DeviceSkeleton";
 import dynamic from "next/dynamic";
 import { useRef, useState } from "react";
 import { useMap, type Motion } from "./devices";
-import { BeatCopy, DeviceStage, withPads, type Beat, type Hold, useSmoothProgress } from "./stage";
+import { BeatCopy, DeviceStage, withPads, type Beat, type Hold, useSmoothProgress, holdStops, stopsAttr } from "./stage";
 
 const Phone3D = dynamic(() => import("./three/Phone3D"), { ssr: false });
 
@@ -23,6 +23,7 @@ const LAYERS = 8;
 const diveAt = (r: number) => T.dive[0] + (r * (T.dive[1] - T.dive[0])) / LAYERS;
 /** Rests: the exploded stack, each discipline (centred on its pair of layers), and the assembled home screen. */
 const HOLDS: Hold[] = [[0.3, 0.05], ...[1, 3, 5, 7].map((r): Hold => [diveAt(r), 0.07]), [0.97, 0.05]];
+const STOPS = stopsAttr([0, ...holdStops(HOLDS)]);
 
 /** The dive passes two layers per discipline. Skills only: experience and projects get their own chapters. */
 const disciplines: Omit<Beat, "start" | "end">[] = [
@@ -118,7 +119,7 @@ export default function PhoneChapter({ id }: { id: string }) {
   const codeOn = useMap(p, T.code, [0, 1, 1, 0]);
 
   return (
-    <section ref={ref} id={id} data-theme="light" className="white relative h-[440svh]">
+    <section ref={ref} id={id} data-theme="light" data-stops={STOPS} className="white relative h-[440svh]">
       <DeviceStage
         shadow={shadow}
         copy={beats.map((b) => (

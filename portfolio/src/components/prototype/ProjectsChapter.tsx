@@ -4,7 +4,7 @@ import { useMotionValueEvent, useScroll } from "framer-motion";
 import { useLayoutEffect, useRef, useState } from "react";
 import { GROUPS, allProjects, type Group } from "./projectData";
 import { Detail, Filters, Rail, Showcase, filterList, type Filter } from "./ProjectsParts";
-import { useReducedMotionSafe } from "./stage";
+import { stopsAttr, useReducedMotionSafe } from "./stage";
 
 /** Projects step inside this window of the chapter's own scroll track. */
 const STEP = [0.05, 0.97];
@@ -85,7 +85,14 @@ function PinnedProjects({ id }: { id: string }) {
   }, [filter]);
 
   return (
-    <section ref={ref} id={id} data-theme="light" className="light relative border-t border-[var(--border-light)]" style={{ height: `${100 + n * VH_PER_PROJECT}svh` }}>
+    <section
+      ref={ref}
+      id={id}
+      data-theme="light"
+      // one step per project, at the centre of its slice (the same place the rail jumps to)
+      data-stops={stopsAttr(list.map((_, i) => STEP[0] + ((i + 0.5) / n) * (STEP[1] - STEP[0])))}
+      className="light relative border-t border-[var(--border-light)]"
+      style={{ height: `${100 + n * VH_PER_PROJECT}svh` }}>
       <div className="sticky top-0 flex h-[100svh] flex-col justify-start overflow-hidden pb-4 pt-[72px] md:justify-center">
         <div className="mx-auto flex w-full max-w-[1480px] flex-wrap items-end justify-between gap-x-3 gap-y-2 px-6 md:px-10 xl:px-16">
           <h2 className="text-[clamp(2rem,4.5vw,3.75rem)]">Projects.</h2>

@@ -5,7 +5,7 @@ import { useCallback, useEffect, useRef, useState, type MouseEvent } from "react
 import { fullPortfolioDocument, fullPortfolioPages } from "@/lib/portfolio";
 import BookDeck, { PH, PW, SPREADS } from "./BookDeck";
 import PageViewer from "./PageViewer";
-import { btnGhostLight, btnPrimaryLight, useSmoothProgress, useReducedMotionSafe } from "./stage";
+import { btnGhostLight, btnPrimaryLight, useSmoothProgress, useReducedMotionSafe, stopsAttr } from "./stage";
 
 const PAGE_TITLES = [
   "Profile and skills",
@@ -26,6 +26,9 @@ const PAD_X = 32;
 const PAD_Y = 56;
 /** Largest fit scale: on big screens the pages grow past the 600px model (the flat spread is drawn at real size). */
 const MAX_SCALE = 1.2;
+
+/** The step arrows rest on the closed cover and then on each open spread (where flipAt holds still). */
+const STOPS = stopsAttr(Array.from({ length: SPREADS + 1 }, (_, s) => PAGES[0] + (s / SPREADS) * (PAGES[1] - PAGES[0])));
 
 const clamp01 = (v: number) => Math.min(1, Math.max(0, v));
 const smooth = (t: number) => t * t * (3 - 2 * t);
@@ -178,7 +181,7 @@ function PinnedDeck({ id }: { id: string }) {
   };
 
   return (
-    <section ref={ref} id={id} data-theme="light" className="light relative" style={{ height: `${100 + SPREADS * 45}svh` }}>
+    <section ref={ref} id={id} data-theme="light" data-stops={STOPS} className="light relative" style={{ height: `${100 + SPREADS * 45}svh` }}>
       <div className="sticky top-0 flex h-[100svh] items-center overflow-hidden pt-14">
         <div className="relative mx-auto grid w-full max-w-[1480px] grid-cols-[minmax(0,1fr)] items-center gap-6 px-6 md:px-10 xl:px-16 md:grid-cols-[minmax(0,0.7fr)_minmax(0,1.3fr)] md:gap-10 lg:grid-cols-[minmax(0,0.5fr)_minmax(0,1.5fr)] lg:gap-12">
           <div className="order-2 md:order-1">

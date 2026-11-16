@@ -5,7 +5,7 @@ import DeviceSkeleton from "./DeviceSkeleton";
 import dynamic from "next/dynamic";
 import { useRef } from "react";
 import { useMap, type Motion } from "./devices";
-import { AVAILABILITY, BeatCopy, CONTACT, DeviceStage, btnGhostDark, btnPrimaryDark, withPads, useSmoothProgress, type Hold } from "./stage";
+import { AVAILABILITY, BeatCopy, CONTACT, DeviceStage, btnGhostDark, btnPrimaryDark, withPads, useSmoothProgress, holdStops, stopsAttr, type Hold } from "./stage";
 
 const Watch3D = dynamic(() => import("./three/Watch3D"), { ssr: false });
 
@@ -21,6 +21,7 @@ const HOLDS: Hold[] = [
   [0.22, 0.1],
   [0.86, 0.3],
 ];
+const STOPS = stopsAttr([0, ...holdStops(HOLDS)]);
 
 const beats = withPads([
   {
@@ -62,7 +63,7 @@ export default function WatchChapter({ id }: { id: string }) {
   const cue = useMap(p, [0, 0.05], [1, 0]);
 
   return (
-    <section ref={ref} id={id} data-theme="light" className="white relative h-[240svh]">
+    <section ref={ref} id={id} data-theme="light" data-stops={STOPS} className="white relative h-[240svh]">
       <DeviceStage
         shadow={shadow}
         overlay={
