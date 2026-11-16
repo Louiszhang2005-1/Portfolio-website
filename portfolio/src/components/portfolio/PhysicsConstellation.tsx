@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import type { PortfolioItem } from "@/lib/portfolio";
 
 type Body = {
@@ -41,8 +41,11 @@ function LoadingSkeleton() {
   );
 }
 
+const noop = () => () => {};
+
 export default function PhysicsConstellation({ projects }: { projects: PortfolioItem[] }) {
-  const [mounted, setMounted] = useState(false);
+  // false on the server, true on the client: the simulation only runs in the browser
+  const mounted = useSyncExternalStore(noop, () => true, () => false);
   const [error, setError] = useState(false);
 
   const pointer = useRef({ x: 50, y: 45, active: false });
@@ -50,7 +53,8 @@ export default function PhysicsConstellation({ projects }: { projects: Portfolio
 
   const items = useMemo(() => projects.slice(0, 9), [projects]);
 
-  const bodies = useRef<Body[]>(
+  // starting layout (rendered); the ref below is the live copy the animation moves
+  const [start] = useState<Body[]>(() =>
     items.map((item, i) => ({
       x: 50 + Math.cos((i / Math.max(items.length, 1)) * Math.PI * 2) * (22 + (i % 3) * 6),
       y: 50 + Math.sin((i / Math.max(items.length, 1)) * Math.PI * 2) * (18 + (i % 2) * 6),
@@ -60,10 +64,7 @@ export default function PhysicsConstellation({ projects }: { projects: Portfolio
       item,
     }))
   );
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const bodies = useRef<Body[]>(start);
 
   useEffect(() => {
     if (!mounted) return;
@@ -187,7 +188,7 @@ export default function PhysicsConstellation({ projects }: { projects: Portfolio
           >
             <div className="absolute left-1/2 top-1/2 h-20 w-20 -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan-200/15 bg-cyan-200/4 pointer-events-none" />
             {items.map((item, i) => {
-              const b = bodies.current[i];
+              const b = start[i];
               return (
                 /* Outer div handles position; inner <a> handles hover scale — avoids transform conflict */
                 <div
