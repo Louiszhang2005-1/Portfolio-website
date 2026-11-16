@@ -35,10 +35,10 @@ jobs:
       - name: Install (from the lockfile)
         run: npm ci
 
-      # the homepage and every route; the older /game components still carry known lint errors, fixed separately
+      # the homepage, every route, and the /game driving world
       - name: Lint
         working-directory: portfolio
-        run: npx eslint src/app src/components/prototype src/components/portfolio src/lib src/data
+        run: npx eslint src/app src/components/prototype src/components/portfolio src/components/drive src/lib src/data
 
       - name: Type check
         run: npx tsc --noEmit -p portfolio

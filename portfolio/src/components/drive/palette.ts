@@ -1,0 +1,21 @@
+/** one place for the world's colours; the DOM overlay uses the same values */
+export const PALETTE = {
+  sky: "#e7ecdf",
+  ground: "#d6e0c6",
+  road: "#c3c9b6",
+  padFill: "#e9eddf",
+  padRing: "#aab39d",
+  trunk: "#7a5b45",
+  foliage: ["#5b8a5f", "#6f9b62", "#4d7a57", "#86a865"],
+  rock: "#b5ad9f",
+  ink: "#1d2321",
+  inkSoft: "#5b625e",
+  paper: "#fbfaf6",
+  car: "#e4572e",
+  carDark: "#2b302e",
+  glass: "#33414a",
+  nameA: "#2b302e",
+  nameB: "#e4572e",
+  building: "#f3f1ea",
+  gold: "#d6a21e",
+} as const;

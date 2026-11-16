@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     template: "%s | Louis Zhang",
   },
   description:
-    "Mechanical & software engineering portfolio — projects spanning aerospace, robotics & electronics, and full-stack software. Internships at City of Montreal, Lockheed Martin, and Tesla. Includes a playable nautical game version.",
+    "Mechanical & software engineering portfolio — projects spanning aerospace, robotics & electronics, and full-stack software. Internships at City of Montreal, Lockheed Martin, and Tesla. Includes a playable driving game version.",
   openGraph: {
     siteName: "Louis Zhang",
     title: "Louis Zhang — Engineering Portfolio",
