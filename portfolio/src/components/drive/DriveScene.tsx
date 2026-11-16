@@ -162,7 +162,7 @@ export default function DriveScene({ world, onReady, onLost }: { world: WorldDat
     const colliders = [...buildColliders(world.stops, trees, rocks), ...screenColliders(screens)];
     const details = buildDetails(world.stops, segments, plazas);
     const bodies = buildBodies(world.stops);
-    const labelDistricts = [...world.districts, { label: "Bowling", x: (BOWLING.laneFromX + BOWLING.laneToX) / 2 - 1.5, z: BOWLING.z - 4.6 }];
+    const labelDistricts = [...world.districts, { label: "Bowling", x: (BOWLING.laneFromX + BOWLING.laneToX) / 2 - 1.5, z: BOWLING.z + 1.4 }];
     return { segments, plazas, trees, rocks, colliders, screens, details, bodies, labelDistricts };
   }, [world]);
   const [maxDpr] = useState(() => Math.min(window.devicePixelRatio || 1, 1.5));

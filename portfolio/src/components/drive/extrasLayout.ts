@@ -94,7 +94,7 @@ export function buildDetails(stops: Stop[], segments: Segment[], plazas: Circle[
   };
   const free = (x: number, z: number) =>
     !(Math.abs(z - NAME_Z) < 4 && Math.abs(x) < 21) &&
-    !(Math.abs(z - BOWLING.z) < 3 && x < BOWLING.laneFromX + 1 && x > BOWLING.laneToX - 2) &&
+    !(z > BOWLING.z - 3 && z < BOWLING.z + 5.5 && x < BOWLING.laneFromX + 1 && x > BOWLING.laneToX - 2) &&
     segments.every((s) => distSeg(x, z, s) > ROAD_WIDTH / 2 + 0.4) &&
     plazas.every((p) => Math.hypot(x - p.x, z - p.z) > p.r + 0.4) &&
     stops.every((s) => Math.hypot(x - s.x, z - s.z) > STOP_TRIGGER[s.kind] + 0.6);
@@ -133,7 +133,8 @@ export function buildDetails(stops: Stop[], segments: Segment[], plazas: Circle[
       const side = i % 2 ? 1 : -1;
       const x = s.ax + ((s.bx - s.ax) * d) / len + nx * side * (ROAD_WIDTH / 2 + 0.7);
       const z = s.az + ((s.bz - s.az) * d) / len + nz * side * (ROAD_WIDTH / 2 + 0.7);
-      if (stops.every((st) => Math.hypot(x - st.x, z - st.z) > STOP_TRIGGER[st.kind] + 0.5) && !(Math.abs(z - NAME_Z) < 3 && Math.abs(x) < 21))
+      const nearLane = z > BOWLING.z - 4.5 && z < BOWLING.z + 5.5 && x < BOWLING.laneFromX + 2 && x > BOWLING.laneToX - 2;
+      if (!nearLane && stops.every((st) => Math.hypot(x - st.x, z - st.z) > STOP_TRIGGER[st.kind] + 0.5) && !(Math.abs(z - NAME_Z) < 3 && Math.abs(x) < 21))
         lamps.push({ x, z, s: 1, rot: Math.atan2(nx * side, nz * side), tint: 0 });
     }
   }

@@ -1,8 +1,6 @@
 import Link from "next/link";
 import { Award } from "lucide-react";
 
-/* same wording as AVAILABILITY in stage.tsx, a client module this server component does not import */
-const AVAILABILITY = "Open to 2027 internship opportunities";
 import { ALSO_COMPETED, COMMUNITY, FOCUS, FRAMING, SCHOLARSHIPS, WINS, allProjects, type Recognition } from "./projectData";
 
 /** The winning project's own image, aimed like the Projects chapter (named region or focal point). */
@@ -186,31 +184,11 @@ export default function WinsChapter({ id }: { id: string }) {
           </ul>
         </div>
 
-        {/* the rest of the record: community work on the left; scholarships and availability on the right */}
+        {/* the rest of the record: community work on the left, scholarships on the right */}
         <div className="mt-24 grid gap-16 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:gap-20">
           <Panel title="Beyond the hackathons" items={COMMUNITY} />
 
-          <div className="space-y-14">
-            <Panel title="Scholarships" items={SCHOLARSHIPS} money />
-
-            {/* what a recruiter came for, one click from the record */}
-            <a
-              href="#contact"
-              className="group block rounded-[18px] bg-[var(--mat-ink)] p-6 text-white shadow-[0_24px_48px_-30px_rgba(0,0,0,0.6)] sm:p-7"
-            >
-              <span className="flex items-center gap-2 text-sm text-white/70">
-                <span aria-hidden className="h-2 w-2 rounded-full bg-[#3ccf7a]" />
-                {AVAILABILITY}
-              </span>
-              <span className="mt-3 block text-[1.6rem] leading-[1.15]">Mechanical engineering, Polytechnique Montréal.</span>
-              <span className="mt-4 inline-flex items-center gap-2 text-[15px] font-medium text-white">
-                Get in touch
-                <span aria-hidden className="inline-block transition-transform duration-300 group-hover:translate-x-1">
-                  →
-                </span>
-              </span>
-            </a>
-          </div>
+          <Panel title="Scholarships" items={SCHOLARSHIPS} money />
         </div>
       </div>
     </section>

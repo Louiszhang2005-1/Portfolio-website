@@ -1,5 +1,6 @@
 "use client";
 
+import { Gamepad2 } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import "./prototype.css";
@@ -156,6 +157,17 @@ function ChapterNav() {
         {/* step arrows, then contact (recruiters shouldn't have to scroll to the end to reach me). Phones keep the
             arrows; Contact is in the sections menu and at the foot of the page */}
         <div className="flex items-center gap-3 justify-self-end md:gap-5">
+          {/* the game is the other way in: always on screen, so nobody has to find it in the footer */}
+          <Link
+            href="/game"
+            aria-label="Play the portfolio as a driving game"
+            className="group inline-flex min-h-[32px] items-center gap-1.5 whitespace-nowrap rounded-[8px] px-2.5 text-[13px] font-medium transition-opacity hover:opacity-85"
+            style={{ background: fg, color: light ? "var(--bg-light)" : "var(--bg)" }}
+          >
+            <Gamepad2 aria-hidden className="h-4 w-4 transition-transform duration-300 group-hover:-rotate-12" strokeWidth={1.8} />
+            <span className="max-sm:hidden">Play the game</span>
+            <span className="sm:hidden">Game</span>
+          </Link>
           <StepNav chapters={stepChapters} color={muted} />
           <a
             href="#contact"
