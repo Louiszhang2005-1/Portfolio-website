@@ -176,6 +176,26 @@ export default function DriveGame({ world }: { world: WorldData }) {
   }, [world, router]);
   useKeyboard(mode === "drive" && !mapOpen, openNearby, toggleMap);
 
+  // the welcome card: Enter (or Esc / Space) skips straight to driving
+  useEffect(() => {
+    if (!showWelcome) return;
+    const skip = (e: KeyboardEvent) => {
+      if (e.code !== "Enter" && e.code !== "NumpadEnter" && e.code !== "Escape" && e.code !== "Space") return;
+      if (e.target instanceof HTMLElement && e.target.closest("button, a") && e.code !== "Escape") {
+        // a focused button handles Enter itself (List view, etc.)
+        if (!(e.target as HTMLElement).closest('[aria-label="Welcome"]')) return;
+        if ((e.target as HTMLElement).textContent?.includes("Browse")) return;
+      }
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      (document.activeElement as HTMLElement | null)?.blur?.();
+      setWelcomeClosed(true);
+    };
+    // capture, so the driving handler (Enter = open a stop) never sees this key
+    window.addEventListener("keydown", skip, true);
+    return () => window.removeEventListener("keydown", skip, true);
+  }, [showWelcome]);
+
   useEffect(() => {
     if (mode !== "drive") return;
     // warm the case-study routes the visitor is driving towards
@@ -238,17 +258,43 @@ export default function DriveGame({ world }: { world: WorldData }) {
         className={`pointer-events-none absolute inset-x-0 bottom-0 z-30 flex justify-center px-4 pb-[calc(env(safe-area-inset-bottom)+1rem)] transition-all duration-300 sm:inset-y-0 sm:items-center sm:pb-0 ${showWelcome ? "opacity-100" : "translate-y-3 opacity-0"}`}
         aria-hidden={!showWelcome}
       >
-        <div className={`${panel} ${showWelcome ? "pointer-events-auto" : ""} w-full max-w-[420px] bg-[#fbfaf6] p-5`} role="dialog" aria-label="Welcome">
+        <div className={`${panel} ${showWelcome ? "pointer-events-auto" : ""} w-full max-w-[440px] bg-[#fbfaf6] p-5 sm:p-6`} role="dialog" aria-label="Welcome">
           <p className="font-label text-[11px] font-semibold uppercase tracking-[0.14em] text-[#5b625e]">Interactive portfolio</p>
-          <h2 className="mt-1 font-label text-2xl font-bold leading-tight text-[#1d2321]">Louis Zhang</h2>
-          <p className="mt-2 text-sm leading-relaxed text-[#3d4441]">
-            Mechanical engineering student at Polytechnique Montréal. Interned at Tesla, Lockheed Martin and the City of Montréal.
+          <h2 className="mt-1 font-label text-[1.7rem] font-bold leading-tight text-[#1d2321]">Louis Zhang</h2>
+          <p className="mt-0.5 text-[15px] text-[#3d4441]">Mechanical engineering · Polytechnique Montréal</p>
+          <p className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-[#e4572e]">
+            <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-[#e4572e]" />
+            Open to 2027 internships
           </p>
-          <p className="mt-1 text-sm font-semibold text-[#e4572e]">Open to 2027 internship opportunities</p>
-          <p className="mt-3 text-sm leading-relaxed text-[#3d4441]">
-            Drive around to find {world.stops.length} stops: projects, internships, hackathon wins and community work. Most open a full case study.
+
+          <p className="mt-4 text-sm leading-relaxed text-[#3d4441]">
+            Explore my work by car: <b className="font-semibold text-[#1d2321]">{world.stops.length} stops</b> with my projects, internships at Tesla, Lockheed Martin
+            and the City of Montréal, hackathon wins and community roles. Pull up to one to see it.
           </p>
-          <div className="mt-4 flex flex-wrap gap-2">
+
+          {/* controls as keys, not a sentence */}
+          <dl className="mt-4 hidden grid-cols-2 gap-x-4 gap-y-2 text-xs text-[#5b625e] pointer-fine:grid">
+            {[
+              [["W", "A", "S", "D"], "Drive (or arrows)"],
+              [["Enter"], "Open a stop"],
+              [["Shift"], "Boost"],
+              [["M"], "Map"],
+            ].map(([keys, label]) => (
+              <div key={label as string} className="flex items-center gap-2">
+                <dt className="flex gap-0.5">
+                  {(keys as string[]).map((k) => (
+                    <kbd key={k} className="min-w-[1.5rem] rounded-[4px] border border-[#1d2321]/20 border-b-2 bg-white px-1.5 py-0.5 text-center font-label text-[11px] font-semibold text-[#1d2321]">
+                      {k}
+                    </kbd>
+                  ))}
+                </dt>
+                <dd>{label as string}</dd>
+              </div>
+            ))}
+          </dl>
+          <p className="mt-4 text-xs text-[#5b625e] pointer-fine:hidden">Drag anywhere to drive · tap Map to jump to any stop</p>
+
+          <div className="mt-5 flex flex-wrap gap-2">
             <button
               type="button"
               tabIndex={showWelcome ? 0 : -1}
@@ -257,9 +303,10 @@ export default function DriveGame({ world }: { world: WorldData }) {
                 e.currentTarget.blur();
                 setWelcomeClosed(true);
               }}
-              className="min-h-11 flex-1 rounded-[4px] bg-[#1d2321] px-4 font-label text-sm font-semibold text-[#fbfaf6] hover:bg-black"
+              className="inline-flex min-h-11 flex-1 items-center justify-center gap-2 rounded-[4px] bg-[#1d2321] px-4 font-label text-sm font-semibold text-[#fbfaf6] hover:bg-black"
             >
               Start driving
+              <kbd className="hidden rounded-[3px] border border-white/25 px-1 font-sans text-[10px] font-medium text-white/70 pointer-fine:inline">Enter</kbd>
             </button>
             <button
               type="button"
@@ -270,10 +317,6 @@ export default function DriveGame({ world }: { world: WorldData }) {
               Browse as a list
             </button>
           </div>
-          <p className="mt-3 text-xs text-[#5b625e]">
-            <span className="hidden pointer-fine:inline">WASD or arrow keys to drive · M for the map</span>
-            <span className="pointer-fine:hidden">Drag anywhere on the screen to drive · tap the map to jump</span>
-          </p>
         </div>
       </div>
 
