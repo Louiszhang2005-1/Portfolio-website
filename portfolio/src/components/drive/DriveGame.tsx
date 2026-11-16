@@ -145,6 +145,7 @@ export default function DriveGame({ world }: { world: WorldData }) {
   const caps = useSyncExternalStore(subscribeCaps, getCaps, getServerCaps);
   const [choice, setChoice] = useState<"drive" | "list" | null>(null);
   const [lost, setLost] = useState(false);
+  const [doneDismissed, setDoneDismissed] = useState(false);
   const [ready, setReady] = useState(false);
   const router = useRouter();
 
@@ -201,7 +202,10 @@ export default function DriveGame({ world }: { world: WorldData }) {
               <Minimap world={world} size={96} />
             </div>
             <div className="flex items-center justify-between gap-2 px-1 pb-0.5 pt-1.5">
-              <span className="font-label text-[11px] font-semibold tabular-nums text-[#5b625e]">
+              <span
+                key={visited.size}
+                className={`font-label text-[11px] font-semibold tabular-nums ${visited.size > 0 ? "inline-block animate-[drive-pop_700ms_ease-out] text-[#1d2321]" : "text-[#5b625e]"}`}
+              >
                 {visited.size}/{world.stops.length} found
               </span>
               <button
@@ -215,6 +219,23 @@ export default function DriveGame({ world }: { world: WorldData }) {
           </div>
         </div>
       </div>
+
+      {/* everything found: a small thank-you with the way to reach out */}
+      {visited.size === world.stops.length && !doneDismissed && (
+        <div className="pointer-events-none absolute inset-x-0 top-[calc(env(safe-area-inset-top)+4.5rem)] z-20 flex justify-center px-4 sm:top-5">
+          <div className={`${panel} pointer-events-auto flex max-w-[420px] items-start gap-3 px-4 py-3`} role="status">
+            <div className="min-w-0">
+              <p className="font-label text-[11px] font-semibold uppercase tracking-[0.14em] text-[#c9971c]">All {world.stops.length} found</p>
+              <p className="mt-0.5 text-sm leading-snug text-[#1d2321]">
+                Thanks for driving by. The mailbox in the south-west has my email, LinkedIn and GitHub.
+              </p>
+            </div>
+            <button type="button" onClick={() => setDoneDismissed(true)} className="-mr-1 px-1 text-sm text-[#5b625e] hover:text-[#1d2321]" aria-label="Dismiss">
+              ✕
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* proximity card */}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 px-4 pb-[calc(env(safe-area-inset-bottom)+1rem)] sm:pb-6">
@@ -249,7 +270,7 @@ export default function DriveGame({ world }: { world: WorldData }) {
           </div>
         </div>
       </div>
-      <style>{`@keyframes drive-load{0%{transform:translateX(-100%)}100%{transform:translateX(300%)}}`}</style>
+      <style>{`@keyframes drive-load{0%{transform:translateX(-100%)}100%{transform:translateX(300%)}}@keyframes drive-pop{0%{transform:scale(1)}30%{transform:scale(1.35);color:#c9971c}100%{transform:scale(1)}}`}</style>
     </main>
   );
 }

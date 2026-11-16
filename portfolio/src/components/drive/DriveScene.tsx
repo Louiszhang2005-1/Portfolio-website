@@ -5,6 +5,7 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import Car, { carFx } from "./Car";
+import Confetti from "./Confetti";
 import { resetCar, stepCar } from "./carPhysics";
 import type { WorldData } from "./driveData";
 import { CAMERA_OFFSET, car, driveStore } from "./driveStore";
@@ -181,6 +182,7 @@ export default function DriveScene({ world, onReady, onLost }: { world: WorldDat
       <Landmarks stops={world.stops} />
       <NameBlocks />
       <Car />
+      <Confetti stops={world.stops} />
       <Suspense fallback={null}>
         <Labels stops={world.stops} districts={world.districts} />
       </Suspense>
