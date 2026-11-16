@@ -75,6 +75,8 @@ export function buildScenery(stops: Stop[], segments: Segment[], plazas: Circle[
   const rocks: Prop[] = [];
   const clear = (x: number, z: number, pad: number) => {
     if (Math.abs(z - NAME_Z) < 4 && Math.abs(x) < 21) return false;
+    // bowling lane west of the spawn plaza (see extrasLayout BOWLING)
+    if (Math.abs(z - 6) < 3.5 && x < -8 && x > -23) return false;
     for (const s of segments) if (distToSegment(x, z, s) < ROAD_WIDTH / 2 + pad) return false;
     for (const p of plazas) if (Math.hypot(x - p.x, z - p.z) < p.r + pad) return false;
     for (const s of stops) if (Math.hypot(x - s.x, z - s.z) < STOP_TRIGGER[s.kind] + pad) return false;

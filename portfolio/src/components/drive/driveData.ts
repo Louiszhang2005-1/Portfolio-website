@@ -39,7 +39,7 @@ export type WorldData = { stops: Stop[]; districts: District[] };
 const CLUSTERS = [
   { x: 34, z: -4, spread: [[-5, -10], [5, -5], [5, 6], [-5, 11]] },
   { x: -34, z: -4, spread: [[5, -10], [-5, -5], [-5, 6], [5, 11]] },
-  { x: 28, z: 28, spread: [[-6, 2], [6, -3], [0, 9], [-10, 10]] },
+  { x: 31, z: 27, spread: [[-8, -1], [7, -5], [2, 9], [-12, 11]] },
 ] as const;
 
 const INTERNSHIP_SPOTS = [

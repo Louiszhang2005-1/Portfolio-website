@@ -2,14 +2,17 @@
 
 import { PerformanceMonitor } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Suspense, useEffect, useMemo, useRef, useState } from "react";
+import { Suspense, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import Car, { carFx } from "./Car";
 import Confetti from "./Confetti";
 import { resetCar, stepCar } from "./carPhysics";
 import type { WorldData } from "./driveData";
 import { CAMERA_OFFSET, car, driveStore } from "./driveStore";
+import { BOWLING, buildBodies, buildDetails, buildScreens, screenColliders } from "./extrasLayout";
+import { Details, Toys } from "./Extras";
 import Labels from "./Labels";
+import Showcases from "./Showcases";
 import Landmarks from "./Landmarks";
 import NameBlocks from "./NameBlocks";
 import { PALETTE } from "./palette";
@@ -24,6 +27,8 @@ function Simulation({ world, colliders }: { world: WorldData; colliders: Circle[
   const light = useRef<THREE.DirectionalLight>(null);
   const follow = useRef({ x: car.x, z: car.z, shake: 0, ready: false });
   const lightTarget = useMemo(() => new THREE.Object3D(), []);
+  // reduced motion: same world, no camera shake
+  const calm = useMemo(() => window.matchMedia("(prefers-reduced-motion: reduce)").matches, []);
   const scene = useThree((s) => s.scene);
 
   useEffect(() => {
@@ -79,7 +84,7 @@ function Simulation({ world, colliders }: { world: WorldData; colliders: Circle[
     const k = 1 - Math.exp(-3.2 * dt);
     f.x += (tx - f.x) * k;
     f.z += (tz - f.z) * k;
-    f.shake = Math.max(f.shake * Math.exp(-7 * dt), fx.impact * 0.5);
+    f.shake = calm ? 0 : Math.max(f.shake * Math.exp(-7 * dt), fx.impact * 0.5);
     const sx = (Math.random() - 0.5) * f.shake;
     const sy = (Math.random() - 0.5) * f.shake;
     camera.position.set(f.x + CAMERA_OFFSET.x * zoom + sx, CAMERA_OFFSET.y * zoom + sy, f.z + CAMERA_OFFSET.z * zoom);
@@ -153,12 +158,26 @@ export default function DriveScene({ world, onReady, onLost }: { world: WorldDat
   const layout = useMemo(() => {
     const { segments, plazas } = buildRoads(world.districts, world.stops);
     const { trees, rocks } = buildScenery(world.stops, segments, plazas);
-    return { segments, plazas, trees, rocks, colliders: buildColliders(world.stops, trees, rocks) };
+    const screens = buildScreens(world.stops);
+    const colliders = [...buildColliders(world.stops, trees, rocks), ...screenColliders(screens)];
+    const details = buildDetails(world.stops, segments, plazas);
+    const bodies = buildBodies(world.stops);
+    const labelDistricts = [...world.districts, { label: "Bowling", x: (BOWLING.laneFromX + BOWLING.laneToX) / 2 - 1.5, z: BOWLING.z - 4.6 }];
+    return { segments, plazas, trees, rocks, colliders, screens, details, bodies, labelDistricts };
   }, [world]);
   const [maxDpr] = useState(() => Math.min(window.devicePixelRatio || 1, 1.5));
 
   useEffect(() => {
     resetCar();
+  }, []);
+  // unmounting (switching to the list) releases the context on purpose, which also fires
+  // webglcontextlost: only a loss while still mounted is a real failure
+  const alive = useRef(true);
+  useLayoutEffect(() => {
+    alive.current = true;
+    return () => {
+      alive.current = false;
+    };
   }, []);
 
   return (
@@ -169,7 +188,7 @@ export default function DriveScene({ world, onReady, onLost }: { world: WorldDat
       gl={{ antialias: true, powerPreference: "high-performance", stencil: false }}
       camera={{ fov: 30, near: 1, far: 260, position: [CAMERA_OFFSET.x, CAMERA_OFFSET.y, CAMERA_OFFSET.z] }}
       onCreated={({ gl }) => {
-        gl.domElement.addEventListener("webglcontextlost", onLost, { once: true });
+        gl.domElement.addEventListener("webglcontextlost", () => alive.current && onLost(), { once: true });
       }}
       style={{ position: "absolute", inset: 0, touchAction: "none" }}
       aria-hidden
@@ -179,12 +198,15 @@ export default function DriveScene({ world, onReady, onLost }: { world: WorldDat
       <Simulation world={world} colliders={layout.colliders} />
       <Ground segments={layout.segments} plazas={layout.plazas} />
       <Props trees={layout.trees} rocks={layout.rocks} />
+      <Details tufts={layout.details.tufts} flowers={layout.details.flowers} lamps={layout.details.lamps} />
+      <Showcases screens={layout.screens} />
+      <Toys specs={layout.bodies} colliders={layout.colliders} />
       <Landmarks stops={world.stops} />
       <NameBlocks />
       <Car />
       <Confetti stops={world.stops} />
       <Suspense fallback={null}>
-        <Labels stops={world.stops} districts={world.districts} />
+        <Labels stops={world.stops} districts={layout.labelDistricts} />
       </Suspense>
       <Ready onReady={onReady} />
     </Canvas>

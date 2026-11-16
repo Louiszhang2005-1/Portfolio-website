@@ -38,6 +38,7 @@ const emit = () => listeners.forEach((l) => l());
 let nearbyId: string | null = null;
 let visited: ReadonlySet<string> = new Set();
 let moved = false;
+let toast: { text: string; id: number } | null = null;
 
 export const driveStore = {
   subscribe(l: Listener) {
@@ -49,6 +50,12 @@ export const driveStore = {
   getNearby: () => nearbyId,
   getVisited: () => visited,
   getMoved: () => moved,
+  getToast: () => toast,
+  /** short message in the middle of the screen (bowling score, etc.) */
+  toast(text: string) {
+    toast = { text, id: (toast?.id ?? 0) + 1 };
+    emit();
+  },
   setNearby(id: string | null) {
     if (id === nearbyId) return;
     nearbyId = id;

@@ -5,6 +5,7 @@ import { use, useEffect, useMemo } from "react";
 import * as THREE from "three";
 import type { District, Stop } from "./driveData";
 import { CAMERA_OFFSET, CAMERA_YAW } from "./driveStore";
+import { signAnchor } from "./extrasLayout";
 import { createAtlas, type LabelSpec } from "./labelAtlas";
 import { PALETTE } from "./palette";
 import { NAME_Z } from "./worldLayout";
@@ -23,7 +24,7 @@ function fontsReady() {
   return fontsPromise;
 }
 
-const SIGN_HEIGHT: Record<Stop["kind"], number> = { internship: 7.9, project: 3.9, win: 4.1, contact: 4.6 };
+const SIGN_HEIGHT: Record<Stop["kind"], number> = { internship: 7.9, project: 5.3, win: 5.3, contact: 4.6 };
 
 type Quad = { cell: number; height: number; flat: boolean; x: number; y: number; z: number };
 
@@ -35,7 +36,8 @@ export default function Labels({ stops, districts }: { stops: Stop[]; districts:
     const specs: LabelSpec[] = [];
     const quads: Quad[] = [];
     for (const s of stops) {
-      quads.push({ cell: specs.length, height: s.kind === "internship" ? 1.9 : 1.55, flat: false, x: s.x, y: SIGN_HEIGHT[s.kind], z: s.z });
+      const at = signAnchor(s);
+      quads.push({ cell: specs.length, height: s.kind === "internship" ? 1.9 : 1.5, flat: false, x: at.x, y: SIGN_HEIGHT[s.kind], z: at.z });
       specs.push({ style: "sign", kicker: s.kicker, title: s.title, accent: s.accent });
     }
     for (const d of districts) {

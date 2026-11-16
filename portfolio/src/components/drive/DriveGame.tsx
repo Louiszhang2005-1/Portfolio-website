@@ -7,6 +7,7 @@ import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
 import type { Stop, WorldData } from "./driveData";
 import DriveList from "./DriveList";
 import { driveStore, input } from "./driveStore";
+import MapOverlay from "./MapOverlay";
 import Minimap from "./Minimap";
 import TouchStick from "./TouchStick";
 
@@ -50,7 +51,7 @@ const KEYS: Record<string, "up" | "down" | "left" | "right" | "boost" | "drift">
   Space: "drift",
 };
 
-function useKeyboard(active: boolean, onEnter: () => void) {
+function useKeyboard(active: boolean, onEnter: () => void, onMap: () => void) {
   useEffect(() => {
     if (!active) return;
     const held = new Set<string>();
@@ -68,6 +69,8 @@ function useKeyboard(active: boolean, onEnter: () => void) {
         e.preventDefault();
         held.add(k);
         apply();
+      } else if (e.code === "KeyM" && !e.repeat) {
+        onMap();
       } else if (e.code === "KeyR" && !e.repeat) {
         input.reset = true;
       } else if (e.code === "Enter" && !e.repeat && !(e.target instanceof HTMLButtonElement || e.target instanceof HTMLAnchorElement)) {
@@ -93,7 +96,7 @@ function useKeyboard(active: boolean, onEnter: () => void) {
       window.removeEventListener("blur", clear);
       clear();
     };
-  }, [active, onEnter]);
+  }, [active, onEnter, onMap]);
 }
 
 const panel = "rounded-[6px] border border-[#1d2321]/12 bg-[#fbfaf6]/92 shadow-[0_1px_2px_rgba(29,35,33,0.06),0_8px_24px_-12px_rgba(29,35,33,0.25)] backdrop-blur-md";
@@ -157,14 +160,20 @@ export default function DriveGame({ world }: { world: WorldData }) {
   const [shown, setShown] = useState<Stop | null>(null);
   if (nearby && nearby !== shown) setShown(nearby);
 
-  const mode = lost || caps === "nogl" ? "list" : (choice ?? (caps === "unknown" ? "pending" : caps === "drive" ? "drive" : "list"));
+  // everyone with WebGL gets the world (reduced motion only calms the camera); the list is one tap away
+  const mode = lost || caps === "nogl" ? "list" : (choice ?? (caps === "unknown" ? "pending" : "drive"));
+  const [mapOpen, setMapOpen] = useState(false);
+  const [welcomeClosed, setWelcomeClosed] = useState(false);
+  const toast = useSyncExternalStore(driveStore.subscribe, driveStore.getToast, () => null);
+  const showWelcome = ready && !welcomeClosed && !moved && !mapOpen;
+  const toggleMap = useCallback(() => setMapOpen((o) => !o), []);
 
   const openNearby = useCallback(() => {
     const id = driveStore.getNearby();
     const stop = world.stops.find((s) => s.id === id);
     if (stop?.href) router.push(stop.href);
   }, [world, router]);
-  useKeyboard(mode === "drive", openNearby);
+  useKeyboard(mode === "drive" && !mapOpen, openNearby, toggleMap);
 
   useEffect(() => {
     if (mode !== "drive") return;
@@ -173,7 +182,7 @@ export default function DriveGame({ world }: { world: WorldData }) {
   }, [mode, world, router]);
 
   if (mode === "list") {
-    return <DriveList world={world} onDrive={caps === "reduced" && !lost ? () => setChoice("drive") : undefined} />;
+    return <DriveList world={world} onDrive={caps !== "nogl" && !lost ? () => setChoice("drive") : undefined} />;
   }
 
   return (
@@ -195,12 +204,14 @@ export default function DriveGame({ world }: { world: WorldData }) {
         </div>
         <div className="flex flex-col items-end gap-2">
           <div className={`${panel} pointer-events-auto p-1.5`}>
-            <div className="hidden sm:block">
-              <Minimap world={world} size={132} />
-            </div>
-            <div className="sm:hidden">
-              <Minimap world={world} size={96} />
-            </div>
+            <button type="button" onClick={toggleMap} className="block rounded-full" aria-label="Open the map">
+              <span className="hidden sm:block">
+                <Minimap world={world} size={132} />
+              </span>
+              <span className="block sm:hidden">
+                <Minimap world={world} size={96} />
+              </span>
+            </button>
             <div className="flex items-center justify-between gap-2 px-1 pb-0.5 pt-1.5">
               <span
                 key={visited.size}
@@ -208,17 +219,71 @@ export default function DriveGame({ world }: { world: WorldData }) {
               >
                 {visited.size}/{world.stops.length} found
               </span>
-              <button
-                type="button"
-                onClick={() => setChoice("list")}
-                className="font-label text-[11px] font-semibold text-[#1d2321] underline decoration-[#1d2321]/30 underline-offset-2 hover:decoration-[#1d2321]"
-              >
-                List view
+            </div>
+            <div className="grid grid-cols-2 gap-1 px-0.5 pb-0.5 pt-1">
+              <button type="button" onClick={toggleMap} className="min-h-8 rounded-[4px] border border-[#1d2321]/15 bg-white font-label text-[11px] font-semibold text-[#1d2321] hover:border-[#1d2321]/40">
+                Map <kbd className="hidden text-[9px] font-medium text-[#5b625e] pointer-fine:inline">M</kbd>
+              </button>
+              <button type="button" onClick={() => setChoice("list")} className="min-h-8 rounded-[4px] border border-[#1d2321]/15 bg-white font-label text-[11px] font-semibold text-[#1d2321] hover:border-[#1d2321]/40">
+                List
               </button>
             </div>
           </div>
         </div>
       </div>
+
+      {/* first visit: who this is, what to do, and a way out for anyone who would rather read */}
+      <div
+        className={`pointer-events-none absolute inset-x-0 bottom-0 z-30 flex justify-center px-4 pb-[calc(env(safe-area-inset-bottom)+1rem)] transition-all duration-300 sm:inset-y-0 sm:items-center sm:pb-0 ${showWelcome ? "opacity-100" : "translate-y-3 opacity-0"}`}
+        aria-hidden={!showWelcome}
+      >
+        <div className={`${panel} ${showWelcome ? "pointer-events-auto" : ""} w-full max-w-[420px] bg-[#fbfaf6] p-5`} role="dialog" aria-label="Welcome">
+          <p className="font-label text-[11px] font-semibold uppercase tracking-[0.14em] text-[#5b625e]">Interactive portfolio</p>
+          <h2 className="mt-1 font-label text-2xl font-bold leading-tight text-[#1d2321]">Louis Zhang</h2>
+          <p className="mt-2 text-sm leading-relaxed text-[#3d4441]">
+            Mechanical engineering student at Polytechnique Montréal. Interned at Tesla, Lockheed Martin and the City of Montréal.
+          </p>
+          <p className="mt-1 text-sm font-semibold text-[#e4572e]">Open to 2027 internship opportunities</p>
+          <p className="mt-3 text-sm leading-relaxed text-[#3d4441]">
+            Drive around to find {world.stops.length} stops: projects, internships and hackathon wins. Each one opens its full case study.
+          </p>
+          <div className="mt-4 flex flex-wrap gap-2">
+            <button
+              type="button"
+              tabIndex={showWelcome ? 0 : -1}
+              onClick={(e) => {
+                // hand the keyboard back to the world, so Enter opens the stop you drive to
+                e.currentTarget.blur();
+                setWelcomeClosed(true);
+              }}
+              className="min-h-11 flex-1 rounded-[4px] bg-[#1d2321] px-4 font-label text-sm font-semibold text-[#fbfaf6] hover:bg-black"
+            >
+              Start driving
+            </button>
+            <button
+              type="button"
+              tabIndex={showWelcome ? 0 : -1}
+              onClick={() => setChoice("list")}
+              className="min-h-11 flex-1 rounded-[4px] border border-[#1d2321]/20 bg-white px-4 font-label text-sm font-semibold text-[#1d2321] hover:border-[#1d2321]/45"
+            >
+              Browse as a list
+            </button>
+          </div>
+          <p className="mt-3 text-xs text-[#5b625e]">
+            <span className="hidden pointer-fine:inline">WASD or arrow keys to drive · M for the map</span>
+            <span className="pointer-fine:hidden">Drag anywhere on the screen to drive · tap the map to jump</span>
+          </p>
+        </div>
+      </div>
+
+      {/* little cheers (bowling) */}
+      {toast && (
+        <div key={toast.id} className="pointer-events-none absolute inset-x-0 top-[38%] z-20 flex justify-center">
+          <p className="animate-[drive-toast_1.8s_ease-out_forwards] font-label text-4xl font-bold text-[#1d2321] opacity-0 [text-shadow:0_2px_0_#fbfaf6]">{toast.text}</p>
+        </div>
+      )}
+
+      {mapOpen && <MapOverlay world={world} visited={visited} onClose={() => setMapOpen(false)} />}
 
       {/* everything found: a small thank-you with the way to reach out */}
       {visited.size === world.stops.length && !doneDismissed && (
@@ -244,7 +309,7 @@ export default function DriveGame({ world }: { world: WorldData }) {
 
       {/* controls hint */}
       <div
-        className={`pointer-events-none absolute bottom-0 left-0 z-20 hidden px-5 pb-6 transition-opacity duration-700 pointer-fine:block ${nearby ? "opacity-0" : moved ? "opacity-60" : "opacity-100"}`}
+        className={`pointer-events-none absolute bottom-0 left-0 z-20 hidden px-5 pb-6 transition-opacity duration-700 pointer-fine:block ${nearby || showWelcome ? "opacity-0" : moved ? "opacity-60" : "opacity-100"}`}
       >
         <p className={`${panel} px-3 py-2 font-label text-xs text-[#5b625e]`}>
           <b className="text-[#1d2321]">WASD</b> or <b className="text-[#1d2321]">arrows</b> to drive · <b className="text-[#1d2321]">Shift</b> boost ·{" "}
@@ -252,7 +317,7 @@ export default function DriveGame({ world }: { world: WorldData }) {
         </p>
       </div>
       <div
-        className={`pointer-events-none absolute inset-x-0 bottom-0 z-20 hidden justify-center px-4 pb-[calc(env(safe-area-inset-bottom)+1.5rem)] transition-opacity duration-500 pointer-coarse:flex ${moved || nearby ? "opacity-0" : "opacity-100"}`}
+        className={`pointer-events-none absolute inset-x-0 bottom-0 z-20 hidden justify-center px-4 pb-[calc(env(safe-area-inset-bottom)+1.5rem)] transition-opacity duration-500 pointer-coarse:flex ${moved || nearby || showWelcome ? "opacity-0" : "opacity-100"}`}
       >
         <p className={`${panel} px-3 py-2 font-label text-xs font-semibold text-[#1d2321]`}>Drag anywhere to drive</p>
       </div>
@@ -270,7 +335,7 @@ export default function DriveGame({ world }: { world: WorldData }) {
           </div>
         </div>
       </div>
-      <style>{`@keyframes drive-load{0%{transform:translateX(-100%)}100%{transform:translateX(300%)}}@keyframes drive-pop{0%{transform:scale(1)}30%{transform:scale(1.35);color:#c9971c}100%{transform:scale(1)}}`}</style>
+      <style>{`@keyframes drive-load{0%{transform:translateX(-100%)}100%{transform:translateX(300%)}}@keyframes drive-toast{0%{opacity:0;transform:scale(.8)}12%{opacity:1;transform:scale(1.06)}25%{transform:scale(1)}75%{opacity:1}100%{opacity:0;transform:translateY(-12px)}}@keyframes drive-pop{0%{transform:scale(1)}30%{transform:scale(1.35);color:#c9971c}100%{transform:scale(1)}}`}</style>
     </main>
   );
 }
