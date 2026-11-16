@@ -160,9 +160,12 @@ export default function WinsChapter({ id }: { id: string }) {
                     <ProjectThumb slug={c.slug} />
                   </span>
                   <span className="mt-3 flex items-start gap-2.5 sm:mt-4 sm:items-center sm:gap-3">
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-[10px] border border-[var(--border-light)] bg-white sm:h-11 sm:w-11">
+                    <span
+                      className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-[10px] border border-[var(--border-light)] sm:h-12 sm:w-12"
+                      style={{ background: c.logoBg ?? "#ffffff" }}
+                    >
                       {c.logo ? (
-                        <img src={c.logo} alt="" width={44} height={44} loading="lazy" decoding="async" className="h-full w-full object-contain p-1" />
+                        <img src={c.logo} alt="" width={44} height={44} loading="lazy" decoding="async" className={`h-full w-full ${c.bleed ? "object-cover" : "object-contain p-1"}`} />
                       ) : (
                         <span aria-hidden className="text-base font-semibold text-[var(--text-on-light)]">
                           {c.event.charAt(0)}

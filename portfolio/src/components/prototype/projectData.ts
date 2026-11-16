@@ -126,11 +126,12 @@ export const WINS = [
   { event: "RoboHacks 2025", prize: "Unexpected Expedition Award", sponsor: "5th overall", project: "Reforestation Robot", slug: "reforestation-robot", date: "Feb. 2025" },
 ];
 
-/** Other hackathon builds (the CRM tool is listed under Accenture instead). Logos from each event's own site. */
-export const ALSO_COMPETED: { event: string; project: string; slug: string; date: string; logo?: string }[] = [
+/** Other hackathon builds (the CRM tool is listed under Accenture instead). Logos from each event's own site, or from Louis. */
+/** `logoBg`: the tile colour behind the logo (dark for light logos, light for dark ones); `bleed`: the logo fills the tile */
+export const ALSO_COMPETED: { event: string; project: string; slug: string; date: string; logo?: string; logoBg?: string; bleed?: boolean }[] = [
   { event: "McHacks 13", project: "MechPrep", slug: "mechprep", date: "Jan. 2026", logo: "/logo/mchacks.png" },
-  { event: "UpStart 2026", project: "ResQ-Link", slug: "resq-link", date: "Feb. 2026" },
-  { event: "UdeMHacks", project: "LazyCare", slug: "lazycare", date: "Mar. 2025", logo: "/logo/udemhacks.png" },
+  { event: "UpStart 2026", project: "ResQ-Link", slug: "resq-link", date: "Feb. 2026", logo: "/logo/upstart.png", logoBg: "#19223f", bleed: true },
+  { event: "UdeMHacks", project: "LazyCare", slug: "lazycare", date: "Mar. 2025", logo: "/logo/udemhacks.png", logoBg: "#000000", bleed: true },
   { event: "BrébeufHx", project: "Interview Assistant", slug: "interview-assistant", date: "Jan. 2024", logo: "/logo/brebeufhx.png" },
 ];
 
@@ -195,6 +196,7 @@ export const SCHOLARSHIPS: Recognition[] = [
     org: "Government of Québec",
     meta: "$20,000",
     detail: "For students in engineering and other priority fields.",
+    logo: "/logo/quebec-mark.png",
   },
   {
     title: "Lina & Jean-Guy Gaudreault Perseverance Scholarship",
