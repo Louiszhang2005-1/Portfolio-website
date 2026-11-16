@@ -1,5 +1,8 @@
 import Link from "next/link";
 import { Award } from "lucide-react";
+
+/* same wording as AVAILABILITY in stage.tsx, a client module this server component does not import */
+const AVAILABILITY = "Open to 2027 internship opportunities";
 import { ALSO_COMPETED, COMMUNITY, FOCUS, FRAMING, SCHOLARSHIPS, WINS, allProjects, type Recognition } from "./projectData";
 
 /** The winning project's own image, aimed like the Projects chapter (named region or focal point). */
@@ -51,8 +54,8 @@ function Entry({ r, money }: { r: Recognition; money?: boolean }) {
         )}
       </span>
       <span className="min-w-0 flex-1">
-        <span className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-0.5">
-          <span className="text-[17px] font-semibold leading-snug text-[var(--text-on-light)] transition-colors group-hover:text-[var(--accent-on-light)]">
+        <span className="flex items-start justify-between gap-4">
+          <span className="min-w-0 text-[17px] font-semibold leading-snug text-[var(--text-on-light)] transition-colors group-hover:text-[var(--accent-on-light)]">
             {r.title}
             {r.href && (
               <span aria-hidden className="ml-1.5 inline-block text-[var(--accent-on-light)] transition-transform duration-300 group-hover:translate-x-1">
@@ -61,7 +64,7 @@ function Entry({ r, money }: { r: Recognition; money?: boolean }) {
             )}
           </span>
           {r.meta && (
-            <span className={money ? "text-[17px] font-semibold tabular-nums text-[var(--text-on-light)]" : "font-mono text-xs tabular-nums text-[var(--text-on-light-secondary)]"}>
+            <span className={money ? "shrink-0 whitespace-nowrap text-[17px] font-semibold tabular-nums text-[var(--text-on-light)]" : "shrink-0 whitespace-nowrap pt-1 font-mono text-xs tabular-nums text-[var(--text-on-light-secondary)]"}>
               {r.meta}
             </span>
           )}
@@ -86,6 +89,22 @@ function Panel({ title, items, money }: { title: string; items: Recognition[]; m
         ))}
       </ul>
     </div>
+  );
+}
+
+/** A project's image filling a wide card (the 4:3 framing above is tuned for the win cards, not this ratio). */
+function ProjectThumb({ slug }: { slug: string }) {
+  const item = allProjects.find((p) => p.slug === slug);
+  if (!item?.image) return null;
+  return (
+    <img
+      src={item.image}
+      alt=""
+      loading="lazy"
+      decoding="async"
+      className="h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)] group-hover:scale-[1.03]"
+      style={{ objectPosition: FOCUS[item.id] ?? "center" }}
+    />
   );
 }
 
@@ -129,36 +148,68 @@ export default function WinsChapter({ id }: { id: string }) {
           ))}
         </ol>
 
-        {/* the rest of the record: community work on the left; scholarships and the other hackathon builds on the right */}
+        {/* the other hackathon builds: the project's own image leads, the event's logo sits beside the name */}
+        <div className="mt-24">
+          <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-2">
+            <h3 className="text-lg text-[var(--text-on-light)]">Also built at hackathons</h3>
+            <p className="text-sm text-[var(--text-on-light-secondary)]">Each one has a full case study.</p>
+          </div>
+          <ul className="mt-5 grid grid-cols-2 gap-x-4 gap-y-8 lg:grid-cols-4 lg:gap-x-5">
+            {ALSO_COMPETED.map((c) => (
+              <li key={c.event}>
+                <Link href={`/portfolio/${c.slug}`} aria-label={`${c.project}, built at ${c.event}, ${c.date}`} className="group block">
+                  <span className="relative block aspect-[16/10] overflow-hidden rounded-[16px] bg-[var(--mat-ink)] shadow-[0_18px_36px_-26px_rgba(0,0,0,0.5)]">
+                    <ProjectThumb slug={c.slug} />
+                  </span>
+                  <span className="mt-3 flex items-start gap-2.5 sm:mt-4 sm:items-center sm:gap-3">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-[10px] border border-[var(--border-light)] bg-white sm:h-11 sm:w-11">
+                      {c.logo ? (
+                        <img src={c.logo} alt="" width={44} height={44} loading="lazy" decoding="async" className="h-full w-full object-contain p-1" />
+                      ) : (
+                        <span aria-hidden className="text-base font-semibold text-[var(--text-on-light)]">
+                          {c.event.charAt(0)}
+                        </span>
+                      )}
+                    </span>
+                    <span className="min-w-0">
+                      <span className="block text-[16px] font-semibold leading-snug text-[var(--text-on-light)] transition-colors group-hover:text-[var(--accent-on-light)]">
+                        {c.project}
+                      </span>
+                      <span className="block text-sm text-[var(--text-on-light-secondary)]">
+                        {c.event} · {c.date}
+                      </span>
+                    </span>
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* the rest of the record: community work on the left; scholarships and availability on the right */}
         <div className="mt-24 grid gap-16 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:gap-20">
           <Panel title="Beyond the hackathons" items={COMMUNITY} />
 
           <div className="space-y-14">
             <Panel title="Scholarships" items={SCHOLARSHIPS} money />
 
-            <div>
-              <h3 className="text-lg text-[var(--text-on-light)]">Also built at</h3>
-              <ul className="mt-4 overflow-hidden rounded-[18px] border border-[var(--border-light)] bg-white shadow-[0_18px_40px_-30px_rgba(0,0,0,0.35)] [&>li+li]:border-t [&>li+li]:border-[var(--border-light)]">
-                {ALSO_COMPETED.map((c) => (
-                  <li key={c.event}>
-                    <Link
-                      href={`/portfolio/${c.slug}`}
-                      // the visible cells read as a table; the link's name says it as a sentence
-                      aria-label={`${c.project}, built at ${c.event}, ${c.date}`}
-                      className="group grid min-h-[56px] grid-cols-[minmax(0,1fr)_auto] items-center gap-x-4 px-5 py-3.5 text-left transition-colors hover:bg-[var(--surface-light)] sm:px-6"
-                    >
-                      <span className="flex min-w-0 flex-col">
-                        <span className="text-[15px] font-medium text-[var(--text-on-light)] transition-colors group-hover:text-[var(--accent-on-light)]">
-                          {c.project}
-                        </span>
-                        <span className="text-sm text-[var(--text-on-light-secondary)]">{c.event}</span>
-                      </span>
-                      <span className="whitespace-nowrap text-right font-mono text-xs tabular-nums text-[var(--text-on-light-secondary)]">{c.date}</span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {/* what a recruiter came for, one click from the record */}
+            <a
+              href="#contact"
+              className="group block rounded-[18px] bg-[var(--mat-ink)] p-6 text-white shadow-[0_24px_48px_-30px_rgba(0,0,0,0.6)] sm:p-7"
+            >
+              <span className="flex items-center gap-2 text-sm text-white/70">
+                <span aria-hidden className="h-2 w-2 rounded-full bg-[#3ccf7a]" />
+                {AVAILABILITY}
+              </span>
+              <span className="mt-3 block text-[1.6rem] leading-[1.15]">Mechanical engineering, Polytechnique Montréal.</span>
+              <span className="mt-4 inline-flex items-center gap-2 text-[15px] font-medium text-white">
+                Get in touch
+                <span aria-hidden className="inline-block transition-transform duration-300 group-hover:translate-x-1">
+                  →
+                </span>
+              </span>
+            </a>
           </div>
         </div>
       </div>

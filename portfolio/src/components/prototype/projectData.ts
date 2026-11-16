@@ -126,12 +126,12 @@ export const WINS = [
   { event: "RoboHacks 2025", prize: "Unexpected Expedition Award", sponsor: "5th overall", project: "Reforestation Robot", slug: "reforestation-robot", date: "Feb. 2025" },
 ];
 
-export const ALSO_COMPETED = [
-  { event: "McHacks 13", project: "MechPrep", slug: "mechprep", date: "Jan. 2026" },
+/** Other hackathon builds (the CRM tool is listed under Accenture instead). Logos from each event's own site. */
+export const ALSO_COMPETED: { event: string; project: string; slug: string; date: string; logo?: string }[] = [
+  { event: "McHacks 13", project: "MechPrep", slug: "mechprep", date: "Jan. 2026", logo: "/logo/mchacks.png" },
   { event: "UpStart 2026", project: "ResQ-Link", slug: "resq-link", date: "Feb. 2026" },
-  { event: "Accenture, Accent on the Community", project: "CRM Outreach Tool", slug: "crm-outreach-tool", date: "Jan.–Apr. 2026" },
-  { event: "UdemHacks", project: "LazyCare", slug: "lazycare", date: "Mar. 2025" },
-  { event: "Brebeuf Hacks", project: "Interview Assistant", slug: "interview-assistant", date: "Jan. 2024" },
+  { event: "UdeMHacks", project: "LazyCare", slug: "lazycare", date: "Mar. 2025", logo: "/logo/udemhacks.png" },
+  { event: "BrébeufHx", project: "Interview Assistant", slug: "interview-assistant", date: "Jan. 2024", logo: "/logo/brebeufhx.png" },
 ];
 
 /**
@@ -162,6 +162,7 @@ export const COMMUNITY: Recognition[] = [
   {
     title: "VP Events",
     org: "Google Developer Group on Campus · Polytechnique Montréal",
+    meta: "Jan.–Apr. 2026",
     detail: "I plan and run the chapter's events for students.",
     logo: "/logo/gdg.png",
   },
@@ -182,6 +183,7 @@ export const COMMUNITY: Recognition[] = [
   {
     title: "Guest speaker",
     org: "SCS Concordia",
+    meta: "Oct. 2026",
     detail: "A talk on landing tech internships, to 100 students.",
     logo: "/logo/scs-concordia.png",
   },

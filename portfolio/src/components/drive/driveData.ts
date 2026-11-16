@@ -143,7 +143,7 @@ export function buildWorld(): WorldData {
   const COMMUNITY: Omit<Stop, "kind" | "accent" | "group" | "x" | "z" | "href">[] = [
     {
       id: "gdg",
-      kicker: "Leadership · VP Events",
+      kicker: "VP Events · Jan.–Apr. 2026",
       title: "Google Developer Group",
       line: "VP Events of the GDG on Campus chapter at Polytechnique Montréal: I plan and run the chapter's events for students.",
       links: [{ label: "Chapter page", href: "https://gdg.community.dev/gdg-on-campus-polytechnique-montreal-montreal-canada/" }],
@@ -167,7 +167,7 @@ export function buildWorld(): WorldData {
     },
     {
       id: "speaker-scs",
-      kicker: "Guest speaker",
+      kicker: "Guest speaker · Oct. 2026",
       title: "SCS Concordia",
       line: "Talk on landing tech internships, given to 100 students at Concordia's Software Engineering and Computer Science Society.",
       links: [{ label: "SCS Concordia", href: "https://scsconcordia.com/" }],
