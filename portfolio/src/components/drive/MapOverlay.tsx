@@ -7,7 +7,7 @@ import { car, SCREEN_RIGHT, SCREEN_UP, WORLD_RADIUS } from "./driveStore";
 import { PALETTE } from "./palette";
 import { buildRoads, ROAD_WIDTH, STOP_TRIGGER } from "./worldLayout";
 
-const KIND_LABEL: Record<Stop["kind"], string> = { internship: "Internship", project: "Project", win: "Hackathon win", contact: "Contact" };
+const KIND_LABEL: Record<Stop["kind"], string> = { internship: "Internship", project: "Project", win: "Hackathon win", community: "Community", contact: "Contact" };
 
 /** world -> map units, oriented like the 3D view (screen up = map up) */
 const project = (x: number, z: number) => [x * SCREEN_RIGHT.x + z * SCREEN_RIGHT.z, -(x * SCREEN_UP.x + z * SCREEN_UP.z)] as const;
@@ -44,6 +44,7 @@ export default function MapOverlay({ world, visited, onClose }: { world: WorldDa
     { title: "Internships", kind: "internship" },
     { title: "Projects", kind: "project" },
     { title: "Hackathon wins", kind: "win" },
+    { title: "Community", kind: "community" },
     { title: "Contact", kind: "contact" },
   ];
 

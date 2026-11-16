@@ -112,7 +112,7 @@ function StopCard({ stop, visible }: { stop: Stop; visible: boolean }) {
         <div className="px-4 py-3.5">
           <p className="font-label text-[11px] font-semibold uppercase tracking-[0.14em] text-[#5b625e]">{stop.kicker}</p>
           <p className="mt-0.5 font-label text-xl font-bold leading-tight text-[#1d2321]">{stop.title}</p>
-          <p className="mt-1 line-clamp-2 text-sm leading-snug text-[#5b625e]">{stop.line}</p>
+          <p className="mt-1 line-clamp-3 text-sm leading-snug text-[#5b625e]">{stop.line}</p>
           {stop.href ? (
             <Link
               href={stop.href}
@@ -245,7 +245,7 @@ export default function DriveGame({ world }: { world: WorldData }) {
           </p>
           <p className="mt-1 text-sm font-semibold text-[#e4572e]">Open to 2027 internship opportunities</p>
           <p className="mt-3 text-sm leading-relaxed text-[#3d4441]">
-            Drive around to find {world.stops.length} stops: projects, internships and hackathon wins. Each one opens its full case study.
+            Drive around to find {world.stops.length} stops: projects, internships, hackathon wins and community work. Most open a full case study.
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
             <button

@@ -7,7 +7,7 @@ import { activeProjects, internships } from "@/lib/portfolio";
 import { WINS } from "@/components/prototype/projectData";
 import { GAME_CONTACT, GAME_INTERNSHIPS } from "@/data/gameContact";
 
-export type StopKind = "internship" | "project" | "win" | "contact";
+export type StopKind = "internship" | "project" | "win" | "community" | "contact";
 
 export type StopLink = { label: string; href: string };
 
@@ -25,7 +25,7 @@ export type Stop = {
   accent: string;
   /** group used for the project landmark shape */
   group: string;
-  /** company logo for internship offices (same-origin image) */
+  /** company logo for internship offices, or the card shown on a community stop's screen (same-origin image) */
   logo: string | null;
   x: number;
   z: number;
@@ -123,6 +123,62 @@ export function buildWorld(): WorldData {
     });
   });
   districts.push({ label: "Hackathon wins", x: 0, z: 29 });
+
+  // community: leadership, judging, speaking, recognition. No case study, so the card links out.
+  const COMMUNITY: Omit<Stop, "kind" | "accent" | "group" | "x" | "z" | "href">[] = [
+    {
+      id: "gdg",
+      kicker: "Leadership · VP Events",
+      title: "Google Developer Group",
+      line: "VP Events of the GDG on Campus chapter at Polytechnique Montréal: I plan and run the chapter's events for students.",
+      links: [{ label: "Chapter page", href: "https://gdg.community.dev/gdg-on-campus-polytechnique-montreal-montreal-canada/" }],
+      logo: "/media/drive/gdg.webp",
+    },
+    {
+      id: "judge-mpc-hacks",
+      kicker: "Hackathon judge · May 2026",
+      title: "MPC Hacks",
+      line: "Judge at a Montréal student hackathon: I evaluated teams' projects and their demos.",
+      links: [{ label: "MPC Hacks on Devpost", href: "https://mpchacks.devpost.com/" }],
+      logo: "/media/drive/mpc-hacks.webp",
+    },
+    {
+      id: "judge-hack-decouverte",
+      kicker: "Hackathon judge · Nov. 2026",
+      title: "Hack Découverte",
+      line: "Judge at HackConcordia's hackathon for CEGEP and high school students: I evaluated first-time builders' projects.",
+      links: [{ label: "HackConcordia", href: "https://www.hackconcordia.io/" }],
+      logo: "/media/drive/hack-decouverte.webp",
+    },
+    {
+      id: "speaker-scs",
+      kicker: "Guest speaker",
+      title: "SCS Concordia",
+      line: "Talk on landing tech internships, given to 100 students at Concordia's Software Engineering and Computer Science Society.",
+      links: [{ label: "SCS Concordia", href: "https://scsconcordia.com/" }],
+      logo: "/media/drive/scs-concordia.webp",
+    },
+    {
+      id: "scholarship",
+      kicker: "Scholarship",
+      title: "Perseverance Scholarship",
+      line: "Lina & Jean-Guy Gaudreault Perseverance Scholarship, $2,500.",
+      links: [],
+      logo: "/media/drive/scholarship.webp",
+    },
+  ];
+  const COMMUNITY_SPOTS = [
+    [-32, -26],
+    [-44, -20],
+    [-49, -31],
+    [-40, -38],
+    [-30, -36],
+  ] as const;
+  COMMUNITY.forEach((c, i) => {
+    const spot = COMMUNITY_SPOTS[i % COMMUNITY_SPOTS.length];
+    stops.push({ ...c, kind: "community", href: null, accent: "#7b61c9", group: "community", x: spot[0], z: spot[1] });
+  });
+  districts.push({ label: "Community", x: -38, z: -29 });
 
   stops.push({
     id: "contact",

@@ -5,9 +5,32 @@ const SECTIONS: { kind: Stop["kind"]; title: string }[] = [
   { kind: "internship", title: "Internships" },
   { kind: "project", title: "Projects" },
   { kind: "win", title: "Hackathon wins" },
+  { kind: "community", title: "Community" },
 ];
 
 function Row({ stop }: { stop: Stop }) {
+  if (!stop.href) {
+    // no case study: show the role, with its outside links
+    return (
+      <li className="grid grid-cols-[3px_1fr] gap-4 border-b border-[#1d2321]/10 py-4">
+        <span className="h-full min-h-10 self-stretch" style={{ background: stop.accent }} aria-hidden />
+        <span className="min-w-0">
+          <span className="block font-label text-[11px] font-semibold uppercase tracking-[0.14em] text-[#5b625e]">{stop.kicker}</span>
+          <span className="mt-0.5 block font-label text-lg font-bold leading-tight text-[#1d2321]">{stop.title}</span>
+          <span className="mt-1 block text-sm leading-snug text-[#5b625e]">{stop.line}</span>
+          {stop.links.length > 0 && (
+            <span className="mt-2 flex flex-wrap gap-x-4 gap-y-1">
+              {stop.links.map((l) => (
+                <a key={l.href} href={l.href} target="_blank" rel="noreferrer" className="font-label text-sm font-semibold underline decoration-[#1d2321]/30 underline-offset-4 hover:decoration-[#1d2321]">
+                  {l.label} ↗
+                </a>
+              ))}
+            </span>
+          )}
+        </span>
+      </li>
+    );
+  }
   return (
     <li>
       <Link

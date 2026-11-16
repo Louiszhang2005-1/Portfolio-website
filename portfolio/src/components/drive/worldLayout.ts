@@ -17,6 +17,7 @@ export const STOP_TRIGGER: Record<Stop["kind"], number> = {
   internship: 7.2,
   project: 5.2,
   win: 4.4,
+  community: 4.6,
   contact: 5.4,
 };
 
@@ -24,6 +25,7 @@ export const STOP_SOLID: Record<Stop["kind"], number> = {
   internship: 3.3,
   project: 1.35,
   win: 1.2,
+  community: 0,
   contact: 1.4,
 };
 

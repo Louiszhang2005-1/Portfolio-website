@@ -17,10 +17,11 @@ export type Screen = { stop: Stop; x: number; z: number; image: string };
 export function buildScreens(stops: Stop[]): Screen[] {
   const out: Screen[] = [];
   for (const s of stops) {
-    if (s.kind !== "project" && s.kind !== "win") continue;
+    if (s.kind !== "project" && s.kind !== "win" && s.kind !== "community") continue;
     const slug = s.href?.split("/").pop();
-    if (!slug) continue;
-    out.push({ stop: s, x: s.x + SCREEN_UP.x * SCREEN_BACK, z: s.z + SCREEN_UP.z * SCREEN_BACK, image: `/media/drive/${slug}.webp` });
+    const image = s.kind === "community" ? s.logo : slug ? `/media/drive/${slug}.webp` : null;
+    if (!image) continue;
+    out.push({ stop: s, x: s.x + SCREEN_UP.x * SCREEN_BACK, z: s.z + SCREEN_UP.z * SCREEN_BACK, image });
   }
   return out;
 }
@@ -34,7 +35,7 @@ export function screenColliders(screens: Screen[]): Circle[] {
 
 /** where label signs go: above the screen for exhibits, above the landmark otherwise */
 export function signAnchor(s: Stop): { x: number; z: number } {
-  if (s.kind === "project" || s.kind === "win") return { x: s.x + SCREEN_UP.x * SCREEN_BACK, z: s.z + SCREEN_UP.z * SCREEN_BACK };
+  if (s.kind === "project" || s.kind === "win" || s.kind === "community") return { x: s.x + SCREEN_UP.x * SCREEN_BACK, z: s.z + SCREEN_UP.z * SCREEN_BACK };
   return { x: s.x, z: s.z };
 }
 
