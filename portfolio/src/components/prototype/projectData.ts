@@ -151,7 +151,29 @@ export type Recognition = {
   href?: string;
 };
 
+/** most recent first */
 export const COMMUNITY: Recognition[] = [
+  {
+    title: "Hackathon judge",
+    org: "Hack Découverte · HackConcordia",
+    meta: "Nov. 2026",
+    detail: "A hackathon for CEGEP and high school students.",
+    logo: "/logo/hackconcordia.png",
+  },
+  {
+    title: "Guest speaker",
+    org: "SCS Concordia",
+    meta: "Oct. 2026",
+    detail: "A talk on landing tech internships, to 100 students.",
+    logo: "/logo/scs-concordia.png",
+  },
+  {
+    title: "Hackathon judge",
+    org: "MPC Hacks",
+    meta: "May 2026",
+    detail: "Evaluated student teams' projects and demos.",
+    logo: "/logo/mpc-hacks.png",
+  },
   {
     title: "Apprentice, Accent on the Community",
     org: "Accenture",
@@ -166,27 +188,6 @@ export const COMMUNITY: Recognition[] = [
     meta: "Jan.–Apr. 2026",
     detail: "I plan and run the chapter's events for students.",
     logo: "/logo/gdg.png",
-  },
-  {
-    title: "Hackathon judge",
-    org: "MPC Hacks",
-    meta: "May 2026",
-    detail: "Evaluated student teams' projects and demos.",
-    logo: "/logo/mpc-hacks.png",
-  },
-  {
-    title: "Hackathon judge",
-    org: "Hack Découverte · HackConcordia",
-    meta: "Nov. 2026",
-    detail: "A hackathon for CEGEP and high school students.",
-    logo: "/logo/hackconcordia.png",
-  },
-  {
-    title: "Guest speaker",
-    org: "SCS Concordia",
-    meta: "Oct. 2026",
-    detail: "A talk on landing tech internships, to 100 students.",
-    logo: "/logo/scs-concordia.png",
   },
 ];
 
