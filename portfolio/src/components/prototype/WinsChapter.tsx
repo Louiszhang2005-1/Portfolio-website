@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { ALSO_COMPETED, FOCUS, FRAMING, RECOGNITION, WINS, allProjects } from "./projectData";
+import { Award } from "lucide-react";
+import { ALSO_COMPETED, COMMUNITY, FOCUS, FRAMING, SCHOLARSHIPS, WINS, allProjects, type Recognition } from "./projectData";
 
 /** The winning project's own image, aimed like the Projects chapter (named region or focal point). */
 function WinImage({ slug, alt }: { slug: string; alt: string }) {
@@ -31,6 +32,35 @@ function WinImage({ slug, alt }: { slug: string; alt: string }) {
       style={{ objectPosition: FOCUS[item.id] ?? "center" }}
     />
   );
+}
+
+/** One line of the record: logo, a small label, the title, one sentence. Links when there is a case study. */
+function Entry({ r }: { r: Recognition }) {
+  const body = (
+    <>
+      <span className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-[10px] border border-[var(--border-light)] bg-white">
+        {r.logo ? (
+          <img src={r.logo} alt="" width={48} height={48} loading="lazy" decoding="async" className="h-full w-full object-contain p-1.5" />
+        ) : (
+          <Award aria-hidden className="h-5 w-5 text-[var(--text-on-light-secondary)]" strokeWidth={1.6} />
+        )}
+      </span>
+      <span className="min-w-0">
+        <span className="block text-[13px] text-[var(--text-on-light-secondary)]">{r.label}</span>
+        <span className="mt-0.5 block text-[16px] font-medium leading-snug text-[var(--text-on-light)] transition-colors group-hover:text-[var(--accent-on-light)]">
+          {r.title}
+          {r.href && (
+            <span aria-hidden className="ml-1.5 inline-block text-[var(--accent-on-light)] transition-transform duration-300 group-hover:translate-x-1">
+              →
+            </span>
+          )}
+        </span>
+        <span className="mt-1 block text-sm leading-relaxed text-[var(--text-on-light-secondary)]">{r.detail}</span>
+      </span>
+    </>
+  );
+  const cls = "group grid grid-cols-[3rem_minmax(0,1fr)] items-start gap-4 py-5";
+  return <li>{r.href ? <Link href={r.href} className={cls}>{body}</Link> : <div className={cls}>{body}</div>}</li>;
 }
 
 /** Static light section: no pinning, just the record. Wins lead with what was built; the rest reads as two lists. */
@@ -73,68 +103,50 @@ export default function WinsChapter({ id }: { id: string }) {
           ))}
         </ol>
 
-        {/* two short lists side by side instead of one table stretched across the window */}
-        <div className="mt-24 grid gap-16 lg:grid-cols-2 lg:gap-20">
+        {/* the rest of the record: community work on the left; scholarships and the other hackathon builds on the right */}
+        <div className="mt-24 grid gap-16 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:gap-20">
           <div>
-            <h3 className="text-lg text-[var(--text-on-light)]">Also built at</h3>
-            <ul className="mt-4 divide-y divide-[var(--border-light)] border-y border-[var(--border-light)]">
-              {ALSO_COMPETED.map((c) => (
-                <li key={c.event}>
-                  <Link
-                    href={`/portfolio/${c.slug}`}
-                    // the visible cells read as a table; the link's name says it as a sentence
-                    aria-label={`${c.project}, built at ${c.event}, ${c.date}`}
-                    className="group grid min-h-[60px] grid-cols-[minmax(0,1fr)_auto] items-center gap-x-4 py-3 text-left transition-colors"
-                  >
-                    <span className="flex min-w-0 flex-col">
-                      <span className="text-[15px] font-medium text-[var(--text-on-light)] transition-colors group-hover:text-[var(--accent-on-light)]">
-                        {c.project}
-                      </span>
-                      <span className="text-sm text-[var(--text-on-light-secondary)]">{c.event}</span>
-                    </span>
-                    <span className="whitespace-nowrap text-right font-mono text-xs tabular-nums text-[var(--text-on-light-secondary)]">{c.date}</span>
-                  </Link>
-                </li>
+            <h3 className="text-lg text-[var(--text-on-light)]">Beyond the hackathons</h3>
+            <ul className="mt-2 divide-y divide-[var(--border-light)] border-y border-[var(--border-light)]">
+              {COMMUNITY.map((r) => (
+                <Entry key={r.title} r={r} />
               ))}
             </ul>
           </div>
 
-          {/* scholarship, leadership, speaking, judging: label on the left, the fact on the right; no cards or pills */}
-          <div>
-            <h3 className="text-lg text-[var(--text-on-light)]">Beyond the hackathons</h3>
-            <dl className="mt-4 divide-y divide-[var(--border-light)] border-y border-[var(--border-light)]">
-              {RECOGNITION.map((r) => (
-                <div key={r.title} className="grid gap-x-6 gap-y-1 py-4 sm:grid-cols-[7.5rem_minmax(0,1fr)]">
-                  <dt className="pt-px text-sm text-[var(--text-on-light-secondary)]">{r.label}</dt>
-                  <dd className="flex items-start justify-between gap-4">
-                    <span className="min-w-0">
-                      {r.href ? (
-                        <Link href={r.href} className="group block text-[15px] font-medium leading-snug text-[var(--text-on-light)] hover:text-[var(--accent-on-light)]">
-                          {r.title}{" "}
-                          <span aria-hidden className="inline-block text-[var(--accent-on-light)] transition-transform duration-300 group-hover:translate-x-1">
-                            →
-                          </span>
-                        </Link>
-                      ) : (
-                        <span className="block text-[15px] font-medium leading-snug text-[var(--text-on-light)]">{r.title}</span>
-                      )}
-                      {r.detail.map((d) => (
-                        <span key={d} className="mt-0.5 block text-sm text-[var(--text-on-light-secondary)]">
-                          {d}
+          <div className="space-y-14">
+            <div>
+              <h3 className="text-lg text-[var(--text-on-light)]">Scholarships</h3>
+              <ul className="mt-2 divide-y divide-[var(--border-light)] border-y border-[var(--border-light)]">
+                {SCHOLARSHIPS.map((r) => (
+                  <Entry key={r.title} r={r} />
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="text-lg text-[var(--text-on-light)]">Also built at</h3>
+              <ul className="mt-2 divide-y divide-[var(--border-light)] border-y border-[var(--border-light)]">
+                {ALSO_COMPETED.map((c) => (
+                  <li key={c.event}>
+                    <Link
+                      href={`/portfolio/${c.slug}`}
+                      // the visible cells read as a table; the link's name says it as a sentence
+                      aria-label={`${c.project}, built at ${c.event}, ${c.date}`}
+                      className="group grid min-h-[56px] grid-cols-[minmax(0,1fr)_auto] items-center gap-x-4 py-3 text-left transition-colors"
+                    >
+                      <span className="flex min-w-0 flex-col">
+                        <span className="text-[15px] font-medium text-[var(--text-on-light)] transition-colors group-hover:text-[var(--accent-on-light)]">
+                          {c.project}
                         </span>
-                      ))}
-                    </span>
-                    {r.logos && (
-                      <span className="flex shrink-0 gap-1.5">
-                        {r.logos.map((l) => (
-                          <img key={l.src} src={l.src} alt={l.alt} width={36} height={36} loading="lazy" decoding="async" className="h-9 w-9 rounded-[8px] border border-[var(--border-light)] bg-white object-contain p-1" />
-                        ))}
+                        <span className="text-sm text-[var(--text-on-light-secondary)]">{c.event}</span>
                       </span>
-                    )}
-                  </dd>
-                </div>
-              ))}
-            </dl>
+                      <span className="whitespace-nowrap text-right font-mono text-xs tabular-nums text-[var(--text-on-light-secondary)]">{c.date}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </div>
