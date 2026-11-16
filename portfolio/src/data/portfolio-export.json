@@ -283,7 +283,7 @@
             "Apollo.io",
             "Google Sheets API"
           ],
-          "summary": "Fully integrated CRM outreach tool built for a Montreal urban agriculture cooperative (La Centrale Agricole), developed as part of Accenture's AOTC 2026 program. Manages contact lists across 3 audience segments (corporate, schools, institutions & media). Uses Google Gemini AI to generate personalized cold emails tailored to each contact's name, title, and organization â€” then sends them directly through the app. Tracks every contact through the full sales pipeline, syncs all data to Google Sheets in real time, and centralizes booking requests with auto-calculated revenue estimates. Team can accept, refuse, or cancel reservations â€” triggering a professional email to the client instantly. Total running cost: ~$0/month on free tiers.",
+          "summary": "Fully integrated CRM outreach tool built for a community of agriculture startups, developed as part of Accenture's AOTC 2026 program. Manages contact lists across 3 audience segments (corporate, schools, institutions & media). Uses Google Gemini AI to generate personalized cold emails tailored to each contact's name, title, and organization â€” then sends them directly through the app. Tracks every contact through the full sales pipeline, syncs all data to Google Sheets in real time, and centralizes booking requests with auto-calculated revenue estimates. Team can accept, refuse, or cancel reservations â€” triggering a professional email to the client instantly. Total running cost: ~$0/month on free tiers.",
           "links": {
             "github": "https://github.com/Louiszhang2005-1/Fully-Integrated-CRM-Tool",
             "demo": "https://www.youtube.com/watch?v=TVuFauDyA00"
@@ -605,7 +605,7 @@
         "Apollo.io",
         "Google Sheets API"
       ],
-      "summary": "Fully integrated CRM outreach tool built for a Montreal urban agriculture cooperative (La Centrale Agricole), developed as part of Accenture's AOTC 2026 program. Manages contact lists across 3 audience segments (corporate, schools, institutions & media). Uses Google Gemini AI to generate personalized cold emails tailored to each contact's name, title, and organization â€” then sends them directly through the app. Tracks every contact through the full sales pipeline, syncs all data to Google Sheets in real time, and centralizes booking requests with auto-calculated revenue estimates. Team can accept, refuse, or cancel reservations â€” triggering a professional email to the client instantly. Total running cost: ~$0/month on free tiers.",
+      "summary": "Fully integrated CRM outreach tool built for a community of agriculture startups, developed as part of Accenture's AOTC 2026 program. Manages contact lists across 3 audience segments (corporate, schools, institutions & media). Uses Google Gemini AI to generate personalized cold emails tailored to each contact's name, title, and organization â€” then sends them directly through the app. Tracks every contact through the full sales pipeline, syncs all data to Google Sheets in real time, and centralizes booking requests with auto-calculated revenue estimates. Team can accept, refuse, or cancel reservations â€” triggering a professional email to the client instantly. Total running cost: ~$0/month on free tiers.",
       "links": {
         "github": "https://github.com/Louiszhang2005-1/Fully-Integrated-CRM-Tool",
         "demo": "https://www.youtube.com/watch?v=TVuFauDyA00"
@@ -923,7 +923,7 @@
         "Apollo.io",
         "Google Sheets API"
       ],
-      "summary": "Fully integrated CRM outreach tool built for a Montreal urban agriculture cooperative (La Centrale Agricole), developed as part of Accenture's AOTC 2026 program. Manages contact lists across 3 audience segments (corporate, schools, institutions & media). Uses Google Gemini AI to generate personalized cold emails tailored to each contact's name, title, and organization â€” then sends them directly through the app. Tracks every contact through the full sales pipeline, syncs all data to Google Sheets in real time, and centralizes booking requests with auto-calculated revenue estimates. Team can accept, refuse, or cancel reservations â€” triggering a professional email to the client instantly. Total running cost: ~$0/month on free tiers.",
+      "summary": "Fully integrated CRM outreach tool built for a community of agriculture startups, developed as part of Accenture's AOTC 2026 program. Manages contact lists across 3 audience segments (corporate, schools, institutions & media). Uses Google Gemini AI to generate personalized cold emails tailored to each contact's name, title, and organization â€” then sends them directly through the app. Tracks every contact through the full sales pipeline, syncs all data to Google Sheets in real time, and centralizes booking requests with auto-calculated revenue estimates. Team can accept, refuse, or cancel reservations â€” triggering a professional email to the client instantly. Total running cost: ~$0/month on free tiers.",
       "links": {
         "github": "https://github.com/Louiszhang2005-1/Fully-Integrated-CRM-Tool",
         "demo": "https://www.youtube.com/watch?v=TVuFauDyA00"

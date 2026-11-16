@@ -160,7 +160,7 @@ A fast-paced, real-time competitive party game for language learning. Players ba
 **GitHub:** https://github.com/Louiszhang2005-1/Fully-Integrated-CRM-Tool  
 **Demo:** https://www.youtube.com/watch?v=TVuFauDyA00
 
-Fully integrated CRM outreach tool built for La Centrale Agricole, a Montreal urban agriculture cooperative, as part of Accenture's AOTC 2026 program.
+Fully integrated CRM outreach tool built for a community of agriculture startups, as part of Accenture's AOTC 2026 program.
 
 - Manages contact lists across 3 audience segments (corporate, schools, institutions & media)
 - Uses Google Gemini AI to generate personalized cold emails tailored to each contact's name, title, and organization — then sends them directly through the app

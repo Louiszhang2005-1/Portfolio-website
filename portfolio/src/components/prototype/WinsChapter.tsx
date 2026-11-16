@@ -34,33 +34,59 @@ function WinImage({ slug, alt }: { slug: string; alt: string }) {
   );
 }
 
-/** One line of the record: logo, a small label, the title, one sentence. Links when there is a case study. */
-function Entry({ r }: { r: Recognition }) {
+/**
+ * One entry, read like a profile: a large logo, the role in bold, the organisation, the date (or amount),
+ * one sentence. The whole entry links when there is a case study.
+ */
+function Entry({ r, money }: { r: Recognition; money?: boolean }) {
   const body = (
     <>
-      <span className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-[10px] border border-[var(--border-light)] bg-white">
+      <span className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-[14px] border border-[var(--border-light)] bg-white shadow-[0_1px_2px_rgba(0,0,0,0.04)] sm:h-[72px] sm:w-[72px]">
         {r.logo ? (
-          <img src={r.logo} alt="" width={48} height={48} loading="lazy" decoding="async" className="h-full w-full object-contain p-1.5" />
+          <img src={r.logo} alt="" width={72} height={72} loading="lazy" decoding="async" className="h-full w-full object-contain p-2" />
         ) : (
-          <Award aria-hidden className="h-5 w-5 text-[var(--text-on-light-secondary)]" strokeWidth={1.6} />
+          <span className="flex h-full w-full items-center justify-center bg-[#1d4f91]">
+            <Award aria-hidden className="h-7 w-7 text-white" strokeWidth={1.7} />
+          </span>
         )}
       </span>
-      <span className="min-w-0">
-        <span className="block text-[13px] text-[var(--text-on-light-secondary)]">{r.label}</span>
-        <span className="mt-0.5 block text-[16px] font-medium leading-snug text-[var(--text-on-light)] transition-colors group-hover:text-[var(--accent-on-light)]">
-          {r.title}
-          {r.href && (
-            <span aria-hidden className="ml-1.5 inline-block text-[var(--accent-on-light)] transition-transform duration-300 group-hover:translate-x-1">
-              →
+      <span className="min-w-0 flex-1">
+        <span className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-0.5">
+          <span className="text-[17px] font-semibold leading-snug text-[var(--text-on-light)] transition-colors group-hover:text-[var(--accent-on-light)]">
+            {r.title}
+            {r.href && (
+              <span aria-hidden className="ml-1.5 inline-block text-[var(--accent-on-light)] transition-transform duration-300 group-hover:translate-x-1">
+                →
+              </span>
+            )}
+          </span>
+          {r.meta && (
+            <span className={money ? "text-[17px] font-semibold tabular-nums text-[var(--text-on-light)]" : "font-mono text-xs tabular-nums text-[var(--text-on-light-secondary)]"}>
+              {r.meta}
             </span>
           )}
         </span>
-        <span className="mt-1 block text-sm leading-relaxed text-[var(--text-on-light-secondary)]">{r.detail}</span>
+        <span className="mt-0.5 block text-[15px] text-[var(--text-on-light)] opacity-80">{r.org}</span>
+        {r.detail && <span className="mt-2 block text-sm leading-relaxed text-[var(--text-on-light-secondary)]">{r.detail}</span>}
       </span>
     </>
   );
-  const cls = "group grid grid-cols-[3rem_minmax(0,1fr)] items-start gap-4 py-5";
-  return <li>{r.href ? <Link href={r.href} className={cls}>{body}</Link> : <div className={cls}>{body}</div>}</li>;
+  const cls = "group flex items-start gap-4 px-5 py-5 sm:gap-5 sm:px-6";
+  return <li>{r.href ? <Link href={r.href} className={`${cls} transition-colors hover:bg-[var(--surface-light)]`}>{body}</Link> : <div className={cls}>{body}</div>}</li>;
+}
+
+/** a titled panel of entries, dividers inset past the logo like a profile page */
+function Panel({ title, items, money }: { title: string; items: Recognition[]; money?: boolean }) {
+  return (
+    <div>
+      <h3 className="text-lg text-[var(--text-on-light)]">{title}</h3>
+      <ul className="mt-4 overflow-hidden rounded-[18px] border border-[var(--border-light)] bg-white shadow-[0_18px_40px_-30px_rgba(0,0,0,0.35)] [&>li+li]:border-t [&>li+li]:border-[var(--border-light)]">
+        {items.map((r) => (
+          <Entry key={r.title + r.org} r={r} money={money} />
+        ))}
+      </ul>
+    </div>
+  );
 }
 
 /** Static light section: no pinning, just the record. Wins lead with what was built; the rest reads as two lists. */
@@ -105,35 +131,21 @@ export default function WinsChapter({ id }: { id: string }) {
 
         {/* the rest of the record: community work on the left; scholarships and the other hackathon builds on the right */}
         <div className="mt-24 grid gap-16 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:gap-20">
-          <div>
-            <h3 className="text-lg text-[var(--text-on-light)]">Beyond the hackathons</h3>
-            <ul className="mt-2 divide-y divide-[var(--border-light)] border-y border-[var(--border-light)]">
-              {COMMUNITY.map((r) => (
-                <Entry key={r.title} r={r} />
-              ))}
-            </ul>
-          </div>
+          <Panel title="Beyond the hackathons" items={COMMUNITY} />
 
           <div className="space-y-14">
-            <div>
-              <h3 className="text-lg text-[var(--text-on-light)]">Scholarships</h3>
-              <ul className="mt-2 divide-y divide-[var(--border-light)] border-y border-[var(--border-light)]">
-                {SCHOLARSHIPS.map((r) => (
-                  <Entry key={r.title} r={r} />
-                ))}
-              </ul>
-            </div>
+            <Panel title="Scholarships" items={SCHOLARSHIPS} money />
 
             <div>
               <h3 className="text-lg text-[var(--text-on-light)]">Also built at</h3>
-              <ul className="mt-2 divide-y divide-[var(--border-light)] border-y border-[var(--border-light)]">
+              <ul className="mt-4 overflow-hidden rounded-[18px] border border-[var(--border-light)] bg-white shadow-[0_18px_40px_-30px_rgba(0,0,0,0.35)] [&>li+li]:border-t [&>li+li]:border-[var(--border-light)]">
                 {ALSO_COMPETED.map((c) => (
                   <li key={c.event}>
                     <Link
                       href={`/portfolio/${c.slug}`}
                       // the visible cells read as a table; the link's name says it as a sentence
                       aria-label={`${c.project}, built at ${c.event}, ${c.date}`}
-                      className="group grid min-h-[56px] grid-cols-[minmax(0,1fr)_auto] items-center gap-x-4 py-3 text-left transition-colors"
+                      className="group grid min-h-[56px] grid-cols-[minmax(0,1fr)_auto] items-center gap-x-4 px-5 py-3.5 text-left transition-colors hover:bg-[var(--surface-light)] sm:px-6"
                     >
                       <span className="flex min-w-0 flex-col">
                         <span className="text-[15px] font-medium text-[var(--text-on-light)] transition-colors group-hover:text-[var(--accent-on-light)]">
