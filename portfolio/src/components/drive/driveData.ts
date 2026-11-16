@@ -77,6 +77,21 @@ export function buildWorld(): WorldData {
       z: spot[1] - Math.floor(i / INTERNSHIP_SPOTS.length) * 12,
     });
   });
+  // Accenture: an apprenticeship in its pro-bono consulting program, next to the internships
+  stops.push({
+    id: "accenture",
+    kind: "internship",
+    kicker: "Apprenticeship · Jan.–Apr. 2026",
+    title: "Accenture",
+    line: "Accent on the Community, Accenture's pro-bono consulting program: our student team built a CRM outreach tool for La Centrale Agricole, a Montréal urban farming co-op.",
+    href: "/portfolio/crm-outreach-tool",
+    links: [],
+    accent: "#a100ff",
+    group: "internship",
+    logo: "/logo/accenture.png",
+    x: 34,
+    z: -44,
+  });
   districts.push({ label: "Internships", x: 0, z: -29 });
 
   const sectors: string[] = [];
@@ -166,6 +181,14 @@ export function buildWorld(): WorldData {
       links: [],
       logo: "/media/drive/scholarship.webp",
     },
+    {
+      id: "perspective-quebec",
+      kicker: "Scholarship",
+      title: "Bourse Perspective Québec",
+      line: "Government of Québec scholarship for full-time students in fields with labour shortages, such as engineering, paid after each completed term.",
+      links: [],
+      logo: "/media/drive/perspective-quebec.webp",
+    },
   ];
   const COMMUNITY_SPOTS = [
     [-32, -26],
@@ -173,6 +196,7 @@ export function buildWorld(): WorldData {
     [-49, -31],
     [-40, -38],
     [-30, -36],
+    [-54, -20],
   ] as const;
   COMMUNITY.forEach((c, i) => {
     const spot = COMMUNITY_SPOTS[i % COMMUNITY_SPOTS.length];

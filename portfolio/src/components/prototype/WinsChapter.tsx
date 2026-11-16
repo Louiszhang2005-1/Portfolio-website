@@ -104,15 +104,33 @@ export default function WinsChapter({ id }: { id: string }) {
             <h3 className="text-lg text-[var(--text-on-light)]">Beyond the hackathons</h3>
             <dl className="mt-4 divide-y divide-[var(--border-light)] border-y border-[var(--border-light)]">
               {RECOGNITION.map((r) => (
-                <div key={r.label} className="grid gap-x-6 gap-y-1 py-4 sm:grid-cols-[7.5rem_minmax(0,1fr)]">
+                <div key={r.title} className="grid gap-x-6 gap-y-1 py-4 sm:grid-cols-[7.5rem_minmax(0,1fr)]">
                   <dt className="pt-px text-sm text-[var(--text-on-light-secondary)]">{r.label}</dt>
-                  <dd>
-                    <span className="block text-[15px] font-medium leading-snug text-[var(--text-on-light)]">{r.title}</span>
-                    {r.detail.map((d) => (
-                      <span key={d} className="mt-0.5 block text-sm text-[var(--text-on-light-secondary)]">
-                        {d}
+                  <dd className="flex items-start justify-between gap-4">
+                    <span className="min-w-0">
+                      {r.href ? (
+                        <Link href={r.href} className="group block text-[15px] font-medium leading-snug text-[var(--text-on-light)] hover:text-[var(--accent-on-light)]">
+                          {r.title}{" "}
+                          <span aria-hidden className="inline-block text-[var(--accent-on-light)] transition-transform duration-300 group-hover:translate-x-1">
+                            →
+                          </span>
+                        </Link>
+                      ) : (
+                        <span className="block text-[15px] font-medium leading-snug text-[var(--text-on-light)]">{r.title}</span>
+                      )}
+                      {r.detail.map((d) => (
+                        <span key={d} className="mt-0.5 block text-sm text-[var(--text-on-light-secondary)]">
+                          {d}
+                        </span>
+                      ))}
+                    </span>
+                    {r.logos && (
+                      <span className="flex shrink-0 gap-1.5">
+                        {r.logos.map((l) => (
+                          <img key={l.src} src={l.src} alt={l.alt} width={36} height={36} loading="lazy" decoding="async" className="h-9 w-9 rounded-[8px] border border-[var(--border-light)] bg-white object-contain p-1" />
+                        ))}
                       </span>
-                    ))}
+                    )}
                   </dd>
                 </div>
               ))}

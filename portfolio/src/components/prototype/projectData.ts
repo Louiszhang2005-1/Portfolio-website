@@ -129,15 +129,52 @@ export const WINS = [
 export const ALSO_COMPETED = [
   { event: "McHacks 13", project: "MechPrep", slug: "mechprep", date: "Jan. 2026" },
   { event: "UpStart 2026", project: "ResQ-Link", slug: "resq-link", date: "Feb. 2026" },
-  { event: "Accenture AOTC 2026", project: "CRM Outreach Tool", slug: "crm-outreach-tool", date: "Jan.–Apr. 2026" },
+  { event: "Accenture, Accent on the Community", project: "CRM Outreach Tool", slug: "crm-outreach-tool", date: "Jan.–Apr. 2026" },
   { event: "UdemHacks", project: "LazyCare", slug: "lazycare", date: "Mar. 2025" },
   { event: "Brebeuf Hacks", project: "Interview Assistant", slug: "interview-assistant", date: "Jan. 2024" },
 ];
 
-/** Beyond the wins: from Louis's LinkedIn education entry and his own notes. One line per detail. */
-export const RECOGNITION = [
+/**
+ * Beyond the wins: from Louis's LinkedIn education entry and his own notes. One line per detail.
+ * `logos` are small marks from each organisation's own site; `href` links a row to its case study.
+ */
+export type Recognition = {
+  label: string;
+  title: string;
+  detail: string[];
+  logos?: { src: string; alt: string }[];
+  href?: string;
+};
+
+export const RECOGNITION: Recognition[] = [
+  {
+    label: "Apprenticeship",
+    title: "Accenture, Accent on the Community",
+    detail: ["Pro-bono consulting program, Jan.–Apr. 2026", "Our student team built a CRM outreach tool for La Centrale Agricole"],
+    logos: [{ src: "/logo/accenture-mark.png", alt: "Accenture" }],
+    href: "/portfolio/crm-outreach-tool",
+  },
+  {
+    label: "Leadership",
+    title: "VP Events",
+    detail: ["Google Developer Group, Polytechnique Montréal", "Plan and run the chapter's events for students"],
+    logos: [{ src: "/logo/gdg.png", alt: "Google Developer Groups" }],
+  },
+  {
+    label: "Judging",
+    title: "Hackathon judge",
+    detail: ["MPC Hacks, May 2026", "Hack Découverte (HackConcordia), Nov. 2026", "Evaluated student teams' projects and demos"],
+    logos: [
+      { src: "/logo/mpc-hacks.png", alt: "MPC Hacks" },
+      { src: "/logo/hackconcordia.png", alt: "HackConcordia" },
+    ],
+  },
+  {
+    label: "Speaking",
+    title: "Guest speaker, SCS Concordia",
+    detail: ["Landing tech internships, to 100 students"],
+    logos: [{ src: "/logo/scs-concordia.png", alt: "SCS Concordia" }],
+  },
   { label: "Scholarship", title: "Lina & Jean-Guy Gaudreault Perseverance Scholarship", detail: ["$2,500"] },
-  { label: "Leadership", title: "VP Events", detail: ["Google Developer Group, Polytechnique Montréal"] },
-  { label: "Speaking", title: "Guest speaker, SCS Concordia", detail: ["Landing tech internships, to 100 students"] },
-  { label: "Judging", title: "Hackathon judge", detail: ["MPC Hacks, May 2026", "Hack Découverte, Nov. 2026"] },
+  { label: "Scholarship", title: "Bourse Perspective Québec", detail: ["Government of Québec scholarship for students in engineering and other priority fields"] },
 ];
