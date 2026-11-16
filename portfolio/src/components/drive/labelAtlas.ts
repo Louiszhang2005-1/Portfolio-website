@@ -7,7 +7,7 @@ import * as THREE from "three";
 
 export type LabelSpec =
   | { style: "sign"; kicker: string; title: string; accent: string }
-  | { style: "ground"; text: string; size: "lg" | "md" | "sm"; color: string };
+  | { style: "ground"; text: string; size: "lg" | "md" | "sm"; color: string; outline?: boolean };
 
 const CELL_W = 1024;
 const CELL_H = 200;
@@ -77,10 +77,19 @@ function drawCell(ctx: CanvasRenderingContext2D, ox: number, oy: number, spec: L
   }
   const start = spec.size === "lg" ? 120 : spec.size === "md" ? 84 : 56;
   const weight = spec.size === "sm" ? 600 : 700;
-  fit(ctx, spec.text, (px) => `${weight} ${px}px ${spec.size === "sm" ? BODY : DISPLAY}`, start, CELL_W - 20);
-  const w = Math.min(CELL_W, ctx.measureText(spec.text).width + 24);
+  // the halo needs room on both sides, or its edges get clipped by the cell
+  const inset = spec.outline ? 20 : 12;
+  fit(ctx, spec.text, (px) => `${weight} ${px}px ${spec.size === "sm" ? BODY : DISPLAY}`, start, CELL_W - inset * 2);
+  const w = Math.min(CELL_W, ctx.measureText(spec.text).width + inset * 2);
+  if (spec.outline) {
+    // a soft paper-coloured halo keeps floating text legible over trees, roofs and screens
+    ctx.lineJoin = "round";
+    ctx.lineWidth = 14;
+    ctx.strokeStyle = "rgba(251,250,246,0.92)";
+    ctx.strokeText(spec.text, inset, CELL_H * 0.66);
+  }
   ctx.fillStyle = spec.color;
-  ctx.fillText(spec.text, 12, CELL_H * 0.66);
+  ctx.fillText(spec.text, inset, CELL_H * 0.66);
   ctx.restore();
   return w;
 }

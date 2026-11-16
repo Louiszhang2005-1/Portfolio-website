@@ -39,6 +39,7 @@ let nearbyId: string | null = null;
 let visited: ReadonlySet<string> = new Set();
 let moved = false;
 let toast: { text: string; id: number } | null = null;
+let district: string | null = null;
 
 export const driveStore = {
   subscribe(l: Listener) {
@@ -51,6 +52,12 @@ export const driveStore = {
   getVisited: () => visited,
   getMoved: () => moved,
   getToast: () => toast,
+  getDistrict: () => district,
+  setDistrict(label: string | null) {
+    if (label === district) return;
+    district = label;
+    emit();
+  },
   /** short message in the middle of the screen (bowling score, etc.) */
   toast(text: string) {
     toast = { text, id: (toast?.id ?? 0) + 1 };

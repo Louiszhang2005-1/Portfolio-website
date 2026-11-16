@@ -31,7 +31,8 @@ export type Stop = {
   z: number;
 };
 
-export type District = { label: string; x: number; z: number };
+/** `ground`: painted flat beside its spot (only where nothing stands on it); otherwise it floats above the district */
+export type District = { label: string; x: number; z: number; ground?: boolean };
 
 export type WorldData = { stops: Stop[]; districts: District[] };
 

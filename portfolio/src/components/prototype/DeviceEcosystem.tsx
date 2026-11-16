@@ -1,6 +1,6 @@
 "use client";
 
-import { Gamepad2 } from "lucide-react";
+import { CarFront } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import "./prototype.css";
@@ -160,13 +160,18 @@ function ChapterNav() {
           {/* the game is the other way in: always on screen, so nobody has to find it in the footer */}
           <Link
             href="/game"
-            aria-label="Play the portfolio as a driving game"
-            className="group inline-flex min-h-[32px] items-center gap-1.5 whitespace-nowrap rounded-[8px] px-2.5 text-[13px] font-medium transition-opacity hover:opacity-85"
-            style={{ background: fg, color: light ? "var(--bg-light)" : "var(--bg)" }}
+            aria-label="Play the portfolio as a 3D driving game"
+            className="nav-game group relative inline-flex min-h-[34px] items-center gap-2 overflow-hidden whitespace-nowrap rounded-[9px] px-3 text-[13px] font-semibold shadow-[0_6px_18px_-8px_rgba(212,132,47,0.8)] transition-[transform,box-shadow] duration-300 hover:-translate-y-px hover:shadow-[0_10px_24px_-8px_rgba(212,132,47,0.9)]"
+            style={{ background: "var(--accent)", color: "var(--accent-ink)" }}
           >
-            <Gamepad2 aria-hidden className="h-4 w-4 transition-transform duration-300 group-hover:-rotate-12" strokeWidth={1.8} />
-            <span className="max-sm:hidden">Play the game</span>
-            <span className="sm:hidden">Game</span>
+            {/* a light sweep every few seconds draws the eye without moving the layout (off for reduced motion) */}
+            <span aria-hidden className="nav-game-shine pointer-events-none absolute inset-y-0 -left-1/2 w-1/2 -skew-x-12 bg-gradient-to-r from-transparent via-white/45 to-transparent" />
+            <CarFront aria-hidden className="relative h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-rotate-6" strokeWidth={2} />
+            <span className="relative max-sm:hidden">Play the 3D game</span>
+            <span className="relative sm:hidden">Play</span>
+            <span aria-hidden className="relative -ml-0.5 transition-transform duration-300 group-hover:translate-x-1 max-sm:hidden">
+              →
+            </span>
           </Link>
           <StepNav chapters={stepChapters} color={muted} />
           <a

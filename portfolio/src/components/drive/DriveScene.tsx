@@ -72,6 +72,18 @@ function Simulation({ world, colliders }: { world: WorldData; colliders: Circle[
     }
     driveStore.setNearby(best);
 
+    // which district the car is in (names live in the HUD, where nothing in the world can cover them)
+    let area: string | null = null;
+    let areaD = 17;
+    for (const d of world.districts) {
+      const dd = Math.hypot(car.x - d.x, car.z - d.z);
+      if (dd < areaD) {
+        area = d.label;
+        areaD = dd;
+      }
+    }
+    driveStore.setDistrict(area);
+
     // camera: damped follow with a little look-ahead in the direction of travel
     const f = follow.current;
     const tx = car.x + car.vx * 0.32;
@@ -162,7 +174,7 @@ export default function DriveScene({ world, onReady, onLost }: { world: WorldDat
     const colliders = [...buildColliders(world.stops, trees, rocks), ...screenColliders(screens)];
     const details = buildDetails(world.stops, segments, plazas);
     const bodies = buildBodies(world.stops);
-    const labelDistricts = [...world.districts, { label: "Bowling", x: (BOWLING.laneFromX + BOWLING.laneToX) / 2 - 1.5, z: BOWLING.z + 1.4 }];
+    const labelDistricts = [...world.districts, { label: "Bowling", x: (BOWLING.laneFromX + BOWLING.laneToX) / 2 - 1.5, z: BOWLING.z + 1.4, ground: true }];
     return { segments, plazas, trees, rocks, colliders, screens, details, bodies, labelDistricts };
   }, [world]);
   const [maxDpr] = useState(() => Math.min(window.devicePixelRatio || 1, 1.5));

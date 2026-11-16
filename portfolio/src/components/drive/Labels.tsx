@@ -35,19 +35,30 @@ export default function Labels({ stops, districts }: { stops: Stop[]; districts:
   const { geometry, material } = useMemo(() => {
     const specs: LabelSpec[] = [];
     const quads: Quad[] = [];
+    const seen: Partial<Record<Stop["kind"], number>> = {};
     for (const s of stops) {
       const at = signAnchor(s);
-      quads.push({ cell: specs.length, height: s.kind === "internship" ? 1.9 : 1.5, flat: false, x: at.x, y: SIGN_HEIGHT[s.kind], z: at.z });
+      const n = (seen[s.kind] = (seen[s.kind] ?? -1) + 1);
+      const lift = s.kind === "internship" || s.kind === "contact" ? 0 : (n % 2) * 1.0;
+      quads.push({ cell: specs.length, height: s.kind === "internship" ? 1.9 : 1.45, flat: false, x: at.x, y: SIGN_HEIGHT[s.kind] + lift, z: at.z });
       specs.push({ style: "sign", kicker: s.kicker, title: s.title, accent: s.accent });
     }
+    // district names are shown in the HUD; only spots painted beside open ground (the bowling lane) get ground text
     for (const d of districts) {
-      quads.push({ cell: specs.length, height: 2.2, flat: true, x: d.x + 1.5, y: 0.05, z: d.z + 2.2 });
-      specs.push({ style: "ground", text: d.label, size: "md", color: "rgba(29,35,33,0.55)" });
+      if (!d.ground) continue;
+      quads.push({ cell: specs.length, height: 2.2, flat: true, x: d.x + 1.5, y: 0.12, z: d.z + 2.2 });
+      specs.push({ style: "ground", text: d.label, size: "md", color: "rgba(29,35,33,0.7)" });
     }
-    quads.push({ cell: specs.length, height: 1.5, flat: true, x: 0, y: 0.05, z: NAME_Z + 3.2 });
-    specs.push({ style: "ground", text: "Mechanical Engineering · Polytechnique Montréal", size: "sm", color: PALETTE.ink });
-    quads.push({ cell: specs.length, height: 1.3, flat: true, x: 0, y: 0.05, z: NAME_Z + 4.7 });
-    specs.push({ style: "ground", text: "Open to 2027 internship opportunities", size: "sm", color: PALETTE.car });
+    // under the name, on the open spawn plaza: three short lines, so each one can be drawn large
+    const intro: [string, string][] = [
+      ["Mechanical Engineering", PALETTE.ink],
+      ["Polytechnique Montréal", PALETTE.ink],
+      ["Open to 2027 internships", PALETTE.car],
+    ];
+    intro.forEach(([text, color], i) => {
+      quads.push({ cell: specs.length, height: 2.3, flat: true, x: 0, y: 0.12, z: NAME_Z + 4.4 + i * 2.5 });
+      specs.push({ style: "ground", text, size: "md", color });
+    });
 
     const atlas = createAtlas(specs);
     // signs face the (never rotating) camera; ground text lies flat, reading "up" the screen
@@ -84,7 +95,8 @@ export default function Labels({ stops, districts }: { stops: Stop[]; districts:
     g.setAttribute("uv", new THREE.BufferAttribute(uv, 2));
     g.setIndex(idx);
     g.computeBoundingSphere();
-    const m = new THREE.MeshBasicMaterial({ map: atlas.texture, transparent: true, depthWrite: false, toneMapped: false });
+    // the pads and roads use polygon offset to sit on the ground; pull the text further forward so they never cover it
+    const m = new THREE.MeshBasicMaterial({ map: atlas.texture, transparent: true, depthWrite: false, toneMapped: false, polygonOffset: true, polygonOffsetFactor: -6, polygonOffsetUnits: -6 });
     return { geometry: g, material: m };
   }, [stops, districts]);
 

@@ -56,8 +56,8 @@ export function buildBodies(stops: Stop[]): BodySpec[] {
   }
   // a little crate pyramid at every district plaza edge and cones along the main spokes
   const piles: [number, number][] = [
-    [7, -6],
-    [-8, -4],
+    [10, -5],
+    [-11, -3],
     [6, 13],
     [20, 6],
     [-20, 18],
@@ -129,7 +129,7 @@ export function buildDetails(stops: Stop[], segments: Segment[], plazas: Circle[
     const len = Math.hypot(s.bx - s.ax, s.bz - s.az);
     const nx = -(s.bz - s.az) / len;
     const nz = (s.bx - s.ax) / len;
-    for (let d = 12, i = 0; d < len - 4; d += 9, i++) {
+    for (let d = 12, i = 0; d < len - 9; d += 9, i++) {
       const side = i % 2 ? 1 : -1;
       const x = s.ax + ((s.bx - s.ax) * d) / len + nx * side * (ROAD_WIDTH / 2 + 0.7);
       const z = s.az + ((s.bz - s.az) * d) / len + nz * side * (ROAD_WIDTH / 2 + 0.7);

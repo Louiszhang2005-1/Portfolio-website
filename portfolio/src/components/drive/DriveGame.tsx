@@ -165,6 +165,7 @@ export default function DriveGame({ world }: { world: WorldData }) {
   const [mapOpen, setMapOpen] = useState(false);
   const [welcomeClosed, setWelcomeClosed] = useState(false);
   const toast = useSyncExternalStore(driveStore.subscribe, driveStore.getToast, () => null);
+  const district = useSyncExternalStore(driveStore.subscribe, driveStore.getDistrict, () => null);
   const showWelcome = ready && !welcomeClosed && !moved && !mapOpen;
   const toggleMap = useCallback(() => setMapOpen((o) => !o), []);
 
@@ -276,6 +277,17 @@ export default function DriveGame({ world }: { world: WorldData }) {
         </div>
       </div>
 
+      {/* where you are: the district name, shown here so nothing in the 3D world can ever cover it */}
+      <div className="pointer-events-none absolute inset-x-0 top-[calc(env(safe-area-inset-top)+4.25rem)] z-20 flex justify-start px-4 sm:top-[1.35rem] sm:justify-center" aria-live="polite">
+        {/* phones: left of the minimap, wrapping if long */}
+        <p
+          key={district ?? "none"}
+          className={`max-w-[55%] font-label text-[13px] font-semibold uppercase leading-snug tracking-[0.18em] sm:max-w-none text-[#1d2321] transition-opacity duration-300 [text-shadow:0_1px_0_#fbfaf6,0_0_12px_rgba(251,250,246,0.9)] ${district && !showWelcome && !mapOpen ? "animate-[drive-area_500ms_ease-out] opacity-100" : "opacity-0"}`}
+        >
+          {district ?? ""}
+        </p>
+      </div>
+
       {/* little cheers (bowling) */}
       {toast && (
         <div key={toast.id} className="pointer-events-none absolute inset-x-0 top-[38%] z-20 flex justify-center">
@@ -335,7 +347,7 @@ export default function DriveGame({ world }: { world: WorldData }) {
           </div>
         </div>
       </div>
-      <style>{`@keyframes drive-load{0%{transform:translateX(-100%)}100%{transform:translateX(300%)}}@keyframes drive-toast{0%{opacity:0;transform:scale(.8)}12%{opacity:1;transform:scale(1.06)}25%{transform:scale(1)}75%{opacity:1}100%{opacity:0;transform:translateY(-12px)}}@keyframes drive-pop{0%{transform:scale(1)}30%{transform:scale(1.35);color:#c9971c}100%{transform:scale(1)}}`}</style>
+      <style>{`@keyframes drive-load{0%{transform:translateX(-100%)}100%{transform:translateX(300%)}}@keyframes drive-area{0%{opacity:0;transform:translateY(-6px);letter-spacing:.3em}100%{opacity:1;transform:none}}@keyframes drive-toast{0%{opacity:0;transform:scale(.8)}12%{opacity:1;transform:scale(1.06)}25%{transform:scale(1)}75%{opacity:1}100%{opacity:0;transform:translateY(-12px)}}@keyframes drive-pop{0%{transform:scale(1)}30%{transform:scale(1.35);color:#c9971c}100%{transform:scale(1)}}`}</style>
     </main>
   );
 }
