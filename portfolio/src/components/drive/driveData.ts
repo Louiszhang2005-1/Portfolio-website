@@ -25,6 +25,8 @@ export type Stop = {
   accent: string;
   /** group used for the project landmark shape */
   group: string;
+  /** company logo for internship offices (same-origin image) */
+  logo: string | null;
   x: number;
   z: number;
 };
@@ -70,6 +72,7 @@ export function buildWorld(): WorldData {
       links: [],
       accent: job.accent,
       group: "internship",
+      logo: meta?.logo ?? null,
       x: spot[0],
       z: spot[1] - Math.floor(i / INTERNSHIP_SPOTS.length) * 12,
     });
@@ -95,6 +98,7 @@ export function buildWorld(): WorldData {
         links: [],
         accent: p.accent,
         group: sector,
+        logo: null,
         x: cluster.x + off[0] * (1 + ring * 0.6),
         z: cluster.z + off[1] * (1 + ring * 0.6),
       });
@@ -113,6 +117,7 @@ export function buildWorld(): WorldData {
       links: [],
       accent: "#c9971c",
       group: "win",
+      logo: null,
       x: spot[0],
       z: spot[1],
     });
@@ -133,6 +138,7 @@ export function buildWorld(): WorldData {
     ],
     accent: "#e4572e",
     group: "contact",
+      logo: null,
     x: -28,
     z: 30,
   });

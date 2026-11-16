@@ -1,10 +1,11 @@
 "use client";
 
+import { useTexture } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { useEffect, useLayoutEffect, useMemo, useRef } from "react";
+import { Suspense, useEffect, useLayoutEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
 import type { Stop } from "./driveData";
-import { driveStore } from "./driveStore";
+import { CAMERA_YAW, driveStore } from "./driveStore";
 import { PALETTE } from "./palette";
 import { STOP_TRIGGER } from "./worldLayout";
 
@@ -122,6 +123,40 @@ function Offices({ stops }: { stops: Stop[] }) {
         <boxGeometry />
         <meshLambertMaterial color={PALETTE.glass} />
       </instancedMesh>
+    </group>
+  );
+}
+
+function prepLogo(t: THREE.Texture | THREE.Texture[]) {
+  for (const tex of Array.isArray(t) ? t : [t]) {
+    tex.colorSpace = THREE.SRGBColorSpace;
+    tex.anisotropy = 4;
+  }
+}
+
+/** rooftop billboard with the company's logo, turned to face the camera */
+function LogoBoard({ stop }: { stop: Stop & { logo: string } }) {
+  const texture = useTexture(stop.logo, prepLogo);
+  const img = texture.image as { width?: number; height?: number } | undefined;
+  const aspect = img?.width && img?.height ? img.width / img.height : 1.6;
+  const h = 2.1;
+  const w = Math.min(4.8, h * aspect);
+  return (
+    <group position={[stop.x, 3.72, stop.z - 0.4]} rotation-y={CAMERA_YAW}>
+      {[-w / 2 + 0.35, w / 2 - 0.35].map((x) => (
+        <mesh key={x} position={[x, 0.3, -0.05]} castShadow>
+          <boxGeometry args={[0.12, 0.6, 0.12]} />
+          <meshLambertMaterial color={PALETTE.carDark} />
+        </mesh>
+      ))}
+      <mesh position={[0, 0.6 + h / 2, -0.07]} castShadow>
+        <boxGeometry args={[w + 0.16, h + 0.16, 0.1]} />
+        <meshLambertMaterial color={PALETTE.carDark} />
+      </mesh>
+      <mesh position={[0, 0.6 + h / 2, -0.015]}>
+        <planeGeometry args={[w, h]} />
+        <meshBasicMaterial map={texture} toneMapped={false} />
+      </mesh>
     </group>
   );
 }
@@ -253,6 +288,9 @@ export default function Landmarks({ stops }: { stops: Stop[] }) {
     <group>
       <Pads stops={stops} />
       <Offices stops={offices} />
+      <Suspense fallback={null}>
+        {offices.map((s) => (s.logo ? <LogoBoard key={s.id} stop={{ ...s, logo: s.logo }} /> : null))}
+      </Suspense>
       <Exhibits stops={projects} wins={wins} />
       {contact && <Mailbox stop={contact} />}
     </group>

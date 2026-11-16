@@ -23,7 +23,7 @@ function fontsReady() {
   return fontsPromise;
 }
 
-const SIGN_HEIGHT: Record<Stop["kind"], number> = { internship: 6.3, project: 3.9, win: 4.1, contact: 4.6 };
+const SIGN_HEIGHT: Record<Stop["kind"], number> = { internship: 7.9, project: 3.9, win: 4.1, contact: 4.6 };
 
 type Quad = { cell: number; height: number; flat: boolean; x: number; y: number; z: number };
 
