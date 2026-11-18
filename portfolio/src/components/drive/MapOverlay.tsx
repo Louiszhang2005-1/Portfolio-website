@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useRef } from "react";
+import { type KeyboardEvent, useLayoutEffect, useMemo, useRef } from "react";
 import type { Stop, WorldData } from "./driveData";
 import { car, SCREEN_RIGHT, SCREEN_UP, WORLD_RADIUS } from "./driveStore";
 import { PALETTE } from "./palette";
@@ -27,18 +27,43 @@ export function teleportTo(stop: Stop) {
 /** full map: every stop is a button that drops the car right there */
 export default function MapOverlay({ world, visited, onClose }: { world: WorldData; visited: ReadonlySet<string>; onClose: () => void }) {
   const roads = useMemo(() => buildRoads(world.districts, world.stops), [world]);
+  const dialogRef = useRef<HTMLDialogElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const R = WORLD_RADIUS + 6;
   const [cx, cy] = project(car.x, car.z);
 
-  useEffect(() => {
-    closeRef.current?.focus();
-    const key = (e: KeyboardEvent) => {
-      if (e.key === "Escape" || e.code === "KeyM") onClose();
+  useLayoutEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+    const opener = document.activeElement;
+    dialog.showModal();
+    closeRef.current?.focus({ preventScroll: true });
+
+    return () => {
+      dialog.close();
+      if (opener instanceof HTMLElement && opener.isConnected && document.activeElement !== opener) {
+        opener.focus({ preventScroll: true });
+      }
     };
-    window.addEventListener("keydown", key);
-    return () => window.removeEventListener("keydown", key);
-  }, [onClose]);
+  }, []);
+
+  function handleKeyDown(event: KeyboardEvent<HTMLDialogElement>) {
+    if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey) return;
+    if (event.code === "KeyM" && !event.repeat) {
+      event.preventDefault();
+      event.stopPropagation();
+      onClose();
+    } else if (event.key === "Tab") {
+      const controls = event.currentTarget.querySelectorAll<HTMLElement>("button:enabled, a[href]");
+      const first = controls[0];
+      const last = controls[controls.length - 1];
+      // Keep Tab cycling through the map, including past the ends of the scrollable list.
+      if (event.shiftKey ? document.activeElement === first : document.activeElement === last) {
+        event.preventDefault();
+        (event.shiftKey ? last : first)?.focus();
+      }
+    }
+  }
 
   const groups: { title: string; kind: Stop["kind"] }[] = [
     { title: "Internships", kind: "internship" },
@@ -49,7 +74,16 @@ export default function MapOverlay({ world, visited, onClose }: { world: WorldDa
   ];
 
   return (
-    <div className="absolute inset-0 z-40 flex items-stretch justify-center bg-[#1d2321]/35 p-3 backdrop-blur-sm sm:items-center sm:p-6" role="dialog" aria-modal="true" aria-label="World map">
+    <dialog
+      ref={dialogRef}
+      aria-label="World map"
+      onKeyDown={handleKeyDown}
+      onCancel={(event) => {
+        event.preventDefault();
+        onClose();
+      }}
+      className="fixed inset-0 m-0 h-full max-h-none w-full max-w-none items-stretch justify-center bg-[#1d2321]/35 p-3 text-[#1d2321] backdrop-blur-sm open:flex backdrop:bg-transparent sm:items-center sm:p-6"
+    >
       <div className="flex max-h-full w-full max-w-[980px] flex-col overflow-hidden rounded-[8px] border border-[#1d2321]/15 bg-[#fbfaf6] shadow-2xl sm:flex-row">
         <div className="relative shrink-0 border-b border-[#1d2321]/10 bg-[#e7ecdf] sm:w-[55%] sm:border-b-0 sm:border-r">
           <svg viewBox={`${-R} ${-R} ${R * 2} ${R * 2}`} className="mx-auto block aspect-square max-h-[42vh] w-full sm:max-h-none">
@@ -123,6 +157,6 @@ export default function MapOverlay({ world, visited, onClose }: { world: WorldDa
           </div>
         </div>
       </div>
-    </div>
+    </dialog>
   );
 }

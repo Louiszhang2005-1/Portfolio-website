@@ -3,7 +3,6 @@
 import {
   motion,
   useInView,
-  useReducedMotion,
   useScroll,
   useTransform,
 } from "framer-motion";
@@ -20,6 +19,9 @@ import { useRef } from "react";
 import type { PortfolioItem } from "@/lib/portfolio";
 import { CinematicFooter } from "@/components/ui/motion-footer";
 
+// Keep content visible from first paint, including before Motion hydrates.
+const reducedMotion = "motion-reduce:opacity-100! motion-reduce:transform-none!";
+
 // ── word-stagger hero headline ──────────────────────────────────────────────
 function WordsPullUp({
   text,
@@ -31,7 +33,6 @@ function WordsPullUp({
   style?: React.CSSProperties;
 }) {
   const ref = useRef<HTMLHeadingElement>(null);
-  const prefersReduced = useReducedMotion();
   const isInView = useInView(ref, { once: true });
   const words = text.split(" ");
 
@@ -41,10 +42,10 @@ function WordsPullUp({
       {words.map((word, i) => (
         <motion.span
           key={`${word}-${i}`}
-          initial={prefersReduced ? false : { y: 22, opacity: 0 }}
-          animate={prefersReduced ? {} : isInView ? { y: 0, opacity: 1 } : {}}
+          initial={{ y: 22, opacity: 0 }}
+          animate={isInView ? { y: 0, opacity: 1 } : {}}
           transition={{ duration: 0.6, delay: i * 0.07, ease: [0.16, 1, 0.3, 1] }}
-          className="inline-block"
+          className={`inline-block ${reducedMotion}`}
           style={{ marginRight: i < words.length - 1 ? "0.28em" : 0 }}
         >
           {word}
@@ -65,15 +66,14 @@ function Reveal({
   delay?: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const prefersReduced = useReducedMotion();
   const isInView = useInView(ref, { once: true, amount: 0.1 });
 
   return (
     <motion.div
       ref={ref}
-      className={className}
-      initial={prefersReduced ? false : { y: 28, opacity: 0 }}
-      animate={prefersReduced ? {} : isInView ? { y: 0, opacity: 1 } : {}}
+      className={`${className} ${reducedMotion}`}
+      initial={{ y: 28, opacity: 0 }}
+      animate={isInView ? { y: 0, opacity: 1 } : {}}
       transition={{ duration: 0.6, delay, ease: [0.16, 1, 0.3, 1] }}
     >
       {children}
@@ -84,7 +84,7 @@ function Reveal({
 // ── micro-label kicker ───────────────────────────────────────────────────────
 function Kicker({ children }: { children: React.ReactNode }) {
   return (
-    <p className="font-label text-[0.65rem] uppercase tracking-[0.28em] text-white/40">
+    <p className="font-label text-[0.65rem] uppercase tracking-[0.28em] text-white/60">
       {children}
     </p>
   );
@@ -105,19 +105,13 @@ export default function ProjectCaseStudy({
   item: PortfolioItem;
   related: PortfolioItem[];
 }) {
-  const prefersReduced = useReducedMotion();
-
   // hero visual parallax
   const heroVisualRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: heroVisualRef,
     offset: ["start end", "end start"],
   });
-  const parallaxY = useTransform(
-    scrollYProgress,
-    [0, 1],
-    prefersReduced ? [0, 0] : [-18, 18]
-  );
+  const parallaxY = useTransform(scrollYProgress, [0, 1], [-18, 18]);
 
   // hero featured image
   const heroSrc =
@@ -169,18 +163,18 @@ export default function ProjectCaseStudy({
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className="fixed left-1/2 top-0 z-50 -translate-x-1/2"
+        className={`pointer-events-none fixed inset-x-0 top-0 z-50 flex justify-center px-3 ${reducedMotion}`}
       >
-        <div className="flex items-center gap-4 rounded-b-2xl border border-white/10 bg-black/80 px-5 py-3 shadow-2xl backdrop-blur-md">
+        <div className="pointer-events-auto flex max-w-full items-center gap-3 rounded-b-2xl border border-white/10 bg-black/80 px-4 shadow-2xl backdrop-blur-md sm:gap-4 sm:px-5">
           <Link
             href="/#chapter-projects"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-white/65 transition hover:text-white"
+            className="inline-flex min-h-11 shrink-0 items-center gap-2 whitespace-nowrap text-sm font-semibold text-white/65 transition hover:text-white"
           >
             <ArrowLeft className="h-4 w-4" />
             All projects
           </Link>
-          <div className="h-4 w-px bg-white/12" />
-          <span className="max-w-[160px] truncate text-sm font-bold text-white/85 sm:max-w-xs">
+          <div className="h-4 w-px shrink-0 bg-white/12" aria-hidden />
+          <span className="min-w-0 max-w-[160px] truncate text-sm font-bold text-white/85 sm:max-w-xs">
             {item.title}
           </span>
         </div>
@@ -192,7 +186,7 @@ export default function ProjectCaseStudy({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.45, delay: 0.1 }}
-          className="mb-5 inline-flex items-center gap-2.5"
+          className={`mb-5 inline-flex items-center gap-2.5 ${reducedMotion}`}
         >
           <div className="h-px w-5 bg-white/25" />
           <Kicker>
@@ -212,7 +206,7 @@ export default function ProjectCaseStudy({
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, delay: 0.42, ease: [0.16, 1, 0.3, 1] }}
-          className="mx-auto mt-5 max-w-2xl text-[1.05rem] leading-8 text-white/60"
+          className={`mx-auto mt-5 max-w-2xl text-[1.05rem] leading-8 text-white/60 ${reducedMotion}`}
         >
           {item.subtitle}
         </motion.p>
@@ -222,7 +216,7 @@ export default function ProjectCaseStudy({
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.58, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-7 flex flex-wrap items-center justify-center gap-3"
+            className={`mt-7 flex flex-wrap items-center justify-center gap-3 ${reducedMotion}`}
           >
             {item.links.map((link, i) => (
               <a
@@ -232,18 +226,21 @@ export default function ProjectCaseStudy({
                 rel="noopener noreferrer"
                 className={
                   i === 0
-                    ? "group inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold text-white transition hover:-translate-y-0.5"
-                    : "group inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-5 py-2.5 text-sm font-bold text-white/75 transition hover:-translate-y-0.5 hover:text-white"
+                    ? "group inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold text-white transition motion-safe:hover:-translate-y-0.5"
+                    : "group inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-5 py-2.5 text-sm font-bold text-white/75 transition motion-safe:hover:-translate-y-0.5 hover:text-white"
                 }
                 style={
                   i === 0
-                    ? { background: item.accent, boxShadow: `0 4px 18px ${item.accent}50` }
+                    ? {
+                        background: `color-mix(in srgb, ${item.accent} 75%, black)`,
+                        boxShadow: `0 4px 18px ${item.accent}50`,
+                      }
                     : undefined
                 }
               >
                 <LinkIcon kind={link.kind} />
                 {link.label}
-                <ArrowUpRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <ArrowUpRight className="h-3.5 w-3.5 transition motion-safe:group-hover:translate-x-0.5 motion-safe:group-hover:-translate-y-0.5" />
               </a>
             ))}
             {item.documents[0] && (
@@ -251,11 +248,11 @@ export default function ProjectCaseStudy({
                 href={item.documents[0].href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-5 py-2.5 text-sm font-bold text-white/75 transition hover:-translate-y-0.5 hover:text-white"
+                className="group inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-5 py-2.5 text-sm font-bold text-white/75 transition motion-safe:hover:-translate-y-0.5 hover:text-white"
               >
                 <FileText className="h-4 w-4" />
                 View deck
-                <ArrowUpRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <ArrowUpRight className="h-3.5 w-3.5 transition motion-safe:group-hover:translate-x-0.5 motion-safe:group-hover:-translate-y-0.5" />
               </a>
             )}
           </motion.div>
@@ -280,11 +277,11 @@ export default function ProjectCaseStudy({
                 style={{ y: parallaxY }}
                 loading="eager"
                 decoding="async"
-                className={
+                className={`${
                   heroSrc.includes("/portfolio-pages/full/")
                     ? "h-auto w-full bg-white object-contain p-2"
                     : "aspect-[16/7] w-full object-cover"
-                }
+                } motion-reduce:transform-none!`}
               />
             </div>
           </div>
@@ -303,7 +300,7 @@ export default function ProjectCaseStudy({
                 <span className="font-headline text-3xl font-extrabold tabular-nums leading-none text-white sm:text-4xl">
                   {cell.value}
                 </span>
-                <span className="font-label text-[0.6rem] uppercase tracking-[0.22em] text-white/38">
+                <span className="font-label text-[0.6rem] uppercase tracking-[0.22em] text-white/60">
                   {cell.caption}
                 </span>
               </div>
@@ -351,7 +348,7 @@ export default function ProjectCaseStudy({
                   transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] },
                 },
               }}
-              className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.06] px-3.5 py-1.5 text-xs font-semibold text-white/68"
+              className={`inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.06] px-3.5 py-1.5 text-xs font-semibold text-white/68 ${reducedMotion}`}
             >
               <CheckCircle2
                 className="h-3 w-3 shrink-0"
@@ -375,7 +372,7 @@ export default function ProjectCaseStudy({
                 href={doc.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.05] p-5 transition hover:-translate-y-1 hover:border-white/20"
+                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.05] p-5 transition motion-safe:hover:-translate-y-1 hover:border-white/20"
                 style={
                   {
                     "--accent": item.accent,
@@ -384,10 +381,10 @@ export default function ProjectCaseStudy({
               >
                 <div className="mb-4 flex items-center justify-between">
                   <FileText className="h-5 w-5 text-white/45 transition group-hover:text-white/75" />
-                  <ArrowUpRight className="h-4 w-4 text-white/25 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-white/65" />
+                  <ArrowUpRight className="h-4 w-4 text-white/25 transition motion-safe:group-hover:translate-x-0.5 motion-safe:group-hover:-translate-y-0.5 group-hover:text-white/65" />
                 </div>
                 <div className="text-sm font-bold leading-snug text-white/80">{doc.label}</div>
-                <div className="mt-2 font-label text-[0.6rem] uppercase tracking-[0.2em] text-white/30">
+                <div className="mt-2 font-label text-[0.6rem] uppercase tracking-[0.2em] text-white/60">
                   Open PDF
                 </div>
               </a>
@@ -411,7 +408,7 @@ export default function ProjectCaseStudy({
                   {galleryHeading}
                 </h2>
                 {hasPortfolioPages && (
-                  <p className="mt-1.5 max-w-md text-sm text-white/40">
+                  <p className="mt-1.5 max-w-md text-sm text-white/60">
                     High-resolution case-study pages from the May 04 portfolio deck.
                   </p>
                 )}
@@ -425,7 +422,7 @@ export default function ProjectCaseStudy({
                 >
                   <FileText className="h-4 w-4" />
                   Full PDF
-                  <ArrowUpRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <ArrowUpRight className="h-3.5 w-3.5 transition motion-safe:group-hover:translate-x-0.5 motion-safe:group-hover:-translate-y-0.5" />
                 </a>
               )}
             </div>
@@ -439,7 +436,7 @@ export default function ProjectCaseStudy({
                   href={src}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group mx-auto block w-full max-w-[940px] overflow-hidden rounded-2xl border border-white/10 bg-white p-2 shadow-[0_20px_60px_rgba(0,0,0,0.45)] transition hover:-translate-y-1 hover:shadow-[0_28px_70px_rgba(0,0,0,0.6)]"
+                  className="group mx-auto block w-full max-w-[940px] overflow-hidden rounded-2xl border border-white/10 bg-white p-2 shadow-[0_20px_60px_rgba(0,0,0,0.45)] transition motion-safe:hover:-translate-y-1 hover:shadow-[0_28px_70px_rgba(0,0,0,0.6)]"
                 >
                   <div className="aspect-[8.5/11] overflow-hidden rounded-xl">
                     <img
@@ -469,7 +466,7 @@ export default function ProjectCaseStudy({
                       alt={`${item.title} visual ${i + 1}`}
                       loading="lazy"
                       decoding="async"
-                      className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]"
+                      className="h-full w-full object-cover transition duration-500 motion-safe:group-hover:scale-[1.04]"
                     />
                   </div>
                 </a>
@@ -494,17 +491,17 @@ export default function ProjectCaseStudy({
               <Link
                 key={rel.id}
                 href={`/portfolio/${rel.slug}`}
-                className="group flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-4 transition hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.07]"
+                className="group flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-4 transition motion-safe:hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.07]"
               >
                 <div>
                   <div className="text-sm font-bold text-white/82">{rel.title}</div>
-                  <div className="mt-0.5 text-xs text-white/38">
+                  <div className="mt-0.5 text-xs text-white/60">
                     {rel.metrics[0] ?? rel.displaySector}
                   </div>
                 </div>
                 <span className="ml-3 flex shrink-0 items-center gap-1.5">
                   <span className="text-base">{rel.emoji}</span>
-                  <ArrowUpRight className="h-4 w-4 text-white/25 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-white/65" />
+                  <ArrowUpRight className="h-4 w-4 text-white/25 transition motion-safe:group-hover:translate-x-0.5 motion-safe:group-hover:-translate-y-0.5 group-hover:text-white/65" />
                 </span>
               </Link>
             ))}

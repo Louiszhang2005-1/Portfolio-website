@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import type { Stop, WorldData } from "./driveData";
 import DriveList from "./DriveList";
 import { driveStore, input } from "./driveStore";
@@ -64,6 +64,7 @@ function useKeyboard(active: boolean, onEnter: () => void, onMap: () => void) {
     const typing = (e: KeyboardEvent) => e.target instanceof HTMLElement && /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName);
     const down = (e: KeyboardEvent) => {
       if (typing(e) || e.metaKey || e.ctrlKey || e.altKey) return;
+      if (e.code === "Space" && e.target instanceof Element && e.target.closest("button")) return;
       const k = KEYS[e.code];
       if (k) {
         e.preventDefault();
@@ -100,6 +101,7 @@ function useKeyboard(active: boolean, onEnter: () => void, onMap: () => void) {
 }
 
 const panel = "rounded-[6px] border border-[#1d2321]/12 bg-[#fbfaf6]/92 shadow-[0_1px_2px_rgba(29,35,33,0.06),0_8px_24px_-12px_rgba(29,35,33,0.25)] backdrop-blur-md";
+const control = "min-h-8 rounded-[4px] border border-[#1d2321]/15 bg-white px-1.5 font-label text-[11px] font-semibold text-[#1d2321] hover:border-[#1d2321]/40 active:bg-[#e7ecdf] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1d2321] pointer-coarse:min-h-11 pointer-coarse:min-w-11";
 
 function StopCard({ stop, visible }: { stop: Stop; visible: boolean }) {
   return (
@@ -167,14 +169,19 @@ export default function DriveGame({ world }: { world: WorldData }) {
   const toast = useSyncExternalStore(driveStore.subscribe, driveStore.getToast, () => null);
   const district = useSyncExternalStore(driveStore.subscribe, driveStore.getDistrict, () => null);
   const showWelcome = ready && !welcomeClosed && !moved && !mapOpen;
-  const toggleMap = useCallback(() => setMapOpen((o) => !o), []);
+  const mapButton = useRef<HTMLButtonElement>(null);
+  const openMap = useCallback((opener?: HTMLButtonElement) => {
+    (opener ?? mapButton.current)?.focus({ preventScroll: true });
+    setMapOpen(true);
+  }, []);
+  const closeMap = useCallback(() => setMapOpen(false), []);
 
   const openNearby = useCallback(() => {
     const id = driveStore.getNearby();
     const stop = world.stops.find((s) => s.id === id);
     if (stop?.href) router.push(stop.href);
   }, [world, router]);
-  useKeyboard(mode === "drive" && !mapOpen, openNearby, toggleMap);
+  useKeyboard(mode === "drive" && !mapOpen && !showWelcome, openNearby, openMap);
 
   // the welcome card: Enter (or Esc / Space) skips straight to driving
   useEffect(() => {
@@ -212,20 +219,20 @@ export default function DriveGame({ world }: { world: WorldData }) {
       {mode === "drive" && (
         <DriveScene world={world} onReady={() => setReady(true)} onLost={() => setLost(true)} />
       )}
-      {mode === "drive" && <TouchStick />}
+      {mode === "drive" && ready && !showWelcome && !mapOpen && <TouchStick />}
 
       {/* top bar */}
       <div className="pointer-events-none absolute inset-x-0 top-0 z-20 flex items-start justify-between gap-3 px-4 pt-[calc(env(safe-area-inset-top)+0.75rem)] sm:px-5 sm:pt-4">
-        <div className={`${panel} pointer-events-auto flex items-center gap-3 px-3 py-2`}>
-          <Link href="/" className="font-label text-sm font-semibold text-[#1d2321]/70 hover:text-[#1d2321]">
+        <div className={`${panel} pointer-events-auto flex items-center gap-3 px-3`}>
+          <Link href="/" className="inline-flex min-h-11 items-center font-label text-sm font-semibold text-[#1d2321]/70 hover:text-[#1d2321]">
             ← Portfolio
           </Link>
-          <span className="h-4 w-px bg-[#1d2321]/15" aria-hidden />
-          <span className="font-label text-sm font-bold">Louis Zhang</span>
+          <span className="hidden h-4 w-px bg-[#1d2321]/15 sm:block" aria-hidden />
+          <span className="hidden font-label text-sm font-bold sm:inline">Louis Zhang</span>
         </div>
         <div className="flex flex-col items-end gap-2">
-          <div className={`${panel} pointer-events-auto p-1.5`}>
-            <button type="button" onClick={toggleMap} className="block rounded-full" aria-label="Open the map">
+          <div className={`${panel} pointer-events-auto p-1.5`} role="group" aria-label="Driving controls">
+            <button type="button" onClick={(e) => openMap(e.currentTarget)} className="mx-auto block rounded-full" aria-label="Open the map">
               <span className="hidden sm:block">
                 <Minimap world={world} size={132} />
               </span>
@@ -241,12 +248,15 @@ export default function DriveGame({ world }: { world: WorldData }) {
                 {visited.size}/{world.stops.length} found
               </span>
             </div>
-            <div className="grid grid-cols-2 gap-1 px-0.5 pb-0.5 pt-1">
-              <button type="button" onClick={toggleMap} className="min-h-8 rounded-[4px] border border-[#1d2321]/15 bg-white font-label text-[11px] font-semibold text-[#1d2321] hover:border-[#1d2321]/40">
-                Map <kbd className="hidden text-[9px] font-medium text-[#5b625e] pointer-fine:inline">M</kbd>
+            <div className="grid grid-cols-3 gap-1 px-0.5 pb-0.5 pt-1">
+              <button ref={mapButton} type="button" onClick={(e) => openMap(e.currentTarget)} className={control}>
+                Map
               </button>
-              <button type="button" onClick={() => setChoice("list")} className="min-h-8 rounded-[4px] border border-[#1d2321]/15 bg-white font-label text-[11px] font-semibold text-[#1d2321] hover:border-[#1d2321]/40">
+              <button type="button" onClick={() => setChoice("list")} className={control}>
                 List
+              </button>
+              <button type="button" onClick={() => { input.reset = true; }} className={control} aria-label="Reset car">
+                Reset
               </button>
             </div>
           </div>
@@ -292,7 +302,7 @@ export default function DriveGame({ world }: { world: WorldData }) {
               </div>
             ))}
           </dl>
-          <p className="mt-4 text-xs text-[#5b625e] pointer-fine:hidden">Drag anywhere to drive · tap Map to jump to any stop</p>
+          <p className="mt-4 text-xs text-[#5b625e] pointer-fine:hidden">Drag toward where you want to go. Tap Map to jump to a stop or Reset to return to the start.</p>
 
           <div className="mt-5 flex flex-wrap gap-2">
             <button
@@ -338,7 +348,7 @@ export default function DriveGame({ world }: { world: WorldData }) {
         </div>
       )}
 
-      {mapOpen && <MapOverlay world={world} visited={visited} onClose={() => setMapOpen(false)} />}
+      {mapOpen && <MapOverlay world={world} visited={visited} onClose={closeMap} />}
 
       {/* everything found: a small thank-you with the way to reach out */}
       {visited.size === world.stops.length && !doneDismissed && (

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useCallback, useEffect, useRef, type PointerEvent } from "react";
 import { input } from "./driveStore";
 
 const RADIUS = 56;
@@ -24,13 +24,25 @@ export default function TouchStick() {
   const moveKnob = (dx: number, dy: number) => {
     if (knob.current) knob.current.style.transform = `translate(${dx}px, ${dy}px)`;
   };
-  const end = () => {
+  const end = useCallback(() => {
     origin.current = null;
     input.stickActive = false;
     input.stickX = 0;
     input.stickY = 0;
     if (base.current) base.current.style.opacity = "0";
-    moveKnob(0, 0);
+    if (knob.current) knob.current.style.transform = "";
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("blur", end);
+    return () => {
+      window.removeEventListener("blur", end);
+      end();
+    };
+  }, [end]);
+
+  const endPointer = (e: PointerEvent<HTMLDivElement>) => {
+    if (origin.current?.id === e.pointerId) end();
   };
 
   return (
@@ -64,9 +76,9 @@ export default function TouchStick() {
         input.stickY = -dy / RADIUS;
         moveKnob(dx, dy);
       }}
-      onPointerUp={end}
-      onPointerCancel={end}
-      onLostPointerCapture={end}
+      onPointerUp={endPointer}
+      onPointerCancel={endPointer}
+      onLostPointerCapture={endPointer}
     >
       <div
         ref={base}

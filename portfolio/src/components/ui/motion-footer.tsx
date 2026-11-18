@@ -38,6 +38,10 @@ const STYLES = `
 .animate-footer-breathe { animation: footer-breathe 8s ease-in-out infinite alternate; }
 .animate-footer-scroll-marquee { animation: footer-scroll-marquee 38s linear infinite; }
 
+@media (prefers-reduced-motion: reduce) {
+  .animate-footer-breathe, .animate-footer-scroll-marquee { animation: none; }
+}
+
 .footer-bg-grid {
   background-size: 60px 60px;
   background-image:
@@ -66,7 +70,12 @@ const STYLES = `
 .footer-glass-pill:hover {
   background: linear-gradient(145deg, var(--pill-bg-1-hover) 0%, var(--pill-bg-2-hover) 100%);
   border-color: var(--pill-border-hover);
-  color: var(--foreground);
+  color: #e1e0cc;
+}
+
+.footer-glass-pill:focus-visible {
+  outline: 2px solid #e1e0cc;
+  outline-offset: 4px;
 }
 
 .footer-giant-bg-text {
@@ -104,7 +113,8 @@ const MagneticButton = React.forwardRef<HTMLElement, MagneticButtonProps>(
       const element = localRef.current;
       if (!element) return;
 
-      const ctx = gsap.context(() => {
+      const media = gsap.matchMedia();
+      media.add("(prefers-reduced-motion: no-preference)", () => {
         const handleMouseMove = (event: MouseEvent) => {
           const rect = element.getBoundingClientRect();
           const x = event.clientX - rect.left - rect.width / 2;
@@ -142,7 +152,7 @@ const MagneticButton = React.forwardRef<HTMLElement, MagneticButtonProps>(
         };
       }, element);
 
-      return () => ctx.revert();
+      return () => media.revert();
     }, []);
 
     return (
@@ -183,7 +193,8 @@ export function CinematicFooter() {
     if (typeof window === "undefined") return;
     if (!wrapperRef.current) return;
 
-    const ctx = gsap.context(() => {
+    const media = gsap.matchMedia();
+    media.add("(prefers-reduced-motion: no-preference)", () => {
       gsap.fromTo(
         giantTextRef.current,
         { y: "10vh", scale: 0.82, opacity: 0 },
@@ -219,11 +230,14 @@ export function CinematicFooter() {
       );
     }, wrapperRef);
 
-    return () => ctx.revert();
+    return () => media.revert();
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({
+      top: 0,
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth",
+    });
   };
 
   return (
@@ -313,22 +327,24 @@ export function CinematicFooter() {
           </div>
 
           <div className="relative z-20 flex w-full flex-col items-center justify-between gap-6 px-6 pb-8 md:flex-row md:px-12">
-            <div className="order-2 text-[10px] font-semibold uppercase tracking-widest text-[#e1e0cc]/42 md:order-1 md:text-xs">
+            <div className="order-2 text-[10px] font-semibold uppercase tracking-widest text-[#e1e0cc]/68 md:order-1 md:text-xs">
               2026 Louis Zhang. Engineering portfolio.
             </div>
 
             <div className="footer-glass-pill order-1 flex cursor-default items-center gap-2 rounded-full border-[#e1e0cc]/10 px-6 py-3 md:order-2">
-              <span className="text-[10px] font-bold uppercase tracking-widest text-[#e1e0cc]/46 md:text-xs">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-[#e1e0cc]/68 md:text-xs">
                 Mechanical
               </span>
               <span className="text-sm text-cyan-100 md:text-base">*</span>
-              <span className="text-[10px] font-bold uppercase tracking-widest text-[#e1e0cc]/46 md:text-xs">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-[#e1e0cc]/68 md:text-xs">
                 Software
               </span>
             </div>
 
             <MagneticButton
               as="button"
+              type="button"
+              aria-label="Back to top"
               onClick={scrollToTop}
               className="footer-glass-pill order-3 flex h-12 w-12 items-center justify-center rounded-full text-[#e1e0cc]/60 hover:text-[#e1e0cc]"
             >
