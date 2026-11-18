@@ -458,7 +458,7 @@ export default function ProjectCaseStudy({
                   href={src}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group block overflow-hidden rounded-2xl border border-white/10 bg-black/30 shadow-lg transition hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(0,0,0,0.5)]"
+                  className="group block overflow-hidden rounded-2xl border border-white/10 bg-black/30 shadow-lg transition motion-safe:hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(0,0,0,0.5)]"
                 >
                   <div className="aspect-[16/9] overflow-hidden">
                     <img
