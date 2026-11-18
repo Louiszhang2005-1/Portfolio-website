@@ -33,8 +33,8 @@ const beats = withPads([
     status: AVAILABILITY,
     actions: (
       <>
-        <a className={btnPrimaryDark} href="#chapter-deck">
-          See the portfolio
+        <a className={btnPrimaryDark} href="#chapter-projects">
+          View projects
         </a>
         <a className={btnGhostDark} href={`mailto:${CONTACT.email}`}>
           Email me

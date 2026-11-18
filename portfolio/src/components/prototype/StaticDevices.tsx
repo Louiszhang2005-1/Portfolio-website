@@ -31,8 +31,8 @@ export function StaticIntro({ id }: { id: string }) {
           </p>
           <OpenTo className="mt-4" />
           <div className="mt-7 flex flex-wrap gap-3">
-            <a className={btnPrimaryDark} href="#chapter-deck">
-              See the portfolio
+            <a className={btnPrimaryDark} href="#chapter-projects">
+              View projects
             </a>
             <a className={btnGhostDark} href={`mailto:${CONTACT.email}`}>
               Email me

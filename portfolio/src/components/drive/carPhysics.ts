@@ -14,6 +14,7 @@ const REVERSE_MAX = 9;
 const TOP_SPEED = 19;
 const BOOST_SPEED = 28;
 const TURN_RATE = 2.7;
+const STICK_MIN_TURN_FACTOR = 0.9;
 
 const wrap = (a: number) => Math.atan2(Math.sin(a), Math.cos(a));
 
@@ -27,9 +28,9 @@ function resolveControls() {
     const wz = SCREEN_RIGHT.z * input.stickX + SCREEN_UP.z * input.stickY;
     const target = Math.atan2(-wx, -wz);
     const diff = wrap(target - car.heading);
-    const steer = Math.max(-1, Math.min(1, diff * 2.2));
-    // turning around on the spot reads better with a little less throttle
-    const throttle = mag * (Math.abs(diff) > 1.8 ? 0.45 : 1);
+    const steer = mag * Math.max(-1, Math.min(1, diff * 2.2));
+    // Turn toward the stick before accelerating, especially after a head-on hit.
+    const throttle = mag * Math.max(0, Math.cos(diff));
     return { throttle, steer };
   }
   return { throttle: input.throttle, steer: input.steer };
@@ -81,8 +82,10 @@ export function stepCar(dt: number, colliders: Circle[]): StepResult {
   fwd *= Math.exp(-(throttle === 0 ? 1.6 : 0.35) * dt);
   if (fwd > top) fwd += (top - fwd) * (1 - Math.exp(-2 * dt));
 
-  // yaw: needs speed, eases off a bit at the top end
-  const speedFactor = Math.max(-1, Math.min(1, fwd / 5));
+  // The stick requests a heading even at rest. Keyboard steering still follows
+  // the signed speed, so backing up reverses the direction of the turn.
+  const signedSpeed = Math.max(-1, Math.min(1, fwd / 5));
+  const speedFactor = input.stickActive ? Math.max(STICK_MIN_TURN_FACTOR, Math.abs(signedSpeed)) : signedSpeed;
   const highSpeedEase = 1 - 0.3 * Math.min(1, Math.abs(fwd) / BOOST_SPEED);
   const yaw = steer * TURN_RATE * speedFactor * highSpeedEase * (input.handbrake ? 1.35 : 1);
   car.heading = wrap(car.heading + yaw * dt);
