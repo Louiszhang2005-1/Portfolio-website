@@ -24,7 +24,3 @@ pnpm-debug.log*
 .vscode/
 .playwright-cli/
 ruvector.db
-
-# local-only tools for this computer (never pushed): graphify maps and Claude's local notes
-graphify-out/
-CLAUDE.local.md
