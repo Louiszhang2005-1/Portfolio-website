@@ -89,7 +89,6 @@ Next steps: expand the question bank across more companies and offer a white-lab
 ### 🏥 ResQ-Link — UpStart 2026
 **Event:** UpStart 2026 · Feb. 2026 · Polytechnique Montréal  
 **Skills:** SolidWorks · Passive NFC · IP68 Design · PCB Prototyping · Next.js · Medical Design · Systems Architecture  
-**GitHub:** https://github.com/louzhang15/Band
 
 In Montreal, analog paper triage tags contribute to a 30% triage error rate, $1.7B in annual malpractice losses, and 10.5-hour average ER wait times. ResQ-Link replaces paper tags with a zero-power passive NFC bracelet.
 

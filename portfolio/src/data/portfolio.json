@@ -174,7 +174,7 @@
         "Systems Architecture"
       ],
       "details": "In Montreal, analog paper triage tags contribute to a 30% triage error rate, $1.7B in annual malpractice losses, and 10.5-hour average ER wait times. ResQ-Link replaces paper tags with a zero-power passive NFC bracelet.\n\n• Inductive copper coil (no battery required), passive NFC chip, medical-grade silicone band designed for IP68 with translucent overmolded seal\n• SmartTriage companion dashboard — real-time bracelet location maps, tag management (Morgue / Immediate / Delayed / Minor), registered staff tracking\n• Offline-mesh data sync so patient data reaches the hospital even when cellular fails\n• Business model: hardware 'Blade' at $1.50/unit + software 'Razor' SaaS at $10k–$50k/facility/year\n\nTargeting a $750k seed round for a MUHC 5,000-unit pilot, with Health Canada Class I/II certification and Quebec 'Buy Local' procurement priority.",
-      "github": "https://github.com/louzhang15/Band",
+      "github": null,
       "demo": null,
       "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuDAS80X_XNEuUFS6k-WwWNK4ujFPPuUxPpWvmTVpU1JR5SivSd5oUG2JcVNgHI4epz7XEJI6N7eCpY_5koJUANuAI1BYhptkTPhdi5UGO2lM2yHA1--6_Zdhkuwaf4AXh47aYn5TOW2B8af31QajqbXwz4Ldn2XPUjvQPK0SasCQYVwEJls5ZWv-YsDYabLJ6PaUZtolG1ufVsJARGvsPWji9-J_dMGuf0kpNNEYucYBsS8AG3SpRwrHKSZrvL4alOKLEcgHbwa7a7w"
     },
