@@ -6,12 +6,12 @@
 - Unclassified: 4 file(s) not represented in the graph (top: .css 3, .ico 1)
 
 ## Summary
-- 618 nodes · 1548 edges · 35 communities (31 shown, 4 thin omitted)
+- 618 nodes · 1548 edges · 33 communities (31 shown, 2 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 23 edges (avg confidence: 0.84)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `257a79de`
+- Built from commit: `631c8247`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -45,11 +45,9 @@
 - Physics Constellation
 - ProjectCaseStudy.tsx
 - Projects Summary
-- WatchChapter.tsx
+- PortfolioHero.tsx
 - ExperienceChapter.tsx
 - PhoneChapter.tsx
-- layout.tsx
-- portfolio/page.tsx
 
 ## God Nodes (most connected - your core abstractions)
 1. `DriveScene()` - 22 edges
@@ -57,53 +55,53 @@
 3. `DeviceEcosystem()` - 16 edges
 4. `Louis Zhang` - 16 edges
 5. `WatchModel()` - 15 edges
-6. `Phone()` - 14 edges
-7. `PhoneModel()` - 14 edges
+6. `PhoneModel()` - 14 edges
+7. `Phone()` - 14 edges
 8. `DriveGame()` - 13 edges
-9. `PortfolioHome()` - 13 edges
-10. `useMap()` - 13 edges
+9. `useMap()` - 13 edges
+10. `PortfolioHome()` - 13 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `ClassicHome()` --calls--> `PortfolioHome()`  [EXTRACTED]
-  portfolio/src/app/classic/page.tsx → portfolio/src/components/portfolio/PortfolioHome.tsx
-- `GamePage()` --calls--> `DriveGame()`  [EXTRACTED]
-  portfolio/src/app/game/page.tsx → portfolio/src/components/drive/DriveGame.tsx
+- `ProjectShowcaseProps` --references--> `PortfolioItem`  [EXTRACTED]
+  components/ui/project-showcase.tsx → lib/portfolio.ts
 - `Home()` --calls--> `DeviceEcosystem()`  [EXTRACTED]
-  portfolio/src/app/page.tsx → portfolio/src/components/prototype/DeviceEcosystem.tsx
-- `DriveScene()` --calls--> `Confetti()`  [EXTRACTED]
-  portfolio/src/components/drive/DriveScene.tsx → portfolio/src/components/drive/Confetti.tsx
-- `DriveGame()` --calls--> `MapOverlay()`  [EXTRACTED]
-  portfolio/src/components/drive/DriveGame.tsx → portfolio/src/components/drive/MapOverlay.tsx
+  app/page.tsx → components/prototype/DeviceEcosystem.tsx
+- `ProjectCard` --calls--> `cn()`  [EXTRACTED]
+  components/ui/project-card.tsx → lib/utils.ts
+- `GamePage()` --calls--> `DriveGame()`  [EXTRACTED]
+  app/game/page.tsx → components/drive/DriveGame.tsx
+- `ClassicHome()` --calls--> `PortfolioHome()`  [EXTRACTED]
+  app/classic/page.tsx → components/portfolio/PortfolioHome.tsx
 
 ## Import Cycles
 - None detected.
 
 ## Hyperedges (group relationships)
-- **Internship experience** — portfolio_src_data_portfolio_tesla_internship, portfolio_src_data_portfolio_lockheed_martin_internship, portfolio_src_data_portfolio_city_of_montreal_internship [EXTRACTED 1.00]
-- **Hardware/embedded projects** — portfolio_src_data_portfolio_lunar_transport_system, portfolio_src_data_portfolio_reforestation_robot, portfolio_src_data_portfolio_nursie, portfolio_src_data_portfolio_resq_link [INFERRED 0.75]
-- **Healthcare-focused projects** — portfolio_src_data_portfolio_resq_link, portfolio_src_data_portfolio_nursie, portfolio_src_data_portfolio_lazycare [INFERRED 0.85]
+- **Internship experience** — data_portfolio_src_data_portfolio_tesla_internship, data_portfolio_src_data_portfolio_lockheed_martin_internship, data_portfolio_src_data_portfolio_city_of_montreal_internship [EXTRACTED 1.00]
+- **Hardware/embedded projects** — data_portfolio_src_data_portfolio_lunar_transport_system, data_portfolio_src_data_portfolio_reforestation_robot, data_portfolio_src_data_portfolio_nursie, data_portfolio_src_data_portfolio_resq_link [INFERRED 0.75]
+- **Healthcare-focused projects** — data_portfolio_src_data_portfolio_resq_link, data_portfolio_src_data_portfolio_nursie, data_portfolio_src_data_portfolio_lazycare [INFERRED 0.85]
 
-## Communities (35 total, 4 thin omitted)
+## Communities (33 total, 2 thin omitted)
 
 ### Community 0 - "DeviceEcosystem.tsx"
-Cohesion: 0.14
-Nodes (17): Home(), metadata, ChapterNav(), chapters, ContactFooter(), DeviceEcosystem(), FooterRecap(), RECAP (+9 more)
+Cohesion: 0.13
+Nodes (19): Home(), metadata, ChapterNav(), chapters, ContactFooter(), DeviceEcosystem(), FooterRecap(), RECAP (+11 more)
 
 ### Community 1 - "3D Device Screens & Callouts"
 Cohesion: 0.10
 Nodes (56): canvasTexture(), logicalSize(), useScreen(), Callout(), CalloutLayout(), CalloutRef, calloutsShown(), clamp01() (+48 more)
 
 ### Community 2 - "App Routes & Layout"
-Cohesion: 0.09
-Nodes (30): GamePage(), metadata, world, buildWorld(), CLUSTERS, INTERNSHIP_SPOTS, Stop, StopKind (+22 more)
+Cohesion: 0.06
+Nodes (31): GamePage(), metadata, world, metadata, viewport, metadata, buildWorld(), CLUSTERS (+23 more)
 
 ### Community 3 - "Projects & Wins Data"
 Cohesion: 0.09
 Nodes (32): allProjects, ALSO_COMPETED, COMMUNITY, DRAWINGS, FOCUS, FRAMING, Group, groupById (+24 more)
 
 ### Community 4 - "Portfolio Book Deck"
-Cohesion: 0.12
-Nodes (32): BookDeck(), clamp01(), Cover(), EndPaper(), FlatSpread(), near(), Page(), pageSrc() (+24 more)
+Cohesion: 0.11
+Nodes (33): BookDeck(), clamp01(), Cover(), EndPaper(), FlatSpread(), near(), Page(), pageSrc() (+25 more)
 
 ### Community 5 - "Device Screen Parts"
 Cohesion: 0.14
@@ -118,8 +116,8 @@ Cohesion: 0.15
 Nodes (25): Portfolio Data (human-readable mirror), Arduino, Axial Piston Pump - Hydraulic System Design, City of Montreal Engineering Intern - Water Department, CRM Outreach Tool - Accenture AOTC 2026, Fine-tuned TinyLlama, Gemini AI, Interview Assistant - Brebeuf Hacks (+17 more)
 
 ### Community 8 - "Classic Portfolio Page"
-Cohesion: 0.13
-Nodes (15): ClassicHome(), metadata, About(), skills, Contact(), FullPortfolioDeck(), GamePortalDashboard(), telemetry (+7 more)
+Cohesion: 0.15
+Nodes (14): ClassicHome(), metadata, About(), skills, Contact(), FullPortfolioDeck(), GamePortalDashboard(), telemetry (+6 more)
 
 ### Community 9 - "Game State Store & Map"
 Cohesion: 0.13
@@ -127,7 +125,7 @@ Nodes (19): CAR_RADIUS, StepResult, fl, Listener, listeners, SCREEN_RIGHT, SCREE
 
 ### Community 10 - "portfolio.ts"
 Cohesion: 0.18
-Nodes (11): clean(), fullPortfolioDocument, fullPortfolioPages, hiddenSkillItemIds, hydrate(), mediaById, RawPortfolioItem, rawProjects (+3 more)
+Nodes (11): Internships(), clean(), hiddenSkillItemIds, hydrate(), internships, mediaById, RawPortfolioItem, rawProjects (+3 more)
 
 ### Community 11 - "Legacy Landing Hero"
 Cohesion: 0.15
@@ -142,7 +140,7 @@ Cohesion: 0.24
 Nodes (15): Car(), resetCar(), resolveControls(), stepCar(), wrap(), AdaptiveResolution(), DriveScene(), Ready() (+7 more)
 
 ### Community 14 - "Case Study Page & Footer"
-Cohesion: 0.23
+Cohesion: 0.24
 Nodes (6): CinematicFooter(), MagneticButton, MagneticButtonProps, MarqueeItem(), ProjectCardProps, cn()
 
 ### Community 15 - "Game Landmarks"
@@ -174,16 +172,16 @@ Cohesion: 0.36
 Nodes (5): markThreeReady(), DeviceCanvas(), ReadySignal(), reportLost(), WebGLBoundary
 
 ### Community 22 - "Orbit Gallery"
-Cohesion: 0.27
-Nodes (7): ProjectOrbitGallery(), sections, sectionTones, CircularGallery, CircularGalleryProps, cn(), GalleryItem
+Cohesion: 0.43
+Nodes (5): ProjectOrbitGallery(), CircularGallery, CircularGalleryProps, cn(), GalleryItem
 
 ### Community 23 - "Portfolio Export Data"
 Cohesion: 0.29
 Nodes (6): allPortfolioItems, internships, portfolioData, PortfolioData, PortfolioItem, projects
 
 ### Community 24 - "stage.tsx"
-Cohesion: 0.20
-Nodes (13): BeatCopy(), btn, btnGhostDark, btnPrimaryDark, CONTACT, hasWebGL(), HeroName(), OpenTo() (+5 more)
+Cohesion: 0.16
+Nodes (19): AVAILABILITY, BeatCopy(), btn, btnGhostDark, btnPrimaryDark, CONTACT, DeviceStage(), HeroName() (+11 more)
 
 ### Community 25 - "Step Navigation"
 Cohesion: 0.47
@@ -197,22 +195,22 @@ Nodes (4): Body, LoadingSkeleton(), noop(), PhysicsConstellation()
 Cohesion: 0.21
 Nodes (13): dynamicParams, generateMetadata(), PageProps, PortfolioDetailPage(), darken(), Kicker(), LinkIcon(), ProjectCaseStudy() (+5 more)
 
-### Community 30 - "WatchChapter.tsx"
-Cohesion: 0.18
-Nodes (13): DeviceSkeleton(), ReadyWindow, SHAPES, useThreeReady(), AVAILABILITY, DeviceStage(), holdStops(), beats (+5 more)
+### Community 30 - "PortfolioHero.tsx"
+Cohesion: 0.50
+Nodes (4): navItems, PortfolioHero(), WordsPullUp(), WordsPullUpProps
 
 ### Community 31 - "ExperienceChapter.tsx"
-Cohesion: 0.21
-Nodes (14): clamp(), ExperienceChapter(), HOLDS, jobs, Laptop3D, paragraphs(), PinnedRoles(), RoleDetails() (+6 more)
+Cohesion: 0.18
+Nodes (16): clamp(), ExperienceChapter(), HOLDS, jobs, Laptop3D, paragraphs(), PinnedRoles(), RoleDetails() (+8 more)
 
 ### Community 32 - "PhoneChapter.tsx"
-Cohesion: 0.19
-Nodes (12): Motion, beats, DepthHud(), disciplines, diveAt(), HOLDS, Phone3D, PhoneChapter() (+4 more)
+Cohesion: 0.16
+Nodes (15): Motion, DeviceSkeleton(), ReadyWindow, SHAPES, useThreeReady(), beats, DepthHud(), disciplines (+7 more)
 
 ## Knowledge Gaps
 - **4 isolated node(s):** `summary`, `Fine-tuned TinyLlama`, `SmartTriage Dashboard`, `portfolio.json (canonical source)`
   These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 172 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **4 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **2 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
@@ -222,12 +220,12 @@ _Questions this graph is uniquely positioned to answer:_
 - **What connects `summary`, `Fine-tuned TinyLlama`, `SmartTriage Dashboard` to the rest of the system?**
   _4 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `DeviceEcosystem.tsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.1380952380952381 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.13438735177865613 - nodes in this community are weakly interconnected._
 - **Should `3D Device Screens & Callouts` be split into smaller, more focused modules?**
   _Cohesion score 0.10402532790592492 - nodes in this community are weakly interconnected._
 - **Should `App Routes & Layout` be split into smaller, more focused modules?**
-  _Cohesion score 0.09365079365079365 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06292517006802721 - nodes in this community are weakly interconnected._
 - **Should `Projects & Wins Data` be split into smaller, more focused modules?**
   _Cohesion score 0.0859465737514518 - nodes in this community are weakly interconnected._
 - **Should `Portfolio Book Deck` be split into smaller, more focused modules?**
-  _Cohesion score 0.11764705882352941 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.10810810810810811 - nodes in this community are weakly interconnected._
