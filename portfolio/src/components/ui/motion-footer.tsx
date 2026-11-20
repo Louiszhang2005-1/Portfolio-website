@@ -298,7 +298,7 @@ export function CinematicFooter() {
               <div className="mt-2 flex w-full flex-wrap justify-center gap-3 md:gap-6">
                 <MagneticButton
                   as="a"
-                  href="https://github.com/Louiszhang2005-1"
+                  href="https://github.com/louzhang15"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="footer-glass-pill flex items-center gap-2 rounded-full px-6 py-3 text-xs font-medium text-[#e1e0cc]/60 hover:text-[#e1e0cc] md:text-sm"

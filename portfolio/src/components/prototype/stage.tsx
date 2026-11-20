@@ -276,6 +276,6 @@ export const btnGhostLight = `${btn} border border-[var(--border-light)] text-[v
 
 export const CONTACT = {
   email: "louzhang15@gmail.com",
-  github: "https://github.com/Louiszhang2005-1",
+  github: "https://github.com/louzhang15",
   linkedin: "https://www.linkedin.com/in/louis-zhang-ba2a17284/",
 };

@@ -128,7 +128,7 @@ export const portfolioData = {
           ],
           "summary": "PM & Systems Integrator for the Canadian Space Agency Lunar Exploration Accelerator Program (LEAP) â€” OASIS Mission (Janâ€“May 2025, Polytechnique MontrÃ©al). Directed end-to-end design of a 3.1m telescopic lunar produce-transport tube (Ã˜540mm, 3080mm deployed length) designed to CSA LEAP performance and safety requirements. Managed 50+ part interfaces, achieved a 12% system mass reduction while sustaining a 2.5Ã— structural safety factor. Ran thermal FEA over the 14-day lunar night cycle and validated zero mechanical interference across the full telescopic deployment sweep. Developed the rail-guided transport wagon's control logic on an Arduino microcontroller â€” ensuring precision positioning along the telescopic support tube. Designed and programmed a Raspberry Pi Picoâ€“driven belt conveyor for seamless vegetable transfer from lunar greenhouse to habitat module. Led physical integration: AL-6061 machining, MLI fabrication, PCB prototyping, wiring harnesses, and cold-welding of tab-to-tube joints.",
           "links": {
-            "github": "https://github.com/Louiszhang2005-1",
+            "github": "https://github.com/louzhang15",
             "demo": null
           },
           "media": {
@@ -178,7 +178,7 @@ export const portfolioData = {
           ],
           "summary": "ðŸ† Winner â€” Unexpected Expedition Award Â· 5th Place Overall at RoboHacks (Feb. 2025). Built a fully autonomous seed-planting robot in 24 hours using recycled materials â€” cardboard chassis, plastic bottles, and a paper-engineered seed dispenser. Coded the full navigation and dispensing sequence in C++ on Arduino: two IR sensors fused with a color sensor for line-following, servo-actuated paper dispenser for timed seed placement. Wired all electronics on a breadboard from scratch under competition conditions.",
           "links": {
-            "github": "https://github.com/Louiszhang2005-1/RoboHacks-2025",
+            "github": "https://github.com/louzhang15/RoboHacks-2025",
             "demo": null
           },
           "media": {
@@ -237,7 +237,7 @@ export const portfolioData = {
           ],
           "summary": "Built at UpStart 2026 (Feb. 2026) as part of a multidisciplinary team from Polytechnique MontrÃ©al. In Montreal, analog paper triage tags contribute to a 30% triage error rate, $1.7B in annual malpractice losses, and 10.5-hour average ER wait times. ResQ-Link replaces paper tags with a zero-power passive NFC bracelet: inductive copper coil (no battery required), passive NFC chip, medical-grade silicone band designed for IP68 with translucent overmolded seal. Bundled with the SmartTriage companion dashboard â€” a full Command Center featuring real-time bracelet location maps, tag management (Morgue/Immediate/Delayed/Minor), registered staff tracking, and an offline-mesh data sync protocol so data reaches the hospital even when cellular fails. Business model: hardware 'Blade' at $1.50/unit (80% gross margin at scale) + software 'Razor' SaaS at $10kâ€“$50k/facility/year. Targeting $750k seed round for MUHC 5,000-unit pilot, Health Canada Class I/II certification, and Quebec 'Buy Local' procurement priority.",
           "links": {
-            "github": "https://github.com/Louiszhang2005-1/Band",
+            "github": "https://github.com/louzhang15/Band",
             "demo": null
           },
           "media": {
@@ -266,7 +266,7 @@ export const portfolioData = {
           ],
           "summary": "ðŸ† Winner at ConUHacks X â€” Best Use of ElevenLabs (Jan. 2026). Co-founded an on-premises AI nurse assistant for Quebec long-term care facilities (CHSLDs). Falls among seniors (65+) have risen 47% between 2008â€“2019 â€” Nursie closes the gap between unwitnessed falls and delayed staff response. What it does: (1) detects falls using mmWave radar (IWR6843) fused with a floor vibration mat; (2) tracks room context via magnetic door sensor + PIR presence/occupancy node on ESP32/FreeRTOS; (3) monitors vital signs via smartwatch integration; (4) sends immediate alerts â€” phone call + dashboard push â€” to staff on detection; (5) builds a resident profile in MongoDB over time to flag unusual behavior (e.g. leaving the apartment at night); (6) provides a voice interface for residents via ElevenLabs for questions, appointment reminders, and medication prompts. Design principles: fast reliable detection over fancy features; 3Ã— sensor redundancy to reduce false positives (radar + vibration mat + wearable fused for confidence scoring); privacy by architecture â€” all data stays on the facility's local OpenWRT LAN, no cameras, no cloud.",
           "links": {
-            "github": "https://github.com/Louiszhang2005-1",
+            "github": "https://github.com/louzhang15",
             "demo": "https://devpost.com/software/nursie"
           },
           "media": {
@@ -299,7 +299,7 @@ export const portfolioData = {
           ],
           "summary": "Fully integrated CRM outreach tool built for a community of agriculture startups, developed as part of Accenture's AOTC 2026 program. Manages contact lists across 3 audience segments (corporate, schools, institutions & media). Uses Google Gemini AI to generate personalized cold emails tailored to each contact's name, title, and organization â€” then sends them directly through the app. Tracks every contact through the full sales pipeline, syncs all data to Google Sheets in real time, and centralizes booking requests with auto-calculated revenue estimates. Team can accept, refuse, or cancel reservations â€” triggering a professional email to the client instantly. Total running cost: ~$0/month on free tiers.",
           "links": {
-            "github": "https://github.com/Louiszhang2005-1/Fully-Integrated-CRM-Tool",
+            "github": "https://github.com/louzhang15/Fully-Integrated-CRM-Tool",
             "demo": "https://www.youtube.com/watch?v=TVuFauDyA00"
           },
           "media": {
@@ -352,7 +352,7 @@ export const portfolioData = {
           ],
           "summary": "Built at Brebeuf Hacks (Jan. 2024) in a team of 3. A voice-based virtual interviewing assistant designed to help computer science students prepare for technical interviews. The assistant presents personalized interview questions verbally, listens to the interviewee's response, and evaluates the answer using natural language processing algorithms. Developed with Python and integrated an AI/NLP API to power the intelligent question-and-answer pipeline. Features a user-friendly voice interface so students can practice in a realistic spoken-word format rather than typing.",
           "links": {
-            "github": "https://github.com/Louiszhang2005-1/Virtual_interviewing_assistant",
+            "github": "https://github.com/louzhang15/Virtual_interviewing_assistant",
             "demo": null
           },
           "media": {
@@ -460,7 +460,7 @@ export const portfolioData = {
       ],
       "summary": "PM & Systems Integrator for the Canadian Space Agency Lunar Exploration Accelerator Program (LEAP) â€” OASIS Mission (Janâ€“May 2025, Polytechnique MontrÃ©al). Directed end-to-end design of a 3.1m telescopic lunar produce-transport tube (Ã˜540mm, 3080mm deployed length) designed to CSA LEAP performance and safety requirements. Managed 50+ part interfaces, achieved a 12% system mass reduction while sustaining a 2.5Ã— structural safety factor. Ran thermal FEA over the 14-day lunar night cycle and validated zero mechanical interference across the full telescopic deployment sweep. Developed the rail-guided transport wagon's control logic on an Arduino microcontroller â€” ensuring precision positioning along the telescopic support tube. Designed and programmed a Raspberry Pi Picoâ€“driven belt conveyor for seamless vegetable transfer from lunar greenhouse to habitat module. Led physical integration: AL-6061 machining, MLI fabrication, PCB prototyping, wiring harnesses, and cold-welding of tab-to-tube joints.",
       "links": {
-        "github": "https://github.com/Louiszhang2005-1",
+        "github": "https://github.com/louzhang15",
         "demo": null
       },
       "media": {
@@ -510,7 +510,7 @@ export const portfolioData = {
       ],
       "summary": "ðŸ† Winner â€” Unexpected Expedition Award Â· 5th Place Overall at RoboHacks (Feb. 2025). Built a fully autonomous seed-planting robot in 24 hours using recycled materials â€” cardboard chassis, plastic bottles, and a paper-engineered seed dispenser. Coded the full navigation and dispensing sequence in C++ on Arduino: two IR sensors fused with a color sensor for line-following, servo-actuated paper dispenser for timed seed placement. Wired all electronics on a breadboard from scratch under competition conditions.",
       "links": {
-        "github": "https://github.com/Louiszhang2005-1/RoboHacks-2025",
+        "github": "https://github.com/louzhang15/RoboHacks-2025",
         "demo": null
       },
       "media": {
@@ -564,7 +564,7 @@ export const portfolioData = {
       ],
       "summary": "Built at UpStart 2026 (Feb. 2026) as part of a multidisciplinary team from Polytechnique MontrÃ©al. In Montreal, analog paper triage tags contribute to a 30% triage error rate, $1.7B in annual malpractice losses, and 10.5-hour average ER wait times. ResQ-Link replaces paper tags with a zero-power passive NFC bracelet: inductive copper coil (no battery required), passive NFC chip, medical-grade silicone band designed for IP68 with translucent overmolded seal. Bundled with the SmartTriage companion dashboard â€” a full Command Center featuring real-time bracelet location maps, tag management (Morgue/Immediate/Delayed/Minor), registered staff tracking, and an offline-mesh data sync protocol so data reaches the hospital even when cellular fails. Business model: hardware 'Blade' at $1.50/unit (80% gross margin at scale) + software 'Razor' SaaS at $10kâ€“$50k/facility/year. Targeting $750k seed round for MUHC 5,000-unit pilot, Health Canada Class I/II certification, and Quebec 'Buy Local' procurement priority.",
       "links": {
-        "github": "https://github.com/Louiszhang2005-1/Band",
+        "github": "https://github.com/louzhang15/Band",
         "demo": null
       },
       "media": {
@@ -593,7 +593,7 @@ export const portfolioData = {
       ],
       "summary": "ðŸ† Winner at ConUHacks X â€” Best Use of ElevenLabs (Jan. 2026). Co-founded an on-premises AI nurse assistant for Quebec long-term care facilities (CHSLDs). Falls among seniors (65+) have risen 47% between 2008â€“2019 â€” Nursie closes the gap between unwitnessed falls and delayed staff response. What it does: (1) detects falls using mmWave radar (IWR6843) fused with a floor vibration mat; (2) tracks room context via magnetic door sensor + PIR presence/occupancy node on ESP32/FreeRTOS; (3) monitors vital signs via smartwatch integration; (4) sends immediate alerts â€” phone call + dashboard push â€” to staff on detection; (5) builds a resident profile in MongoDB over time to flag unusual behavior (e.g. leaving the apartment at night); (6) provides a voice interface for residents via ElevenLabs for questions, appointment reminders, and medication prompts. Design principles: fast reliable detection over fancy features; 3Ã— sensor redundancy to reduce false positives (radar + vibration mat + wearable fused for confidence scoring); privacy by architecture â€” all data stays on the facility's local OpenWRT LAN, no cameras, no cloud.",
       "links": {
-        "github": "https://github.com/Louiszhang2005-1",
+        "github": "https://github.com/louzhang15",
         "demo": "https://devpost.com/software/nursie"
       },
       "media": {
@@ -621,7 +621,7 @@ export const portfolioData = {
       ],
       "summary": "Fully integrated CRM outreach tool built for a community of agriculture startups, developed as part of Accenture's AOTC 2026 program. Manages contact lists across 3 audience segments (corporate, schools, institutions & media). Uses Google Gemini AI to generate personalized cold emails tailored to each contact's name, title, and organization â€” then sends them directly through the app. Tracks every contact through the full sales pipeline, syncs all data to Google Sheets in real time, and centralizes booking requests with auto-calculated revenue estimates. Team can accept, refuse, or cancel reservations â€” triggering a professional email to the client instantly. Total running cost: ~$0/month on free tiers.",
       "links": {
-        "github": "https://github.com/Louiszhang2005-1/Fully-Integrated-CRM-Tool",
+        "github": "https://github.com/louzhang15/Fully-Integrated-CRM-Tool",
         "demo": "https://www.youtube.com/watch?v=TVuFauDyA00"
       },
       "media": {
@@ -674,7 +674,7 @@ export const portfolioData = {
       ],
       "summary": "Built at Brebeuf Hacks (Jan. 2024) in a team of 3. A voice-based virtual interviewing assistant designed to help computer science students prepare for technical interviews. The assistant presents personalized interview questions verbally, listens to the interviewee's response, and evaluates the answer using natural language processing algorithms. Developed with Python and integrated an AI/NLP API to power the intelligent question-and-answer pipeline. Features a user-friendly voice interface so students can practice in a realistic spoken-word format rather than typing.",
       "links": {
-        "github": "https://github.com/Louiszhang2005-1/Virtual_interviewing_assistant",
+        "github": "https://github.com/louzhang15/Virtual_interviewing_assistant",
         "demo": null
       },
       "media": {
@@ -778,7 +778,7 @@ export const portfolioData = {
       ],
       "summary": "PM & Systems Integrator for the Canadian Space Agency Lunar Exploration Accelerator Program (LEAP) â€” OASIS Mission (Janâ€“May 2025, Polytechnique MontrÃ©al). Directed end-to-end design of a 3.1m telescopic lunar produce-transport tube (Ã˜540mm, 3080mm deployed length) designed to CSA LEAP performance and safety requirements. Managed 50+ part interfaces, achieved a 12% system mass reduction while sustaining a 2.5Ã— structural safety factor. Ran thermal FEA over the 14-day lunar night cycle and validated zero mechanical interference across the full telescopic deployment sweep. Developed the rail-guided transport wagon's control logic on an Arduino microcontroller â€” ensuring precision positioning along the telescopic support tube. Designed and programmed a Raspberry Pi Picoâ€“driven belt conveyor for seamless vegetable transfer from lunar greenhouse to habitat module. Led physical integration: AL-6061 machining, MLI fabrication, PCB prototyping, wiring harnesses, and cold-welding of tab-to-tube joints.",
       "links": {
-        "github": "https://github.com/Louiszhang2005-1",
+        "github": "https://github.com/louzhang15",
         "demo": null
       },
       "media": {
@@ -828,7 +828,7 @@ export const portfolioData = {
       ],
       "summary": "ðŸ† Winner â€” Unexpected Expedition Award Â· 5th Place Overall at RoboHacks (Feb. 2025). Built a fully autonomous seed-planting robot in 24 hours using recycled materials â€” cardboard chassis, plastic bottles, and a paper-engineered seed dispenser. Coded the full navigation and dispensing sequence in C++ on Arduino: two IR sensors fused with a color sensor for line-following, servo-actuated paper dispenser for timed seed placement. Wired all electronics on a breadboard from scratch under competition conditions.",
       "links": {
-        "github": "https://github.com/Louiszhang2005-1/RoboHacks-2025",
+        "github": "https://github.com/louzhang15/RoboHacks-2025",
         "demo": null
       },
       "media": {
@@ -882,7 +882,7 @@ export const portfolioData = {
       ],
       "summary": "Built at UpStart 2026 (Feb. 2026) as part of a multidisciplinary team from Polytechnique MontrÃ©al. In Montreal, analog paper triage tags contribute to a 30% triage error rate, $1.7B in annual malpractice losses, and 10.5-hour average ER wait times. ResQ-Link replaces paper tags with a zero-power passive NFC bracelet: inductive copper coil (no battery required), passive NFC chip, medical-grade silicone band designed for IP68 with translucent overmolded seal. Bundled with the SmartTriage companion dashboard â€” a full Command Center featuring real-time bracelet location maps, tag management (Morgue/Immediate/Delayed/Minor), registered staff tracking, and an offline-mesh data sync protocol so data reaches the hospital even when cellular fails. Business model: hardware 'Blade' at $1.50/unit (80% gross margin at scale) + software 'Razor' SaaS at $10kâ€“$50k/facility/year. Targeting $750k seed round for MUHC 5,000-unit pilot, Health Canada Class I/II certification, and Quebec 'Buy Local' procurement priority.",
       "links": {
-        "github": "https://github.com/Louiszhang2005-1/Band",
+        "github": "https://github.com/louzhang15/Band",
         "demo": null
       },
       "media": {
@@ -911,7 +911,7 @@ export const portfolioData = {
       ],
       "summary": "ðŸ† Winner at ConUHacks X â€” Best Use of ElevenLabs (Jan. 2026). Co-founded an on-premises AI nurse assistant for Quebec long-term care facilities (CHSLDs). Falls among seniors (65+) have risen 47% between 2008â€“2019 â€” Nursie closes the gap between unwitnessed falls and delayed staff response. What it does: (1) detects falls using mmWave radar (IWR6843) fused with a floor vibration mat; (2) tracks room context via magnetic door sensor + PIR presence/occupancy node on ESP32/FreeRTOS; (3) monitors vital signs via smartwatch integration; (4) sends immediate alerts â€” phone call + dashboard push â€” to staff on detection; (5) builds a resident profile in MongoDB over time to flag unusual behavior (e.g. leaving the apartment at night); (6) provides a voice interface for residents via ElevenLabs for questions, appointment reminders, and medication prompts. Design principles: fast reliable detection over fancy features; 3Ã— sensor redundancy to reduce false positives (radar + vibration mat + wearable fused for confidence scoring); privacy by architecture â€” all data stays on the facility's local OpenWRT LAN, no cameras, no cloud.",
       "links": {
-        "github": "https://github.com/Louiszhang2005-1",
+        "github": "https://github.com/louzhang15",
         "demo": "https://devpost.com/software/nursie"
       },
       "media": {
@@ -939,7 +939,7 @@ export const portfolioData = {
       ],
       "summary": "Fully integrated CRM outreach tool built for a community of agriculture startups, developed as part of Accenture's AOTC 2026 program. Manages contact lists across 3 audience segments (corporate, schools, institutions & media). Uses Google Gemini AI to generate personalized cold emails tailored to each contact's name, title, and organization â€” then sends them directly through the app. Tracks every contact through the full sales pipeline, syncs all data to Google Sheets in real time, and centralizes booking requests with auto-calculated revenue estimates. Team can accept, refuse, or cancel reservations â€” triggering a professional email to the client instantly. Total running cost: ~$0/month on free tiers.",
       "links": {
-        "github": "https://github.com/Louiszhang2005-1/Fully-Integrated-CRM-Tool",
+        "github": "https://github.com/louzhang15/Fully-Integrated-CRM-Tool",
         "demo": "https://www.youtube.com/watch?v=TVuFauDyA00"
       },
       "media": {
@@ -992,7 +992,7 @@ export const portfolioData = {
       ],
       "summary": "Built at Brebeuf Hacks (Jan. 2024) in a team of 3. A voice-based virtual interviewing assistant designed to help computer science students prepare for technical interviews. The assistant presents personalized interview questions verbally, listens to the interviewee's response, and evaluates the answer using natural language processing algorithms. Developed with Python and integrated an AI/NLP API to power the intelligent question-and-answer pipeline. Features a user-friendly voice interface so students can practice in a realistic spoken-word format rather than typing.",
       "links": {
-        "github": "https://github.com/Louiszhang2005-1/Virtual_interviewing_assistant",
+        "github": "https://github.com/louzhang15/Virtual_interviewing_assistant",
         "demo": null
       },
       "media": {

@@ -38,7 +38,7 @@ portfolio-ship/
 
 ```bash
 # Clone the repository
-git clone https://github.com/Louiszhang2005-1/Portfolio-website.git
+git clone https://github.com/louzhang15/Portfolio-website.git
 cd Portfolio-website
 
 # Install dependencies
@@ -166,7 +166,7 @@ This project is open source and available under the MIT License.
 ## 👤 Author
 
 **Louis Zhang**  
-GitHub: [@Louiszhang2005-1](https://github.com/Louiszhang2005-1)
+GitHub: [@louzhang15](https://github.com/louzhang15)
 
 ## 🤝 Contributing
 

@@ -33,7 +33,7 @@ Engineering Intern at the City of Montreal's Water Department. Contributed to wa
 **Event:** Canadian Space Agency LEAP — OASIS Mission  
 **Period:** Jan.–May 2025 · Polytechnique Montréal  
 **Skills:** CATIA V6 · Fusion 360 · GD&T · MS Project · Cold Welding · Systems Integration · FEA · Arduino · Raspberry Pi Pico  
-**GitHub:** https://github.com/Louiszhang2005-1
+**GitHub:** https://github.com/louzhang15
 
 PM & Systems Integrator for the Canadian Space Agency LEAP — OASIS Mission (Jan.–May 2025, Polytechnique Montréal). Directed end-to-end design of a 3.1 m telescopic lunar produce-transport tube (Ø540 mm, 3080 mm deployed length), designed to CSA LEAP performance and safety requirements.
 
@@ -61,7 +61,7 @@ Produced a full exploded-view drawing with a bilingual French/English BOM follow
 **Event:** RoboHacks · Feb. 2025  
 **Awards:** Unexpected Expedition Award · 5th Place Overall  
 **Skills:** Arduino C++ · IR Sensors · Color Sensor · DC Motors · Recycled Materials  
-**GitHub:** https://github.com/Louiszhang2005-1/RoboHacks-2025
+**GitHub:** https://github.com/louzhang15/RoboHacks-2025
 
 Autonomous seed-planting robot built in 24 hours at RoboHacks (Feb. 2025) using recycled materials for the structure — cardboard chassis, plastic bottles, and a paper-engineered seed dispenser.
 
@@ -89,7 +89,7 @@ Next steps: expand the question bank across more companies and offer a white-lab
 ### 🏥 ResQ-Link — UpStart 2026
 **Event:** UpStart 2026 · Feb. 2026 · Polytechnique Montréal  
 **Skills:** SolidWorks · Passive NFC · IP68 Design · PCB Prototyping · Next.js · Medical Design · Systems Architecture  
-**GitHub:** https://github.com/Louiszhang2005-1/Band
+**GitHub:** https://github.com/louzhang15/Band
 
 In Montreal, analog paper triage tags contribute to a 30% triage error rate, $1.7B in annual malpractice losses, and 10.5-hour average ER wait times. ResQ-Link replaces paper tags with a zero-power passive NFC bracelet.
 
@@ -106,7 +106,7 @@ Targeting a $750k seed round for a MUHC 5,000-unit pilot, with Health Canada Cla
 **Event:** ConUHacks X · Jan. 2026  
 **Awards:** Best Use of ElevenLabs  
 **Skills:** Python · C++ · mmWave Radar · ESP32 / FreeRTOS · ROS 2 · MongoDB · Gemini AI · ElevenLabs · OpenWRT  
-**GitHub:** https://github.com/Louiszhang2005-1  
+**GitHub:** https://github.com/louzhang15  
 **Devpost:** https://devpost.com/software/nursie
 
 On-premises AI nurse assistant for Quebec long-term care facilities (CHSLDs), built at ConUHacks X (Jan. 2026).
@@ -130,7 +130,7 @@ Designed for 3× sensor redundancy to reduce false positives. Privacy by archite
 **Event:** DeltaHacks X  
 **Awards:** Winner  
 **Skills:** Computer Vision · AI · Mobile Development · Accessibility  
-**GitHub:** https://github.com/Louiszhang2005-1
+**GitHub:** https://github.com/louzhang15
 
 AI-powered assistive technology for the visually impaired. Uses a smartphone-mapped white cane for navigation, providing real-time audio feedback about surroundings and obstacles. Built with computer vision and spatial mapping.
 
@@ -138,7 +138,7 @@ AI-powered assistive technology for the visually impaired. Uses a smartphone-map
 
 ### 🛰️ STARSCAN.AI — AI Document Analysis
 **Skills:** AI · NLP · NASA APIs · React · Python  
-**GitHub:** https://github.com/Louiszhang2005-1
+**GitHub:** https://github.com/louzhang15
 
 AI-powered system designed to analyze technical and scientific documents, including NASA documentation. Uses advanced NLP to extract insights, cross-reference data, and generate summaries from complex engineering specs and research papers.
 
@@ -147,7 +147,7 @@ AI-powered system designed to analyze technical and scientific documents, includ
 ### 🎮 LingoBattles — ConUHacks IX
 **Event:** ConUHacks IX · Jan. 2024  
 **Skills:** React · WebSockets · Real-time Multiplayer · Game Design  
-**GitHub:** https://github.com/Louiszhang2005-1
+**GitHub:** https://github.com/louzhang15
 
 A fast-paced, real-time competitive party game for language learning. Players battle head-to-head in timed vocabulary challenges with live leaderboards and particle effects.
 
@@ -157,7 +157,7 @@ A fast-paced, real-time competitive party game for language learning. Players ba
 **Event:** Accenture AOTC 2026  
 **Period:** Jan.–Apr. 2026  
 **Skills:** Next.js · React · TypeScript · Tailwind CSS · Gemini AI · Resend · Apollo.io · Google Sheets API  
-**GitHub:** https://github.com/Louiszhang2005-1/Fully-Integrated-CRM-Tool  
+**GitHub:** https://github.com/louzhang15/Fully-Integrated-CRM-Tool  
 **Demo:** https://www.youtube.com/watch?v=TVuFauDyA00
 
 Fully integrated CRM outreach tool built for a community of agriculture startups, as part of Accenture's AOTC 2026 program.
@@ -187,7 +187,7 @@ Features: personalized profile management, AI chat interface, and full conversat
 ### 🎤 Interview Assistant — Brebeuf Hacks
 **Event:** Brebeuf Hacks · Jan. 2024  
 **Skills:** Python · NLP · Voice AI · API Integration · Natural Language Processing  
-**GitHub:** https://github.com/Louiszhang2005-1/Virtual_interviewing_assistant
+**GitHub:** https://github.com/louzhang15/Virtual_interviewing_assistant
 
 Voice-based virtual interviewing assistant designed to help computer science students prepare for technical interviews, built at Brebeuf Hacks (Jan. 2024) in a team of 3.
 

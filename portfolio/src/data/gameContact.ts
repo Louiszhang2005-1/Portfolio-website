@@ -5,7 +5,7 @@ export const GAME_CONTACT = {
   availability: "Open to 2027 internship opportunities",
   email: "louzhang15@gmail.com",
   linkedin: "https://www.linkedin.com/in/louis-zhang-ba2a17284/",
-  github: "https://github.com/Louiszhang2005-1",
+  github: "https://github.com/louzhang15",
 } as const;
 
 export const GAME_INTERNSHIPS = [

@@ -34,7 +34,7 @@ export default function Contact() {
             </a>
 
             <a
-              href="https://github.com/Louiszhang2005-1"
+              href="https://github.com/louzhang15"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full border border-[var(--color-outline-variant)] bg-[var(--color-surface-container-low)] px-6 py-3 text-sm font-semibold text-[var(--color-on-surface)] transition-all hover:bg-[var(--color-surface-container)] hover:shadow"

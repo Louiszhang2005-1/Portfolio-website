@@ -90,8 +90,8 @@ const sideProjects: ProjectItem[] = [
       "A Chrome extension for keeping internship applications organised across recruitment cycles. It syncs application and rejection emails from Gmail, moves each application through eight statuses from Saved to Offer, shows the whole pipeline as a Sankey chart, and exports any cycle to CSV.",
     skills: ["React", "TypeScript", "Vite", "Recharts", "Chrome MV3", "Gmail OAuth"],
     metrics: ["8 application statuses", "Gmail auto-sync", "CSV import and export"],
-    github: "https://github.com/Louiszhang2005-1/Job-Application-Status-Chrome-Extension",
-    links: [{ label: "GitHub", href: "https://github.com/Louiszhang2005-1/Job-Application-Status-Chrome-Extension", kind: "github" }],
+    github: "https://github.com/louzhang15/Job-Application-Status-Chrome-Extension",
+    links: [{ label: "GitHub", href: "https://github.com/louzhang15/Job-Application-Status-Chrome-Extension", kind: "github" }],
   }),
   side({
     id: "S-2",
@@ -106,8 +106,8 @@ const sideProjects: ProjectItem[] = [
       "Upload a resume as a PDF or Word file and get it back in Jake's LaTeX template. A FastAPI backend extracts the text, structures it with Gemini, then renders and compiles the LaTeX into a PDF plus the .tex source. Nothing is stored.",
     skills: ["Python", "FastAPI", "Gemini API", "LaTeX", "Jinja", "Next.js", "Docker"],
     metrics: ["2 input formats (PDF, DOCX)", "2 outputs (PDF and .tex)", "0 files stored"],
-    github: "https://github.com/Louiszhang2005-1/Latex---resume-converter",
-    links: [{ label: "GitHub", href: "https://github.com/Louiszhang2005-1/Latex---resume-converter", kind: "github" }],
+    github: "https://github.com/louzhang15/Latex---resume-converter",
+    links: [{ label: "GitHub", href: "https://github.com/louzhang15/Latex---resume-converter", kind: "github" }],
   }),
 ];
 
