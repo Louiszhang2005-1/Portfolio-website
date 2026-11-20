@@ -16,7 +16,7 @@ so only push to `main` when Louis has said to.
 - Logos: `portfolio/public/logo/`. Game screen cards and previews: `portfolio/public/media/drive/`.
 - Security headers and the Content-Security-Policy: `portfolio/next.config.ts`. Scripts, workers and
   blobs are limited to the site itself, so any new external script, font or CDN must be added there.
-- Code map: `graphify-out/GRAPH_REPORT.md` (communities, central files) and `graphify-out/graph.html`
+- Code map: `portfolio/src/graphify-out/GRAPH_REPORT.md` (communities, central files) and `portfolio/src/graphify-out/graph.html`
   (open in a browser). Use it to find what a change touches before editing.
 
 ## Content rules (facts must match everywhere)
