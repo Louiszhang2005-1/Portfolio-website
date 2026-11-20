@@ -16,8 +16,6 @@ so only push to `main` when Louis has said to.
 - Logos: `portfolio/public/logo/`. Game screen cards and previews: `portfolio/public/media/drive/`.
 - Security headers and the Content-Security-Policy: `portfolio/next.config.ts`. Scripts, workers and
   blobs are limited to the site itself, so any new external script, font or CDN must be added there.
-- Code map: `portfolio/src/graphify-out/GRAPH_REPORT.md` (communities, central files) and `portfolio/src/graphify-out/graph.html`
-  (open in a browser). Use it to find what a change touches before editing.
 
 ## Content rules (facts must match everywhere)
 
@@ -73,6 +71,5 @@ Run from the repo root unless noted:
 6. Accessibility scan with axe-core (WCAG 2.2 AA) on `/`, a case study, and `/game`, desktop and phone:
    0 violations.
 7. Check the content rules above, including that the homepage and the game agree.
-8. If you added, moved or renamed files, refresh the code map: `graphify update portfolio/src`.
-9. Commit on a branch. Push to `main` only after Louis approves; then confirm the GitHub Actions run
+8. Commit on a branch. Push to `main` only after Louis approves; then confirm the GitHub Actions run
    passed and the change is live.

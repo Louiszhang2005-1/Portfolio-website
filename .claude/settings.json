@@ -20,26 +20,6 @@
             "timeout": 5000
           }
         ]
-      },
-      {
-        "matcher": "Bash|Grep",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "C:/Users/zloui/AppData/Local/Programs/Python/Python310/Scripts/graphify.EXE hook-guard search",
-            "timeout": 10
-          }
-        ]
-      },
-      {
-        "matcher": "Read|Glob",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "C:/Users/zloui/AppData/Local/Programs/Python/Python310/Scripts/graphify.EXE hook-guard read",
-            "timeout": 10
-          }
-        ]
       }
     ],
     "PostToolUse": [
@@ -87,16 +67,6 @@
             "type": "command",
             "command": "cmd /c node %CLAUDE_PROJECT_DIR%/.claude/helpers/auto-memory-hook.mjs import",
             "timeout": 8000
-          }
-        ]
-      },
-      {
-        "matcher": "compact",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "C:/Users/zloui/AppData/Local/Programs/Python/Python310/Scripts/graphify.EXE hook-guard compact",
-            "timeout": 10
           }
         ]
       }
@@ -205,7 +175,7 @@
   },
   "attribution": {
     "commit": "Co-Authored-By: RuFlo <ruv@ruv.net>",
-    "pr": "\ud83e\udd16 Generated with [RuFlo](https://github.com/ruvnet/ruflo)"
+    "pr": "🤖 Generated with [RuFlo](https://github.com/ruvnet/ruflo)"
   },
   "env": {
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",

@@ -25,11 +25,6 @@ pnpm-debug.log*
 .playwright-cli/
 ruvector.db
 
-# graphify: the shared map lives in portfolio/src/graphify-out (graph.json, graph.html,
-# GRAPH_REPORT.md, manifest.json, labels); everything else there, and the root pointer folder, is local state
-/graphify-out/
-portfolio/src/graphify-out/cache/
-portfolio/src/graphify-out/20*/
-portfolio/src/graphify-out/.graphify_*
-!portfolio/src/graphify-out/.graphify_labels.json
-portfolio/src/graphify-out/cost.json
+# local-only tools for this computer (never pushed): graphify maps and Claude's local notes
+graphify-out/
+CLAUDE.local.md
