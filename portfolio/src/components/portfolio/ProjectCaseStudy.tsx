@@ -19,6 +19,11 @@ import { useRef } from "react";
 import type { PortfolioItem } from "@/lib/portfolio";
 import { CinematicFooter } from "@/components/ui/motion-footer";
 
+// Accent darkened 25% so white text passes contrast; plain hex math rather than color-mix, which Safari 15 lacks.
+const darken = (hex: string) =>
+  "#" + [1, 3, 5].map((i) => Math.round(parseInt(hex.slice(i, i + 2), 16) * 0.75).toString(16).padStart(2, "0")).join("");
+console.assert(darken("#ffffff") === "#bfbfbf" && darken("#e8590c") === "#ae4309", "darken");
+
 // Keep content visible from first paint, including before Motion hydrates.
 const reducedMotion = "motion-reduce:opacity-100! motion-reduce:transform-none!";
 
@@ -232,7 +237,7 @@ export default function ProjectCaseStudy({
                 style={
                   i === 0
                     ? {
-                        background: `color-mix(in srgb, ${item.accent} 75%, black)`,
+                        background: darken(item.accent),
                         boxShadow: `0 4px 18px ${item.accent}50`,
                       }
                     : undefined
