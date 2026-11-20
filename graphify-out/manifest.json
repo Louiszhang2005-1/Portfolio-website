@@ -1,0 +1,500 @@
+{
+  "portfolio/src/app/classic/page.tsx": {
+    "mtime": 1792911666.2342558,
+    "seen": 1795190066.6049278,
+    "ast_hash": "971ed67f7f9aa086e713064c09b1e45a",
+    "semantic_hash": "971ed67f7f9aa086e713064c09b1e45a"
+  },
+  "portfolio/src/app/game/page.tsx": {
+    "mtime": 1794810177.1592982,
+    "seen": 1795190066.6049278,
+    "ast_hash": "bace1f6db271ccb7cd06a73c337870df",
+    "semantic_hash": "bace1f6db271ccb7cd06a73c337870df"
+  },
+  "portfolio/src/app/layout.tsx": {
+    "mtime": 1794790208.1559343,
+    "seen": 1795190066.6049278,
+    "ast_hash": "32bf638b5c2e20851841ac634ca82cc0",
+    "semantic_hash": "32bf638b5c2e20851841ac634ca82cc0"
+  },
+  "portfolio/src/app/loading.tsx": {
+    "mtime": 1792808612.3148794,
+    "seen": 1795190066.6049278,
+    "ast_hash": "9706c54de4c1b4dbd2446cae7f7e963e",
+    "semantic_hash": "9706c54de4c1b4dbd2446cae7f7e963e"
+  },
+  "portfolio/src/app/not-found.tsx": {
+    "mtime": 1792911706.0107853,
+    "seen": 1795190066.6049278,
+    "ast_hash": "f91d088d4bf1b76f3d923b4fac8da2ff",
+    "semantic_hash": "f91d088d4bf1b76f3d923b4fac8da2ff"
+  },
+  "portfolio/src/app/page.tsx": {
+    "mtime": 1792969686.4860358,
+    "seen": 1795190066.6049278,
+    "ast_hash": "bc4c9f99ce50f5fda4a3d9cb725e5858",
+    "semantic_hash": "bc4c9f99ce50f5fda4a3d9cb725e5858"
+  },
+  "portfolio/src/app/portfolio/[slug]/page.tsx": {
+    "mtime": 1794640442.4802897,
+    "seen": 1795190066.6049278,
+    "ast_hash": "fb7273c1d3201361b0e407d062b0a8d8",
+    "semantic_hash": "fb7273c1d3201361b0e407d062b0a8d8"
+  },
+  "portfolio/src/app/portfolio/page.tsx": {
+    "mtime": 1792954853.3310966,
+    "seen": 1795190066.6049278,
+    "ast_hash": "c0971b2ea0cc6ce9b37b64d9f1581da9",
+    "semantic_hash": "c0971b2ea0cc6ce9b37b64d9f1581da9"
+  },
+  "portfolio/src/app/prototype/devices/page.tsx": {
+    "mtime": 1792911675.0268824,
+    "seen": 1795190066.6049278,
+    "ast_hash": "716642b8feda3a2311011fd195974426",
+    "semantic_hash": "716642b8feda3a2311011fd195974426"
+  },
+  "portfolio/src/components/SprocketAvatar.tsx": {
+    "mtime": 1792808612.3299954,
+    "seen": 1795190066.6049278,
+    "ast_hash": "0a8942acea1186fa21938c50dae36acd",
+    "semantic_hash": "0a8942acea1186fa21938c50dae36acd"
+  },
+  "portfolio/src/components/drive/Car.tsx": {
+    "mtime": 1794790041.3657281,
+    "seen": 1795190066.6049278,
+    "ast_hash": "93fcf789b45f5940813d763b76f35460",
+    "semantic_hash": "93fcf789b45f5940813d763b76f35460"
+  },
+  "portfolio/src/components/drive/Confetti.tsx": {
+    "mtime": 1794793991.2847672,
+    "seen": 1795190066.6049278,
+    "ast_hash": "2ef48b60d8e97f8b0fd497cd25dd8728",
+    "semantic_hash": "2ef48b60d8e97f8b0fd497cd25dd8728"
+  },
+  "portfolio/src/components/drive/DriveGame.tsx": {
+    "mtime": 1795189527.2825055,
+    "seen": 1795190066.6049278,
+    "ast_hash": "21f973a276535c01f70d2bc30caa3c15",
+    "semantic_hash": "21f973a276535c01f70d2bc30caa3c15"
+  },
+  "portfolio/src/components/drive/DriveList.tsx": {
+    "mtime": 1794796559.9835842,
+    "seen": 1795190066.6049278,
+    "ast_hash": "7e4824993935016a70d5936eb0d0ca2d",
+    "semantic_hash": "7e4824993935016a70d5936eb0d0ca2d"
+  },
+  "portfolio/src/components/drive/DriveScene.tsx": {
+    "mtime": 1794799642.0938215,
+    "seen": 1795190066.6049278,
+    "ast_hash": "100b38bed68a76f5da8446f96b1b8683",
+    "semantic_hash": "100b38bed68a76f5da8446f96b1b8683"
+  },
+  "portfolio/src/components/drive/Extras.tsx": {
+    "mtime": 1794794834.711706,
+    "seen": 1795190066.6049278,
+    "ast_hash": "3ee828c628158d5da4ee73ead4e6c40d",
+    "semantic_hash": "3ee828c628158d5da4ee73ead4e6c40d"
+  },
+  "portfolio/src/components/drive/Labels.tsx": {
+    "mtime": 1794799642.0990243,
+    "seen": 1795190066.6049278,
+    "ast_hash": "99ac1b7267faa92c35fbe218913db492",
+    "semantic_hash": "99ac1b7267faa92c35fbe218913db492"
+  },
+  "portfolio/src/components/drive/Landmarks.tsx": {
+    "mtime": 1794793883.7282777,
+    "seen": 1795190066.6049278,
+    "ast_hash": "22ae3d485b97e5d5d95eb3015c78bd7d",
+    "semantic_hash": "22ae3d485b97e5d5d95eb3015c78bd7d"
+  },
+  "portfolio/src/components/drive/MapOverlay.tsx": {
+    "mtime": 1795189413.7245102,
+    "seen": 1795190066.6049278,
+    "ast_hash": "582dcf49ed868eec62952b415cc15083",
+    "semantic_hash": "582dcf49ed868eec62952b415cc15083"
+  },
+  "portfolio/src/components/drive/Minimap.tsx": {
+    "mtime": 1794790114.0274844,
+    "seen": 1795190066.6049278,
+    "ast_hash": "44fe3cee2b68625d29a16e9d314b0a5d",
+    "semantic_hash": "44fe3cee2b68625d29a16e9d314b0a5d"
+  },
+  "portfolio/src/components/drive/NameBlocks.tsx": {
+    "mtime": 1794790276.929209,
+    "seen": 1795190066.6049278,
+    "ast_hash": "2d0f0b494f8e940f719eb5b16aa443e3",
+    "semantic_hash": "2d0f0b494f8e940f719eb5b16aa443e3"
+  },
+  "portfolio/src/components/drive/Scenery.tsx": {
+    "mtime": 1794789902.2268174,
+    "seen": 1795190066.6049278,
+    "ast_hash": "8f8373a66d2e8c00d0687fe43b4dc565",
+    "semantic_hash": "8f8373a66d2e8c00d0687fe43b4dc565"
+  },
+  "portfolio/src/components/drive/Showcases.tsx": {
+    "mtime": 1794794736.496941,
+    "seen": 1795190066.6049278,
+    "ast_hash": "2987848d98338000eeaf2e62520f4491",
+    "semantic_hash": "2987848d98338000eeaf2e62520f4491"
+  },
+  "portfolio/src/components/drive/TouchStick.tsx": {
+    "mtime": 1795189413.7245102,
+    "seen": 1795190066.6049278,
+    "ast_hash": "26a383e3a97a5965a0b49fa2179cb24d",
+    "semantic_hash": "26a383e3a97a5965a0b49fa2179cb24d"
+  },
+  "portfolio/src/components/drive/bodies.ts": {
+    "mtime": 1794795404.3320637,
+    "seen": 1795190066.6049278,
+    "ast_hash": "00743b9e07cef5f559bd9b1158be327b",
+    "semantic_hash": "00743b9e07cef5f559bd9b1158be327b"
+  },
+  "portfolio/src/components/drive/carPhysics.ts": {
+    "mtime": 1795189413.7245102,
+    "seen": 1795190066.6049278,
+    "ast_hash": "761845168812bfeac7bd33e36ea9058b",
+    "semantic_hash": "761845168812bfeac7bd33e36ea9058b"
+  },
+  "portfolio/src/components/drive/driveData.ts": {
+    "mtime": 1794799454.833917,
+    "seen": 1795190066.6049278,
+    "ast_hash": "4d1469d67f0949b41a3b12606db5b474",
+    "semantic_hash": "4d1469d67f0949b41a3b12606db5b474"
+  },
+  "portfolio/src/components/drive/driveStore.ts": {
+    "mtime": 1794799642.0938215,
+    "seen": 1795190066.6049278,
+    "ast_hash": "303dd587cfd70b4460e0f30bbbb01b1c",
+    "semantic_hash": "303dd587cfd70b4460e0f30bbbb01b1c"
+  },
+  "portfolio/src/components/drive/extrasLayout.ts": {
+    "mtime": 1794799642.0990243,
+    "seen": 1795190066.6049278,
+    "ast_hash": "9f41364cba8bd25b4236f1a6d6602c06",
+    "semantic_hash": "9f41364cba8bd25b4236f1a6d6602c06"
+  },
+  "portfolio/src/components/drive/labelAtlas.ts": {
+    "mtime": 1794799470.808761,
+    "seen": 1795190066.6049278,
+    "ast_hash": "a1cc551a6bcfa8ea35dae4a29692dc27",
+    "semantic_hash": "a1cc551a6bcfa8ea35dae4a29692dc27"
+  },
+  "portfolio/src/components/drive/palette.ts": {
+    "mtime": 1794789906.4111602,
+    "seen": 1795190066.6049278,
+    "ast_hash": "5a904be71cb4d1314e2dea417f1ef044",
+    "semantic_hash": "5a904be71cb4d1314e2dea417f1ef044"
+  },
+  "portfolio/src/components/drive/worldLayout.ts": {
+    "mtime": 1794799072.8548424,
+    "seen": 1795190066.6049278,
+    "ast_hash": "2b9f710ad9dbd8dd825adf9760c400f0",
+    "semantic_hash": "2b9f710ad9dbd8dd825adf9760c400f0"
+  },
+  "portfolio/src/components/portfolio/About.tsx": {
+    "mtime": 1792969686.500617,
+    "seen": 1795190066.6049278,
+    "ast_hash": "7bf782b29f97ac346aace19b20fcb212",
+    "semantic_hash": "7bf782b29f97ac346aace19b20fcb212"
+  },
+  "portfolio/src/components/portfolio/Contact.tsx": {
+    "mtime": 1792808612.3315206,
+    "seen": 1795190066.6049278,
+    "ast_hash": "478f6dce55822df40d93ca26aab8e1d9",
+    "semantic_hash": "478f6dce55822df40d93ca26aab8e1d9"
+  },
+  "portfolio/src/components/portfolio/FullPortfolioDeck.tsx": {
+    "mtime": 1792808612.3326485,
+    "seen": 1795190066.6049278,
+    "ast_hash": "a6a32ab2cd2e39424911eadf2945b9d1",
+    "semantic_hash": "a6a32ab2cd2e39424911eadf2945b9d1"
+  },
+  "portfolio/src/components/portfolio/GamePortalDashboard.tsx": {
+    "mtime": 1792808612.3326485,
+    "seen": 1795190066.6049278,
+    "ast_hash": "0a8b96ca62ad57c8d0b61ff342011339",
+    "semantic_hash": "0a8b96ca62ad57c8d0b61ff342011339"
+  },
+  "portfolio/src/components/portfolio/Internships.tsx": {
+    "mtime": 1792808612.3326485,
+    "seen": 1795190066.6049278,
+    "ast_hash": "32db39fedfe22bb1be2c1f9bcc139a82",
+    "semantic_hash": "32db39fedfe22bb1be2c1f9bcc139a82"
+  },
+  "portfolio/src/components/portfolio/PhysicsConstellation.tsx": {
+    "mtime": 1794789165.4079082,
+    "seen": 1795190066.6049278,
+    "ast_hash": "004d017c3a3e137e7dc44b1ad21ce31e",
+    "semantic_hash": "004d017c3a3e137e7dc44b1ad21ce31e"
+  },
+  "portfolio/src/components/portfolio/PortfolioHero.tsx": {
+    "mtime": 1792808612.334655,
+    "seen": 1795190066.6049278,
+    "ast_hash": "b2968468d4797d0e4f5c006d5ebe93cb",
+    "semantic_hash": "b2968468d4797d0e4f5c006d5ebe93cb"
+  },
+  "portfolio/src/components/portfolio/PortfolioHome.tsx": {
+    "mtime": 1792808612.334655,
+    "seen": 1795190066.6049278,
+    "ast_hash": "b2fff6a6e308fc928412ba4923de7642",
+    "semantic_hash": "b2fff6a6e308fc928412ba4923de7642"
+  },
+  "portfolio/src/components/portfolio/ProjectCaseStudy.tsx": {
+    "mtime": 1795189413.7245102,
+    "seen": 1795190066.6049278,
+    "ast_hash": "7e42ccb14fee03c250901eba544919f6",
+    "semantic_hash": "7e42ccb14fee03c250901eba544919f6"
+  },
+  "portfolio/src/components/portfolio/ProjectOrbitGallery.tsx": {
+    "mtime": 1792808612.334655,
+    "seen": 1795190066.6049278,
+    "ast_hash": "7103dbebbe1085c43ff8b7b2dbb7e84f",
+    "semantic_hash": "7103dbebbe1085c43ff8b7b2dbb7e84f"
+  },
+  "portfolio/src/components/portfolio/Projects.tsx": {
+    "mtime": 1792808612.3381085,
+    "seen": 1795190066.6049278,
+    "ast_hash": "4b0fee777f927da34e1156e0dc66e828",
+    "semantic_hash": "4b0fee777f927da34e1156e0dc66e828"
+  },
+  "portfolio/src/components/portfolio/SideScrollNav.tsx": {
+    "mtime": 1792808612.3381085,
+    "seen": 1795190066.6049278,
+    "ast_hash": "cee918b0247e94fbcf9a08be45a5ef20",
+    "semantic_hash": "cee918b0247e94fbcf9a08be45a5ef20"
+  },
+  "portfolio/src/components/prototype/BookDeck.tsx": {
+    "mtime": 1794345679.2686884,
+    "seen": 1795190066.6049278,
+    "ast_hash": "e400eac8f1b204b5a9dceeefe3efc944",
+    "semantic_hash": "e400eac8f1b204b5a9dceeefe3efc944"
+  },
+  "portfolio/src/components/prototype/DeckChapter.tsx": {
+    "mtime": 1794788155.1692283,
+    "seen": 1795190066.6049278,
+    "ast_hash": "e233f5fcac3acba0d4f4214b6d41f632",
+    "semantic_hash": "e233f5fcac3acba0d4f4214b6d41f632"
+  },
+  "portfolio/src/components/prototype/DeviceEcosystem.tsx": {
+    "mtime": 1794799787.6815867,
+    "seen": 1795190066.6049278,
+    "ast_hash": "9e9a7b1d33eed4f36a9279a0fcf230ec",
+    "semantic_hash": "9e9a7b1d33eed4f36a9279a0fcf230ec"
+  },
+  "portfolio/src/components/prototype/DeviceSkeleton.tsx": {
+    "mtime": 1792977031.5198526,
+    "seen": 1795190066.6049278,
+    "ast_hash": "93deb830535def3fb0795ac02c43fb07",
+    "semantic_hash": "93deb830535def3fb0795ac02c43fb07"
+  },
+  "portfolio/src/components/prototype/ExperienceChapter.tsx": {
+    "mtime": 1795189718.6734219,
+    "seen": 1795190066.6049278,
+    "ast_hash": "426ad7c5e6dd38e806e7bef7959d46c4",
+    "semantic_hash": "426ad7c5e6dd38e806e7bef7959d46c4"
+  },
+  "portfolio/src/components/prototype/Loader.tsx": {
+    "mtime": 1792977031.5198526,
+    "seen": 1795190066.6049278,
+    "ast_hash": "e2be566354098d4665b60b5b16f32d6f",
+    "semantic_hash": "e2be566354098d4665b60b5b16f32d6f"
+  },
+  "portfolio/src/components/prototype/PageViewer.tsx": {
+    "mtime": 1792955802.9670622,
+    "seen": 1795190066.6049278,
+    "ast_hash": "0c09f9ea969734d96de6aba28585b7ba",
+    "semantic_hash": "0c09f9ea969734d96de6aba28585b7ba"
+  },
+  "portfolio/src/components/prototype/PhoneChapter.tsx": {
+    "mtime": 1794788155.1655724,
+    "seen": 1795190066.6049278,
+    "ast_hash": "ed0d12137c9c12a373c11bab38ab634e",
+    "semantic_hash": "ed0d12137c9c12a373c11bab38ab634e"
+  },
+  "portfolio/src/components/prototype/ProjectsChapter.tsx": {
+    "mtime": 1794788155.1721835,
+    "seen": 1795190066.6049278,
+    "ast_hash": "7302b87d66dda587262084a8a80ae6b9",
+    "semantic_hash": "7302b87d66dda587262084a8a80ae6b9"
+  },
+  "portfolio/src/components/prototype/ProjectsParts.tsx": {
+    "mtime": 1794641705.1228237,
+    "seen": 1795190066.6049278,
+    "ast_hash": "f8ab479f31b7c9c520e880ff5b887751",
+    "semantic_hash": "f8ab479f31b7c9c520e880ff5b887751"
+  },
+  "portfolio/src/components/prototype/StaticDevices.tsx": {
+    "mtime": 1795189413.7308986,
+    "seen": 1795190066.6049278,
+    "ast_hash": "8dc98eb382b5758054263dfd8feb5923",
+    "semantic_hash": "8dc98eb382b5758054263dfd8feb5923"
+  },
+  "portfolio/src/components/prototype/StepNav.tsx": {
+    "mtime": 1794788819.0422177,
+    "seen": 1795190066.6049278,
+    "ast_hash": "c4bc4b801d0f68ab049d65d9fb99504d",
+    "semantic_hash": "c4bc4b801d0f68ab049d65d9fb99504d"
+  },
+  "portfolio/src/components/prototype/WatchChapter.tsx": {
+    "mtime": 1795189413.7308986,
+    "seen": 1795190066.6049278,
+    "ast_hash": "28517047e559b2985767ec30c93797dc",
+    "semantic_hash": "28517047e559b2985767ec30c93797dc"
+  },
+  "portfolio/src/components/prototype/WinsChapter.tsx": {
+    "mtime": 1794812110.6312425,
+    "seen": 1795190066.6049278,
+    "ast_hash": "9ed91b62da2b51cf0a926a4cb5933b19",
+    "semantic_hash": "9ed91b62da2b51cf0a926a4cb5933b19"
+  },
+  "portfolio/src/components/prototype/devices.tsx": {
+    "mtime": 1792969686.5063868,
+    "seen": 1795190066.6049278,
+    "ast_hash": "52ec30ee82047a88d6fe9ecb0b272238",
+    "semantic_hash": "52ec30ee82047a88d6fe9ecb0b272238"
+  },
+  "portfolio/src/components/prototype/parts.tsx": {
+    "mtime": 1792823217.378415,
+    "seen": 1795190066.6049278,
+    "ast_hash": "d93a3e82dcd6236640e0b1020e5e98fe",
+    "semantic_hash": "d93a3e82dcd6236640e0b1020e5e98fe"
+  },
+  "portfolio/src/components/prototype/projectData.ts": {
+    "mtime": 1794865972.8962324,
+    "seen": 1795190066.6049278,
+    "ast_hash": "e47a168e10c3c6b915f055bb0a79c8d1",
+    "semantic_hash": "e47a168e10c3c6b915f055bb0a79c8d1"
+  },
+  "portfolio/src/components/prototype/stage.tsx": {
+    "mtime": 1794788155.1648831,
+    "seen": 1795190066.6049278,
+    "ast_hash": "15a7b2d21314bf4791c0f8d7feba3c48",
+    "semantic_hash": "15a7b2d21314bf4791c0f8d7feba3c48"
+  },
+  "portfolio/src/components/prototype/three/DeviceCanvas.tsx": {
+    "mtime": 1792977314.4853213,
+    "seen": 1795190066.6049278,
+    "ast_hash": "b6898887ec8924761936502bc531c79a",
+    "semantic_hash": "b6898887ec8924761936502bc531c79a"
+  },
+  "portfolio/src/components/prototype/three/Laptop3D.tsx": {
+    "mtime": 1794345386.1033072,
+    "seen": 1795190066.6049278,
+    "ast_hash": "2dbdbef630e22074c1c34b9478875c41",
+    "semantic_hash": "2dbdbef630e22074c1c34b9478875c41"
+  },
+  "portfolio/src/components/prototype/three/Phone3D.tsx": {
+    "mtime": 1792956102.7430463,
+    "seen": 1795190066.6049278,
+    "ast_hash": "30ff1faaa4a5f3c62cc7b0513e5cc7f4",
+    "semantic_hash": "30ff1faaa4a5f3c62cc7b0513e5cc7f4"
+  },
+  "portfolio/src/components/prototype/three/Watch3D.tsx": {
+    "mtime": 1794641657.6269946,
+    "seen": 1795190066.6049278,
+    "ast_hash": "983ce2d7cfb97e99e36e017d02d11c37",
+    "semantic_hash": "983ce2d7cfb97e99e36e017d02d11c37"
+  },
+  "portfolio/src/components/prototype/three/canvas.ts": {
+    "mtime": 1794345386.1033072,
+    "seen": 1795190066.6049278,
+    "ast_hash": "6e3b650d36850f932bc75b08bcd23e81",
+    "semantic_hash": "6e3b650d36850f932bc75b08bcd23e81"
+  },
+  "portfolio/src/components/prototype/three/core.tsx": {
+    "mtime": 1792977013.075746,
+    "seen": 1795190066.6049278,
+    "ast_hash": "7691be8ed357f007de23850ee0d48178",
+    "semantic_hash": "7691be8ed357f007de23850ee0d48178"
+  },
+  "portfolio/src/components/prototype/three/screens.ts": {
+    "mtime": 1794345505.7759693,
+    "seen": 1795190066.6049278,
+    "ast_hash": "62939fc7963387fb2548f01c5346e82d",
+    "semantic_hash": "62939fc7963387fb2548f01c5346e82d"
+  },
+  "portfolio/src/components/prototype/three/tokens.ts": {
+    "mtime": 1792908359.922423,
+    "seen": 1795190066.6049278,
+    "ast_hash": "7e35bf9f51f2504775cbabf711172bb9",
+    "semantic_hash": "7e35bf9f51f2504775cbabf711172bb9"
+  },
+  "portfolio/src/components/ui/circular-gallery.tsx": {
+    "mtime": 1792808612.3381085,
+    "seen": 1795190066.6049278,
+    "ast_hash": "45c461ae87bf2848a3ad76eb448ce2bd",
+    "semantic_hash": "45c461ae87bf2848a3ad76eb448ce2bd"
+  },
+  "portfolio/src/components/ui/landing-backdrop.tsx": {
+    "mtime": 1792808612.340617,
+    "seen": 1795190066.6049278,
+    "ast_hash": "402b160224a68adfd88c02f2dee8aaff",
+    "semantic_hash": "402b160224a68adfd88c02f2dee8aaff"
+  },
+  "portfolio/src/components/ui/landing-hero.tsx": {
+    "mtime": 1792912297.987416,
+    "seen": 1795190066.6049278,
+    "ast_hash": "b9d53c0e15973734f0c245fb63df0a44",
+    "semantic_hash": "b9d53c0e15973734f0c245fb63df0a44"
+  },
+  "portfolio/src/components/ui/motion-footer.tsx": {
+    "mtime": 1795189413.7308986,
+    "seen": 1795190066.6049278,
+    "ast_hash": "44c389b6280096e4f5d4c7cfe405158f",
+    "semantic_hash": "44c389b6280096e4f5d4c7cfe405158f"
+  },
+  "portfolio/src/components/ui/project-card.tsx": {
+    "mtime": 1792808612.3416238,
+    "seen": 1795190066.6049278,
+    "ast_hash": "e4210f16f57afeae5b0c41dba9b6c4d3",
+    "semantic_hash": "e4210f16f57afeae5b0c41dba9b6c4d3"
+  },
+  "portfolio/src/components/ui/project-showcase.tsx": {
+    "mtime": 1792808612.3416238,
+    "seen": 1795190066.6049278,
+    "ast_hash": "413a92429ba6db9805a2dc3da44946e2",
+    "semantic_hash": "413a92429ba6db9805a2dc3da44946e2"
+  },
+  "portfolio/src/data/gameContact.ts": {
+    "mtime": 1794791392.3302348,
+    "seen": 1795190066.6049278,
+    "ast_hash": "2152fce8f5129de125e136eb2ec85833",
+    "semantic_hash": "2152fce8f5129de125e136eb2ec85833"
+  },
+  "portfolio/src/data/portfolio-export.json": {
+    "mtime": 1794797687.4017873,
+    "seen": 1795190066.6049278,
+    "ast_hash": "0d5b17e2d5e8c6a20230d5cc0410c44d",
+    "semantic_hash": "0d5b17e2d5e8c6a20230d5cc0410c44d"
+  },
+  "portfolio/src/data/portfolio-export.ts": {
+    "mtime": 1794797687.4243853,
+    "seen": 1795190066.6049278,
+    "ast_hash": "283f23ed41f79a99df32491d708fc539",
+    "semantic_hash": "283f23ed41f79a99df32491d708fc539"
+  },
+  "portfolio/src/data/portfolio.json": {
+    "mtime": 1794797687.3196752,
+    "seen": 1795190066.6049278,
+    "ast_hash": "17fdfbdbea57c283a7cbfca25931060a",
+    "semantic_hash": "17fdfbdbea57c283a7cbfca25931060a"
+  },
+  "portfolio/src/lib/portfolio.ts": {
+    "mtime": 1794346666.7500536,
+    "seen": 1795190066.6049278,
+    "ast_hash": "c7e9890e7e71c895e4264428382f0a7f",
+    "semantic_hash": "c7e9890e7e71c895e4264428382f0a7f"
+  },
+  "portfolio/src/lib/utils.ts": {
+    "mtime": 1792808612.3539426,
+    "seen": 1795190066.6049278,
+    "ast_hash": "e3f848f1b39f863e6164cf58b5a8e752",
+    "semantic_hash": "e3f848f1b39f863e6164cf58b5a8e752"
+  },
+  "portfolio/src/data/portfolio.md": {
+    "mtime": 1794797687.3512595,
+    "seen": 1795190066.6049278,
+    "ast_hash": "57501d85f175b14bde937f648c55a05a",
+    "semantic_hash": "57501d85f175b14bde937f648c55a05a"
+  }
+}

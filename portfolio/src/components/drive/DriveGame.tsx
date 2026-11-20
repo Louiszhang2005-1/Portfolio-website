@@ -181,7 +181,8 @@ export default function DriveGame({ world }: { world: WorldData }) {
     const stop = world.stops.find((s) => s.id === id);
     if (stop?.href) router.push(stop.href);
   }, [world, router]);
-  useKeyboard(mode === "drive" && !mapOpen && !showWelcome, openNearby, openMap);
+  // stays on under the welcome card: its capture handler takes Enter/Space/Esc, and a drive key starts driving (closing the card)
+  useKeyboard(mode === "drive" && !mapOpen, openNearby, openMap);
 
   // the welcome card: Enter (or Esc / Space) skips straight to driving
   useEffect(() => {

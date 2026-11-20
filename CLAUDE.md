@@ -1,5 +1,8 @@
 # Ruflo — Claude Code Configuration
 
+> **Portfolio project rules come first.** Read and follow @AGENTS.md (content facts, design rules, the
+> code map in `graphify-out/`, and the Finish checklist). Run that checklist before reporting any task done.
+
 ## Rules
 
 - Do what has been asked; nothing more, nothing less

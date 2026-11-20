@@ -35,7 +35,7 @@ function RoleDetails({ job, index }: { job: PortfolioItem; index: number }) {
           <p className="text-[15px] text-[var(--text-on-light-secondary)]">{job.subtitle}</p>
           <p className="mt-1 font-mono text-xs tabular-nums text-[var(--text-on-light-secondary)]">
             {job.date}
-            <span className="ml-3 opacity-60">
+            <span className="ml-3">
               {index + 1} of {jobs.length}
             </span>
           </p>
